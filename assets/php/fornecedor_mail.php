@@ -31,9 +31,9 @@ $autorizado=$_POST['autorizado'];
 $dtAutorizado=$_POST['dtAutorizado'];
 
 $mensagem = file_get_contents('fornecedor_tmp.html');
+$dest='gabriel.hipolito@aniger.com.br';
 
 $mensagem = str_replace('%nome%', $nome, $mensagem);
-$mensagem = str_replace('%fantasia%', $fantasia, $mensagem);
 $mensagem = str_replace('%endereco%', $endereco, $mensagem);
 $mensagem = str_replace('%nro%', $nro, $mensagem);
 $mensagem = str_replace('%bairro%', $bairro, $mensagem);
@@ -70,7 +70,7 @@ try {
  
      //Define os destinatário(s)
      //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-     $mail->AddAddress('gabriel.hipolito@aniger.com.br', 'Intranet');
+     $mail->AddAddress($dest, 'Intranet');
  
      //Campos abaixo são opcionais 
      //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=

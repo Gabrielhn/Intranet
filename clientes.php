@@ -266,7 +266,7 @@
                   <img src="assets\img\logo3.png">
                   <p></p>
                   <div class="form-group col-md-12 col-sm-12 col-xs-12">
-                    <span class="help">Preencha abaixo as informações solcitadas para cadastro de clientes.
+                    <span class="help">Preencha abaixo as informações solcitadas para cadastro de novos clientes.
                     <p>Após enviar os dados, aguarde retorno por e-mail com o código do cliente.</p>
                     </span>
                   </div>
@@ -319,7 +319,7 @@
 
                         <div class="form-group col-md-6 col-sm-6 col-xs-6">
                           <div class="controls">
-                            <input type="text" placeholder="Razão social" class="form-control input" name="nome">
+                            <input type="text" placeholder="Razão social" class="form-control input" name="nome" required>
                           </div>
                         </div>
 
@@ -331,19 +331,19 @@
 
                         <div class="form-group col-md-10 col-sm-10 col-xs-10">
                           <div class="controls">
-                            <input type="text" placeholder="Endereço" class="form-control input" name="endereco">
+                            <input type="text" placeholder="Endereço" class="form-control input" name="endereco" required>
                           </div>
                         </div>
 
                         <div class="form-group col-md-2 col-sm-2 col-xs-2" >
                           <div class="controls">
-                            <input type="text" placeholder="Nº" class="form-control input" maxlength="7" name="nro">
+                            <input type="text" placeholder="Nº/Comp." class="form-control input" maxlength="7" name="nro" required>
                           </div>
                         </div>
                         
                         <div class="form-group col-md-8 col-sm-8 col-xs-8">
                           <div class="controls">
-                            <input type="text" placeholder="Bairro" class="form-control input" name="bairro">
+                            <input type="text" placeholder="Bairro" class="form-control input" name="bairro" required>
                           </div>
                         </div>
 
@@ -351,19 +351,19 @@
 
                         <div class="form-group col-md-4 col-sm-4 col-xs-4">
                           <div class="controls">
-                            <input type="text" placeholder="CEP" class="form-control input" maxlength="11" name="cep">
+                            <input type="text" placeholder="CEP" class="form-control input" maxlength="11" name="cep" required>
                           </div>
                         </div>
 
                         <div class="form-group col-md-8 col-sm-8 col-xs-8">
                           <div class="controls">
-                            <input type="text" placeholder="Cidade" class="form-control input" name="cidade">
+                            <input type="text" placeholder="Cidade" class="form-control input" name="cidade" required>
                           </div>
                         </div>
 
                         <div class="form-group col-md-4 col-sm-4 col-xs-4">
                           <div class="controls">
-                            <select id="source"  class="form-control input" name="estado">
+                            <select id="source"  class="form-control input" name="estado" required>
                               <optgroup label="Região Sul">
                                 <option value="RS">RS - Rio Grande do Sul</option>
                                 <option value="SC">SC - Santa Catarina</option>
@@ -407,7 +407,7 @@
 
                         <div class="form-group col-md-6 col-sm-6 col-xs-6">
                           <div class="controls">
-                            <input type="text" placeholder="CPF" class="form-control input" maxlength="15" name="cpf">
+                            <input type="text" placeholder="CPF" class="form-control input" maxlength="15" name="cpf" required>
                           </div>
                         </div>
 
@@ -419,25 +419,25 @@
 
                         <div class="form-group col-md-4 col-sm-4 col-xs-4">
                           <div class="controls">
-                            <input type="text" placeholder="Contato" class="form-control input" name="contato">
+                            <input type="text" placeholder="Contato" class="form-control input" name="contato" required>
                           </div>
                         </div>
 
                         <div class="form-group col-md-4 col-sm-4 col-xs-4">
                           <div class="controls">
-                            <input type="text" placeholder="Fone" class="form-control input" name="fone" maxlenght="21">
+                            <input type="text" placeholder="Fone" class="form-control input" name="fone" maxlenght="21" required>
                           </div>
                         </div>
 
                         <div class="form-group col-md-4 col-sm-4 col-xs-4">
                           <div class="controls">
-                            <input type="email" placeholder="Email" class="form-control input" name="email">
+                            <input type="email" placeholder="Email" class="form-control input" name="email" required>
                           </div>
                         </div>
 
                         <div class="form-group col-md-8 col-sm-8 col-xs-8">
                           <div class="controls">
-                            <input type="email" placeholder="Email (NF-e)" class="form-control input" name="emailN">
+                            <input type="email" placeholder="Email (NF-e)" class="form-control input" name="emailN" required>
                           </div>
                         </div>
 
@@ -453,14 +453,14 @@
 
                         <div class="form-group col-md-8 col-sm-8 col-xs-8">
                           <div class="controls">
-                            <input type="text" placeholder="Autorizado por" class="form-control input" name="autorizado">
+                            <input type="text" placeholder="Autorizado por" class="form-control input" name="autorizado" required>
                           </div>
                         </div>
 
                         <div class="form-group col-md-3 col-sm-3 col-xs-3">
                           <div class="controls">
                             <div class="input-append" data-date-format="dd-mm-yyyy">
-                             <input type="date" class="form-control input" maxlength="10" name="dtAutorizado">
+                             <input type="date" class="form-control input" maxlength="10" name="dtAutorizado" required>
                               <span class="add-on"><span class="arrow"></span><i class="fa fa-calendar"></i></span>
                             </div>
                           </div>
