@@ -13,8 +13,6 @@
     <link href="assets/plugins/bootstrapv3/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css" />
     <link href="assets/plugins/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css" />
     <link href="assets/plugins/animate.min.css" rel="stylesheet" type="text/css" />
-    <link href="assets/plugins/bootstrap-datepicker/css/datepicker.css" rel="stylesheet" type="text/css" />
-    <link href="assets/plugins/bootstrap-select2/select2.css" rel="stylesheet" type="text/css" media="screen">
     <!-- <link href="assets/plugins/jquery-scrollbar/jquery.scrollbar.css" rel="stylesheet" type="text/css" /> -->
     <!-- END PLUGIN CSS -->
     <!-- BEGIN CORE CSS FRAMEWORK -->
@@ -262,7 +260,7 @@
           <!-- CONTEUDO -->
           
           <div class="row">
-            <div class="col-md-9">
+            <div class="col-md-10">
               <div class="grid simple">
                 <div class="grid-title no-border">
                   <img src="assets\img\logo3.png">
@@ -278,8 +276,38 @@
                 </div>
                 <div class="grid-body no-border">
                   <br>
+
+                  <!-- PMODAL -->
+                  <div class="modal fade" id="pModal" tabindex="-1" role="dialog" aria-labelledby="pModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                          <br>
+                          <i class="fa fa-check fa-6x"></i>
+                          <h4 id="pModalLabel" class="semi-bold">Sucesso.</h4>
+                        </div>
+                        <div class="modal-body">
+                          <div class="alert alert-info" style=" margin-right: 30px;">
+                            <i class="pull-left material-icons">feedback</i>
+                            <h6 style="padding-left: 30px;">
+                              <?php
+                              // $nome="Gabriel";
+                              
+                              $nome=$_POST['nome'];
+                            
+                              echo $nome;
+                              ?>
+                            <br>&nbsp;  
+                            </h6>    
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
                   <div class="row">
-                    <form>
+                    <form method="POST" name="fornecedores" action="assets\php\fornecedor_mail.php" target="place">
                       <div class="col-md-12 col-sm-12 col-xs-12">
 
                         <div class="form-group col-md-12 col-sm-12 col-xs-12"></div>
@@ -288,25 +316,25 @@
 
                         <div class="form-group col-md-12 col-sm-12 col-xs-12">
                           <div class="controls">
-                            <input type="text" placeholder="Razão social" class="form-control input">
+                            <input type="text" placeholder="Razão social" class="form-control input" name="nome">
                           </div>
                         </div>
 
                         <div class="form-group col-md-10 col-sm-10 col-xs-10">
                           <div class="controls">
-                            <input type="text" placeholder="Endereço" class="form-control input">
+                            <input type="text" placeholder="Endereço" class="form-control input" name="endereco">
                           </div>
                         </div>
 
                         <div class="form-group col-md-2 col-sm-2 col-xs-2" >
                           <div class="controls">
-                            <input type="text" placeholder="Nº" class="form-control input" maxlength="7">
+                            <input type="text" placeholder="Nº" class="form-control input" maxlength="7" name="nro">
                           </div>
                         </div>
                         
                         <div class="form-group col-md-8 col-sm-8 col-xs-8">
                           <div class="controls">
-                            <input type="text" placeholder="Bairro" class="form-control input">
+                            <input type="text" placeholder="Bairro" class="form-control input" name="bairro">
                           </div>
                         </div>
 
@@ -314,19 +342,19 @@
 
                         <div class="form-group col-md-4 col-sm-4 col-xs-4">
                           <div class="controls">
-                            <input type="text" placeholder="CEP" class="form-control input" maxlength="10">
+                            <input type="text" placeholder="CEP" class="form-control input" maxlength="11" name="cep">
                           </div>
                         </div>
 
                         <div class="form-group col-md-8 col-sm-8 col-xs-8">
                           <div class="controls">
-                            <input type="text" placeholder="Cidade" class="form-control input">
+                            <input type="text" placeholder="Cidade" class="form-control input" name="cidade">
                           </div>
                         </div>
 
                         <div class="form-group col-md-4 col-sm-4 col-xs-4">
                           <div class="controls">
-                            <select id="source"  class="form-control input">
+                            <select id="source"  class="form-control input" name="estado">
                               <optgroup label="Região Sul">
                                 <option value="RS">RS - Rio Grande do Sul</option>
                                 <option value="SC">SC - Santa Catarina</option>
@@ -370,56 +398,56 @@
 
                         <div class="form-group col-md-6 col-sm-6 col-xs-6">
                           <div class="controls">
-                            <input type="text" placeholder="CNPJ" class="form-control input" maxlength="18">
+                            <input type="text" placeholder="CNPJ" class="form-control input" maxlength="18"name="cnpj">
                           </div>
                         </div>
 
                         <div class="form-group col-md-6 col-sm-6 col-xs-6">
                           <div class="controls">
-                            <input type="text" placeholder="Inscrição Estadual (IE)" class="form-control input" maxlength="20">
+                            <input type="text" placeholder="Inscrição Estadual (IE)" class="form-control input" name="ie" maxlength="20">
                           </div>
                         </div>
 
                         <div class="form-group col-md-4 col-sm-4 col-xs-4">
                           <div class="controls">
-                            <input type="text" placeholder="Contato" class="form-control input">
+                            <input type="text" placeholder="Contato" class="form-control input" name="contato">
                           </div>
                         </div>
 
                         <div class="form-group col-md-4 col-sm-4 col-xs-4">
                           <div class="controls">
-                            <input type="text" placeholder="Fone" class="form-control input">
+                            <input type="text" placeholder="Fone" class="form-control input" name="fone" maxlenght="21">
                           </div>
                         </div>
 
                         <div class="form-group col-md-4 col-sm-4 col-xs-4">
                           <div class="controls">
-                            <input type="text" placeholder="Email" class="form-control input">
+                            <input type="email" placeholder="Email" class="form-control input" name="email">
                           </div>
                         </div>
 
                         <div class="form-group col-md-8 col-sm-8 col-xs-8">
                           <div class="controls">
-                            <input type="text" placeholder="Email (NF-e)" class="form-control input">
+                            <input type="email" placeholder="Email (NF-e)" class="form-control input" name="emailN">
                           </div>
                         </div>
 
                         <div class="form-group col-md-4 col-sm-4 col-xs-4">
                           <div class="controls">
-                            <input type="text" placeholder="Prazo (ex: 30/60/90)" class="form-control input" maxlength="25">
+                            <input type="text" placeholder="Prazo (ex: 30/60/90)" class="form-control input" maxlength="25" name="prazo">
                           </div>
                         </div>
 
                         <div class="form-group col-md-12 col-sm-12 col-xs-12">
                           <div class="controls">
-                            <input type="text" placeholder="Tipo de Material/Serviço" class="form-control input">
+                            <input type="email" placeholder="Tipo de Material/Serviço" class="form-control input" name="tpmatserv">
                           </div>
                         </div>
 
 
                         <div class="form-group col-md-12 col-sm-12 col-xs-12">
                           <div class="controls">
-                            <textarea id="Obs" placeholder="Observações" class="form-control input" rows="5"></textarea>
+                            <textarea id="Obs" placeholder="Observações" class="form-control input" rows="5" name="obs"></textarea>
                           </div>
                         </div>
 
@@ -429,24 +457,29 @@
 
                         <div class="form-group col-md-8 col-sm-8 col-xs-8">
                           <div class="controls">
-                            <input type="text" placeholder="Autorizado por" class="form-control input">
+                            <input type="text" placeholder="Autorizado por" class="form-control input" name="autorizado">
                           </div>
                         </div>
 
                         <div class="form-group col-md-3 col-sm-3 col-xs-3">
                           <div class="controls">
                             <div class="input-append" data-date-format="dd-mm-yyyy">
-                             <input type="date" class="form-control input" maxlength="10">
+                             <input type="date" class="form-control input" maxlength="10" name="dtAutorizado">
                               <span class="add-on"><span class="arrow"></span><i class="fa fa-calendar"></i></span>
                             </div>
                           </div>
                         </div>
- 
+                        <div class="form-group col-md-12 col-sm-12 col-xs-12"></div>
+
+                        <iframe name="place" style="display:none;"></iframe>
+
                         <div class="form-actions">
                           <div class="pull-right">
-                            <button type="submit" class="btn btn-success btn-cons-md">Enviar</button>
-                            <button type="reset" class="btn btn-white btn-cons-md" value="Reset">Limpar</button>
+                            <!--data-toggle="modal" data-target="#pModal"-->
+                            <button type="submit" class="btn btn-info btn-cons-md" value="submit">Enviar</button>
+                            <button type="reset" class="btn btn-white btn-cons-md" value="reset">Limpar</button>
                           </div>
+                        <div class="form-group col-md-12 col-sm-12 col-xs-12"></div>
                         </div>
 
                       </div>
@@ -650,8 +683,6 @@
     <script src="assets/plugins/jquery-scrollbar/jquery.scrollbar.min.js" type="text/javascript"></script>
     <script src="assets/plugins/jquery-numberAnimate/jquery.animateNumbers.js" type="text/javascript"></script>
     <script src="assets/plugins/jquery-validation/js/jquery.validate.min.js" type="text/javascript"></script>
-    <script src="assets/plugins/bootstrap-select2/select2.min.js" type="text/javascript"></script>
-    <script src="assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js" type="text/javascript"></script>
     <script src="assets/plugins/bootstrap-select2/select2.min.js" type="text/javascript"></script>
     <!-- END CORE JS DEPENDECENCIES-->
     <!-- BEGIN CORE TEMPLATE JS -->
