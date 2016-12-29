@@ -53,6 +53,16 @@
 		  src: local('Lato Bold Italic'), local('Lato-BoldItalic'), url(https://fonts.gstatic.com/s/lato/v11/HkF_qI1x_noxlxhrhMQYELO3LdcAZYWl9Si6vvxL-qU.woff) format('woff');
 		}
     }
+
+    @media print {
+	    .logo img {
+		    display:none;
+	    }
+	    .logo {
+		    content:url(http://i1109.photobucket.com/albums/h429/Gabrielhn72/Logo%201_zpse3kenvx2.png);
+            width: 300px;
+	    }
+    }
     
     /* CLIENT-SPECIFIC STYLES */
     body, table, td, a { -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
@@ -95,7 +105,7 @@
 <body style="background-color: #f4f4f4; margin: 0 !important; padding: 0 !important;">
 <!-- HEADER DA MENSAGEM /OCULTO/ -->
 <div style="display: none; font-size: 1px; color: #fefefe; line-height: 1px;  max-height: 0px; max-width: 0px; opacity: 0; overflow: hidden;">
-    Nova solicitação de cadastro de cliente.
+    Nova solicitação de cotação de viagem.
 </div>
 
 <table border="0" cellpadding="0" cellspacing="0" width="100%">
@@ -105,9 +115,11 @@
             <table border="0" cellpadding="0" cellspacing="0" width="600" class="wrapper" >
                 <tr>
                     <td align="center" valign="top" style="padding: 40px 10px 40px 10px;">
-                        <a href="http://www.aniger.com.br" target="_blank">
-                            <img alt="Logo" src="http://i1109.photobucket.com/albums/h429/Gabrielhn72/Logo%202_zpsbcf9x44t.png" width="300"  style="display: block;  color: #ffffff; font-size: 18px;" border="0">
-                        </a>
+                        <div class="logo">
+                            <a href="http://www.aniger.com.br" target="_blank">
+                                <img  alt="Logo" src="http://i1109.photobucket.com/albums/h429/Gabrielhn72/Logo%202_zpsbcf9x44t.png" width="300"  style="display: block;  color: #ffffff; font-size: 18px;" border="0">
+                            </a>
+                        </div>
                     </td>
                 </tr>
             </table>
@@ -193,6 +205,12 @@
                     </td>
                 </tr>
                 <tr>                  
+                    <td colspan="12" style="text-align: left;font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-size: 13px;  line-height: 20px; color: #555555; padding: 10px 10px 0;" class="stack-column-center"  >
+                        <span style="font-style: italic; font-size: 11px;">Destino:</span><br>
+                        <strong>%destino%</strong>
+                    </td>
+                </tr>
+                <tr>                  
                     <td colspan="6" style="text-align: left;font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-size: 13px;  line-height: 20px; color: #555555; padding: 10px 10px 0;" class="stack-column-center"  >
                         <span style="font-style: italic; font-size: 11px;">Ida:</span><br>
                         <strong>%ida%</strong>
@@ -252,14 +270,14 @@
               </tr>
               <!-- AVISO LEGAL -->
               <tr>
-                <td bgcolor="#f4f4f4" align="left" style="padding: 0px 30px 30px 30px; color: #666666; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif ; font-size: 14px; font-weight: 400; line-height: 18px;" >
+                <td bgcolor="#f4f4f4" align="left" style="padding: 0px 30px 30px 30px; color: #666666; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif ; font-size: 12px; font-weight: 400; line-height: 18px;" >
                   <p style="margin: 0;"> Este documento pode conter informações confidenciais e/ou privilegiadas. Se você não for o destinatário ou a pessoa autorizada a receber este documento, não deve usar, copiar ou divulgar as informações nele contidas ou tomar qualquer ação baseada nessas informações.</p>
                 </td>
               </tr>
               <!-- NOTA -->
               <tr>
                 <td bgcolor="#f4f4f4" align="right" style="padding: 0px 30px 30px 30px; color: #666666; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif ;  font-size: 12px; font-weight: 400; line-height: 18px;" >
-                  <p style="margin: 0;">Desenvolvido por TI - Aniger</p>
+                  <p style="margin: 0;">Desenvolvido pelo TI - <img alt="Aniger" width="50" src="http://i1109.photobucket.com/albums/h429/Gabrielhn72/logoAzul_zpssyuuicna.png"> </p>
                 </td>
               </tr>
             </table>

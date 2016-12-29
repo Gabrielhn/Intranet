@@ -31,6 +31,7 @@ $dtAutorizado=$_POST['dtAutorizado'];
 
 $mensagem = file_get_contents('cliente_tmp.html');
 $dest='gabriel.hipolito@aniger.com.br';
+$assunto='Cadastro de cliente - ' . $nome;
 
 $mensagem = str_replace('%nome%', $nome, $mensagem);
 $mensagem = str_replace('%fantasia%', $fantasia, $mensagem);
@@ -63,7 +64,7 @@ try {
      // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=    
      $mail->SetFrom('gabriel.hipolito@aniger.com.br', 'Intranet'); //Seu e-mail
      $mail->AddReplyTo('gabriel.hipolito@aniger.com.br', 'Gabriel'); //Seu e-mail
-     $mail->Subject = 'Cadastro de cliente - ' . $nome;//Assunto do e-mail
+     $mail->Subject = $assunto;//Assunto do e-mail
  
  
      //Define os destinatário(s)

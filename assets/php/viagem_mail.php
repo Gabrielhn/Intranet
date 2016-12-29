@@ -12,40 +12,44 @@ $mail->IsSMTP(); // Define que a mensagem será SMTP
 
 //REQUEST campos
 $nome=$_POST['nome'];
-$fantasia=$_POST['fantasia'];
+$setor=$_POST['fantasia'];
 $endereco=$_POST['endereco'];
 $nro=$_POST['nro'];
 $bairro=$_POST['bairro'];
 $cep=$_POST['cep'];
 $cidade=$_POST['cidade'];
 $estado=$_POST['estado'];
-$cpf=$_POST['cpf'];
-$ie=$_POST['ie'];
-$contato=$_POST['contato'];
 $fone=$_POST['fone'];
+$rg=$_POST['rg'];
+$cpf=$_POST['cpf'];
 $email=$_POST['email'];
-$emailN=$_POST['emailN'];
+$destino=$_POST['destino'];
+$ida=$_POST['ida'];
+$ausencia=$volta-$ida;
+$volta=$_POST['volta'];
 $obs=$_POST['obs'];
 $autorizado=$_POST['autorizado'];
 $dtAutorizado=$_POST['dtAutorizado'];
 
 $mensagem = file_get_contents('cliente_tmp.html');
 $dest='gabriel.hipolito@aniger.com.br';
+$assunto='Solicitação de viagem - ' . $nome . ' - ' . $destino;
 
 $mensagem = str_replace('%nome%', $nome, $mensagem);
-$mensagem = str_replace('%fantasia%', $fantasia, $mensagem);
+$mensagem = str_replace('%setor%', $setor, $mensagem);
 $mensagem = str_replace('%endereco%', $endereco, $mensagem);
 $mensagem = str_replace('%nro%', $nro, $mensagem);
 $mensagem = str_replace('%bairro%', $bairro, $mensagem);
 $mensagem = str_replace('%cep%', $cep, $mensagem);
 $mensagem = str_replace('%cidade%', $cidade, $mensagem);
 $mensagem = str_replace('%estado%', $estado, $mensagem);
-$mensagem = str_replace('%cpf%', $cpf, $mensagem);
-$mensagem = str_replace('%ie%', $ie, $mensagem);
-$mensagem = str_replace('%contato%', $contato, $mensagem);
 $mensagem = str_replace('%fone%', $fone, $mensagem);
+$mensagem = str_replace('%rg%', $rg, $mensagem);
+$mensagem = str_replace('%cpf%', $cpf, $mensagem);
 $mensagem = str_replace('%email%', $email, $mensagem);
-$mensagem = str_replace('%emailN%', $emailN, $mensagem);
+$mensagem = str_replace('%destino%', $destino, $mensagem);
+$mensagem = str_replace('%ida%', $ida, $mensagem);
+$mensagem = str_replace('%volta%', $volta, $mensagem);
 $mensagem = str_replace('%obs%', $obs, $mensagem);
 $mensagem = str_replace('%autorizado%', $autorizado, $mensagem);
 $mensagem = str_replace('%dtAutorizado%', $dtAutorizado, $mensagem);
@@ -63,7 +67,7 @@ try {
      // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=    
      $mail->SetFrom('gabriel.hipolito@aniger.com.br', 'Intranet'); //Seu e-mail
      $mail->AddReplyTo('gabriel.hipolito@aniger.com.br', 'Gabriel'); //Seu e-mail
-     $mail->Subject = 'Cadastro de cliente - ' . $nome;//Assunto do e-mail
+     $mail->Subject = $assunto;//Assunto do e-mail
  
  
      //Define os destinatário(s)
