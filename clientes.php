@@ -276,8 +276,41 @@
                 </div>
                 <div class="grid-body no-border">
                   <br>
+
+                  <!-- PMODAL -->
+                  <div class="modal fade" id="pModal" tabindex="-1" role="dialog" aria-labelledby="pModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                          <br>
+                          <i class="fa fa-check fa-6x"></i>
+                          <h4 id="pModalLabel" class="semi-bold">Sucesso.</h4>
+                        </div>
+                        <div class="modal-body">
+                          <div class="alert alert-info" style=" margin-right: 30px;">
+                            <i class="pull-left material-icons">feedback</i>
+                            <h6 style="padding-left: 30px;">
+                              <?php
+                              // $nome="Gabriel";
+                              
+                              $nome=$_POST['nome'];
+                            
+                              echo $nome;
+                              ?>
+
+
+
+                            <br>&nbsp;  
+                            </h6>    
+                          </div>             
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
                   <div class="row">
-                    <form method="post" name="clientes" action="assets\php\mail_cliente.php">
+                    <form method="POST" name="clientes" action="assets\php\cliente_mail.php" target="place"> 
                       <div class="col-md-12 col-sm-12 col-xs-12">
 
                         <div class="form-group col-md-12 col-sm-12 col-xs-12"></div>
@@ -318,7 +351,7 @@
 
                         <div class="form-group col-md-4 col-sm-4 col-xs-4">
                           <div class="controls">
-                            <input type="text" placeholder="CEP" class="form-control input" maxlength="10" name="cep">
+                            <input type="text" placeholder="CEP" class="form-control input" maxlength="11" name="cep">
                           </div>
                         </div>
 
@@ -392,7 +425,7 @@
 
                         <div class="form-group col-md-4 col-sm-4 col-xs-4">
                           <div class="controls">
-                            <input type="text" placeholder="Fone" class="form-control input" name="fone">
+                            <input type="text" placeholder="Fone" class="form-control input" name="fone" maxlenght="21">
                           </div>
                         </div>
 
@@ -434,11 +467,15 @@
                         </div>
 
                         <div class="form-group col-md-12 col-sm-12 col-xs-12"></div>
+
+                        <iframe name="place" style="display:none;"></iframe>
  
                         <div class="form-actions">
                           <div class="pull-right">
-                            <input type="submit" class="btn btn-info btn-cons-md" name="Enviar">
-                            <input type="submit" class="btn btn-white btn-cons-md" name="Limpar">
+
+                            <!--data-toggle="modal" data-target="#pModal"-->
+                            <button type="submit" class="btn btn-info btn-cons-md" value="submit">Enviar</button>
+                            <button type="reset" class="btn btn-white btn-cons-md" value="reset">Limpar</button>
                           </div>
                           <div class="form-group col-md-12 col-sm-12 col-xs-12"></div>
                         </div>
