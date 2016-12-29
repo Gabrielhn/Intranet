@@ -292,11 +292,7 @@
                             <i class="pull-left material-icons">feedback</i>
                             <h6 style="padding-left: 30px;">
                               <?php
-                              // $nome="Gabriel";
-                              
-                              $nome=$_POST['nome'];
-                            
-                              echo $nome;
+                                echo $nome;
                               ?>
                             <br>&nbsp;  
                             </h6>    
@@ -475,8 +471,8 @@
 
                         <div class="form-actions">
                           <div class="pull-right">
-                            <!--data-toggle="modal" data-target="#pModal"-->
-                            <button type="submit" class="btn btn-info btn-cons-md" value="submit">Enviar</button>
+                            
+                            <button type="submit" class="btn btn-info btn-cons-md" value="submit" data-toggle="validator">Enviar</button>
                             <button type="reset" class="btn btn-white btn-cons-md" value="reset">Limpar</button>
                           </div>
                         <div class="form-group col-md-12 col-sm-12 col-xs-12"></div>
