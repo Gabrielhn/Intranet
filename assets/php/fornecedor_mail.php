@@ -29,6 +29,7 @@ $tpmatserv=$_POST['tpmatserv'];
 $obs=$_POST['obs'];
 $autorizado=$_POST['autorizado'];
 $dtAutorizado=$_POST['dtAutorizado'];
+$dtAutorizado= date("d/m/Y",strtotime($dtAutorizado));
 
 $mensagem = file_get_contents('fornecedor_tmp.html');
 $dest='gabriel.hipolito@aniger.com.br';

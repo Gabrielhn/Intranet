@@ -25,13 +25,18 @@ $cpf=$_POST['cpf'];
 $email=$_POST['email'];
 $destino=$_POST['destino'];
 $ida=$_POST['ida'];
-$ida = date("Y-m-d", strtotime($ida));
+$ida2=$_POST['ida'];
+$ida=date("d/m/Y",strtotime($ida)); //Direto para template formatado
+$dtida = new DateTime($ida2); // Transformando em date para cálculo
 $volta=$_POST['volta'];
-$volta = date("Y-m-d", strtotime($volta));
-$ausencia = $ida->diff($volta);
+$volta2 = $_POST['volta'];
+$volta=date("d/m/Y",strtotime($volta));  //Direto para template formatado
+$dtvolta = new DateTime($volta2); // Transformando em date para cálculo
+$ausencia = $dtida->diff($dtvolta);
 $obs=$_POST['obs'];
 $autorizado=$_POST['autorizado'];
 $dtAutorizado=$_POST['dtAutorizado'];
+$dtAutorizado= date("d/m/Y",strtotime($dtAutorizado));
 
 $mensagem = file_get_contents('viagem_tmp.html');
 $dest='gabriel.hipolito@aniger.com.br';
@@ -50,12 +55,12 @@ $mensagem = str_replace('%rg%', $rg, $mensagem);
 $mensagem = str_replace('%cpf%', $cpf, $mensagem);
 $mensagem = str_replace('%email%', $email, $mensagem);
 $mensagem = str_replace('%destino%', $destino, $mensagem);
-$mensagem = str_replace('%ida%', $ida->format('d/m/Y'), $mensagem);
-$mensagem = str_replace('%volta%', $volta->format('d/m/Y'), $mensagem);
-$mensagem = str_replace('%ausencia%', $ausencia->format('%R%a dias'), $mensagem);
+$mensagem = str_replace('%ida%', $ida, $mensagem);
+$mensagem = str_replace('%volta%', $volta, $mensagem);
+$mensagem = str_replace('%ausencia%', $ausencia->format('%R%a'), $mensagem);
 $mensagem = str_replace('%obs%', $obs, $mensagem);
 $mensagem = str_replace('%autorizado%', $autorizado, $mensagem);
-$mensagem = str_replace('%dtAutorizado%', $dtAutorizado->format('d/m/Y'), $mensagem);
+$mensagem = str_replace('%dtAutorizado%', $dtAutorizado, $mensagem);
 
  
 try {

@@ -28,6 +28,7 @@ $emailN=$_POST['emailN'];
 $obs=$_POST['obs'];
 $autorizado=$_POST['autorizado'];
 $dtAutorizado=$_POST['dtAutorizado'];
+$dtAutorizado= date("d/m/Y",strtotime($dtAutorizado));
 
 $mensagem = file_get_contents('cliente_tmp.html');
 $dest='gabriel.hipolito@aniger.com.br';
