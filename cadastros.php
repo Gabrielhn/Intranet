@@ -321,7 +321,7 @@
                 </div>
                 <div class="pull-right">
                   <canvas id="" width="1" height="28"></canvas>
-                  <span style="cursor: pointer;" data-toggle="modal" data-target="#1Modal"><i class="fa fa-info-circle fa-2x"></i> </span>
+                  <span style="cursor: pointer;" data-toggle="modal" data-target="#1Modal"><i class="fa fa-info fa-2x"></i> </span>
                 </div>
                 <div class="pull-right">
                   <canvas id="" width="32" height="32"></canvas>
@@ -331,6 +331,7 @@
               </div>
             </div>
           </div>
+
           <!-- MODAL #1 -->
           <div class="modal fade" id="1Modal" tabindex="-1" role="dialog" aria-labelledby="1ModalLabel" aria-hidden="true">
             <div class="modal-dialog">
@@ -342,12 +343,13 @@
                   <h4 id="1ModalLabel" class="semi-bold">Informação.</h4>
                 </div>
                 <div class="modal-body">
-                  <div class="alert alert-info" style=" margin-right: 30px;">
+                  <div class="alert alert-info">
                     <i class="pull-left material-icons">feedback</i>
-                    <h6 style="padding-left: 30px;">
-                      1111 
-                    <br>&nbsp;  
-                    </h6>    
+                    <h5 style="padding-left: 30px;">
+                      <p>Utilize este cadastro para solicitar a inclusão de novos <span class="bold">clientes</span> no sistema.
+                      Após informar os dados solicitados,  aguarde o retorno do setor responsável pelo cadastramento no seu email. <br>                      
+                      <p>Os cadastro são encaminhados para: <span class="bold"> iraci.kraemer@aniger.com.br</span></p>                                            
+                    </h5>    
                   </div>             
                 </div>
               </div>
@@ -376,7 +378,7 @@
                 </div>
                 <div class="pull-right">
                   <canvas id="" width="1" height="28"></canvas>
-                  <span style="cursor: pointer;" data-toggle="modal" data-target="#2Modal"><i class="fa fa-info-circle fa-2x"></i> </span>
+                  <span style="cursor: pointer;" data-toggle="modal" data-target="#2Modal"><i class="fa fa-info fa-2x"></i> </span>
                 </div>
                 <div class="pull-right">
                   <canvas id="" width="32" height="32"></canvas>
@@ -397,12 +399,13 @@
                   <h4 id="2ModalLabel" class="semi-bold">Informação.</h4>
                 </div>
                 <div class="modal-body">
-                  <div class="alert alert-info" style=" margin-right: 30px;">
+                  <div class="alert alert-info">
                     <i class="pull-left material-icons">feedback</i>
-                    <h6 style="padding-left: 30px;">
-                      2222 
-                    <br>&nbsp;  
-                    </h6>    
+                    <h5 style="padding-left: 30px;">
+                      <p>Utilize este cadastro para solicitar a inclusão de novos <span class="bold">fornecedores</span> no sistema.
+                      Após informar os dados solicitados,  aguarde o retorno do setor responsável pelo cadastramento no seu email. <br>                      
+                      <p>Os cadastro são encaminhados para: <span class="bold"> iraci.kraemer@aniger.com.br</span></p> 
+                    </h5>    
                   </div>             
                 </div>
               </div>
@@ -431,7 +434,7 @@
                 </div>
                 <div class="pull-right">
                   <canvas id="" width="1" height="28"></canvas>
-                  <span style="cursor: pointer;" data-toggle="modal" data-target="#3Modal"><i class="fa fa-info-circle fa-2x"></i> </span>
+                  <span style="cursor: pointer;" data-toggle="modal" data-target="#3Modal"><i class="fa fa-info fa-2x"></i> </span>
                 </div>
                 <div class="pull-right">
                   <canvas id="" width="32" height="32"></canvas>
@@ -452,7 +455,7 @@
                   <h4 id="3ModalLabel" class="semi-bold">Informação.</h4>
                 </div>
                 <div class="modal-body">
-                  <div class="alert alert-info" style=" margin-right: 30px;">
+                  <div class="alert alert-info">
                     <i class="pull-left material-icons">feedback</i>
                     <h6 style="padding-left: 30px;">
                       3333

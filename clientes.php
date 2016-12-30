@@ -288,7 +288,7 @@
                           <h4 id="pModalLabel" class="semi-bold">Sucesso.</h4>
                         </div>
                         <div class="modal-body">
-                          <div class="alert alert-info" style=" margin-right: 30px;">
+                          <div class="alert alert-info">
                             <i class="pull-left material-icons">feedback</i>
                             <h6 style="padding-left: 30px;">
                               <?php

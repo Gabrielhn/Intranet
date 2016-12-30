@@ -277,40 +277,37 @@
                 <div class="grid-body no-border">
                   <br>
 
-                  <!-- PMODAL -->
-                  <div class="modal fade" id="pModal" tabindex="-1" role="dialog" aria-labelledby="pModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                          <br>
-                          <i class="fa fa-check fa-6x"></i>
-                          <h4 id="pModalLabel" class="semi-bold">Sucesso.</h4>
-                        </div>
-                        <div class="modal-body">
-                          <div class="alert alert-info" style=" margin-right: 30px;">
-                            <i class="pull-left material-icons">feedback</i>
-                            <h6 style="padding-left: 30px;">
-                              <?php
-                              // $nome="Gabriel";
-                              
-                              // $nome=$_POST['nome'];
-                            
-                              // echo $nome;
-                              ?>
-
-
-
-                            <br>&nbsp;  
-                            </h6>    
-                          </div>             
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
                   <div class="row">
-                    <form method="POST" name="clientes" action="assets\php\viagem_mail.php" target="place"> 
+                    <form method="POST" name="clientes" action="assets\php\viagem_mail.php" target="place">
+
+                      <!-- PMODAL -->
+                        <div class="modal fade" id="pModal" tabindex="-1" role="dialog" aria-labelledby="pModalLabel" aria-hidden="true">
+                          <div class="modal-dialog">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                <br>
+                                <i class="fa fa-pencil-square-o fa-6x"></i>
+                                <h4 id="pModalLabel" class="semi-bold">Termos e condições.</h4>
+                              </div>
+                              <div class="modal-body">
+                                <div class="alert alert-info">
+                                  <i class="pull-left material-icons">feedback</i>
+                                  <h6 style="padding-left: 30px;">
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro enim laudantium explicabo nobis ad possimus commodi reprehenderit. Odio provident accusamus, ipsam, totam magnam nobis sunt voluptatem, facere maxime sequi quia.
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non, ipsa. Hic omnis, sapiente at non, veritatis iusto facere consectetur excepturi esse voluptas ducimus possimus explicabo illo distinctio quae ab? Expedita.</p>
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ullam qui quisquam vitae beatae sequi aspernatur totam ab, assumenda, quasi ipsa ducimus nulla tempore eveniet minus cumque! Quos necessitatibus sunt, laudantium.
+                                  <br>&nbsp;
+                                  </h6>  
+                                </div>
+                                <div align="right">
+                                  <button type="submit" class="btn btn-info btn-cons-md" value="submit">Enviar</button>
+                                </div>             
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
                       <div class="col-md-12 col-sm-12 col-xs-12">
 
                         <div class="form-group col-md-12 col-sm-12 col-xs-12"></div>
@@ -385,11 +382,17 @@
                           </div>
                         </div>
 
+                        <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                          <div class="controls">
+                            <input type="email" placeholder="Email" class="form-control input" name="email" required>
+                          </div>
+                        </div>
+
                          <div class="form-group col-md-4 col-sm-4 col-xs-4">
                           <div class="controls">
                             <input type="text" placeholder="Fone" class="form-control input" name="fone" maxlenght="21" required>
                           </div>
-                        </div>                     
+                        </div>                  
 
                         <div class="form-group col-md-4 col-sm-4 col-xs-4">
                           <div class="controls">
@@ -400,12 +403,6 @@
                         <div class="form-group col-md-4 col-sm-4 col-xs-4">
                           <div class="controls">
                             <input type="text" placeholder="CPF" class="form-control input" maxlength="15" name="cpf" required>
-                          </div>
-                        </div>
-
-                        <div class="form-group col-md-12 col-sm-12 col-xs-12">
-                          <div class="controls">
-                            <input type="email" placeholder="Email" class="form-control input" name="email" required>
                           </div>
                         </div>
 
@@ -472,8 +469,8 @@
                         <div class="form-actions">
                           <div class="pull-right">
 
-                            <!--data-toggle="modal" data-target="#pModal"-->
-                            <button type="submit" class="btn btn-info btn-cons-md" value="submit">Enviar</button>
+                            <!---->
+                            <button type="button" class="btn btn-info btn-cons-md" data-toggle="modal" data-target="#pModal" value="submit">Solicitar</button>
                             <button type="reset" class="btn btn-white btn-cons-md" value="reset">Limpar</button>
                           </div>
                           <div class="form-group col-md-12 col-sm-12 col-xs-12"></div>

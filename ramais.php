@@ -515,7 +515,7 @@
             <div class="span12">
               <div class="grid simple ">
                 <div class="grid-title">
-                  <h4><span class="bold">Produção &nbsp;</span><span class="label label-success">PCP</span></h4>
+                  <h4><span class="bold">Marketing &nbsp;</span><span class="label label-mkt">MKT</span></h4>
                   <div class="tools">
                     <a href="javascript:;" class="collapse"></a>
                     <a href="#grid-config" data-toggle="modal" class="config"></a>
@@ -523,7 +523,7 @@
                   </div>
                 </div>
                 <div class="grid-body ">
-                  <table class="table table-hover table-bordered" id="PCP">
+                  <table class="table table-hover table-bordered" id="TI">
                     <thead>
                       <tr>
                         <th>Nome</th>
@@ -532,64 +532,48 @@
                     </thead>
                     <tbody>
                       <tr class="even gradeX">
-                        <td>Paula Hirchman<i class="material-icons pull-right" style="font-size: 18px;">stars</i></td>
-                        <td class="center">328</td>
+                        <td>Mirele Rittel<i class="material-icons pull-right" style="font-size: 18px;">stars</i></td>
+                        <td class="center">173</td>
                       </tr>
                       <tr class="even gradeX">
-                        <td>Tiessa Hochscheidt</td>
-                        <td class="center">301</td>
+                        <td>Ana Sost</td>
+                        <td class="center">173</td>
                       </tr>
                       <tr class="even gradeX">
-                        <td>Alessandro Koeche</td>
-                        <td class="center">301</td>
+                        <td>Fernanda Fabian</td>
+                        <td class="center">173</td>
                       </tr>
                       <tr class="even gradeX">
-                        <td>Daiane Saenger</td>
-                        <td class="center">141</td>
+                        <td>Camila Slengmann</td>
+                        <td class="center">175</td>
                       </tr>
                       <tr class="even gradeX">
-                        <td>Bruna Krieger</td>
-                        <td class="center">335</td>
+                        <td>Tuane Moraes</td>
+                        <td class="center">175</td>
                       </tr>
                       <tr class="even gradeX">
-                        <td>Daiane Freitas</td>
-                        <td class="center">309</td>
+                        <td>Arthur Lerina</td>
+                        <td class="center">314</td>
                       </tr>
                       <tr class="even gradeX">
-                        <td>Damiani Amorim</td>
-                        <td class="center">141</td>
+                        <td>Thalita Diniz</td>
+                        <td class="center">314</td>
                       </tr>
                       <tr class="even gradeX">
-                        <td>Adriana Moraes</td>
-                        <td class="center">335</td>
+                        <td>Emiline Apolinario</td>
+                        <td class="center">177</td>
                       </tr>
                       <tr class="even gradeX">
-                        <td>Daniela Michel</td>
-                        <td class="center">197</td>
+                        <td>Emilly Terres</td>
+                        <td class="center">177</td>
                       </tr>
                       <tr class="even gradeX">
-                        <td>Miriele Juchem</td>
-                        <td class="center">309</td>
+                        <td>Jessica Blankenheim</td>
+                        <td class="center">177</td>
                       </tr>
                       <tr class="even gradeX">
-                        <td>Tatiana Severo</td>
-                        <td class="center">309</td>
-                      </tr>
-                      <tr class="even gradeX">
-                        <td>Sabrina Heckler</td>
-                        <td class="center">330</td>
-                      </tr>
-                      <tr class="even gradeX">
-                        <td>Elisabethi Santos</td>
-                        <td class="center">330</td>
-                      </tr>
-                      <tr class="even gradeX">
-                        <td>Patricia Benetti</td>
-                        <td class="center">197</td>
-                      </tr>
-                      <tr class="even gradeX">
-                        <td>Daniel Jacobus</td>
-                        <td class="center">154</td>
+                        <td>Mayara Cruz</td>
+                        <td class="center">177</td>
                       </tr>
                     </tbody>
                   </table>
@@ -661,37 +645,6 @@
                       <tr class="even gradeX">
                         <td>Juliano Neves</td>
                         <td class="center">130</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-4 col-sm-6 m-b-10">
-            <div class="span12">
-              <div class="grid simple ">
-                <div class="grid-title">
-                  <h4><span class="bold">Auditoria &nbsp;</span><span class="label label-aud">AUD</span></h4>
-                  <div class="tools">
-                    <a href="javascript:;" class="collapse"></a>
-                    <a href="#grid-config" data-toggle="modal" class="config"></a>
-                    <a href="javascript:;" class="reload"></a>
-                  </div>
-                </div>
-                <div class="grid-body ">
-                  <table class="table table-hover table-bordered" id="AUD">
-                    <thead>
-                      <tr>
-                        <th>Nome</th>
-                        <th>Ramal</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr class="even gradeX">
-                        <td>Jonas Riedel<i class="material-icons pull-right" style="font-size: 18px;">stars</i></td>
-                        <td class="center">352</td>
                       </tr>
                     </tbody>
                   </table>
@@ -923,7 +876,7 @@
             <div class="span12">
               <div class="grid simple ">
                 <div class="grid-title">
-                  <h4><span class="bold">Marketing &nbsp;</span><span class="label label-mkt">MKT</span></h4>
+                  <h4><span class="bold">Produção &nbsp;</span><span class="label label-success">PCP</span></h4>
                   <div class="tools">
                     <a href="javascript:;" class="collapse"></a>
                     <a href="#grid-config" data-toggle="modal" class="config"></a>
@@ -931,7 +884,7 @@
                   </div>
                 </div>
                 <div class="grid-body ">
-                  <table class="table table-hover table-bordered" id="TI">
+                  <table class="table table-hover table-bordered" id="PCP">
                     <thead>
                       <tr>
                         <th>Nome</th>
@@ -940,57 +893,71 @@
                     </thead>
                     <tbody>
                       <tr class="even gradeX">
-                        <td>Mirele Rittel<i class="material-icons pull-right" style="font-size: 18px;">stars</i></td>
-                        <td class="center">173</td>
+                        <td>Paula Hirchman<i class="material-icons pull-right" style="font-size: 18px;">stars</i></td>
+                        <td class="center">328</td>
                       </tr>
                       <tr class="even gradeX">
-                        <td>Ana Sost</td>
-                        <td class="center">173</td>
+                        <td>Tiessa Hochscheidt</td>
+                        <td class="center">301</td>
                       </tr>
                       <tr class="even gradeX">
-                        <td>Fernanda Fabian</td>
-                        <td class="center">173</td>
+                        <td>Alessandro Koeche</td>
+                        <td class="center">301</td>
                       </tr>
                       <tr class="even gradeX">
-                        <td>Camila Slengmann</td>
-                        <td class="center">175</td>
+                        <td>Daiane Saenger</td>
+                        <td class="center">141</td>
                       </tr>
                       <tr class="even gradeX">
-                        <td>Tuane Moraes</td>
-                        <td class="center">175</td>
+                        <td>Bruna Krieger</td>
+                        <td class="center">335</td>
                       </tr>
                       <tr class="even gradeX">
-                        <td>Arthur Lerina</td>
-                        <td class="center">314</td>
+                        <td>Daiane Freitas</td>
+                        <td class="center">309</td>
                       </tr>
                       <tr class="even gradeX">
-                        <td>Thalita Diniz</td>
-                        <td class="center">314</td>
+                        <td>Damiani Amorim</td>
+                        <td class="center">141</td>
                       </tr>
                       <tr class="even gradeX">
-                        <td>Emiline Apolinario</td>
-                        <td class="center">177</td>
+                        <td>Adriana Moraes</td>
+                        <td class="center">335</td>
                       </tr>
                       <tr class="even gradeX">
-                        <td>Emilly Terres</td>
-                        <td class="center">177</td>
+                        <td>Daniela Michel</td>
+                        <td class="center">197</td>
                       </tr>
                       <tr class="even gradeX">
-                        <td>Jessica Blankenheim</td>
-                        <td class="center">177</td>
+                        <td>Miriele Juchem</td>
+                        <td class="center">309</td>
                       </tr>
                       <tr class="even gradeX">
-                        <td>Mayara Cruz</td>
-                        <td class="center">177</td>
+                        <td>Tatiana Severo</td>
+                        <td class="center">309</td>
+                      </tr>
+                      <tr class="even gradeX">
+                        <td>Sabrina Heckler</td>
+                        <td class="center">330</td>
+                      </tr>
+                      <tr class="even gradeX">
+                        <td>Elisabethi Santos</td>
+                        <td class="center">330</td>
+                      </tr>
+                      <tr class="even gradeX">
+                        <td>Patricia Benetti</td>
+                        <td class="center">197</td>
+                      </tr>
+                      <tr class="even gradeX">
+                        <td>Daniel Jacobus</td>
+                        <td class="center">154</td>
                       </tr>
                     </tbody>
                   </table>
                 </div>
               </div>
             </div>
-          </div>
-
-          
+          </div>         
 
           <div class="col-md-4 col-sm-6 m-b-10">
             <div class="span12">
@@ -1224,6 +1191,37 @@
                       <tr class="even gradeX">
                         <td>Joseane Oliveira</td>
                         <td class="center">333</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4 col-sm-6 m-b-10">
+            <div class="span12">
+              <div class="grid simple ">
+                <div class="grid-title">
+                  <h4><span class="bold">Auditoria &nbsp;</span><span class="label label-aud">AUD</span></h4>
+                  <div class="tools">
+                    <a href="javascript:;" class="collapse"></a>
+                    <a href="#grid-config" data-toggle="modal" class="config"></a>
+                    <a href="javascript:;" class="reload"></a>
+                  </div>
+                </div>
+                <div class="grid-body ">
+                  <table class="table table-hover table-bordered" id="AUD">
+                    <thead>
+                      <tr>
+                        <th>Nome</th>
+                        <th>Ramal</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr class="even gradeX">
+                        <td>Jonas Riedel<i class="material-icons pull-right" style="font-size: 18px;">stars</i></td>
+                        <td class="center">352</td>
                       </tr>
                     </tbody>
                   </table>

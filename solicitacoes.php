@@ -282,7 +282,7 @@
                 </div>
                 <div class="pull-right">
                   <canvas id="" width="1" height="28"></canvas>
-                  <span style="cursor: pointer;" data-toggle="modal" data-target="#1Modal"><i class="fa fa-info-circle fa-2x"></i> </span>
+                  <span style="cursor: pointer;" data-toggle="modal" data-target="#1Modal"><i class="fa fa-info fa-2x"></i> </span>
                 </div>
                 <div class="pull-right">
                   <canvas id="" width="32" height="32"></canvas>
@@ -303,7 +303,7 @@
                   <h4 id="1ModalLabel" class="semi-bold">Informação.</h4>
                 </div>
                 <div class="modal-body">
-                  <div class="alert alert-info" style=" margin-right: 30px;">
+                  <div class="alert alert-info">
                     <i class="pull-left material-icons">feedback</i>
                     <h6 style="padding-left: 30px;">
                        
@@ -338,7 +338,7 @@
                 </div>
                 <div class="pull-right">
                   <canvas id="" width="1" height="28"></canvas>
-                  <span style="cursor: pointer;" data-toggle="modal" data-target="#2Modal"><i class="fa fa-info-circle fa-2x"></i> </span>
+                  <span style="cursor: pointer;" data-toggle="modal" data-target="#2Modal"><i class="fa fa-info fa-2x"></i> </span>
                 </div>
                 <div class="pull-right">
                   <canvas id="" width="32" height="32"></canvas>
@@ -359,7 +359,7 @@
                   <h4 id="2ModalLabel" class="semi-bold">Informação.</h4>
                 </div>
                 <div class="modal-body">
-                  <div class="alert alert-info" style=" margin-right: 30px;">
+                  <div class="alert alert-info" >
                     <i class="pull-left material-icons">feedback</i>
                     <h6 style="padding-left: 30px;">
                       2222 
@@ -394,7 +394,7 @@
                 </div>
                 <div class="pull-right">
                   <canvas id="" width="1" height="28"></canvas>
-                  <span style="cursor: pointer;" data-toggle="modal" data-target="#3Modal"><i class="fa fa-info-circle fa-2x"></i> </span>
+                  <span style="cursor: pointer;" data-toggle="modal" data-target="#3Modal"><i class="fa fa-info fa-2x"></i> </span>
                 </div>
                 <div class="pull-right">
                   <canvas id="" width="32" height="32"></canvas>
@@ -415,7 +415,7 @@
                   <h4 id="3ModalLabel" class="semi-bold">Informação.</h4>
                 </div>
                 <div class="modal-body">
-                  <div class="alert alert-info" style=" margin-right: 30px;">
+                  <div class="alert alert-info" >
                     <i class="pull-left material-icons">feedback</i>
                     <h6 style="padding-left: 30px;">
                       3333 
@@ -449,7 +449,7 @@
                 </div>
                 <div class="pull-right">
                   <canvas id="" width="1" height="28"></canvas>
-                  <span style="cursor: pointer;" data-toggle="modal" data-target="#4Modal"><i class="fa fa-info-circle fa-2x"></i> </span>
+                  <span style="cursor: pointer;" data-toggle="modal" data-target="#4Modal"><i class="fa fa-info fa-2x"></i> </span>
                 </div>
                 <div class="pull-right">
                   <canvas id="" width="32" height="32"></canvas>
@@ -470,7 +470,7 @@
                   <h4 id="4ModalLabel" class="semi-bold">Informação.</h4>
                 </div>
                 <div class="modal-body">
-                  <div class="alert alert-info" style=" margin-right: 30px;">
+                  <div class="alert alert-info" >
                     <i class="pull-left material-icons">feedback</i>
                     <h6 style="padding-left: 30px;">
                       4444 
