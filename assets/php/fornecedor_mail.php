@@ -32,7 +32,7 @@ $dtAutorizado=$_POST['dtAutorizado'];
 
 $mensagem = file_get_contents('fornecedor_tmp.html');
 $dest='gabriel.hipolito@aniger.com.br';
-$assunto='Cadastro de fornecedor - ' . $nome;
+$assunto='Novo fornecedor - ' . $nome;
 
 $mensagem = str_replace('%nome%', $nome, $mensagem);
 $mensagem = str_replace('%endereco%', $endereco, $mensagem);
@@ -66,7 +66,7 @@ try {
      // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=    
      $mail->SetFrom('gabriel.hipolito@aniger.com.br', 'Intranet'); //Seu e-mail
      $mail->AddReplyTo('gabriel.hipolito@aniger.com.br', 'Gabriel'); //Seu e-mail
-     $mail->Subject = $assunto;//Assunto do e-mail
+     $mail->Subject = '=?utf-8?B?'.base64_encode($assunto).'?=';//Assunto do e-mail com codificação UTF-8
  
  
      //Define os destinatário(s)

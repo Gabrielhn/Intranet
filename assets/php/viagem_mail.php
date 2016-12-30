@@ -12,7 +12,7 @@ $mail->IsSMTP(); // Define que a mensagem será SMTP
 
 //REQUEST campos
 $nome=$_POST['nome'];
-$setor=$_POST['fantasia'];
+$setor=$_POST['setor'];
 $endereco=$_POST['endereco'];
 $nro=$_POST['nro'];
 $bairro=$_POST['bairro'];
@@ -25,15 +25,17 @@ $cpf=$_POST['cpf'];
 $email=$_POST['email'];
 $destino=$_POST['destino'];
 $ida=$_POST['ida'];
-$ausencia=$volta-$ida;
+$ida = date("Y-m-d", strtotime($ida));
 $volta=$_POST['volta'];
+$volta = date("Y-m-d", strtotime($volta));
+$ausencia = $ida->diff($volta);
 $obs=$_POST['obs'];
 $autorizado=$_POST['autorizado'];
 $dtAutorizado=$_POST['dtAutorizado'];
 
-$mensagem = file_get_contents('cliente_tmp.html');
+$mensagem = file_get_contents('viagem_tmp.html');
 $dest='gabriel.hipolito@aniger.com.br';
-$assunto='Solicitação de viagem - ' . $nome . ' - ' . $destino;
+$assunto='Nova viagem - ' . $nome . ' - ' . $destino;
 
 $mensagem = str_replace('%nome%', $nome, $mensagem);
 $mensagem = str_replace('%setor%', $setor, $mensagem);
@@ -48,12 +50,12 @@ $mensagem = str_replace('%rg%', $rg, $mensagem);
 $mensagem = str_replace('%cpf%', $cpf, $mensagem);
 $mensagem = str_replace('%email%', $email, $mensagem);
 $mensagem = str_replace('%destino%', $destino, $mensagem);
-$mensagem = str_replace('%ida%', $ida, $mensagem);
-$mensagem = str_replace('%volta%', $volta, $mensagem);
+$mensagem = str_replace('%ida%', $ida->format('d/m/Y'), $mensagem);
+$mensagem = str_replace('%volta%', $volta->format('d/m/Y'), $mensagem);
+$mensagem = str_replace('%ausencia%', $ausencia->format('%R%a dias'), $mensagem);
 $mensagem = str_replace('%obs%', $obs, $mensagem);
 $mensagem = str_replace('%autorizado%', $autorizado, $mensagem);
-$mensagem = str_replace('%dtAutorizado%', $dtAutorizado, $mensagem);
-
+$mensagem = str_replace('%dtAutorizado%', $dtAutorizado->format('d/m/Y'), $mensagem);
 
  
 try {
@@ -67,7 +69,7 @@ try {
      // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=    
      $mail->SetFrom('gabriel.hipolito@aniger.com.br', 'Intranet'); //Seu e-mail
      $mail->AddReplyTo('gabriel.hipolito@aniger.com.br', 'Gabriel'); //Seu e-mail
-     $mail->Subject = $assunto;//Assunto do e-mail
+     $mail->Subject = '=?utf-8?B?'.base64_encode($assunto).'?=';//Assunto do e-mail com codificação UTF-8
  
  
      //Define os destinatário(s)

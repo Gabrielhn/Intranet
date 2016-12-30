@@ -259,6 +259,233 @@
           <!-- END PAGE TITLE -->
           <!-- CONTEÚDO -->
           
+          <div class="row">
+            <div class="col-md-10">
+              <div class="grid simple">
+                <div class="grid-title no-border">
+                  <img src="assets\img\logo3.png">
+                  <p></p>
+                  <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                    <span class="help">Preencha abaixo as informações para solicitar uma viagem.
+                    <p>Após enviar os dados, aguarde retorno por e-mail com a cotação.</p>
+                    </span>
+                  </div>
+                  <div class="tools">
+                    <!-- Controles -->
+                  </div>
+                </div>
+                <div class="grid-body no-border">
+                  <br>
+
+                  <!-- PMODAL -->
+                  <div class="modal fade" id="pModal" tabindex="-1" role="dialog" aria-labelledby="pModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                          <br>
+                          <i class="fa fa-check fa-6x"></i>
+                          <h4 id="pModalLabel" class="semi-bold">Sucesso.</h4>
+                        </div>
+                        <div class="modal-body">
+                          <div class="alert alert-info" style=" margin-right: 30px;">
+                            <i class="pull-left material-icons">feedback</i>
+                            <h6 style="padding-left: 30px;">
+                              <?php
+                              // $nome="Gabriel";
+                              
+                              // $nome=$_POST['nome'];
+                            
+                              // echo $nome;
+                              ?>
+
+
+
+                            <br>&nbsp;  
+                            </h6>    
+                          </div>             
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <form method="POST" name="clientes" action="assets\php\viagem_mail.php" target="place"> 
+                      <div class="col-md-12 col-sm-12 col-xs-12">
+
+                        <div class="form-group col-md-12 col-sm-12 col-xs-12"></div>
+
+                        <div class="form-group col-md-12 col-sm-12 col-xs-12"></div>
+
+                        <div class="form-group col-md-8 col-sm-8 col-xs-8">
+                          <div class="controls">
+                            <input type="text" placeholder="Nome" class="form-control input" name="nome" required>
+                          </div>
+                        </div>
+
+                        <div class="form-group col-md-4 col-sm-4 col-xs-4">
+                          <div class="controls">
+                            <select id="source"  class="form-control input" name="setor" required>
+                                <option value="ADM - Administrativo">ADM - Administrativo</option>
+                                <option value="COM - Comercial">COM - Comercial</option>
+                                <option value="CMP - Compras">CMP - Compras</option>
+                                <option value="CTB - Contabilidade">CTB - Contabilidade</option>
+                                <option value="CRI - Criação">CRI - Criação</option>
+                                <option value="EST - Estoque">EST - Estoque</option>
+                                <option value="FIN - Financeiro">FIN - Financeiro</option>
+                                <option value="LOG - Logística">LOG - Logística</option>
+                                <option value="MKT - Marketing">MKT - Marketing</option>
+                                <option value="MTZ - Matrizaria">MTZ - Matrizaria</option>
+                                <option value="MOD - Modelagem">MOD - Modelagem</option>
+                                <option value="PCP - PCP/Produção">PCP - PCP/Produção</option>
+                                <option value="RH - Recursos Humanos">RH - Recursos Humanos</option>                             
+                                <option value="TI - Tecnologia da Informação">TI - Tecnologia da Informação</option>
+                            </select>
+                          </div>
+                        </div>
+
+                        <div class="form-group col-md-9 col-sm-9 col-xs-9">
+                          <div class="controls">
+                            <input type="text" placeholder="Endereço" class="form-control input" name="endereco" required>
+                          </div>
+                        </div>
+
+                        <div class="form-group col-md-3 col-sm-3 col-xs-3" >
+                          <div class="controls">
+                            <input type="text" placeholder="Nº/Comp." class="form-control input" maxlength="16" name="nro" required>
+                          </div>
+                        </div>
+                        
+                        <div class="form-group col-md-8 col-sm-8 col-xs-8">
+                          <div class="controls">
+                            <input type="text" placeholder="Bairro" class="form-control input" name="bairro" required>
+                          </div>
+                        </div>
+
+                        <!-- MASCARA -->
+
+                        <div class="form-group col-md-4 col-sm-4 col-xs-4">
+                          <div class="controls">
+                            <input type="text" placeholder="CEP" class="form-control input" maxlength="11" name="cep" required>
+                          </div>
+                        </div>
+
+                        <div class="form-group col-md-8 col-sm-8 col-xs-8">
+                          <div class="controls">
+                            <input type="text" placeholder="Cidade" class="form-control input" name="cidade" required>
+                          </div>
+                        </div>
+
+                        <div class="form-group col-md-4 col-sm-4 col-xs-4">
+                          <div class="controls">
+                            <select id="source"  class="form-control input" name="estado" required>                             
+                                <option value="RS">RS - Rio Grande do Sul</option>
+                                <option value="CE">CE - Ceará</option>
+                            </select>
+                          </div>
+                        </div>
+
+                         <div class="form-group col-md-4 col-sm-4 col-xs-4">
+                          <div class="controls">
+                            <input type="text" placeholder="Fone" class="form-control input" name="fone" maxlenght="21" required>
+                          </div>
+                        </div>                     
+
+                        <div class="form-group col-md-4 col-sm-4 col-xs-4">
+                          <div class="controls">
+                            <input type="text" placeholder="RG" class="form-control input" name="rg" maxlenght="10" required>
+                          </div>
+                        </div>
+
+                        <div class="form-group col-md-4 col-sm-4 col-xs-4">
+                          <div class="controls">
+                            <input type="text" placeholder="CPF" class="form-control input" maxlength="15" name="cpf" required>
+                          </div>
+                        </div>
+
+                        <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                          <div class="controls">
+                            <input type="email" placeholder="Email" class="form-control input" name="email" required>
+                          </div>
+                        </div>
+
+                        <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                          <div class="controls">
+                            <input type="text" placeholder="Destino" class="form-control input" name="destino" required>
+                          </div>
+                        </div>
+
+                        <div class="form-group col-md-4 col-sm-4 col-xs-4">
+                          <div class="controls">
+                            <div class="input-append" data-date-format="dd-mm-yyyy">
+                             <input type="date" class="form-control input" maxlength="10" name="ida" required>
+                              <span class="add-on"><span class="arrow"></span><i class="fa fa-calendar"></i></span>
+                            </div>
+                          </div>
+                        </div>                     
+
+                        <div class="form-group col-md-4 col-sm-4 col-xs-4">
+                          <div class="controls">
+                            <input style="text-align: center ;" type="text" placeholder="" class="form-control input" readonly>
+                          </div>
+                        </div>
+
+                        <div class="form-group col-md-4 col-sm-4 col-xs-4">
+                          <div class="controls">
+                            <div class="input-append" data-date-format="dd-mm-yyyy">
+                             <input type="date" class="form-control input" maxlength="10" name="volta" required>
+                              <span class="add-on"><span class="arrow"></span><i class="fa fa-calendar"></i></span>
+                            </div>
+                          </div>
+                        </div>
+                      
+
+                        <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                          <div class="controls">
+                            <textarea id="Obs" placeholder="Observações" class="form-control input" rows="5" name="obs"></textarea>
+                          </div>
+                        </div>
+
+                        <div class="form-group col-md-12 col-sm-12 col-xs-12"></div>
+
+                        <div class="form-group col-md-12 col-sm-12 col-xs-12"></div>
+
+                        <div class="form-group col-md-8 col-sm-8 col-xs-8">
+                          <div class="controls">
+                            <input type="text" placeholder="Autorizado por" class="form-control input" name="autorizado" required>
+                          </div>
+                        </div>
+
+                        <div class="form-group col-md-3 col-sm-3 col-xs-3">
+                          <div class="controls">
+                            <div class="input-append" data-date-format="dd-mm-yyyy">
+                             <input type="date" class="form-control input" maxlength="10" name="dtAutorizado" required>
+                              <span class="add-on"><span class="arrow"></span><i class="fa fa-calendar"></i></span>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="form-group col-md-12 col-sm-12 col-xs-12"></div>
+
+                        <iframe name="place" style="display:none;"></iframe>
+ 
+                        <div class="form-actions">
+                          <div class="pull-right">
+
+                            <!--data-toggle="modal" data-target="#pModal"-->
+                            <button type="submit" class="btn btn-info btn-cons-md" value="submit">Enviar</button>
+                            <button type="reset" class="btn btn-white btn-cons-md" value="reset">Limpar</button>
+                          </div>
+                          <div class="form-group col-md-12 col-sm-12 col-xs-12"></div>
+                        </div>
+
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
 
           
           <!-- FIM CONTEÚDO -->
