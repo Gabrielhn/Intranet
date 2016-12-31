@@ -72,8 +72,8 @@ try {
  
      //Define o remetente
      // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=    
-     $mail->SetFrom('gabriel.hipolito@aniger.com.br', 'Intranet'); //Seu e-mail
-     $mail->AddReplyTo('gabriel.hipolito@aniger.com.br', 'Gabriel'); //Seu e-mail
+     $mail->SetFrom($email, $nome); //De:
+     $mail->AddReplyTo($email, $nome); //Responder para:
      $mail->Subject = '=?utf-8?B?'.base64_encode($assunto).'?=';//Assunto do e-mail com codificação UTF-8
  
  
@@ -83,7 +83,7 @@ try {
  
      //Campos abaixo são opcionais 
      //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-     //$mail->AddCC('destinarario@dominio.com.br', 'Destinatario'); // Copia
+     $mail->AddCC($email, $nome); // Copia para o solicitante
      //$mail->AddBCC('destinatario_oculto@dominio.com.br', 'Destinatario2`'); // Cópia Oculta
      //$mail->AddAttachment('images/phpmailer.gif');      // Adicionar um anexo
  

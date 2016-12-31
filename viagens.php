@@ -300,8 +300,12 @@
                                   <br>&nbsp;
                                   </h6>  
                                 </div>
-                                <div align="right">
-                                  <button type="submit" class="btn btn-info btn-cons-md" value="submit">Enviar</button>
+                                <div align="left">                               
+                                  <input type="checkbox" id="term" onchange="isChecked(this, 'btenv')"align="left"/>
+                                  Eu li, aceito os termos descritos acima e concordo com as<span class="bold"> <a href="./assets/docs/normas_viagem.pdf" target="blank" >normas de reembolso </a></span>em viagens.
+                                </div>
+                                <div align="right" style="padding-top: 20px;">
+                                  <button type="submit" id="btenv" class="btn btn-info btn-cons-md" value="submit" disabled="disabled" >Enviar</button>
                                 </div>             
                               </div>
                             </div>
@@ -679,6 +683,11 @@
     <script src="assets/plugins/jquery-numberAnimate/jquery.animateNumbers.js" type="text/javascript"></script>
     <script src="assets/plugins/jquery-validation/js/jquery.validate.min.js" type="text/javascript"></script>
     <script src="assets/plugins/bootstrap-select2/select2.min.js" type="text/javascript"></script>
+    <script>function 
+      isChecked(checkbox, btenv) {
+        document.getElementById(btenv).disabled = !checkbox.checked;
+      }
+    </script>
     <!-- END CORE JS DEPENDECENCIES-->
     <!-- BEGIN CORE TEMPLATE JS -->
     <script src="webarch/js/webarch.js" type="text/javascript"></script>
