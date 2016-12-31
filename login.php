@@ -35,8 +35,9 @@
     <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon">
     <link rel="icon" href="assets/img/favicon.ico" type="image/x-icon">
   </head>
-  <!-- END HEAD -->
-  <!-- BEGIN BODY -->
+  <!-- FIM HEAD -->
+
+  <!-- CONTAINER -->
   <body class="error-body no-top lazy" data-original="assets/img/work.jpg" style="background-image: url('assets/img/work.jpg')">
     <div class="container">
       <div class="row login-container animated fadeInUp">
@@ -48,10 +49,28 @@
             <p class="p-b-20">
               "Quanto mais trabalhamos, mais sorte temos!"
             </p>
-            <div role="tablist">
-              <!--<a href="#tab_login" class="btn btn-primary btn-cons disabled" role="tab" data-toggle="tab">Entrar</a> ou&nbsp;&nbsp; -->
-              <!--<a href="#tab_register" class="btn btn-info btn-cons disabled" role="tab" data-toggle="tab">Criar uma conta</a> ou&nbsp;&nbsp; -->
-              <a href="index.php" class="btn btn-primary btn-cons btn-lg btn-large" role="tab">Entrar</a>
+            <div class="tiles white no-margin text-black tab-content">
+            <div role="tabpanel" class="tab-pane active" id="tab_login" style="padding-left:0px; padding-bottom:0px;" >
+              <form class="animated fadeIn" id="" name="">
+                <div class="row form-row">
+                  <div class="col-md-7 col-sm-7">
+                    <input class="form-control input-lg" id="login_email" name="login_username" placeholder="E-mail" type="email">
+                  </div>
+                  <div class="col-md-5 col-sm-5" style="padding-right:25px;">
+                    <input class="form-control input-lg" id="login_senha" name="login_pass" placeholder="Senha" type="password">
+                  </div>
+                </div>
+                <div class="row p-t-10 m-l-20 m-r-20 xs-m-l-10 xs-m-r-10">
+                  <div class="control-group col-md-10">                  
+                  </div>
+                </div>
+              </form>
+            </div>
+            </div>
+            <div role="tablist" align="center" style=" margin-right: 30px;">
+              <a href="index.php" class="btn btn-primary btn-block btn-large" role="tab" ><i class="fa fa-check"></i> Entrar</a>  <!-- data-toggle="tab"-->
+              <br>&nbsp;
+              </div>
               <br>&nbsp;
               <div>
               <div class="alert alert-success" style=" margin-right: 30px;">
@@ -64,66 +83,15 @@
                   <div class="pull-right">
                 <span class="label label-success"> <?= versao ?> </span>
               </div>    
-              </div>
-              
+              </div>              
             </div>
           </div>
-          <!--<div class="tiles grey p-t-20 p-b-20 no-margin text-black tab-content">
-            <div role="tabpanel" class="tab-pane active" id="tab_login">
-              <form class="animated fadeIn validate" id="" name="">
-                <div class="row form-row m-l-20 m-r-20 xs-m-l-10 xs-m-r-10">
-                  <div class="col-md-6 col-sm-6">
-                    <input class="form-control" id="login_username" name="login_username" placeholder="Usuário" type="email" required>
-                  </div>
-                  <div class="col-md-6 col-sm-6">
-                    <input class="form-control" id="login_pass" name="login_pass" placeholder="Senha" type="password" required>
-                  </div>
-                </div>
-                <div class="row p-t-10 m-l-20 m-r-20 xs-m-l-10 xs-m-r-10">
-                  <div class="control-group col-md-10">
-                    <div class="checkbox checkbox check-success">
-                      <input id="checkbox1" type="checkbox" value="1">
-                      <label for="checkbox1">Manter-se conectado</label>
-                    </div>
-                  </div>
-                </div>
-              </form>
-            </div>
-            <div role="tabpanel" class="tab-pane" id="tab_register">
-              <form class="animated fadeIn validate" id="" name="">
-                <div class="row form-row m-l-20 m-r-20 xs-m-l-10 xs-m-r-10">
-                  <div class="col-md-6 col-sm-6">
-                    <input class="form-control" id="reg_username" name="reg_username" placeholder="Usuário" type="text" required>
-                  </div>
-                  <div class="col-md-6 col-sm-6">
-                    <input class="form-control" id="reg_pass" name="reg_pass" placeholder="Senha" type="password" required>
-                  </div>
-                </div>
-                <div class="row form-row m-l-20 m-r-20 xs-m-l-10 xs-m-r-10">
-                  <div class="col-md-12">
-                    <input class="form-control" id="reg_mail" name="reg_mail" placeholder="E-mail" type="email" required>
-                  </div>
-                </div>
-                <div class="row form-row m-l-20 m-r-20 xs-m-l-10 xs-m-r-10">
-                  <div class="col-md-6 col-sm-6">
-                    <input class="form-control" id="reg_first_Name" name="reg_first_Name" placeholder="Nome" type="text" required>
-                  </div>
-                  <div class="col-md-6 col-sm-6">
-                    <input class="form-control" id="reg_first_Name" name="reg_first_Name" placeholder="Sobrenome" type="text" required>
-                  </div>
-                </div>
-                <div class="row form-row m-l-20 m-r-20 xs-m-l-10 xs-m-r-10">
-                  <div class="col-md-12">
-                    <input class="form-control" id="reg_email" name="reg_email" placeholder="Email" type="email" required>
-                  </div>
-                </div>
-              </form>
-            </div>
-          </div>  -->
+          </div>
         </div>
       </div>
     </div>
-    <!-- END CONTAINER -->
+
+    <!-- FIM CONTAINER -->
     <script src="assets/plugins/pace/pace.min.js" type="text/javascript"></script>
     <!-- BEGIN JS DEPENDECENCIES-->
     <script src="assets/plugins/jquery/jquery-1.11.3.min.js" type="text/javascript"></script>
