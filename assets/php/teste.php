@@ -1,69 +1,15 @@
-<html>
-    
-    <body>
-        <form method="post" action="teste.php">
-            <input type="date" name="ida">
-            <input type="date" name="volta">
-            <button type="submeit" value="submit">Enviar</button>
-
-        </form>
-
-    </body>
-
-<html>
-
-
 <?php
 
-$ida=$_POST['ida'];
-$volta=$_POST['volta'];
+    $conn= new \PDO("oci:host=localhost;dbname=xe","INTRANET","INTRANET");
 
-echo $ida."\n";
-echo $volta."\n";
+    $query = "SELECT * FROM USR WHERE EMAIL=:email";
+    $stmt = $conn->prepare($query);
+    $stmt->bindValue(':email',$_GET['email']);
+    $stmt->execute($stmt);
 
-$ida2 = new DateTime($ida);
-$volta2 = new DateTime($volta);
-$ausencia = $ida2->diff($volta2);
-echo $ausencia->format('%R%a dias');
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//    $strStart->format('02/05/2017'); 
-//    $strEnd   = '02/19/2017'; 
-
-
-
-//    $dteStart = new DateTime($strStart); 
-//    $dteEnd   = new DateTime($strEnd); 
-
-
-//    $dteDiff  = $dteStart->diff($dteEnd); 
-
-
-
-//    echo $dteDiff->format("%d dias")."\n(".gettype($dteDiff).")"; 
+    print_r($stmt);
+ 
 
 
 
 ?>
-
-
-
-<!--$ida=$_POST['ida'];-->
-<!--$ida = strtotime($ida);-->
-<!--$volta=$_POST['volta'];-->
-<!--$volta = strtotime($volta);-->
