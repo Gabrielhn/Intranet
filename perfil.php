@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Aniger - Veículos</title>
+    <title>Aniger - Meu perfil</title>
     <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
@@ -180,11 +180,11 @@
         <div class="page-sidebar-wrapper scrollbar-dynamic" id="main-menu-wrapper">
           <div class="user-info-wrapper sm">
             <div class="profile-wrapper sm">
-              <img src="assets/img/profiles/Aa.jpg" alt="" data-src="assets/img/profiles/Aa.jpg" data-src-retina="assets/img/profiles/Aa.jpg" width="69" height="69" />
+              <img src="assets/img/profiles/avatar.jpg" alt="" width="69" height="69" />
               <div class="availability-bubble online"></div>
             </div>
             <div class="user-info sm">
-              <div class="username"><span class="semi-bold">Aniger</span></div>
+              <div class="username"><span class="semi-bold">Gabriel</span></div>
               <div class="status">Seja bem-vindo.</div>
             </div>
           </div>
@@ -204,8 +204,47 @@
             <li class=""> 
               <a href="cadastros.php"><i class="material-icons" title="Cadastros">library_add</i> <span class="title">Cadastros</span></a>
             </li>
-            <li class="start active"> 
+            <li class=""> 
               <a href="solicitacoes.php"><i class="material-icons" title="Solicitações">assignment</i> <span class="title">Solicitações</span></a>
+            </li>
+            <!--<li class="">
+              <a href="#"> <i class="material-icons">email</i> <span class="title">Link</span> <span class=" badge badge-disable pull-right ">203</span>
+              </a>
+            </li>
+            <li class="">
+              <a href="javascript:;"> <i class="material-icons">more_horiz</i> <span class="title">Link</span> <span class=" arrow"></span> </a>
+              <ul class="sub-menu">
+                <li> <a href="javascript:;"> Level 1 </a> </li>
+                <li>
+                  <a href="javascript:;"> <span class="title">Level 2</span> <span class=" arrow"></span> </a>
+                  <ul class="sub-menu">
+                    <li> <a href="javascript:;"> Sub Menu </a> </li>
+                    <li> <a href="ujavascript:;"> Sub Menu </a> </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>-->
+            <li class="hidden-lg hidden-md hidden-xs" id="more-widgets">
+              <a href="javascript:;"> <i class="material-icons"></i></a>
+              <ul class="sub-menu">
+                <li class="side-bar-widgets">
+                  <p class="menu-title sm">FOLDER <span class="pull-right"><a href="#" class="create-folder"><i class="material-icons">add</i></a></span></p>
+                  <ul class="folders">
+                    <li>
+                      <a href="#">
+                        <div class="status-icon green"></div>
+                        My quick tasks </a>
+                    </li>
+                  </ul>
+                  <p class="menu-title">PROJECTS </p>
+                  <div class="status-widget">
+                    <div class="status-widget-wrapper">
+                      <div class="title">Freelancer<a href="#" class="remove-widget"><i class="material-icons">close</i></a></div>
+                      <p>Redesign home page</p>
+                    </div>
+                  </div>
+                </li>
+              </ul>
             </li>
           </ul>
           <!--<div class="side-bar-widgets">
@@ -232,7 +271,7 @@
       <a href="#" class="scrollup">Scroll</a>
       <div class="footer-widget">
         <div class="pull-left">
-          <i class="material-icons">alarm</i> 
+          <i class="material-icons">alarm</i>
           <iframe src="http://free.timeanddate.com/clock/i5hp9yxv/n595/tlbr5/fn17/fc555/tc22262e/pa0/th1" frameborder="0" width="66" height="14"></iframe>
         </div>
         <div class="pull-right">
@@ -248,240 +287,99 @@
             <li>
               <p>VOCÊ ESTÁ EM </p>
             </li>
-            <li><a href="index.php">Home</a></li>
-            <li><a href="solicitacoes.php">Solicitações</a></li>
-            <li><a href="#.php" class="active">Veículos</a></li>
+            <li><a href="#" class="active">Meu perfil</a> </li>
           </ul>
           <!-- BEGIN PAGE TITLE -->
-          <div class="page-title"> <i class="fa fa-car fa-lg fa-fw" aria-hidden="true"></i>
-            <h3>Veículos </h3>
+          <div class="page-title"> <i class="material-icons">face</i>
+            <h3>-&nbsp;&nbsp;Gabriel Hipolito</h3>
           </div>
           <!-- END PAGE TITLE -->
-          <!-- CONTEÚDO -->
-          
-          <div class="row">
-            <div class="col-md-6">
-              <div class="grid simple">
-                <div class="grid-title no-border">
-                  <h4>Informações <span class="semi-bold"></span></h4>
-                  <div class="tools">
-                    <a href="javascript:;" class="collapse"></a>
-                  </div>
-                </div>
-                <div class="grid-body no-border">
-                  <br>
-                  <div class="row">
-                    <form>
-                      <div class="col-md-12 col-sm-12 col-xs-12">
-                        <div class="form-group">
-                          <!-- <label class="form-label">Solicitante</label> -->
-                          <div class="controls">
-                            <input type="text" placeholder="Solicitante" class="form-control input-sm">
-                          </div>
-                        </div>
-                        <div class="form-group">
-                          <!-- <label class="form-label">Email</label> -->
-                          <div class="controls">
-                            <input type="text" placeholder="Email" class="form-control input-sm">
-                          </div>
-                        </div>
-                        
-                        <div class="form-actions">
-                          <div class="pull-right">
-                            <button type="submit" class="btn btn-success btn-cons-md">Enviar</button>
-                            <button type="reset" class="btn btn-white btn-cons-md" value="Reset">Limpar</button>
-                          </div>
-                        </div>
-                      </div>
-                    </form>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          <!-- CONTEUDO -->
 
-          
+          <div class="content" style="padding-top:20px;">
+          <div class="row">
+            <div class="col-md-12">
+              <div class=" tiles white col-md-12 no-padding">
+                <div class="tiles green cover-pic-wrapper">
+                  <div class="overlayer bottom-right">
+                    <div class="overlayer-wrapper">
+                      <div class="padding-10 hidden-xs">
+                        <button type="button" class="btn btn-info btn-small disabled"><i class="fa fa-check"></i>&nbsp;&nbsp;Adicionar</button>
+                      </div>
+                    </div>
+                  </div>
+                  <img src="assets/img/cb.png" alt="capa">
+                </div>
+                <div class="tiles white">
+                  <div class="row">
+                    <div class="col-md-3 col-sm-3">
+                      <div class="user-profile-pic">
+                        <img width="69" height="69" src="assets/img/profiles/avatar.jpg" alt="">
+                      </div>
+                      <div class="user-mini-description">
+                        <h3 class="text-info semi-bold">
+                         <i class="fa fa-star"></i>
+                         <i class="fa fa-star-half-full"></i>                    
+                        </h3>
+                        <h5>Tempo</h5>
+                        <h3 class="text-info semi-bold" style="line-height:40px;">
+                          <span class="label label-ti">TI</span>
+                        </h3>
+                        <h5>Setor</h5>
+                      </div>
+                    </div>
+                    <div class="col-md-5 user-description-box  col-sm-5">
+                      <h4 class="semi-bold no-margin">Gabriel Hipolito</h4>
+                      <br>
+                      <!--CARGO-->
+                      <p><i class="fa fa-briefcase"></i>Analista de sistemas</p>
+
+                      <!--LOCAL-->
+                      <p><i class="fa fa-globe"></i>Aniger/RS</p>
+
+                      <!--RAMAL-->
+                      <p><i class="fa fa-envelope"></i>gabriel.hipolito@aniger.com.br</p>
+
+                      <!--IM-->
+                      <p><i class="fa fa-skype"></i>gabrielhn72</p>
+                    </div>
+                    <div class="col-md-3  col-sm-3">
+                      <h5 class="normal">Colegas ( <span class="text-success">4</span> )</h5>
+                      <ul class="my-friends">
+                        <li>
+                          <div class="profile-pic">
+                            <img width="35" height="35" src="assets/img/profiles/c.jpg" alt="">
+                          </div>
+                        </li>
+                        <li>
+                          <div class="profile-pic">
+                            <img width="35" height="35" src="assets/img/profiles/d.jpg" alt="">
+                          </div>
+                        </li>
+                        <li>
+                          <div class="profile-pic">
+                            <img width="35" height="35" src="assets/img/profiles/b.jpg" alt="">
+                          </div>
+                        </li>
+                        <li>
+                          <div class="profile-pic">
+                            <img width="35" height="35" src="assets/img/profiles/e.jpg" alt="">
+                          </div>
+                        </li>
+                        
+                      </ul>
+                    </div>
+                  </div>
+                  <hr/>
+                  &nbsp;&nbsp;<br/>                  
+                  &nbsp;&nbsp;<br/>
           <!-- FIM CONTEÚDO -->
         </div>
       </div>
       <!-- END PAGE CONTAINER -->
-      <!-- BEGIN CHAT -->
-      <div class="chat-window-wrapper">
-        <div id="main-chat-wrapper" class="inner-content">
-          <div class="chat-window-wrapper scroller scrollbar-dynamic" id="chat-users">
-            <!-- BEGIN CHAT HEADER -->
-            <div class="chat-header">
-              <!-- BEGIN CHAT SEARCH BAR -->
-              <div class="pull-left">
-                <input type="text" placeholder="search">
-              </div>
-              <!-- END CHAT SEARCH BAR -->
-              <!-- BEGIN CHAT QUICKLINKS -->
-              <div class="pull-right">
-                <a href="#" class="">
-                  <div class="iconset top-settings-dark"></div>
-                </a>
-              </div>
-              <!-- END CHAT QUICKLINKS -->
-            </div>
-            <!-- END CHAT HEADER -->
-            <!-- BEGIN GROUP WIDGET -->
-            <div class="side-widget">
-              <div class="side-widget-title">group chats</div>
-              <div class="side-widget-content">
-                <div id="groups-list">
-                  <ul class="groups">
-                    <li>
-                      <a href="#">
-                        <div class="status-icon green"></div>Group Chat 1</a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <!-- END GROUP WIDGET -->
-            <!-- BEGIN FAVORITES WIDGET -->
-            <div class="side-widget">
-              <div class="side-widget-title">favorites</div>
-              <div class="side-widget-content">
-                <!-- BEGIN SAMPLE CHAT -->
-                <div class="user-details-wrapper active" data-chat-status="online" data-chat-user-pic="assets/img/profiles/d.jpg" data-chat-user-pic-retina="assets/img/profiles/d2x.jpg" data-user-name="Jane Smith">
-                  <!-- BEGIN PROFILE PIC -->
-                  <div class="user-profile">
-                    <img src="assets/img/profiles/d.jpg" alt="" data-src="assets/img/profiles/d.jpg" data-src-retina="assets/img/profiles/d2x.jpg" width="35" height="35">
-                  </div>
-                  <!-- END PROFILE PIC -->
-                  <!-- BEGIN MESSAGE -->
-                  <div class="user-details">
-                    <div class="user-name">Jane Smith</div>
-                    <div class="user-more">Message...</div>
-                  </div>
-                  <!-- END MESSAGE -->
-                  <!-- BEGIN MESSAGES BADGE -->
-                  <div class="user-details-status-wrapper">
-                    <span class="badge badge-important">3</span>
-                  </div>
-                  <!-- END MESSAGES BADGE -->
-                  <!-- BEGIN STATUS -->
-                  <div class="user-details-count-wrapper">
-                    <div class="status-icon green"></div>
-                  </div>
-                  <!-- END STATUS -->
-                  <div class="clearfix"></div>
-                </div>
-                <!-- END SAMPLE CHAT -->
-              </div>
-            </div>
-            <!-- END FAVORITES WIDGET -->
-            <!-- BEGIN MORE FRIENDS WIDGET -->
-            <div class="side-widget">
-              <div class="side-widget-title">more friends</div>
-              <div class="side-widget-content" id="friends-list">
-                <!-- BEGIN SAMPLE CHAT -->
-                <div class="user-details-wrapper" data-chat-status="online" data-chat-user-pic="assets/img/profiles/d.jpg" data-chat-user-pic-retina="assets/img/profiles/d2x.jpg" data-user-name="Jane Smith">
-                  <!-- BEGIN PROFILE PIC -->
-                  <div class="user-profile">
-                    <img src="assets/img/profiles/d.jpg" alt="" data-src="assets/img/profiles/d.jpg" data-src-retina="assets/img/profiles/d2x.jpg" width="35" height="35">
-                  </div>
-                  <!-- END PROFILE PIC -->
-                  <!-- BEGIN MESSAGE -->
-                  <div class="user-details">
-                    <div class="user-name">Jane Smith</div>
-                    <div class="user-more">Message...</div>
-                  </div>
-                  <!-- END MESSAGE -->
-                  <!-- BEGIN MESSAGES BADGE -->
-                  <div class="user-details-status-wrapper">
-                    <span class="badge badge-important">3</span>
-                  </div>
-                  <!-- END MESSAGES BADGE -->
-                  <!-- BEGIN STATUS -->
-                  <div class="user-details-count-wrapper">
-                    <div class="status-icon green"></div>
-                  </div>
-                  <!-- END STATUS -->
-                  <div class="clearfix"></div>
-                </div>
-                <!-- END SAMPLE CHAT -->
-              </div>
-            </div>
-            <!-- END MORE FRIENDS WIDGET -->
-          </div>
-          <!-- BEGIN DUMMY CHAT CONVERSATION -->
-          <div class="chat-window-wrapper" id="messages-wrapper" style="display:none">
-            <!-- BEGIN CHAT HEADER BAR -->
-            <div class="chat-header">
-              <!-- BEGIN SEARCH BAR -->
-              <div class="pull-left">
-                <input type="text" placeholder="search">
-              </div>
-              <!-- END SEARCH BAR -->
-              <!-- BEGIN CLOSE TOGGLE -->
-              <div class="pull-right">
-                <a href="#" class="">
-                  <div class="iconset top-settings-dark"></div>
-                </a>
-              </div>
-              <!-- END CLOSE TOGGLE -->
-            </div>
-            <div class="clearfix"></div>
-            <!-- END CHAT HEADER BAR -->
-            <!-- BEGIN CHAT BODY -->
-            <div class="chat-messages-header">
-              <div class="status online"></div>
-              <span class="semi-bold">Jane Smith(Typing..)</span>
-              <a href="#" class="chat-back"><i class="icon-custom-cross"></i></a>
-            </div>
-            <!-- BEGIN CHAT MESSAGES CONTAINER -->
-            <div class="chat-messages scrollbar-dynamic clearfix">
-              <!-- BEGIN TIME STAMP EXAMPLE -->
-              <div class="sent_time">Yesterday 11:25pm</div>
-              <!-- END TIME STAMP EXAMPLE -->
-              <!-- BEGIN EXAMPLE CHAT MESSAGE -->
-              <div class="user-details-wrapper">
-                <!-- BEGIN MESSENGER PROFILE -->
-                <div class="user-profile">
-                  <img src="assets/img/profiles/d.jpg" alt="" data-src="assets/img/profiles/d.jpg" data-src-retina="assets/img/profiles/d2x.jpg" width="35" height="35">
-                </div>
-                <!-- END MESSENGER PROFILE -->
-                <!-- BEGIN MESSENGER MESSAGE -->
-                <div class="user-details">
-                  <div class="bubble">Hello, You there?</div>
-                </div>
-                <!-- END MESSENGER MESSAGE -->
-                <div class="clearfix"></div>
-                <!-- BEGIN TIMESTAMP ON CLICK TOGGLE -->
-                <div class="sent_time off">Yesterday 11:25pm</div>
-                <!-- END TIMESTAMP ON CLICK TOGGLE -->
-              </div>
-              <!-- END EXAMPLE CHAT MESSAGE -->
-              <!-- BEGIN TIME STAMP EXAMPLE -->
-              <div class="sent_time">Today 11:25pm</div>
-              <!-- BEGIN TIME STAMP EXAMPLE -->
-              <!-- BEGIN EXAMPLE CHAT MESSAGE (FROM SELF) -->
-              <div class="user-details-wrapper pull-right">
-                <!-- BEGIN MESSENGER MESSAGE -->
-                <div class="user-details">
-                  <div class="bubble sender">Let me know when you free</div>
-                </div>
-                <!-- END MESSENGER MESSAGE -->
-                <div class="clearfix"></div>
-                <!-- BEGIN TIMESTAMP ON CLICK TOGGLE -->
-                <div class="sent_time off">Sent On Tue, 2:45pm</div>
-                <!-- END TIMESTAMP ON CLICK TOGGLE -->
-              </div>
-              <!-- END EXAMPLE CHAT MESSAGE (FROM SELF) -->
-            </div>
-            <!-- END CHAT MESSAGES CONTAINER -->
-          </div>
-          <div class="chat-input-wrapper" style="display:none">
-            <textarea id="chat-message-input" rows="1" placeholder="Type your message"></textarea>
-          </div>
-          <div class="clearfix"></div>
-          <!-- END DUMMY CHAT CONVERSATION -->
-        </div>
-      </div>
-      <!-- END CHAT -->
+      &nbsp;&nbsp;<br/>
+      &nbsp;&nbsp;<br/>
+      &nbsp;&nbsp;<br/>
     </div>
     <!-- END CONTENT -->
     <!-- BEGIN CORE JS FRAMEWORK-->

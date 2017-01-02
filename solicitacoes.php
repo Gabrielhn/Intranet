@@ -131,8 +131,8 @@
                   <i class="material-icons">tune</i>
                 </a>
                 <ul class="dropdown-menu  pull-right" role="menu" aria-labelledby="user-options">
-                  <li class="disabled">
-                    <a href="#" title="Recurso ainda não implementado."> Meu perfil</a>
+                  <li class="">
+                    <a href="perfil.php" title="Acesse seu perfil"> Meu perfil</a>
                   </li>
                   <!-- <li class="disabled">
                     <a href="calender.php" title="Recurso ainda não implementado.">Calendário</a>
