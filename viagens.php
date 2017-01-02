@@ -683,10 +683,11 @@
     <script src="assets/plugins/jquery-numberAnimate/jquery.animateNumbers.js" type="text/javascript"></script>
     <script src="assets/plugins/jquery-validation/js/jquery.validate.min.js" type="text/javascript"></script>
     <script src="assets/plugins/bootstrap-select2/select2.min.js" type="text/javascript"></script>
-    <script>function 
-      isChecked(checkbox, btenv) {
-        document.getElementById(btenv).disabled = !checkbox.checked;
-      }
+    <script>
+      function isChecked(checkbox, btenv) 
+        {
+          document.getElementById(btenv).disabled = !checkbox.checked;
+        }
     </script>
     <!-- END CORE JS DEPENDECENCIES-->
     <!-- BEGIN CORE TEMPLATE JS -->

@@ -270,7 +270,9 @@
       <a href="#" class="scrollup">Scroll</a>
       <div class="footer-widget">
         <div class="pull-left">
-          <i class="material-icons">alarm</i>
+          <a data-html="true" data-content="<b>popover</b> - title " id="popover" title="" data-toggle="popover">
+            <i class="material-icons">alarm</i>
+          </a>
           <iframe src="http://free.timeanddate.com/clock/i5hp9yxv/n595/tlbr5/fn17/fc555/tc22262e/pa0/th1" frameborder="0" width="66" height="14"></iframe>
         </div>
         <div class="pull-right">
@@ -334,7 +336,7 @@
                       <p><i class="fa fa-briefcase"></i>Analista de sistemas</p>
 
                       <!--LOCAL-->
-                      <p><i class="fa fa-globe"></i>Aniger/RS</p>
+                      <p><i class="fa fa-globe"></i>Aniger - Campo Bom/RS</p>
 
                       <!--EMAIL-->
                       <p><i class="fa fa-envelope"></i>gabriel.hipolito@aniger.com.br</p>
