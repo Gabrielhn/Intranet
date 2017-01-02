@@ -1,15 +1,18 @@
 <?php
+    
+    // require_once "class/class.Iconn.php";
+    // require_once "class/class.conn.php";
+    // require_once "class/class.service.php";
 
-    $conn= new \PDO("oci:host=localhost;dbname=xe","INTRANET","INTRANET");
+    // $db = new conn("10.0.0.2","ORCL","INTRANET","ifnefy6b9");
 
-    $query = "SELECT * FROM USR WHERE EMAIL=:email";
-    $stmt = $conn->prepare($query);
-    $stmt->bindValue(':email',$_GET['email']);
-    $stmt->execute($stmt);
+    // $service = new serviceUsuario($db);
 
-    print_r($stmt);
- 
+    // print_r($service->list());
 
+   foreach(PDO::getAvailableDrivers() as $driver)
+    echo $driver, '<br>';
 
-
+phpinfo()
+    
 ?>

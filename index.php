@@ -291,7 +291,7 @@
           </ul>
           <!-- BEGIN PAGE TITLE -->
           <div class="page-title"> <i class="material-icons">home</i>
-            <h3>Página principal </h3>
+            <h3>Home </h3>
           </div>
           <!-- END PAGE TITLE -->
           <!-- BEGIN PlACE PAGE CONTENT HERE -->

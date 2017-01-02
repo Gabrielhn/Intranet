@@ -1,14 +1,5 @@
 <?php
-  session_start();
-
-  $user = 'Admin';
-  $pass = 'anigerasa';
   define("versao", "1.1");
-
-  if ($user == "Admin" && $pass == "aniger") {
-    $_SESSION['login'] = true;
-  }
-  
 ?>
 
 <!DOCTYPE html>
@@ -41,7 +32,7 @@
   <body class="error-body no-top lazy" data-original="assets/img/work.jpg" style="background-image: url('assets/img/work.jpg')">
     <div class="container">
       <div class="row login-container animated fadeInUp">
-        <div class="col-md-7 col-md-offset-2 tiles white no-padding">
+        <div class="col-md-6 col-md-offset-3 tiles white no-padding">
           <div class="p-t-30 p-l-40 p-b-20 xs-p-t-10 xs-p-l-10 xs-p-b-10">
             <h2 class="normal">
           <img src="assets\img\logo3.png" alt="Aniger">
@@ -53,11 +44,11 @@
             <div role="tabpanel" class="tab-pane active" id="tab_login" style="padding-left:0px; padding-bottom:0px;" >
               <form class="animated fadeIn" id="" name="">
                 <div class="row form-row">
-                  <div class="col-md-7 col-sm-7">
-                    <input class="form-control input-lg" id="login_email" name="login_username" placeholder="E-mail" type="email">
+                  <div class="col-md-12 col-sm-12" style="padding-right:25px;">
+                    <input class="form-control input-lg" id="login_email" name="login_username" placeholder="E-mail" type="email" style="text-align: center">
                   </div>
-                  <div class="col-md-5 col-sm-5" style="padding-right:25px;">
-                    <input class="form-control input-lg" id="login_senha" name="login_pass" placeholder="Senha" type="password">
+                  <div class="col-md-12 col-sm-12" style="padding-right:25px;">
+                    <input class="form-control input-lg" id="login_senha" name="login_pass" placeholder="Senha" type="password" style="text-align: center">
                   </div>
                 </div>
                 <div class="row p-t-10 m-l-20 m-r-20 xs-m-l-10 xs-m-r-10">
