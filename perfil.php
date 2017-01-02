@@ -181,7 +181,6 @@
           <div class="user-info-wrapper sm">
             <div class="profile-wrapper sm">
               <img src="assets/img/profiles/avatar.jpg" alt="" width="69" height="69" />
-              <div class="availability-bubble online"></div>
             </div>
             <div class="user-info sm">
               <div class="username"><span class="semi-bold">Gabriel</span></div>
@@ -328,7 +327,7 @@
                         <h5>Setor</h5>
                       </div>
                     </div>
-                    <div class="col-md-5 user-description-box  col-sm-5">
+                    <div class="col-md-4 col-sm-4 user-description-box  col-sm-5">
                       <h4 class="semi-bold no-margin">Gabriel Hipolito</h4>
                       <br>
                       <!--CARGO-->
@@ -337,11 +336,13 @@
                       <!--LOCAL-->
                       <p><i class="fa fa-globe"></i>Aniger/RS</p>
 
-                      <!--RAMAL-->
+                      <!--EMAIL-->
                       <p><i class="fa fa-envelope"></i>gabriel.hipolito@aniger.com.br</p>
 
-                      <!--IM-->
-                      <p><i class="fa fa-skype"></i>gabrielhn72</p>
+                      <!--IM RAMAL-->
+                      <p><i class="fa fa-skype"></i>gabrielhn72 
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      <i class="fa fa-phone"></i>171</p>                      
                     </div>
                     <div class="col-md-3  col-sm-3">
                       <h5 class="normal">Colegas ( <span class="text-success">4</span> )</h5>
