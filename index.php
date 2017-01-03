@@ -302,11 +302,6 @@ proteger();
           <!-- END PAGE TITLE -->
           <!-- BEGIN PlACE PAGE CONTENT HERE -->
 
-          <?php
-          echo $_SESSION['usuarioNome'] . "\n";
-          echo $_SESSION['usuarioEmail'];
-          ?>
-
 
           <!-- END PLACE PAGE CONTENT HERE -->
         </div>

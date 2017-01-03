@@ -190,13 +190,13 @@ proteger();
               <div class="availability-bubble online"></div>
             </div>
             <div class="user-info sm">
-              <div class="username"><span class="semi-bold">Aniger</span></div>
+              <div class="username"><span class="semi-bold"> <?php echo $_SESSION['usuarioNome']; ?> </span></div>
               <div class="status">Seja bem-vindo.</div>
             </div>
           </div>
           <!-- END MINI-PROFILE -->
           <!-- BEGIN SIDEBAR MENU -->
-          <p class="menu-title sm">NAVEGAR <span class="pull-right"><a href="javascript:;"><i class="material-icons">refresh</i></a></span></p>
+          <p class="menu-title sm">MENU <span class="pull-right"><a href="javascript:;"><i class="material-icons">refresh</i></a></span></p>
           <ul>
             <li class=""> 
               <a href="index.php"><i class="material-icons" title="Home">home</i> <span class="title">Home</span> <span class="title"></span> </a>

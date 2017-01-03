@@ -1,7 +1,24 @@
 <?php
 require_once("assets/php/class/class.seg.php");
+require_once("assets/php/class/class.crud.php");
 session_start();
 proteger();
+
+$host="10.0.0.2";
+$service="//10.0.0.2:1521/orcl";
+$email=$_SESSION['usuarioEmail'];
+$conn= new \PDO("oci:host=$host;dbname=$service","INTRANET","ifnefy6b9");
+
+// Valida
+$query = "SELECT * FROM USUARIOS WHERE EMAIL=:email";
+
+$stmt = $conn->prepare($query);
+$stmt->bindValue(':email',$email);
+$stmt->execute();
+
+$result=$stmt->fetch(PDO::FETCH_ASSOC);
+
+
 ?>
 
 <!DOCTYPE html>
@@ -189,13 +206,13 @@ proteger();
               <img src="assets/img/profiles/avatar.jpg" alt="" width="69" height="69" />
             </div>
             <div class="user-info sm">
-              <div class="username"><span class="semi-bold">Gabriel</span></div>
+              <div class="username"><span class="semi-bold"> <?php echo $_SESSION['usuarioNome']; ?> </span></div>
               <div class="status">Seja bem-vindo.</div>
             </div>
           </div>
           <!-- END MINI-PROFILE -->
           <!-- BEGIN SIDEBAR MENU -->
-          <p class="menu-title sm">NAVEGAR <span class="pull-right"><a href="javascript:;"><i class="material-icons">refresh</i></a></span></p>
+          <p class="menu-title sm">MENU <span class="pull-right"><a href="javascript:;"><i class="material-icons">refresh</i></a></span></p>
           <ul>
             <li class=""> 
               <a href="index.php"><i class="material-icons" title="Home">home</i> <span class="title">Home</span> <span class="title"></span> </a>
@@ -296,10 +313,10 @@ proteger();
             </li>
             <li><a href="#" class="active">Meu perfil</a> </li>
           </ul>
-          <!-- BEGIN PAGE TITLE -->
+           <!--BEGIN PAGE TITLE 
           <div class="page-title"> <i class="material-icons">face</i>
             <h3>-&nbsp;&nbsp;Gabriel Hipolito</h3>
-          </div>
+          </div>-->
           <!-- END PAGE TITLE -->
           <!-- CONTEUDO -->
 
@@ -336,21 +353,21 @@ proteger();
                       </div>
                     </div>
                     <div class="col-md-4 col-sm-4 user-description-box  col-sm-5">
-                      <h4 class="semi-bold no-margin">Gabriel Hipolito</h4>
+                      <h4 class="semi-bold no-margin"><?php echo $result[NOME] . " " . $result[SOBRENOME]; ?></h4>
                       <br>
                       <!--CARGO-->
-                      <p><i class="fa fa-briefcase"></i>Analista de sistemas</p>
+                      <p><i class="fa fa-briefcase"></i> <?php echo $result[CARGO]; ?> </p>
 
                       <!--LOCAL-->
-                      <p><i class="fa fa-globe"></i>Aniger - Campo Bom/RS</p>
+                      <p><i class="fa fa-globe"></i><?php echo $result[LOCAL]; ?></p>
 
                       <!--EMAIL-->
-                      <p><i class="fa fa-envelope"></i>gabriel.hipolito@aniger.com.br</p>
+                      <p><i class="fa fa-envelope"></i><?php echo $result[EMAIL]; ?></p>
 
                       <!--IM RAMAL-->
-                      <p><i class="fa fa-skype"></i>gabrielhn72 
+                      <p><i class="fa fa-skype"></i><?php echo $result[IM]; ?> 
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                      <i class="fa fa-phone"></i>171</p>                      
+                      <i class="fa fa-phone"></i><?php echo $result[RAMAL]; ?></p>                      
                     </div>
                     <div class="col-md-3  col-sm-3">
                       <h5 class="normal">Colegas ( <span class="text-success">4</span> )</h5>
