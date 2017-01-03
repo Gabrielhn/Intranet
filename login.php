@@ -1,5 +1,6 @@
 <?php
-  define("versao", "1.1");
+  session_start();
+  define("versao", "1.2");
 ?>
 
 <!DOCTYPE html>
@@ -29,20 +30,20 @@
   <!-- FIM HEAD -->
 
   <!-- CONTAINER -->
-  <body class="error-body no-top lazy" data-original="assets/img/work.jpg" style="background-image: url('assets/img/work.jpg')">
+  <body class="error-body no-top lazy" data-original="assets/img/work3.jpg" style="background-image: url('assets/img/work3.jpg')">
     <div class="container">
-      <div class="row login-container animated fadeInUp">
+      <div class="row login-container animated fadeInUp" style="margin-top:5%;">
         <div class="col-md-6 col-md-offset-3 tiles white no-padding">
           <div class="p-t-30 p-l-40 p-b-20 xs-p-t-10 xs-p-l-10 xs-p-b-10">
             <h2 class="normal">
-          <img src="assets\img\logo3.png" alt="Aniger">
-        </h2>
+              <img src="assets\img\logo3.png" alt="Aniger">
+            </h2>
             <p class="p-b-20">
               "Quanto mais trabalhamos, mais sorte temos!"
             </p>
             <div class="tiles white no-margin text-black tab-content">
             <div role="tabpanel" class="tab-pane active" id="tab_login" style="padding-left:0px; padding-bottom:0px;" >
-              <form class="animated fadeIn" id="" name="">
+              <form class="animated fadeIn" method="post" action="assets\php\vLogin.php" id="">
                 <div class="row form-row">
                   <div class="col-md-12 col-sm-12" style="padding-right:25px;">
                     <input class="form-control input-lg" id="login_email" name="login_username" placeholder="E-mail" type="email" style="text-align: center">
@@ -55,11 +56,14 @@
                   <div class="control-group col-md-10">                  
                   </div>
                 </div>
+                <div style=" margin-right: 10px;">
+                  <button type="submit" class="btn btn-primary btn-block btn-large" value="submit"><i class="fa fa-check"></i> Entrar</button>
+                </div>
               </form>
             </div>
             </div>
             <div role="tablist" align="center" style=" margin-right: 30px;">
-              <a href="index.php" class="btn btn-primary btn-block btn-large" role="tab" ><i class="fa fa-check"></i> Entrar</a>  <!-- data-toggle="tab"-->
+              <!--<button type="submit" class="btn btn-primary btn-block btn-large" value="submit"><i class="fa fa-check"></i> Entrar</button>-->
               <br>&nbsp;
               </div>
               <br>&nbsp;

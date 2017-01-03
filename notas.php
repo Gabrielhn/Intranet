@@ -1,3 +1,9 @@
+<?php
+require_once("assets/php/class/class.seg.php");
+session_start();
+proteger();
+?>
+
 <!DOCTYPE html>
 <html>
   <head>

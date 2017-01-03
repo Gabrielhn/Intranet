@@ -1,3 +1,9 @@
+<?php
+require_once("assets/php/class/class.seg.php");
+session_start();
+proteger();
+?>
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -144,7 +150,7 @@
                   </li> -->
                   <li class="divider"></li>
                   <li>
-                    <a href="login.php"><i class="material-icons">power_settings_new</i>&nbsp;&nbsp;Sair</a>
+                    <a href="logout.php"><i class="material-icons">power_settings_new</i>&nbsp;&nbsp;Sair</a>
                   </li>
                 </ul>
               </li>
@@ -184,13 +190,13 @@
               <div class="availability-bubble online"></div>
             </div>
             <div class="user-info sm">
-              <div class="username"><span class="semi-bold">Aniger</span></div>
+              <div class="username"><span class="semi-bold"> <?php echo $_SESSION['usuarioNome']; ?> </span></div>
               <div class="status">Seja bem-vindo.</div>
             </div>
           </div>
           <!-- END MINI-PROFILE -->
           <!-- BEGIN SIDEBAR MENU -->
-          <p class="menu-title sm">NAVEGAR <span class="pull-right"><a href="javascript:;"><i class="material-icons">refresh</i></a></span></p>
+          <p class="menu-title sm">MENU <span class="pull-right"><a href="javascript:;"><i class="material-icons">refresh</i></a></span></p>
           <ul>
             <li class="start active"> 
               <a href="index.php"><i class="material-icons" title="Home">home</i> <span class="title">Home</span> <span class="title"></span> </a>
@@ -276,7 +282,7 @@
         </div>
         <div class="pull-right">
           <!-- IMPLEMENTAR LOCKSCREEN -->
-          <a href="login.php"><i class="material-icons">power_settings_new</i></a>
+          <a href="logout.php"><i class="material-icons">power_settings_new</i></a>
         </div>
       </div>
       <!-- END SIDEBAR -->
@@ -296,7 +302,10 @@
           <!-- END PAGE TITLE -->
           <!-- BEGIN PlACE PAGE CONTENT HERE -->
 
-          
+          <?php
+          echo $_SESSION['usuarioNome'] . "\n";
+          echo $_SESSION['usuarioEmail'];
+          ?>
 
 
           <!-- END PLACE PAGE CONTENT HERE -->
