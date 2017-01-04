@@ -6,17 +6,39 @@ proteger();
 
 $host="10.0.0.2";
 $service="//10.0.0.2:1521/orcl";
-$email=$_SESSION['usuarioEmail'];
+$id=$_SESSION['usuarioId'];
 $conn= new \PDO("oci:host=$host;dbname=$service","INTRANET","ifnefy6b9");
 
-// Valida
-$query = "SELECT * FROM USUARIOS WHERE EMAIL=:email";
+$query1 = "SELECT USR.ID, USR.EMAIL, USR.SENHA, USR.NOME, USR.SETOR, USR.CARGO, USR.RAMAL, USR.IM, LOC.NOME AS LOCAL, USR.ADMISSAO, USR.SOBRENOME, IMG.ID AS ID_IMG, IMG.IMAGEM FROM IN_USUARIOS USR, IN_LOCAIS LOC, IN_IMAGENS IMG WHERE USR.LOCAL = LOC.LOCAL AND LOC.LOCAL = USR.LOCAL AND USR.IMG_PERFIL = IMG.ID AND USR.ID=:id";
+$query2 = "SELECT COUNT(EMAIL) AS COLEGAS FROM IN_USUARIOS WHERE SETOR =:setor AND ID !=:id";
+$query3 = "SELECT USR.EMAIL, USR.IMG_PERFIL, IMG.IMAGEM FROM IN_USUARIOS USR, IN_IMAGENS IMG WHERE USR.IMG_PERFIL = IMG.ID AND USR.SETOR =:setor AND USR.ID !=:id";
+$query4 = "SELECT USR.ID, USR.EMAIL, USR.SENHA, USR.NOME, USR.SETOR, USR.CARGO, USR.RAMAL, USR.IM, LOC.NOME AS LOCAL, USR.ADMISSAO, USR.SOBRENOME, IMG.ID AS ID_IMG, IMG.IMAGEM FROM IN_USUARIOS USR, IN_LOCAIS LOC, IN_IMAGENS IMG WHERE USR.LOCAL = LOC.LOCAL AND LOC.LOCAL = USR.LOCAL AND USR.IMG_PERFIL = IMG.ID AND USR.ID=:id";
 
-$stmt = $conn->prepare($query);
-$stmt->bindValue(':email',$email);
-$stmt->execute();
+//#1
+$stmt1 = $conn->prepare($query1);
+$stmt1->bindValue(':id',$id);
+$stmt1->execute();
+$result1=$stmt1->fetch(PDO::FETCH_ASSOC);
 
-$result=$stmt->fetch(PDO::FETCH_ASSOC);
+//#2
+$stmt2 = $conn->prepare($query2);
+$stmt2->bindValue(':setor',$result1['SETOR']);
+$stmt2->bindValue(':id',$result1['ID']);
+$stmt2->execute();
+$result2=$stmt2->fetch(PDO::FETCH_ASSOC);
+
+//#3
+$stmt3 = $conn->prepare($query3);
+$stmt3->bindValue(':setor',$result1['SETOR']);
+$stmt3->bindValue(':id',$result1['ID']);
+$stmt3->execute();
+$result3=$stmt3->fetchAll(PDO::FETCH_ASSOC);
+
+//#4
+$stmt4 = $conn->prepare($query4);
+$stmt4->bindValue(':id',$id);
+$stmt4->execute();
+$result4=$stmt4->fetch(PDO::FETCH_ASSOC);
 
 
 ?>
@@ -203,11 +225,14 @@ $result=$stmt->fetch(PDO::FETCH_ASSOC);
         <div class="page-sidebar-wrapper scrollbar-dynamic" id="main-menu-wrapper">
           <div class="user-info-wrapper sm">
             <div class="profile-wrapper sm">
-              <img src="assets/img/profiles/avatar.jpg" alt="" width="69" height="69" />
+              <?php
+                echo '<img width="69" height="69" src="data:image/jpeg;base64,'.base64_encode(stream_get_contents($result1['IMAGEM'])).'">';
+              ?>
+              <div class="availability-bubble online"></div>
             </div>
             <div class="user-info sm">
               <div class="username"><span class="semi-bold"> <?php echo $_SESSION['usuarioNome']; ?> </span></div>
-              <div class="status">Seja bem-vindo.</div>
+              <div class="status">Seja bem-vindo(a)</div>
             </div>
           </div>
           <!-- END MINI-PROFILE -->
@@ -338,7 +363,9 @@ $result=$stmt->fetch(PDO::FETCH_ASSOC);
                   <div class="row">
                     <div class="col-md-3 col-sm-3">
                       <div class="user-profile-pic">
-                        <img width="69" height="69" src="assets/img/profiles/avatar.jpg" alt="">
+                        <?php
+                          echo '<img width="69" height="69" src="data:image/jpeg;base64,'.base64_encode(stream_get_contents($result4['IMAGEM'])).'">';
+                        ?>
                       </div>
                       <div class="user-mini-description">
                         <h3 class="text-info semi-bold">
@@ -347,52 +374,42 @@ $result=$stmt->fetch(PDO::FETCH_ASSOC);
                         </h3>
                         <h5>Tempo</h5>
                         <h3 class="text-info semi-bold" style="line-height:40px;">
-                          <span class="label label-ti">TI</span>
+                          <span class="label label-ti"> <?php echo $result1['SETOR']; ?></span>
                         </h3>
                         <h5>Setor</h5>
                       </div>
                     </div>
                     <div class="col-md-4 col-sm-4 user-description-box  col-sm-5">
-                      <h4 class="semi-bold no-margin"><?php echo $result[NOME] . " " . $result[SOBRENOME]; ?></h4>
+                      <h4 class="semi-bold no-margin"><?php echo $result1['NOME'] . " " . $result1['SOBRENOME']; ?></h4>
                       <br>
                       <!--CARGO-->
-                      <p><i class="fa fa-briefcase"></i> <?php echo $result[CARGO]; ?> </p>
+                      <p><i class="fa fa-briefcase"></i><?php echo $result1['CARGO']; ?> </p>
 
                       <!--LOCAL-->
-                      <p><i class="fa fa-globe"></i><?php echo $result[LOCAL]; ?></p>
+                      <p><i class="fa fa-globe"></i><?php echo $result1['LOCAL']; ?></p>
 
                       <!--EMAIL-->
-                      <p><i class="fa fa-envelope"></i><?php echo $result[EMAIL]; ?></p>
+                      <p><i class="fa fa-envelope"></i><?php echo $result1['EMAIL']; ?></p>
 
                       <!--IM RAMAL-->
-                      <p><i class="fa fa-skype"></i><?php echo $result[IM]; ?> 
+                      <p><i class="fa fa-skype"></i><?php echo $result1['IM']; ?> 
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                      <i class="fa fa-phone"></i><?php echo $result[RAMAL]; ?></p>                      
+                      <i class="fa fa-phone"></i><?php echo $result1['RAMAL']; ?></p>                      
                     </div>
                     <div class="col-md-3  col-sm-3">
-                      <h5 class="normal">Colegas ( <span class="text-success">4</span> )</h5>
+                      <h5 class="normal">Colegas ( <span class="text-success"> <?php echo $result2['COLEGAS']; ?> </span> )</h5>
                       <ul class="my-friends">
-                        <li>
-                          <div class="profile-pic">
-                            <img width="35" height="35" src="assets/img/profiles/c.jpg" alt="">
-                          </div>
-                        </li>
-                        <li>
-                          <div class="profile-pic">
-                            <img width="35" height="35" src="assets/img/profiles/d.jpg" alt="">
-                          </div>
-                        </li>
-                        <li>
-                          <div class="profile-pic">
-                            <img width="35" height="35" src="assets/img/profiles/b.jpg" alt="">
-                          </div>
-                        </li>
-                        <li>
-                          <div class="profile-pic">
-                            <img width="35" height="35" src="assets/img/profiles/e.jpg" alt="">
-                          </div>
-                        </li>
-                        
+                        <?php
+                        foreach($result3 as $key => $value ) 
+                          { 
+                            echo
+                              '<li>
+                                <div class="profile-pic">
+                                  <img width="35" height="35" title="'. $value['EMAIL'] .'" src="data:image/jpeg;base64,'.base64_encode(stream_get_contents($value['IMAGEM'])).'">
+                                </div>
+                              </li>';
+                          }
+                        ?>
                       </ul>
                     </div>
                   </div>

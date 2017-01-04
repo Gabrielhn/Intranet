@@ -2,6 +2,20 @@
 require_once("assets/php/class/class.seg.php");
 session_start();
 proteger();
+
+$host="10.0.0.2";
+$service="//10.0.0.2:1521/orcl";
+$id=$_SESSION['usuarioId'];
+$conn= new \PDO("oci:host=$host;dbname=$service","INTRANET","ifnefy6b9");
+
+$query1 = "SELECT USR.EMAIL, USR.IMG_PERFIL, IMG.IMAGEM FROM IN_USUARIOS USR, IN_IMAGENS IMG WHERE USR.IMG_PERFIL = IMG.ID AND USR.ID =:id";
+
+//#1
+$stmt1 = $conn->prepare($query1);
+$stmt1->bindValue(':id',$id);
+$stmt1->execute();
+$result1=$stmt1->fetch(PDO::FETCH_ASSOC);
+
 ?>
 
 <!DOCTYPE html>
@@ -186,12 +200,14 @@ proteger();
         <div class="page-sidebar-wrapper scrollbar-dynamic" id="main-menu-wrapper">
           <div class="user-info-wrapper sm">
             <div class="profile-wrapper sm">
-              <img src="assets/img/profiles/Aa.jpg" alt="" data-src="assets/img/profiles/Aa.jpg" data-src-retina="assets/img/profiles/Aa.jpg" width="69" height="69" />
+              <?php
+                echo '<img width="69" height="69" src="data:image/jpeg;base64,'.base64_encode(stream_get_contents($result1['IMAGEM'])).'">';
+              ?>
               <div class="availability-bubble online"></div>
             </div>
             <div class="user-info sm">
               <div class="username"><span class="semi-bold"> <?php echo $_SESSION['usuarioNome']; ?> </span></div>
-              <div class="status">Seja bem-vindo.</div>
+              <div class="status">Seja bem-vindo(a)</div>
             </div>
           </div>
           <!-- END MINI-PROFILE -->

@@ -18,11 +18,10 @@ class Conn implements IConn
     {
         try{
             return new \PDO(
-                "oci:host={$this->host};
-                dbname={$this->dbname}",
+                "oci:host={$this->host};dbname={$this->dbname}",
                 $this->user,
                 $this->pass
-                );
+            );
 
         }catch(\PDOException $e){
             echo "Erro: Codigo=" . $e->getCode() . " Mensagem=" . $e->getMessage();
