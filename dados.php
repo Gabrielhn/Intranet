@@ -321,64 +321,64 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
           <!-- CONTEUDO -->
           
           <!--#1-->
-          <div class="col-md-2 col-sm-3 m-b-10">
-            <div class="tiles black blend weather-widget ">
-              <div class="tiles-body">
-                <a href="clientes.php" style="color: #edeeef;">
-                  <div class="big-icon">
-                    <i class="fa fa-male fa-7x fa-fw"></i>
+          <a href="clientes.php" style="color: #edeeef;">
+            <div class="col-md-3 col-sm-3 m-b-10">          
+              <div class="tiles black blend weather-widget ">
+                <div class="tiles-body">              
+                  <div class="" style="text-align:center;">
+                    <i class="fa fa-male fa-7x"></i>
                   </div>
                   <div class="clearfix"></div>
-              </div>
-                </a>
-              <div class="tile-footer">
-                <div style="text-align:center;">
-                   <span class="semi-bold">Usuários</span>
+                  </div>               
+                <div class="tile-footer">
+                  <div style="text-align:center;">
+                    <span class="semi-bold">Usuários</span>
+                  </div>
+                  <div class="clearfix"></div>
+                  </a>
                 </div>
-                <div class="clearfix"></div>
               </div>
             </div>
-          </div>
 
           <!--#2-->
-          <div class="col-md-2 col-sm-3 m-b-10">
-            <div class="tiles black blend weather-widget ">
-              <div class="tiles-body">
-                <a href="clientes.php" style="color: #edeeef;">
-                  <div class="big-icon">
-                    <i class="fa fa-sitemap fa-7x fa-fw"></i>
+          <a href="clientes.php" style="color: #edeeef;">
+            <div class="col-md-3 col-sm-3 m-b-10">          
+              <div class="tiles black blend weather-widget ">
+                <div class="tiles-body">              
+                  <div class="" style="text-align:center;">
+                    <i class="fa fa-sitemap fa-7x"></i>
                   </div>
                   <div class="clearfix"></div>
-              </div>
-                </a>
-              <div class="tile-footer">
-                <div style="text-align:center;">
-                   <span class="semi-bold">Setores</span>
+                  </div>               
+                <div class="tile-footer">
+                  <div style="text-align:center;">
+                    <span class="semi-bold">Setores</span>
+                  </div>
+                  <div class="clearfix"></div>
+                  </a>
                 </div>
-                <div class="clearfix"></div>
               </div>
             </div>
-          </div>
 
-          <!--#2-->
-          <div class="col-md-2 col-sm-3 m-b-10">
-            <div class="tiles black blend weather-widget ">
-              <div class="tiles-body">
-                <a href="clientes.php" style="color: #edeeef;">
-                  <div class="big-icon">
-                    <i class="fa fa-globe fa-7x fa-fw"></i>
+          <!--#3-->
+          <a href="clientes.php" style="color: #edeeef;">
+            <div class="col-md-3 col-sm-3 m-b-10">          
+              <div class="tiles black blend weather-widget ">
+                <div class="tiles-body">              
+                  <div class="" style="text-align:center;">
+                    <i class="fa fa-globe fa-7x"></i>
                   </div>
                   <div class="clearfix"></div>
-              </div>
-                </a>
-              <div class="tile-footer">
-                <div style="text-align:center;">
-                   <span class="semi-bold">Locais</span>
+                  </div>               
+                <div class="tile-footer">
+                  <div style="text-align:center;">
+                    <span class="semi-bold">Locais</span>
+                  </div>
+                  <div class="clearfix"></div>
+                  </a>
                 </div>
-                <div class="clearfix"></div>
               </div>
             </div>
-          </div>
 
 
 

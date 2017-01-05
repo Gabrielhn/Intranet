@@ -323,116 +323,149 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
           <div class="page-title"> <i class="material-icons">extension</i>
             <h3>Histórico de versões </h3>
           </div>
-          <div class="">
 
-            <div class="">
-            <h4>&#10625; Ver 1.2: </h4>
-            <ul class="fa-ul">
-              <li><i class="fa-li fa fa-user"></i>Login</li>
-              <ul class="fa-ul">
-                <li><i class="fa-li fa fa-check-square-o"></i><span style="font-style: italic; font-size: 11px;">Login com validação de usuário.</span></li>
-              </ul>
+        <div class="content" style="padding-top:0px;">
+          <div class="row">
+            <div class="col-md-10 col-vlg-7">
+              <ul class="cbp_tmtimeline">
+                <li>
+                  <time class="cbp_tmtime">
+                    <span class="time text-success">1.2</span>
+                    <span class="description">Sábado, 8 de janeiro de 2017 </span>
+                  </time>
+                  <div class="cbp_tmicon primary animated bounceIn"> <i class="fa fa-cubes"></i> </div>
+                  <div class="cbp_tmlabel">
+                    <div class="p-t-10 p-l-30 p-r-20 p-b-20 xs-p-r-10 xs-p-l-10 xs-p-t-5">
+                      <h4></h4>
+                      <ul class="fa-ul">
+                        <li><i class="fa-li fa fa-user"></i>Login</li>
+                        <ul class="fa-ul">
+                          <li><i class="fa-li fa fa-check-square-o"></i><span style="font-style: italic; font-size: 11px;">Login com validação de usuário.</span></li>
+                        </ul>
+                        <li><i class="fa-li fa fa-male"></i>Perfil</li>
+                          <ul class="fa-ul">
+                            <li><i class="fa-li fa fa-check-square-o"></i><span style="font-style: italic; font-size: 11px;">Criada página de perfil do usuário.</span></li>
+                            <li><i class="fa-li fa fa-check-square-o"></i><span style="font-style: italic; font-size: 11px;">Local para visualização dos colegas de trabalho do usuário.</span></li>
+                          </ul>                        
+                        <li><i class="fa-li fa fa-plus-square"></i>Cadastros</li>
+                          <ul class="fa-ul">
+                            <li><i class="fa-li fa fa-check-square-o"></i><span style="font-style: italic; font-size: 11px;">Novos layouts para envio de solicitações por email: Clientes e Fornecedores.</span></li>
+                          </ul>
+                        <li><i class="fa-li fa fa-book"></i>Solicitações</li>
+                          <ul class="fa-ul">
+                            <li><i class="fa-li fa fa-check-square-o"></i><span style="font-style: italic; font-size: 11px;">Novos layouts para envio de solicitações por email: Viagens e Veículos.</span></li>
+                          </ul>
+                        <li><i class="fa-li fa fa-file-o"></i>Páginas</li>
+                          <ul class="fa-ul">
+                            <li><i class="fa-li fa fa-th"></i><span style="font-style: italic; font-size: 11px;">Nova página: Dados</span></li>
+                            <ul class="fa-ul">
+                            <li><i class="fa-li fa fa-check-square-o"></i><span style="font-style: italic; font-size: 11px;">Criada página menu para os cadastros no banco de dados.</span></li>
+                          </ul>
+                          </ul>
+                        </ul>                                            
+                      </div>
+                      <div class="clearfix"></div>
+                  </div>
+                </li>
+                
+                <li>
+                  <time class="cbp_tmtime">
+                    <span class="time text-success">1.1</span>
+                    <span class="description">Quarta, 14 de dezembro de 2016 </span>
+                  </time>
+                  <div class="cbp_tmicon primary animated bounceIn"> <i class="fa fa-cubes"></i> </div>
+                  <div class="cbp_tmlabel">
+                    <div class="p-t-10 p-l-30 p-r-20 p-b-20 xs-p-r-10 xs-p-l-10 xs-p-t-5">
+                      <!--INICIO 1.1-->
+                      <h4></h4>
+                      <ul class="fa-ul">
+                        <li><i class="fa-li fa fa-user"></i>Login</li>
+                        <ul class="fa-ul">
+                          <li><i class="fa-li fa fa-check-square-o"></i><span style="font-style: italic; font-size: 11px;">Adicionada TAG para representar a versão atual em release.</span></li>
+                        </ul> 
 
-              <li><i class="fa-li fa fa-male"></i>Perfil</li>
-                <ul class="fa-ul">
-                  <li><i class="fa-li fa fa-check-square-o"></i><span style="font-style: italic; font-size: 11px;">Criada página de perfil do usuário.</span></li>
-                  <li><i class="fa-li fa fa-check-square-o"></i><span style="font-style: italic; font-size: 11px;">Local para visualização dos colegas de trabalho do usuário.</span></li>
-                </ul>
-              
-              <li><i class="fa-li fa fa-plus-square"></i>Cadastros</li>
-                <ul class="fa-ul">
-                  <li><i class="fa-li fa fa-check-square-o"></i><span style="font-style: italic; font-size: 11px;">Novos layouts para envio de solicitações por email: Clientes e Fornecedores.</span></li>
-                </ul>
+                        <li><i class="fa-li fa fa-reorder"></i>Menu lateral</li>
+                          <ul class="fa-ul">
+                            <li><i class="fa-li fa fa-check-square-o"></i><span style="font-style: italic; font-size: 11px;">Adicionado relógio ao "footer" menu lateral (Horário de Brasília).</span></li>
+                          </ul>
 
-              <li><i class="fa-li fa fa-book"></i>Solicitações</li>
-                <ul class="fa-ul">
-                  <li><i class="fa-li fa fa-check-square-o"></i><span style="font-style: italic; font-size: 11px;">Novos layouts para envio de solicitações por email: Viagens e Veículos.</span></li>
-                </ul>
+                        <li><i class="fa-li fa fa-plus-square"></i>Cadastros</li>
+                          <ul class="fa-ul">
+                            <li><i class="fa-li fa fa-check-square-o"></i> <span style="font-style: italic; font-size: 11px;">Novos cadastros: Clientes, fornecedores e Materiais (link interno).</span></li>
+                          </ul>
 
-              <li><i class="fa-li fa fa-file-o"></i>Páginas</li>
-                <ul class="fa-ul">
-                  <li><i class="fa-li fa fa-th"></i><span style="font-style: italic; font-size: 11px;">Nova página: Dados</span></li>
-                  <ul class="fa-ul">
-                  <li><i class="fa-li fa fa-check-square-o"></i><span style="font-style: italic; font-size: 11px;">Criada página menu para os cadastros no banco de dados.</span></li>
-                </ul>
-                </ul>
+                        <li><i class="fa-li fa fa-book"></i>Solicitações</li>
+                          <ul class="fa-ul">
+                            <li><i class="fa-li fa fa-check-square-o"></i><span style="font-style: italic; font-size: 11px;">Novas solicitações: Viagens, Veículos, Notas e Manutenção.</span></li>
+                          </ul> 
+                          </ul> 
+                          <!--FIM 1.1-->
+                          </div>
+                          <div class="clearfix"></div>
+                      </div>
+                    </li>
 
-            </ul>
+                    <li>
+                  <time class="cbp_tmtime">
+                    <span class="time text-info">1.0</span>
+                    <span class="description">Sexta, 2 de dezembro de 2016 </span>
+                  </time>
+                  <div class="cbp_tmicon success animated bounceIn"> <i class="fa fa-cubes"></i> </div>
+                  <div class="cbp_tmlabel">
+                    <div class="p-t-10 p-l-30 p-r-20 p-b-20 xs-p-r-10 xs-p-l-10 xs-p-t-5">
+                      <!--INICIO 1.0-->
+                      <h4></h4>
+                      <ul class="fa-ul">
+                        <li><i class="fa-li fa fa-user"></i>Login</li>
+                        <ul class="fa-ul">
+                          <li><i class="fa-li fa fa-check-square-o"></i><span style="font-style: italic; font-size: 11px;">Criada página de boas vindas.</span></li>
+                        </ul>
+
+                        <li><i class="fa-li fa fa-reorder"></i>Menu lateral</li>
+                        <ul class="fa-ul">
+                          <li><i class="fa-li fa fa-desktop"></i><span style="font-style: italic; font-size: 11px;">Nova página: Chamados</span></li>
+                            <ul class="fa-ul">
+                              <li><i class="fa-li fa fa-check-square-o"></i> <span style="font-style: italic; font-size: 11px;">Link direto para a consulta/criação de chamados para a nova plataforma Helpdesk TomTicket no menu lateral.</span></li>
+                              <li><i class="fa-li fa fa-check-square-o"></i> <span style="font-style: italic; font-size: 11px;">Adicionado botão, com a mesma finalidade próximo ao logo.</span></li>
+                            </ul>
+                          <li><i class="fa-li fa fa-phone"></i><span style="font-style: italic; font-size: 11px;">Nova página: Ramais</span></li>
+                            <ul class="fa-ul">
+                              <li><i class="fa-li fa fa-check-square-o"></i> <span style="font-style: italic; font-size: 11px;">Link para acesso a página de ramais no menu lateral.</span></li>
+                              <li><i class="fa-li fa fa-check-square-o"></i> <span style="font-style: italic; font-size: 11px;">Criada página para visualização dos ramais.</span></li>
+                              <li><i class="fa-li fa fa-check-square-o"></i> <span style="font-style: italic; font-size: 11px;">Criadas "labels" para organizar os grupos/setores.</span></li>    
+                            </ul>
+                          <li><i class="fa-li fa fa-plus-square"></i><span style="font-style: italic; font-size: 11px;">Nova página: Cadastros</span></li>
+                            <ul class="fa-ul">
+                              <li><i class="fa-li fa fa-check-square-o"></i> <span style="font-style: italic; font-size: 11px;">Link para acesso a página de cadastros no menu lateral.</span></li>
+                              <li><i class="fa-li fa fa-check-square-o"></i> <span style="font-style: italic; font-size: 11px;">Criada página menu de cadastros.</span></li>
+                            </ul>
+                          <li><i class="fa-li fa fa-book"></i><span style="font-style: italic; font-size: 11px;">Nova página: Solicitações</span></li>
+                            <ul class="fa-ul">
+                              <li><i class="fa-li fa fa-check-square-o"></i> <span style="font-style: italic; font-size: 11px;">Link para acesso a página de solicitações no menu lateral.</span></li>
+                              <li><i class="fa-li fa fa-check-square-o"></i> <span style="font-style: italic; font-size: 11px;">Criada página menu de solicitações.</span></li>
+                            </ul>
+                        </ul>
+                        <li><i class="fa-li fa fa-file-o"></i>Páginas</li>
+                        <ul class="fa-ul"> 
+                          <li><i class="fa-li fa fa-puzzle-piece"></i><span style="font-style: italic; font-size: 11px;">Nova página: Versões</span></li>
+                            <ul class="fa-ul">
+                              <li><i class="fa-li fa fa-check-square-o"></i> <span style="font-style: italic; font-size: 11px;">Criada página para "LOG" de novas versões.</span></li>
+                            </ul>
+                            </ul> 
+                          </ul>
+                          <!--FIM 1.0-->
+                          </div>
+                          <div class="clearfix"></div>
+                      </div>
+                    </li>
+                    <!--FIM TIMELINE-->
+                    </ul>
+                  </div>
+                </div>      
           </div>
 
-          <br>
 
-          <div class="">
-            <h4>&#10625; Ver 1.1: </h4>
-            <ul class="fa-ul">
-              <li><i class="fa-li fa fa-user"></i>Login</li>
-              <ul class="fa-ul">
-                <li><i class="fa-li fa fa-check-square-o"></i><span style="font-style: italic; font-size: 11px;">Adicionada TAG para representar a versão atual em release.</span></li>
-              </ul> 
-
-              <li><i class="fa-li fa fa-reorder"></i>Menu lateral</li>
-                <ul class="fa-ul">
-                  <li><i class="fa-li fa fa-check-square-o"></i><span style="font-style: italic; font-size: 11px;">Adicionado relógio ao "footer" menu lateral (Horário de Brasília).</span></li>
-                </ul>
-
-              <li><i class="fa-li fa fa-plus-square"></i>Cadastros</li>
-                <ul class="fa-ul">
-                  <li><i class="fa-li fa fa-check-square-o"></i> <span style="font-style: italic; font-size: 11px;">Novos cadastros: Clientes, fornecedores e Materiais (link interno).</span></li>
-                </ul>
-
-              <li><i class="fa-li fa fa-book"></i>Solicitações</li>
-                <ul class="fa-ul">
-                  <li><i class="fa-li fa fa-check-square-o"></i><span style="font-style: italic; font-size: 11px;">Novas solicitações: Viagens, Veículos, Notas e Manutenção.</span></li>
-                </ul> 
-              
-            </ul>
-          </div>
-
-          <br>
-
-          <h4>&#10625; Ver 1.0:</h4>
-            <ul class="fa-ul">
-              <li><i class="fa-li fa fa-user"></i>Login</li>
-              <ul class="fa-ul">
-                <li><i class="fa-li fa fa-check-square-o"></i><span style="font-style: italic; font-size: 11px;">Criada página de boas vindas.</span></li>
-              </ul>
-
-              <li><i class="fa-li fa fa-reorder"></i>Menu lateral</li>
-              <ul class="fa-ul">
-                <li><i class="fa-li fa fa-desktop"></i><span style="font-style: italic; font-size: 11px;">Nova página: Chamados</span></li>
-                  <ul class="fa-ul">
-                    <li><i class="fa-li fa fa-check-square-o"></i> <span style="font-style: italic; font-size: 11px;">Link direto para a consulta/criação de chamados para a nova plataforma Helpdesk TomTicket no menu lateral.</span></li>
-                    <li><i class="fa-li fa fa-check-square-o"></i> <span style="font-style: italic; font-size: 11px;">Adicionado botão, com a mesma finalidade próximo ao logo.</span></li>
-                  </ul>
-                <li><i class="fa-li fa fa-phone"></i><span style="font-style: italic; font-size: 11px;">Nova página: Ramais</span></li>
-                  <ul class="fa-ul">
-                    <li><i class="fa-li fa fa-check-square-o"></i> <span style="font-style: italic; font-size: 11px;">Link para acesso a página de ramais no menu lateral.</span></li>
-                    <li><i class="fa-li fa fa-check-square-o"></i> <span style="font-style: italic; font-size: 11px;">Criada página para visualização dos ramais.</span></li>
-                    <li><i class="fa-li fa fa-check-square-o"></i> <span style="font-style: italic; font-size: 11px;">Criadas "labels" para organizar os grupos/setores.</span></li>    
-                  </ul>
-                <li><i class="fa-li fa fa-plus-square"></i><span style="font-style: italic; font-size: 11px;">Nova página: Cadastros</span></li>
-                  <ul class="fa-ul">
-                    <li><i class="fa-li fa fa-check-square-o"></i> <span style="font-style: italic; font-size: 11px;">Link para acesso a página de cadastros no menu lateral.</span></li>
-                    <li><i class="fa-li fa fa-check-square-o"></i> <span style="font-style: italic; font-size: 11px;">Criada página menu de cadastros.</span></li>
-                  </ul>
-                <li><i class="fa-li fa fa-book"></i><span style="font-style: italic; font-size: 11px;">Nova página: Solicitações</span></li>
-                  <ul class="fa-ul">
-                    <li><i class="fa-li fa fa-check-square-o"></i> <span style="font-style: italic; font-size: 11px;">Link para acesso a página de solicitações no menu lateral.</span></li>
-                    <li><i class="fa-li fa fa-check-square-o"></i> <span style="font-style: italic; font-size: 11px;">Criada página menu de solicitações.</span></li>
-                  </ul>
-              </ul>
-              <li><i class="fa-li fa fa-file-o"></i>Páginas</li>
-              <ul class="fa-ul"> 
-                <li><i class="fa-li fa fa-puzzle-piece"></i><span style="font-style: italic; font-size: 11px;">Nova página: Versões</span></li>
-                  <ul class="fa-ul">
-                    <li><i class="fa-li fa fa-check-square-o"></i> <span style="font-style: italic; font-size: 11px;">Criada página para "LOG" de novas versões.</span></li>
-              </ul>
-              </ul> 
-            </ul>
-          </div>           
-
-          <br>
-
+          
           <!-- FIM CONTAINER -->
 
         </div>
