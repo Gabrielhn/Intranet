@@ -1,8 +1,7 @@
 <?php
-require_once("assets/php/class/class.seg.php");
-require_once("assets/php/class/class.utl.php");
+// require_once("assets/php/class/class.seg.php");
 session_start();
-proteger();
+// proteger();
 
 $host="10.0.0.2";
 $service="//10.0.0.2:1521/orcl";
@@ -52,7 +51,7 @@ $anos =floor(($tempo)/(60*60*24*365));
 <html>
   <head>
     <title>Aniger - Meu perfil</title>
-    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <meta http-equiv="content-type" content="text/html;charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <meta content="" name="description" />
@@ -181,7 +180,7 @@ $anos =floor(($tempo)/(60*60*24*365));
                 </a>
                 <ul class="dropdown-menu  pull-right" role="menu" aria-labelledby="user-options">
                   <li class="">
-                    <a href="perfil.php" title="Acesse seu perfil"> Meu perfil</a>
+                    <a href="perfil.php" title="Acesse seu perfil"><i class="fa fa-male fa-fw"></i>&nbsp;&nbsp;Meu perfil</a>
                   </li>
                   <!-- <li class="disabled">
                     <a href="calender.php" title="Recurso ainda não implementado.">Calendário</a>
@@ -193,7 +192,7 @@ $anos =floor(($tempo)/(60*60*24*365));
                   </li> -->
                   <li class="divider"></li>
                   <li>
-                    <a href="login.php"><i class="material-icons">power_settings_new</i>&nbsp;&nbsp;Sair</a>
+                    <a href="logout.php"><i class="material-icons">power_settings_new</i>&nbsp;&nbsp;Sair</a>
                   </li>
                 </ul>
               </li>
@@ -322,14 +321,14 @@ $anos =floor(($tempo)/(60*60*24*365));
       <a href="#" class="scrollup">Scroll</a>
       <div class="footer-widget">
         <div class="pull-left">
-          <a data-html="true" data-content="<b>popover</b> - title " id="popover" title="" data-toggle="popover">
+          <!--<a data-html="true" data-content="<b>popover</b> - title " id="popover" title="" data-toggle="popover">-->
             <i class="material-icons">alarm</i>
-          </a>
+          <!--</a>-->
           <iframe src="http://free.timeanddate.com/clock/i5hp9yxv/n595/tlbr5/fn17/fc555/tc22262e/pa0/th1" frameborder="0" width="66" height="14"></iframe>
         </div>
         <div class="pull-right">
           <!-- IMPLEMENTAR LOCKSCREEN -->
-          <a href="login.php"><i class="material-icons">power_settings_new</i></a>
+          <a href="logout.php"><i class="material-icons">power_settings_new</i></a>
         </div>
       </div>
       <!-- END SIDEBAR -->
@@ -357,7 +356,7 @@ $anos =floor(($tempo)/(60*60*24*365));
                   <div class="overlayer bottom-right">
                     <div class="overlayer-wrapper">
                       <div class="padding-10 hidden-xs">
-                        <button type="button" class="btn btn-info btn-small disabled"><i class="fa fa-check"></i>&nbsp;&nbsp;Adicionar</button>
+                        <!--<button type="button" class="btn btn-info btn-small disabled"><i class="fa fa-check"></i>&nbsp;&nbsp;Adicionar</button>-->
                       </div>
                     </div>
                   </div>
@@ -431,11 +430,8 @@ $anos =floor(($tempo)/(60*60*24*365));
       </div>
       <!-- END PAGE CONTAINER -->
       <?php
-
-       
-        echo $anos;
-
-
+      print_r($result3)."\n";
+      // print_r($result1);
       ?>
       &nbsp;&nbsp;<br/>
       &nbsp;&nbsp;<br/>

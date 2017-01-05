@@ -151,7 +151,7 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
                 </a>
                 <ul class="dropdown-menu  pull-right" role="menu" aria-labelledby="user-options">
                   <li class="">
-                    <a href="perfil.php" title="Acesse seu perfil"> Meu perfil</a>
+                    <a href="perfil.php" title="Acesse seu perfil"><i class="fa fa-male fa-fw"></i>&nbsp;&nbsp;Meu perfil</a>
                   </li>
                   <!-- <li class="disabled">
                     <a href="calender.php" title="Recurso ainda não implementado.">Calendário</a>
@@ -328,7 +328,7 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
                     <i class="pull-left material-icons">feedback</i>
                     <h5 style="padding-left: 30px;">
                       <p>Utilize este cadastro para solicitar cotações de <span class="bold">viagens</span>.
-                      Após informar os dados solicitados,  aguarde o retorno do setor responsável pela cotação em seu email. <br>                      
+                      Após informar os dados solicitados,  aguarde o retorno do setor responsável pela cotação, em seu email. <br>                      
                       <p>As solicitações são encaminhados para: <span class="bold"> juliana.dias@aniger.com.br</span></p>
                       <p>Ramal: <span class="bold">166</span></p>   
                     </h5>    

@@ -58,18 +58,17 @@
                   </div>
                 </div>
                 <div style=" margin-right: 10px;">
-                  <button type="submit" class="btn btn-primary btn-block btn-large" value="submit"><i class="fa fa-check"></i> Entrar</button>
+                  <button type="submit" class="btn btn-success btn-block btn-large" value="submit"><i class="fa fa-check"></i> Entrar</button>
                 </div>
               </form>
             </div>
             </div>
             <div role="tablist" align="center" style=" margin-right: 30px;">
-              <!--<button type="submit" class="btn btn-primary btn-block btn-large" value="submit"><i class="fa fa-check"></i> Entrar</button>-->
               <br>&nbsp;
+              <hr>
               </div>
-              <br>&nbsp;
               <div>
-              <div class="alert alert-success" style=" margin-right: 30px;">
+              <div class="alert alert-info" style=" margin-right: 30px;">
                 <i class="pull-left material-icons">feedback</i>
                   <h6 style="padding-left: 30px;">
                     Este é um espaço que está sendo desenvolvido pelo setor de TI, para reunir várias informações uteis para os colaboradores do grupo Aniger. 
@@ -77,7 +76,7 @@
                     <p>Aguarde novidades =)</p>
                   </h6>
                   <div class="pull-right">
-                <span class="label label-success"> <?= versao ?> </span>
+                <span class="label label-info"> <?= versao ?> </span>
               </div>    
               </div>              
             </div>

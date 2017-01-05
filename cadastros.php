@@ -151,7 +151,7 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
                 </a>
                 <ul class="dropdown-menu  pull-right" role="menu" aria-labelledby="user-options">
                   <li class="">
-                    <a href="perfil.php" title="Acesse seu perfil"> Meu perfil</a>
+                    <a href="perfil.php" title="Acesse seu perfil"><i class="fa fa-male fa-fw"></i>&nbsp;&nbsp;Meu perfil</a>
                   </li>
                   <!-- <li class="disabled">
                     <a href="calender.php" title="Recurso ainda não implementado.">Calendário</a>
@@ -368,8 +368,9 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
                     <i class="pull-left material-icons">feedback</i>
                     <h5 style="padding-left: 30px;">
                       <p>Utilize este cadastro para solicitar a inclusão de novos <span class="bold">clientes</span> no sistema.
-                      Após informar os dados solicitados,  aguarde o retorno do setor responsável pelo cadastramento no seu email. <br>                      
-                      <p>Os cadastro são encaminhados para: <span class="bold"> iraci.kraemer@aniger.com.br</span></p>                                            
+                      Após informar os dados solicitados,  aguarde o retorno do setor responsável pelo cadastramento, em seu email. <br>                      
+                      <p>Os cadastro são encaminhados para: <span class="bold"> iraci.kraemer@aniger.com.br</span></p>
+                      <p>Ramal: <span class="bold">105</span></p>
                     </h5>    
                   </div>             
                 </div>
@@ -424,8 +425,9 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
                     <i class="pull-left material-icons">feedback</i>
                     <h5 style="padding-left: 30px;">
                       <p>Utilize este cadastro para solicitar a inclusão de novos <span class="bold">fornecedores</span> no sistema.
-                      Após informar os dados solicitados,  aguarde o retorno do setor responsável pelo cadastramento no seu email. <br>                      
+                      Após informar os dados solicitados,  aguarde o retorno do setor responsável pelo cadastramento, em seu email. <br>                      
                       <p>Os cadastro são encaminhados para: <span class="bold"> iraci.kraemer@aniger.com.br</span></p> 
+                      <p>Ramal: <span class="bold">105</span></p>
                     </h5>    
                   </div>             
                 </div>

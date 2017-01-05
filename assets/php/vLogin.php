@@ -23,6 +23,7 @@ $conn= new \PDO("oci:host=$host;dbname=$service","INTRANET","ifnefy6b9");
         $_SESSION['usuarioId'] = $result['ID']; // Valor da coluna EMAIL -> SESSION_usuarioId
         $_SESSION['usuarioEmail'] = $result['EMAIL']; // Valor da coluna EMAIL -> SESSION_usuarioEmail
         $_SESSION['usuarioNome'] = $result['NOME']; //Valor da coluna NOME -> SESSION_usuarioNome
+        $_SESSION['usuarioSobreNome'] = $result['SOBRENOME']; //Valor da coluna SOBRENOME -> SESSION_usuarioSobreNome
         sleep(1);
         header("Location: ../../index.php"); //Abre index
 
