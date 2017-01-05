@@ -21,7 +21,7 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Aniger - Manutenção</title>
+    <title>Aniger - Dados</title>
     <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
@@ -163,7 +163,7 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
                   </li> -->
                   <li class="divider"></li>
                   <li>
-                    <a href="login.php"><i class="material-icons">power_settings_new</i>&nbsp;&nbsp;Sair</a>
+                    <a href="logout.php"><i class="material-icons">power_settings_new</i>&nbsp;&nbsp;Sair</a>
                   </li>
                 </ul>
               </li>
@@ -225,8 +225,47 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
             <li class=""> 
               <a href="cadastros.php"><i class="material-icons" title="Cadastros">library_add</i> <span class="title">Cadastros</span></a>
             </li>
-            <li class="start active"> 
+            <li class=""> 
               <a href="solicitacoes.php"><i class="material-icons" title="Solicitações">assignment</i> <span class="title">Solicitações</span></a>
+            </li>
+            <!--<li class="">
+              <a href="#"> <i class="material-icons">email</i> <span class="title">Link</span> <span class=" badge badge-disable pull-right ">203</span>
+              </a>
+            </li>
+            <li class="">
+              <a href="javascript:;"> <i class="material-icons">more_horiz</i> <span class="title">Link</span> <span class=" arrow"></span> </a>
+              <ul class="sub-menu">
+                <li> <a href="javascript:;"> Level 1 </a> </li>
+                <li>
+                  <a href="javascript:;"> <span class="title">Level 2</span> <span class=" arrow"></span> </a>
+                  <ul class="sub-menu">
+                    <li> <a href="javascript:;"> Sub Menu </a> </li>
+                    <li> <a href="ujavascript:;"> Sub Menu </a> </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>-->
+            <li class="hidden-lg hidden-md hidden-xs" id="more-widgets">
+              <a href="javascript:;"> <i class="material-icons"></i></a>
+              <ul class="sub-menu">
+                <li class="side-bar-widgets">
+                  <p class="menu-title sm">FOLDER <span class="pull-right"><a href="#" class="create-folder"><i class="material-icons">add</i></a></span></p>
+                  <ul class="folders">
+                    <li>
+                      <a href="#">
+                        <div class="status-icon green"></div>
+                        My quick tasks </a>
+                    </li>
+                  </ul>
+                  <p class="menu-title">PROJECTS </p>
+                  <div class="status-widget">
+                    <div class="status-widget-wrapper">
+                      <div class="title">Freelancer<a href="#" class="remove-widget"><i class="material-icons">close</i></a></div>
+                      <p>Redesign home page</p>
+                    </div>
+                  </div>
+                </li>
+              </ul>
             </li>
           </ul>
           <!--<div class="side-bar-widgets">
@@ -253,12 +292,12 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
       <a href="#" class="scrollup">Scroll</a>
       <div class="footer-widget">
         <div class="pull-left">
-          <i class="material-icons">alarm</i> 
+          <i class="material-icons">alarm</i>
           <iframe src="http://free.timeanddate.com/clock/i5hp9yxv/n595/tlbr5/fn17/fc555/tc22262e/pa0/th1" frameborder="0" width="66" height="14"></iframe>
         </div>
         <div class="pull-right">
           <!-- IMPLEMENTAR LOCKSCREEN -->
-          <a href="login.php"><i class="material-icons">power_settings_new</i></a>
+          <a href="logout.php"><i class="material-icons">power_settings_new</i></a>
         </div>
       </div>
       <!-- END SIDEBAR -->
@@ -269,20 +308,83 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
             <li>
               <p>VOCÊ ESTÁ EM </p>
             </li>
-            <li><a href="index.php">Home</a></li>
-            <li><a href="solicitacoes.php">Solicitações</a></li>
-            <li><a href="#.php" class="active">Manutenção</a></li>
+           <li>
+            <a href="index.php">Home</a>
+            </li>
+            <li><a href="#" class="active">Dados</a> </li>
           </ul>
           <!-- BEGIN PAGE TITLE -->
-          <div class="page-title"> <i class="fa fa-wrench fa-lg fa-fw" aria-hidden="true"></i>
-            <h3>Manutenção </h3>
+          <div class="page-title"> <i class="material-icons">apps</i>
+            <h3>Dados </h3>
           </div>
           <!-- END PAGE TITLE -->
-          <!-- CONTEÚDO -->
+          <!-- CONTEUDO -->
           
+          <!--#1-->
+          <div class="col-md-2 col-sm-3 m-b-10">
+            <div class="tiles black blend weather-widget ">
+              <div class="tiles-body">
+                <a href="clientes.php" style="color: #edeeef;">
+                  <div class="big-icon">
+                    <i class="fa fa-male fa-7x fa-fw"></i>
+                  </div>
+                  <div class="clearfix"></div>
+              </div>
+                </a>
+              <div class="tile-footer">
+                <div style="text-align:center;">
+                   <span class="semi-bold">Usuários</span>
+                </div>
+                <div class="clearfix"></div>
+              </div>
+            </div>
+          </div>
+
+          <!--#2-->
+          <div class="col-md-2 col-sm-3 m-b-10">
+            <div class="tiles black blend weather-widget ">
+              <div class="tiles-body">
+                <a href="clientes.php" style="color: #edeeef;">
+                  <div class="big-icon">
+                    <i class="fa fa-sitemap fa-7x fa-fw"></i>
+                  </div>
+                  <div class="clearfix"></div>
+              </div>
+                </a>
+              <div class="tile-footer">
+                <div style="text-align:center;">
+                   <span class="semi-bold">Setores</span>
+                </div>
+                <div class="clearfix"></div>
+              </div>
+            </div>
+          </div>
+
+          <!--#2-->
+          <div class="col-md-2 col-sm-3 m-b-10">
+            <div class="tiles black blend weather-widget ">
+              <div class="tiles-body">
+                <a href="clientes.php" style="color: #edeeef;">
+                  <div class="big-icon">
+                    <i class="fa fa-globe fa-7x fa-fw"></i>
+                  </div>
+                  <div class="clearfix"></div>
+              </div>
+                </a>
+              <div class="tile-footer">
+                <div style="text-align:center;">
+                   <span class="semi-bold">Locais</span>
+                </div>
+                <div class="clearfix"></div>
+              </div>
+            </div>
+          </div>
+
+
+
 
           
-          <!-- FIM CONTEÚDO -->
+          <!-- FIM CONTEUDO -->
         </div>
       </div>
       <!-- END PAGE CONTAINER -->

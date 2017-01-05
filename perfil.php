@@ -1,6 +1,5 @@
 <?php
 require_once("assets/php/class/class.seg.php");
-require_once("assets/php/class/class.crud.php");
 session_start();
 proteger();
 
@@ -9,10 +8,9 @@ $service="//10.0.0.2:1521/orcl";
 $id=$_SESSION['usuarioId'];
 $conn= new \PDO("oci:host=$host;dbname=$service","INTRANET","ifnefy6b9");
 
-$query1 = "SELECT USR.ID, USR.EMAIL, USR.SENHA, USR.NOME, USR.SETOR, USR.CARGO, USR.RAMAL, USR.IM, LOC.NOME AS LOCAL, USR.ADMISSAO, USR.SOBRENOME, IMG.ID AS ID_IMG, IMG.IMAGEM FROM IN_USUARIOS USR, IN_LOCAIS LOC, IN_IMAGENS IMG WHERE USR.LOCAL = LOC.LOCAL AND LOC.LOCAL = USR.LOCAL AND USR.IMG_PERFIL = IMG.ID AND USR.ID=:id";
+$query1 = "SELECT * FROM VW_PERFIL WHERE ID=:id";
 $query2 = "SELECT COUNT(EMAIL) AS COLEGAS FROM IN_USUARIOS WHERE SETOR =:setor AND ID !=:id";
 $query3 = "SELECT USR.EMAIL, USR.IMG_PERFIL, IMG.IMAGEM FROM IN_USUARIOS USR, IN_IMAGENS IMG WHERE USR.IMG_PERFIL = IMG.ID AND USR.SETOR =:setor AND USR.ID !=:id";
-$query4 = "SELECT USR.ID, USR.EMAIL, USR.SENHA, USR.NOME, USR.SETOR, USR.CARGO, USR.RAMAL, USR.IM, LOC.NOME AS LOCAL, USR.ADMISSAO, USR.SOBRENOME, IMG.ID AS ID_IMG, IMG.IMAGEM FROM IN_USUARIOS USR, IN_LOCAIS LOC, IN_IMAGENS IMG WHERE USR.LOCAL = LOC.LOCAL AND LOC.LOCAL = USR.LOCAL AND USR.IMG_PERFIL = IMG.ID AND USR.ID=:id";
 
 //#1
 $stmt1 = $conn->prepare($query1);
@@ -35,7 +33,7 @@ $stmt3->execute();
 $result3=$stmt3->fetchAll(PDO::FETCH_ASSOC);
 
 //#4
-$stmt4 = $conn->prepare($query4);
+$stmt4 = $conn->prepare($query1);
 $stmt4->bindValue(':id',$id);
 $stmt4->execute();
 $result4=$stmt4->fetch(PDO::FETCH_ASSOC);
@@ -121,39 +119,38 @@ $result4=$stmt4->fetch(PDO::FETCH_ASSOC);
                 </a>
               </li>
               <li class="quicklinks">
-                <a href="#" class="" title="Recurso ainda não implementado.">
-                  <i class="material-icons">apps</i>
-                </a>
-              </li>
-              <li class="quicklinks"> <span class="h-seperate"></span></li>
-              <li class="quicklinks">
                 <a href="#" class="" id="my-task-list" data-placement="bottom" data-content='' data-toggle="dropdown" data-original-title="Novidades">
                   <i class="material-icons">notifications_none</i>
                   <span class="badge badge-important bubble-on  ly"></span>
                 </a>
               </li>
-              <li class="m-r-10 input-prepend inside search-form no-boarder">
+              <li class="quicklinks"> <span class="h-seperate"></span></li>
+              <li class="quicklinks">
+                <a href="dados.php">
+                  <i class="material-icons">apps</i>
+                </a>
+              </li>
+              <!--<li class="m-r-10 input-prepend inside search-form no-boarder">
                 <span class="add-on"> <i class="material-icons">search</i></span>
                 <input name="" type="text" class="no-boarder " placeholder="Buscar" style="width:250px;">
-              </li>
+              </li>-->
             </ul>
           </div>
           <div id="notification-list" style="display:none">
-            <div style="width:300px">
+            <div style="width:220px">
             <a href="changelog.php">
               <div class="notification-messages info">
                 <div class="user-profile">
-                  <img src="assets/img/profiles/d.jpg" alt="" data-src="assets/img/profiles/Aa.jpg" data-src-retina="assets/img/profiles/d2x.jpg" width="35" height="35">
+                  <img src="assets/img/profiles/Aa.jpg" width="35" height="35">
                 </div>
                 <div class="message-wrapper">
-                  <div class="heading">
-                    Lançamento - v1.0
+                  <div class="heading" style="text-align:center;">
+                    <?php
+                      echo "Versão " . $_SESSION['versao']
+                    ?>
                   </div>
-                  <div class="description">
-                    Visualizar as novidades.
-                  </div>
-                  <div class="date pull-right">
-                    Segunda-feira, 5 Dez 2016
+                  <div class="description" style="text-align:center;">
+                    Visualizar as novidades!
                   </div>
                 </div>
                 <div class="clearfix"></div>
@@ -348,8 +345,8 @@ $result4=$stmt4->fetch(PDO::FETCH_ASSOC);
           <div class="content" style="padding-top:20px;">
           <div class="row">
             <div class="col-md-12">
-              <div class=" tiles white col-md-12 no-padding">
-                <div class="tiles green cover-pic-wrapper">
+              <div class=" tiles white no-padding">
+                <div class="tiles white cover-pic-wrapper">
                   <div class="overlayer bottom-right">
                     <div class="overlayer-wrapper">
                       <div class="padding-10 hidden-xs">
@@ -379,7 +376,7 @@ $result4=$stmt4->fetch(PDO::FETCH_ASSOC);
                         <h5>Setor</h5>
                       </div>
                     </div>
-                    <div class="col-md-4 col-sm-4 user-description-box  col-sm-5">
+                    <div class="col-md-5 col-sm-5 user-description-box  col-sm-5">
                       <h4 class="semi-bold no-margin"><?php echo $result1['NOME'] . " " . $result1['SOBRENOME']; ?></h4>
                       <br>
                       <!--CARGO-->
@@ -420,7 +417,6 @@ $result4=$stmt4->fetch(PDO::FETCH_ASSOC);
         </div>
       </div>
       <!-- END PAGE CONTAINER -->
-      &nbsp;&nbsp;<br/>
       &nbsp;&nbsp;<br/>
       &nbsp;&nbsp;<br/>
     </div>

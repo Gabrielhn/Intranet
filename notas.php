@@ -81,7 +81,7 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
         <!-- END RESPONSIVE MENU TOGGLER -->
         <div class="header-quick-nav">
           <!-- BEGIN TOP NAVIGATION MENU -->
-          <div class="pull-left">
+          <<div class="pull-left">
             <ul class="nav quick-section">
               <li class="quicklinks">
                 <a href="#" class="" id="layout-condensed-toggle">
@@ -96,39 +96,38 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
                 </a>
               </li>
               <li class="quicklinks">
-                <a href="#" class="" title="Recurso ainda não implementado.">
-                  <i class="material-icons">apps</i>
-                </a>
-              </li>
-              <li class="quicklinks"> <span class="h-seperate"></span></li>
-              <li class="quicklinks">
                 <a href="#" class="" id="my-task-list" data-placement="bottom" data-content='' data-toggle="dropdown" data-original-title="Novidades">
                   <i class="material-icons">notifications_none</i>
                   <span class="badge badge-important bubble-on  ly"></span>
                 </a>
               </li>
-              <li class="m-r-10 input-prepend inside search-form no-boarder">
+              <li class="quicklinks"> <span class="h-seperate"></span></li>
+              <li class="quicklinks">
+                <a href="dados.php">
+                  <i class="material-icons">apps</i>
+                </a>
+              </li>
+              <!--<li class="m-r-10 input-prepend inside search-form no-boarder">
                 <span class="add-on"> <i class="material-icons">search</i></span>
                 <input name="" type="text" class="no-boarder " placeholder="Buscar" style="width:250px;">
-              </li>
+              </li>-->
             </ul>
           </div>
           <div id="notification-list" style="display:none">
-            <div style="width:300px">
+            <div style="width:220px">
             <a href="changelog.php">
               <div class="notification-messages info">
                 <div class="user-profile">
-                  <img src="assets/img/profiles/d.jpg" alt="" data-src="assets/img/profiles/Aa.jpg" data-src-retina="assets/img/profiles/d2x.jpg" width="35" height="35">
+                  <img src="assets/img/profiles/Aa.jpg" width="35" height="35">
                 </div>
                 <div class="message-wrapper">
-                  <div class="heading">
-                    Lançamento - v1.0
+                  <div class="heading" style="text-align:center;">
+                    <?php
+                      echo "Versão " . $_SESSION['versao']
+                    ?>
                   </div>
-                  <div class="description">
-                    Visualizar as novidades.
-                  </div>
-                  <div class="date pull-right">
-                    Segunda-feira, 5 Dez 2016
+                  <div class="description" style="text-align:center;">
+                    Visualizar as novidades!
                   </div>
                 </div>
                 <div class="clearfix"></div>

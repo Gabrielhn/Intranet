@@ -96,39 +96,38 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
                 </a>
               </li>
               <li class="quicklinks">
-                <a href="#" class="" title="Recurso ainda não implementado.">
-                  <i class="material-icons">apps</i>
-                </a>
-              </li>
-              <li class="quicklinks"> <span class="h-seperate"></span></li>
-              <li class="quicklinks">
                 <a href="#" class="" id="my-task-list" data-placement="bottom" data-content='' data-toggle="dropdown" data-original-title="Novidades">
                   <i class="material-icons">notifications_none</i>
                   <span class="badge badge-important bubble-on  ly"></span>
                 </a>
               </li>
-              <li class="m-r-10 input-prepend inside search-form no-boarder">
+              <li class="quicklinks"> <span class="h-seperate"></span></li>
+              <li class="quicklinks">
+                <a href="dados.php">
+                  <i class="material-icons">apps</i>
+                </a>
+              </li>
+              <!--<li class="m-r-10 input-prepend inside search-form no-boarder">
                 <span class="add-on"> <i class="material-icons">search</i></span>
                 <input name="" type="text" class="no-boarder " placeholder="Buscar" style="width:250px;">
-              </li>
+              </li>-->
             </ul>
           </div>
           <div id="notification-list" style="display:none">
-            <div style="width:300px">
+            <div style="width:220px">
             <a href="changelog.php">
               <div class="notification-messages info">
                 <div class="user-profile">
-                  <img src="assets/img/profiles/d.jpg" alt="" data-src="assets/img/profiles/Aa.jpg" data-src-retina="assets/img/profiles/d2x.jpg" width="35" height="35">
+                  <img src="assets/img/profiles/Aa.jpg" width="35" height="35">
                 </div>
                 <div class="message-wrapper">
-                  <div class="heading">
-                    Lançamento - v1.0
+                  <div class="heading" style="text-align:center;">
+                    <?php
+                      echo "Versão " . $_SESSION['versao']
+                    ?>
                   </div>
-                  <div class="description">
-                    Visualizar as novidades.
-                  </div>
-                  <div class="date pull-right">
-                    Segunda-feira, 5 Dez 2016
+                  <div class="description" style="text-align:center;">
+                    Visualizar as novidades!
                   </div>
                 </div>
                 <div class="clearfix"></div>
@@ -325,44 +324,39 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
             <h3>Histórico de versões </h3>
           </div>
           <div class="">
-            <h4>&#10625; Ver 1.0:</h4>
+
+            <div class="">
+            <h4>&#10625; Ver 1.2: </h4>
             <ul class="fa-ul">
               <li><i class="fa-li fa fa-user"></i>Login</li>
-              <ul>
-                <li><span style="font-style: italic; font-size: 11px;">Criada página de boas vindas.</span></li>
+              <ul class="fa-ul">
+                <li><i class="fa-li fa fa-check-square-o"></i><span style="font-style: italic; font-size: 11px;">Login com validação de usuário.</span></li>
               </ul>
 
-              <li><i class="fa-li fa fa-reorder"></i>Menu lateral</li>
-              <ul class="fa-ul">
-                <li><i class="fa-li fa fa-file-o"></i><span style="font-style: italic; font-size: 11px;">Nova página: Chamados</span></li>
+              <li><i class="fa-li fa fa-male"></i>Perfil</li>
+                <ul class="fa-ul">
+                  <li><i class="fa-li fa fa-check-square-o"></i><span style="font-style: italic; font-size: 11px;">Criada página de perfil do usuário.</span></li>
+                  <li><i class="fa-li fa fa-check-square-o"></i><span style="font-style: italic; font-size: 11px;">Local para visualização dos colegas de trabalho do usuário.</span></li>
+                </ul>
+              
+              <li><i class="fa-li fa fa-plus-square"></i>Cadastros</li>
+                <ul class="fa-ul">
+                  <li><i class="fa-li fa fa-check-square-o"></i><span style="font-style: italic; font-size: 11px;">Novos layouts para envio de solicitações por email: Clientes e Fornecedores.</span></li>
+                </ul>
+
+              <li><i class="fa-li fa fa-book"></i>Solicitações</li>
+                <ul class="fa-ul">
+                  <li><i class="fa-li fa fa-check-square-o"></i><span style="font-style: italic; font-size: 11px;">Novos layouts para envio de solicitações por email: Viagens e Veículos.</span></li>
+                </ul>
+
+              <li><i class="fa-li fa fa-file-o"></i>Páginas</li>
+                <ul class="fa-ul">
+                  <li><i class="fa-li fa fa-th"></i><span style="font-style: italic; font-size: 11px;">Nova página: Dados</span></li>
                   <ul class="fa-ul">
-                    <li><i class="fa-li fa fa-check-square-o"></i> <span style="font-style: italic; font-size: 11px;">Link direto para a consulta/criação de chamados para a nova plataforma Helpdesk TomTicket no menu lateral.</span></li>
-                    <li><i class="fa-li fa fa-check-square-o"></i> <span style="font-style: italic; font-size: 11px;">Adicionado botão, com a mesma finalidade próximo ao logo.</span></li>
-                  </ul>
-                <li><i class="fa-li fa fa-file-o"></i><span style="font-style: italic; font-size: 11px;">Nova página: Ramais</span></li>
-                  <ul class="fa-ul">
-                    <li><i class="fa-li fa fa-check-square-o"></i> <span style="font-style: italic; font-size: 11px;">Link para acesso a página de ramais no menu lateral.</span></li>
-                    <li><i class="fa-li fa fa-check-square-o"></i> <span style="font-style: italic; font-size: 11px;">Criada página para visualização dos ramais.</span></li>
-                    <li><i class="fa-li fa fa-check-square-o"></i> <span style="font-style: italic; font-size: 11px;">Criadas "labels" para organizar os grupos/setores.</span></li>    
-                  </ul>
-                <li><i class="fa-li fa fa-file-o"></i><span style="font-style: italic; font-size: 11px;">Nova página: Cadastros</span></li>
-                  <ul class="fa-ul">
-                    <li><i class="fa-li fa fa-check-square-o"></i> <span style="font-style: italic; font-size: 11px;">Link para acesso a página de cadastros no menu lateral.</span></li>
-                    <li><i class="fa-li fa fa-check-square-o"></i> <span style="font-style: italic; font-size: 11px;">Criada página menu de cadastros.</span></li>
-                  </ul>
-                <li><i class="fa-li fa fa-file-o"></i><span style="font-style: italic; font-size: 11px;">Nova página: Solicitações</span></li>
-                  <ul class="fa-ul">
-                    <li><i class="fa-li fa fa-check-square-o"></i> <span style="font-style: italic; font-size: 11px;">Link para acesso a página de solicitações no menu lateral.</span></li>
-                    <li><i class="fa-li fa fa-check-square-o"></i> <span style="font-style: italic; font-size: 11px;">Criada página menu de solicitações.</span></li>
-                  </ul>
-              </ul>
-              <li><i class="fa-li fa fa-puzzle-piece"></i> Histórico de versões</li>
-              <ul class="fa-ul"> 
-                <li><i class="fa-li fa fa-file-o"></i><span style="font-style: italic; font-size: 11px;">Nova página: Versões</span></li>
-                  <ul class="fa-ul">
-                    <li><i class="fa-li fa fa-check-square-o"></i> <span style="font-style: italic; font-size: 11px;">Criada página para "changelog" das novas versões.</span></li>
-              </ul>
-              </ul> 
+                  <li><i class="fa-li fa fa-check-square-o"></i><span style="font-style: italic; font-size: 11px;">Criada página menu para os cadastros no banco de dados.</span></li>
+                </ul>
+                </ul>
+
             </ul>
           </div>
 
@@ -372,7 +366,7 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
             <h4>&#10625; Ver 1.1: </h4>
             <ul class="fa-ul">
               <li><i class="fa-li fa fa-user"></i>Login</li>
-              <ul class="fa=ul">
+              <ul class="fa-ul">
                 <li><i class="fa-li fa fa-check-square-o"></i><span style="font-style: italic; font-size: 11px;">Adicionada TAG para representar a versão atual em release.</span></li>
               </ul> 
 
@@ -381,19 +375,61 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
                   <li><i class="fa-li fa fa-check-square-o"></i><span style="font-style: italic; font-size: 11px;">Adicionado relógio ao "footer" menu lateral (Horário de Brasília).</span></li>
                 </ul>
 
-              <li><i class="fa-li fa fa-file-o"></i>Páginas</li>
-              <ul class="fa-ul">
-              <li><i class="fa-li fa fa-plus-square"></i> <span style="font-style: italic; font-size: 11px;">Cadastros</span></li>
+              <li><i class="fa-li fa fa-plus-square"></i>Cadastros</li>
                 <ul class="fa-ul">
-                  <li><i class="fa-li fa fa-check-square-o"></i><span style="font-style: italic; font-size: 11px;">Novos cadastros: Clientes, fornecedores e Materiais (link interno).</span></li>
+                  <li><i class="fa-li fa fa-check-square-o"></i> <span style="font-style: italic; font-size: 11px;">Novos cadastros: Clientes, fornecedores e Materiais (link interno).</span></li>
                 </ul>
-              <li><i class="fa-li fa fa-book"></i><span style="font-style: italic; font-size: 11px;">Solicitações</span></li>
+
+              <li><i class="fa-li fa fa-book"></i>Solicitações</li>
                 <ul class="fa-ul">
                   <li><i class="fa-li fa fa-check-square-o"></i><span style="font-style: italic; font-size: 11px;">Novas solicitações: Viagens, Veículos, Notas e Manutenção.</span></li>
                 </ul> 
-              </ul>
+              
             </ul>
           </div>
+
+          <br>
+
+          <h4>&#10625; Ver 1.0:</h4>
+            <ul class="fa-ul">
+              <li><i class="fa-li fa fa-user"></i>Login</li>
+              <ul class="fa-ul">
+                <li><i class="fa-li fa fa-check-square-o"></i><span style="font-style: italic; font-size: 11px;">Criada página de boas vindas.</span></li>
+              </ul>
+
+              <li><i class="fa-li fa fa-reorder"></i>Menu lateral</li>
+              <ul class="fa-ul">
+                <li><i class="fa-li fa fa-desktop"></i><span style="font-style: italic; font-size: 11px;">Nova página: Chamados</span></li>
+                  <ul class="fa-ul">
+                    <li><i class="fa-li fa fa-check-square-o"></i> <span style="font-style: italic; font-size: 11px;">Link direto para a consulta/criação de chamados para a nova plataforma Helpdesk TomTicket no menu lateral.</span></li>
+                    <li><i class="fa-li fa fa-check-square-o"></i> <span style="font-style: italic; font-size: 11px;">Adicionado botão, com a mesma finalidade próximo ao logo.</span></li>
+                  </ul>
+                <li><i class="fa-li fa fa-phone"></i><span style="font-style: italic; font-size: 11px;">Nova página: Ramais</span></li>
+                  <ul class="fa-ul">
+                    <li><i class="fa-li fa fa-check-square-o"></i> <span style="font-style: italic; font-size: 11px;">Link para acesso a página de ramais no menu lateral.</span></li>
+                    <li><i class="fa-li fa fa-check-square-o"></i> <span style="font-style: italic; font-size: 11px;">Criada página para visualização dos ramais.</span></li>
+                    <li><i class="fa-li fa fa-check-square-o"></i> <span style="font-style: italic; font-size: 11px;">Criadas "labels" para organizar os grupos/setores.</span></li>    
+                  </ul>
+                <li><i class="fa-li fa fa-plus-square"></i><span style="font-style: italic; font-size: 11px;">Nova página: Cadastros</span></li>
+                  <ul class="fa-ul">
+                    <li><i class="fa-li fa fa-check-square-o"></i> <span style="font-style: italic; font-size: 11px;">Link para acesso a página de cadastros no menu lateral.</span></li>
+                    <li><i class="fa-li fa fa-check-square-o"></i> <span style="font-style: italic; font-size: 11px;">Criada página menu de cadastros.</span></li>
+                  </ul>
+                <li><i class="fa-li fa fa-book"></i><span style="font-style: italic; font-size: 11px;">Nova página: Solicitações</span></li>
+                  <ul class="fa-ul">
+                    <li><i class="fa-li fa fa-check-square-o"></i> <span style="font-style: italic; font-size: 11px;">Link para acesso a página de solicitações no menu lateral.</span></li>
+                    <li><i class="fa-li fa fa-check-square-o"></i> <span style="font-style: italic; font-size: 11px;">Criada página menu de solicitações.</span></li>
+                  </ul>
+              </ul>
+              <li><i class="fa-li fa fa-file-o"></i>Páginas</li>
+              <ul class="fa-ul"> 
+                <li><i class="fa-li fa fa-puzzle-piece"></i><span style="font-style: italic; font-size: 11px;">Nova página: Versões</span></li>
+                  <ul class="fa-ul">
+                    <li><i class="fa-li fa fa-check-square-o"></i> <span style="font-style: italic; font-size: 11px;">Criada página para "LOG" de novas versões.</span></li>
+              </ul>
+              </ul> 
+            </ul>
+          </div>           
 
           <br>
 

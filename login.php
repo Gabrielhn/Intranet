@@ -1,6 +1,7 @@
 <?php
   session_start();
   define("versao", "1.2");
+  $_SESSION['versao'] = versao;
 ?>
 
 <!DOCTYPE html>
