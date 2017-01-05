@@ -71,11 +71,11 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
                 <i class="material-icons">desktop_mac</i><!-- <span class="badge bubble-only"></span> -->
               </a>
             </li>
-            <li class="dropdown visible-xs visible-sm">
+            <!--<li class="dropdown visible-xs visible-sm">
               <a href="#" data-webarch="toggle-right-side">
                 <i class="material-icons">chat</i>
               </a>
-            </li>
+            </li>-->
           </ul>
         </div>
         <!-- END RESPONSIVE MENU TOGGLER -->
@@ -167,21 +167,21 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
                   </li>
                 </ul>
               </li>
-              <li class="quicklinks"> <span class="h-seperate"></span></li>
-              <li class="quicklinks">
+              <!--<li class="quicklinks"> <span class="h-seperate"></span></li>-->
+              <!--<li class="quicklinks">-->
                 <!-- <a href="#" class="chat-menu-toggle" data-webarch="toggle-right-side"><i class="material-icons">chat</i><span class="badge badge-important hide">1</span> -->
-                <a href="#" class="chat-menu-toggle"><i class="material-icons" title="Recurso ainda não implementado.">chat</i><span class="badge badge-important hide">1</span>
-                </a>
-                <div class="simple-chat-popup chat-menu-toggle hide">
+                <!--<a href="#" class="chat-menu-toggle"><i class="material-icons" title="Recurso ainda não implementado.">chat</i><span class="badge badge-important hide">1</span>-->
+                <!--</a>-->
+                <!--<div class="simple-chat-popup chat-menu-toggle hide">-->
                   <!--<div class="simple-chat-popup-arrow"></div>
                   <div class="simple-chat-popup-inner">
                      <div style="width:100px">
                       <div class="semi-bold">David Nester</div>
                       <div class="message">Hey you there </div>
                     </div> -->
-                  </div>
+                  <!--</div>
                 </div>
-              </li>
+              </li>-->
             </ul>
           </div>
           <!-- END CHAT TOGGLER -->
@@ -321,7 +321,7 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
           <!-- CONTEUDO -->
           
           <!--#1-->
-          <a href="clientes.php" style="color: #edeeef;">
+          <a href="#" style="color: #edeeef;">
             <div class="col-md-3 col-sm-3 m-b-10">          
               <div class="tiles black blend weather-widget ">
                 <div class="tiles-body">              
@@ -341,7 +341,7 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
             </div>
 
           <!--#2-->
-          <a href="clientes.php" style="color: #edeeef;">
+          <a href="#" style="color: #edeeef;">
             <div class="col-md-3 col-sm-3 m-b-10">          
               <div class="tiles black blend weather-widget ">
                 <div class="tiles-body">              
@@ -361,7 +361,7 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
             </div>
 
           <!--#3-->
-          <a href="clientes.php" style="color: #edeeef;">
+          <a href="#" style="color: #edeeef;">
             <div class="col-md-3 col-sm-3 m-b-10">          
               <div class="tiles black blend weather-widget ">
                 <div class="tiles-body">              

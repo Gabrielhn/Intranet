@@ -71,11 +71,11 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
                 <i class="material-icons">desktop_mac</i><!-- <span class="badge bubble-only"></span> -->
               </a>
             </li>
-            <li class="dropdown visible-xs visible-sm">
+            <!--<li class="dropdown visible-xs visible-sm">
               <a href="#" data-webarch="toggle-right-side">
                 <i class="material-icons">chat</i>
               </a>
-            </li>
+            </li>-->
           </ul>
         </div>
         <!-- END RESPONSIVE MENU TOGGLER -->
@@ -167,21 +167,21 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
                   </li>
                 </ul>
               </li>
-              <li class="quicklinks"> <span class="h-seperate"></span></li>
-              <li class="quicklinks">
+              <!--<li class="quicklinks"> <span class="h-seperate"></span></li>-->
+              <!--<li class="quicklinks">-->
                 <!-- <a href="#" class="chat-menu-toggle" data-webarch="toggle-right-side"><i class="material-icons">chat</i><span class="badge badge-important hide">1</span> -->
-                <a href="#" class="chat-menu-toggle"><i class="material-icons" title="Recurso ainda não implementado.">chat</i><span class="badge badge-important hide">1</span>
-                </a>
-                <div class="simple-chat-popup chat-menu-toggle hide">
+                <!--<a href="#" class="chat-menu-toggle"><i class="material-icons" title="Recurso ainda não implementado.">chat</i><span class="badge badge-important hide">1</span>-->
+                <!--</a>-->
+                <!--<div class="simple-chat-popup chat-menu-toggle hide">-->
                   <!--<div class="simple-chat-popup-arrow"></div>
                   <div class="simple-chat-popup-inner">
                      <div style="width:100px">
                       <div class="semi-bold">David Nester</div>
                       <div class="message">Hey you there </div>
                     </div> -->
-                  </div>
+                  <!--</div>
                 </div>
-              </li>
+              </li>-->
             </ul>
           </div>
           <!-- END CHAT TOGGLER -->
@@ -326,10 +326,12 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
                 <div class="modal-body">
                   <div class="alert alert-info">
                     <i class="pull-left material-icons">feedback</i>
-                    <h6 style="padding-left: 30px;">
-                       
-                    <br>&nbsp;  
-                    </h6>    
+                    <h5 style="padding-left: 30px;">
+                      <p>Utilize este cadastro para solicitar cotações de <span class="bold">viagens</span>.
+                      Após informar os dados solicitados,  aguarde o retorno do setor responsável pela cotação em seu email. <br>                      
+                      <p>As solicitações são encaminhados para: <span class="bold"> juliana.dias@aniger.com.br</span></p>
+                      <p>Ramal: <span class="bold">166</span></p>   
+                    </h5>    
                   </div>             
                 </div>
               </div>

@@ -1,5 +1,6 @@
 <?php
 require_once("assets/php/class/class.seg.php");
+require_once("assets/php/class/class.utl.php");
 session_start();
 proteger();
 
@@ -37,6 +38,12 @@ $stmt4 = $conn->prepare($query1);
 $stmt4->bindValue(':id',$id);
 $stmt4->execute();
 $result4=$stmt4->fetch(PDO::FETCH_ASSOC);
+
+//#5
+$adm=date("d-M-y",strtotime($result1['ADMISSAO']));
+$hj=date('d-M-y');
+$tempo=strtotime($hj)-strtotime($adm);
+$anos =floor(($tempo)/(60*60*24*365));
 
 
 ?>
@@ -94,11 +101,11 @@ $result4=$stmt4->fetch(PDO::FETCH_ASSOC);
                 <i class="material-icons">desktop_mac</i><!-- <span class="badge bubble-only"></span> -->
               </a>
             </li>
-            <li class="dropdown visible-xs visible-sm">
+            <!--<li class="dropdown visible-xs visible-sm">
               <a href="#" data-webarch="toggle-right-side">
                 <i class="material-icons">chat</i>
               </a>
-            </li>
+            </li>-->
           </ul>
         </div>
         <!-- END RESPONSIVE MENU TOGGLER -->
@@ -190,21 +197,21 @@ $result4=$stmt4->fetch(PDO::FETCH_ASSOC);
                   </li>
                 </ul>
               </li>
-              <li class="quicklinks"> <span class="h-seperate"></span></li>
-              <li class="quicklinks">
+              <!--<li class="quicklinks"> <span class="h-seperate"></span></li>-->
+              <!--<li class="quicklinks">-->
                 <!-- <a href="#" class="chat-menu-toggle" data-webarch="toggle-right-side"><i class="material-icons">chat</i><span class="badge badge-important hide">1</span> -->
-                <a href="#" class="chat-menu-toggle"><i class="material-icons" title="Recurso ainda não implementado.">chat</i><span class="badge badge-important hide">1</span>
-                </a>
-                <div class="simple-chat-popup chat-menu-toggle hide">
+                <!--<a href="#" class="chat-menu-toggle"><i class="material-icons" title="Recurso ainda não implementado.">chat</i><span class="badge badge-important hide">1</span>-->
+                <!--</a>-->
+                <!--<div class="simple-chat-popup chat-menu-toggle hide">-->
                   <!--<div class="simple-chat-popup-arrow"></div>
                   <div class="simple-chat-popup-inner">
                      <div style="width:100px">
                       <div class="semi-bold">David Nester</div>
                       <div class="message">Hey you there </div>
                     </div> -->
-                  </div>
+                  <!--</div>
                 </div>
-              </li>
+              </li>-->
             </ul>
           </div>
           <!-- END CHAT TOGGLER -->
@@ -366,8 +373,14 @@ $result4=$stmt4->fetch(PDO::FETCH_ASSOC);
                       </div>
                       <div class="user-mini-description">
                         <h3 class="text-info semi-bold">
-                         <i class="fa fa-star"></i>
-                         <i class="fa fa-star-half-full"></i>                    
+                          <?php                            
+                            for ($i=0; $i < $anos; $i++) { 
+                              echo "\n".'<i class="fa fa-star"></i>';
+                            }
+                            if ($anos == 0 || $anos >= 1) {
+                               echo "\n".'<i class="fa fa-star-half-o"></i>';
+                            }                            
+                          ?>
                         </h3>
                         <h5>Tempo</h5>
                         <h3 class="text-info semi-bold" style="line-height:40px;">
@@ -417,6 +430,13 @@ $result4=$stmt4->fetch(PDO::FETCH_ASSOC);
         </div>
       </div>
       <!-- END PAGE CONTAINER -->
+      <?php
+
+       
+        echo $anos;
+
+
+      ?>
       &nbsp;&nbsp;<br/>
       &nbsp;&nbsp;<br/>
     </div>
