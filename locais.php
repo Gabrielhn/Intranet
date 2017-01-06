@@ -6,12 +6,10 @@ proteger();
 $host="10.0.0.2";
 $service="//10.0.0.2:1521/orcl";
 $id=$_SESSION['usuarioId'];
-$idmenu=1;
 $conn= new \PDO("oci:host=$host;dbname=$service","INTRANET","ifnefy6b9");
 
-
 $query1 = "SELECT USR.EMAIL, USR.IMG_PERFIL, IMG.IMAGEM FROM IN_USUARIOS USR, IN_IMAGENS IMG WHERE USR.IMG_PERFIL = IMG.ID AND USR.ID =:id";
-$query2 = "SELECT * FROM IN_MENU_ITEM WHERE MENU = $idmenu";
+$query2 = "SELECT * FROM IN_LOCAIS ORDER BY 2";
 
 //#1
 $stmt1 = $conn->prepare($query1);
@@ -29,7 +27,7 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Aniger - Dados</title>
+    <title>Aniger - Dados - Locais</title>
     <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
@@ -199,11 +197,11 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
       <!-- END TOP NAVIGATION BAR -->
     </div>
     <!-- END HEADER -->
-    <!-- BEGIN CONTENT -->
+    <!-- CONTENT -->
     <div class="page-container row-fluid">
-      <!-- BEGIN SIDEBAR -->
+      <!-- SIDEBAR -->
       <div class="page-sidebar " id="main-menu">
-        <!-- BEGIN MINI-PROFILE -->
+        <!-- MINI PERFIL -->
         <div class="page-sidebar-wrapper scrollbar-dynamic" id="main-menu-wrapper">
           <div class="user-info-wrapper sm">
             <div class="profile-wrapper sm">
@@ -217,8 +215,9 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
               <div class="status">Seja bem-vindo(a)</div>
             </div>
           </div>
-          <!-- END MINI-PROFILE -->
-          <!-- BEGIN SIDEBAR MENU -->
+          <!-- /MINI PERFIL -->
+
+          <!-- SIDEBAR MENU -->
           <p class="menu-title sm">MENU <span class="pull-right"><a href="javascript:;"><i class="material-icons">refresh</i></a></span></p>
           <ul>
             <li class=""> 
@@ -236,65 +235,10 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
             <li class=""> 
               <a href="solicitacoes.php"><i class="material-icons" title="Solicitações">assignment</i> <span class="title">Solicitações</span></a>
             </li>
-            <!--<li class="">
-              <a href="#"> <i class="material-icons">email</i> <span class="title">Link</span> <span class=" badge badge-disable pull-right ">203</span>
-              </a>
-            </li>
-            <li class="">
-              <a href="javascript:;"> <i class="material-icons">more_horiz</i> <span class="title">Link</span> <span class=" arrow"></span> </a>
-              <ul class="sub-menu">
-                <li> <a href="javascript:;"> Level 1 </a> </li>
-                <li>
-                  <a href="javascript:;"> <span class="title">Level 2</span> <span class=" arrow"></span> </a>
-                  <ul class="sub-menu">
-                    <li> <a href="javascript:;"> Sub Menu </a> </li>
-                    <li> <a href="ujavascript:;"> Sub Menu </a> </li>
-                  </ul>
-                </li>
-              </ul>
-            </li>-->
-            <li class="hidden-lg hidden-md hidden-xs" id="more-widgets">
-              <a href="javascript:;"> <i class="material-icons"></i></a>
-              <ul class="sub-menu">
-                <li class="side-bar-widgets">
-                  <p class="menu-title sm">FOLDER <span class="pull-right"><a href="#" class="create-folder"><i class="material-icons">add</i></a></span></p>
-                  <ul class="folders">
-                    <li>
-                      <a href="#">
-                        <div class="status-icon green"></div>
-                        My quick tasks </a>
-                    </li>
-                  </ul>
-                  <p class="menu-title">PROJECTS </p>
-                  <div class="status-widget">
-                    <div class="status-widget-wrapper">
-                      <div class="title">Freelancer<a href="#" class="remove-widget"><i class="material-icons">close</i></a></div>
-                      <p>Redesign home page</p>
-                    </div>
-                  </div>
-                </li>
-              </ul>
-            </li>
-          </ul>
-          <!--<div class="side-bar-widgets">
-            <p class="menu-title sm">FOLDER <span class="pull-right"><a href="#" class="create-folder"> <i class="material-icons">add</i></a></span></p>
-            <ul class="folders">
-              <li>
-                <a href="#">
-                  <div class="status-icon green"></div>
-                  My quick tasks </a>
-              </li>
-            </ul>
-            <p class="menu-title">PROJECTS </p>
-            <div class="status-widget">
-              <div class="status-widget-wrapper">
-                <div class="title">Freelancer<a href="#" class="remove-widget"><i class="material-icons">close</i></a></div>
-                <p>Redesign home page</p>
-              </div>
-            </div>
-          </div>-->
+           </ul>            
           <div class="clearfix"></div>
-          <!-- END SIDEBAR MENU -->
+          <!-- /SIDEBAR MENU -->
+          
         </div>
       </div>
       <a href="#" class="scrollup">Scroll</a>
@@ -308,56 +252,88 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
           <a href="logout.php"><i class="material-icons">power_settings_new</i></a>
         </div>
       </div>
-      <!-- END SIDEBAR -->
-      <!-- BEGIN PAGE CONTAINER-->
+      <!-- /SIDEBAR -->
+
+      <!-- CONTAINER-->
       <div class="page-content">
         <div class="content">
         <ul class="breadcrumb">
-            <li>
-              <p>VOCÊ ESTÁ EM </p>
-            </li>
-           <li>
+          <li>
+            <p>VOCÊ ESTÁ EM </p>
+          </li>
+          <li>
             <a href="index.php">Home</a>
-            </li>
-            <li><a href="#" class="active">Dados</a> </li>
-          </ul>
-          <!-- BEGIN PAGE TITLE -->
-          <div class="page-title"> <i class="material-icons">apps</i>
-            <h3>Dados </h3>
-          </div>
-          <!-- END PAGE TITLE -->
+          </li>
+          <li>
+            <a href="dados.php">Dados</a> 
+          </li>
+          <li>
+            <a href="#" class="active">Locais</a> 
+          </li>
+        </ul>
+
+          <!-- TITULO -->
+          <br>
+         <br>
+          <!-- /TITULO -->
+
           <!-- CONTEUDO -->
-          <?php
-
-          foreach ($result2 as $key => $value) {
-            echo
-              '<a href="'.$result2[$key]['LINK'].'" style="color: #edeeef;">
-                <div class="'.$result2[$key]['ATRIBUTOS_1'].'">          
-                  <div class="'.$result2[$key]['ATRIBUTOS_2'].'">
-                    <div class="tiles-body">              
-                      <div class="" style="text-align:center;">
-                        <i class="'.$result2[$key]['ICONE'].'"></i>
-                      </div>
-                      <div class="clearfix"></div>
-                      </div>               
-                    <div class="tile-footer">
-                      <div style="text-align:center;">
-                        <span class="semi-bold">'.$result2[$key]['TITULO'].'</span>
-                      </div>
-                      <div class="clearfix"></div>
-                      </a>
-                    </div>
-                  </div>
-                </div>';
-              
-          }
-
-          ?>
           
-          <!-- FIM CONTEUDO -->
+          <div class="row">
+            <div class="col-md-12">
+              <div class="grid simple ">
+                <div class="grid-title no-border">
+                  <div class="tools">
+                    <a href=""><i class="fa fa-plus fa-lg"></i> </a>                   
+                  </div>
+                </div>
+                <div class="grid-body no-border">
+                  <h3><i class="fa fa-globe fa-1x"></i><span class="semi-bold">&nbsp; Locais</span></h3>
+                  <table class="table no-more-tables">
+                    <thead>
+                      <tr>
+                        <th style="width:5%">
+                          <div class="checkbox check-info">
+                            <input id="checkbox10" type="checkbox" value="1" class="checkall">
+                            <label for="checkbox10"></label>
+                          </div>
+                        </th>
+                        <th style="width:30%">Local (PK)</th>
+                        <th style="width:65%">Nome</th>                    
+                        <th style="width:10%">Ações</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <?php
+                      $rr=1;
+                      foreach ($result2 as $key => $value) {
+                        echo '
+                          <tr>
+                            <td class="v-align-middle">
+                              <div class="checkbox check-success">
+                                <input id="checkbox'.$rr.'" type="checkbox" value="1">
+                                <label for="checkbox'.$rr.'"></label>
+                              </div>
+                            </td>
+                            <td class="v-align-middle">'.$result2[$key]['LOCAL'].'</td>
+                            <td class="v-align-middle"><span class="muted">'.$result2[$key]['NOME'].'</span></td>
+                            <td class="v-align-middle"><i class="fa fa-pencil"></i>&nbsp;<i class="fa fa-trash"></i><i>&nbsp;<i class="fa fa-search"></i></td>                                                                   
+                          </tr>
+                          ';
+                        $rr++;
+                      }                        
+                      ?>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>        
+          <!-- /CONTEUDO -->
         </div>
       </div>
-      <!-- END PAGE CONTAINER -->
+      <!-- CONTAINER -->
+
       <!-- BEGIN CHAT -->
       <div class="chat-window-wrapper">
         <div id="main-chat-wrapper" class="inner-content">

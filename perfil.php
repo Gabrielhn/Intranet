@@ -1,7 +1,7 @@
 <?php
-// require_once("assets/php/class/class.seg.php");
+require_once("assets/php/class/class.seg.php");
 session_start();
-// proteger();
+proteger();
 
 $host="10.0.0.2";
 $service="//10.0.0.2:1521/orcl";
@@ -10,7 +10,7 @@ $conn= new \PDO("oci:host=$host;dbname=$service","INTRANET","ifnefy6b9");
 
 $query1 = "SELECT * FROM VW_PERFIL WHERE ID=:id";
 $query2 = "SELECT COUNT(EMAIL) AS COLEGAS FROM IN_USUARIOS WHERE SETOR =:setor AND ID !=:id";
-$query3 = "SELECT USR.EMAIL, USR.IMG_PERFIL, IMG.IMAGEM FROM IN_USUARIOS USR, IN_IMAGENS IMG WHERE USR.IMG_PERFIL = IMG.ID AND USR.SETOR =:setor AND USR.ID !=:id";
+$query3 = "SELECT USR.EMAIL, USR.IMG_PERFIL, IMG.IMAGEM FROM IN_USUARIOS USR, IN_IMAGENS IMG WHERE USR.IMG_PERFIL = IMG.ID AND USR.SETOR =:setor AND USR.ID != 1";
 
 //#1
 $stmt1 = $conn->prepare($query1);
@@ -220,11 +220,10 @@ $anos =floor(($tempo)/(60*60*24*365));
       <!-- END TOP NAVIGATION BAR -->
     </div>
     <!-- END HEADER -->
-    <!-- BEGIN CONTENT -->
     <div class="page-container row-fluid">
-      <!-- BEGIN SIDEBAR -->
+      <!-- SIDEBAR -->
       <div class="page-sidebar " id="main-menu">
-        <!-- BEGIN MINI-PROFILE -->
+        <!-- MINI PERFIL -->
         <div class="page-sidebar-wrapper scrollbar-dynamic" id="main-menu-wrapper">
           <div class="user-info-wrapper sm">
             <div class="profile-wrapper sm">
@@ -238,8 +237,8 @@ $anos =floor(($tempo)/(60*60*24*365));
               <div class="status">Seja bem-vindo(a)</div>
             </div>
           </div>
-          <!-- END MINI-PROFILE -->
-          <!-- BEGIN SIDEBAR MENU -->
+          <!-- MINI PERFIL -->
+          <!-- SIDEBAR MENU -->
           <p class="menu-title sm">MENU <span class="pull-right"><a href="javascript:;"><i class="material-icons">refresh</i></a></span></p>
           <ul>
             <li class=""> 
@@ -257,65 +256,9 @@ $anos =floor(($tempo)/(60*60*24*365));
             <li class=""> 
               <a href="solicitacoes.php"><i class="material-icons" title="Solicitações">assignment</i> <span class="title">Solicitações</span></a>
             </li>
-            <!--<li class="">
-              <a href="#"> <i class="material-icons">email</i> <span class="title">Link</span> <span class=" badge badge-disable pull-right ">203</span>
-              </a>
-            </li>
-            <li class="">
-              <a href="javascript:;"> <i class="material-icons">more_horiz</i> <span class="title">Link</span> <span class=" arrow"></span> </a>
-              <ul class="sub-menu">
-                <li> <a href="javascript:;"> Level 1 </a> </li>
-                <li>
-                  <a href="javascript:;"> <span class="title">Level 2</span> <span class=" arrow"></span> </a>
-                  <ul class="sub-menu">
-                    <li> <a href="javascript:;"> Sub Menu </a> </li>
-                    <li> <a href="ujavascript:;"> Sub Menu </a> </li>
-                  </ul>
-                </li>
-              </ul>
-            </li>-->
-            <li class="hidden-lg hidden-md hidden-xs" id="more-widgets">
-              <a href="javascript:;"> <i class="material-icons"></i></a>
-              <ul class="sub-menu">
-                <li class="side-bar-widgets">
-                  <p class="menu-title sm">FOLDER <span class="pull-right"><a href="#" class="create-folder"><i class="material-icons">add</i></a></span></p>
-                  <ul class="folders">
-                    <li>
-                      <a href="#">
-                        <div class="status-icon green"></div>
-                        My quick tasks </a>
-                    </li>
-                  </ul>
-                  <p class="menu-title">PROJECTS </p>
-                  <div class="status-widget">
-                    <div class="status-widget-wrapper">
-                      <div class="title">Freelancer<a href="#" class="remove-widget"><i class="material-icons">close</i></a></div>
-                      <p>Redesign home page</p>
-                    </div>
-                  </div>
-                </li>
-              </ul>
-            </li>
           </ul>
-          <!--<div class="side-bar-widgets">
-            <p class="menu-title sm">FOLDER <span class="pull-right"><a href="#" class="create-folder"> <i class="material-icons">add</i></a></span></p>
-            <ul class="folders">
-              <li>
-                <a href="#">
-                  <div class="status-icon green"></div>
-                  My quick tasks </a>
-              </li>
-            </ul>
-            <p class="menu-title">PROJECTS </p>
-            <div class="status-widget">
-              <div class="status-widget-wrapper">
-                <div class="title">Freelancer<a href="#" class="remove-widget"><i class="material-icons">close</i></a></div>
-                <p>Redesign home page</p>
-              </div>
-            </div>
-          </div>-->
           <div class="clearfix"></div>
-          <!-- END SIDEBAR MENU -->
+          <!-- SIDEBAR MENU -->
         </div>
       </div>
       <a href="#" class="scrollup">Scroll</a>
@@ -331,24 +274,20 @@ $anos =floor(($tempo)/(60*60*24*365));
           <a href="logout.php"><i class="material-icons">power_settings_new</i></a>
         </div>
       </div>
-      <!-- END SIDEBAR -->
-      <!-- BEGIN PAGE CONTAINER-->
+      <!-- SIDEBAR -->
+      <!-- TITULO-->
       <div class="page-content">
         <div class="content">
         <ul class="breadcrumb">
-            <li>
-              <p>VOCÊ ESTÁ EM </p>
-            </li>
-            <li><a href="#" class="active">Meu perfil</a> </li>
-          </ul>
-           <!--BEGIN PAGE TITLE 
-          <div class="page-title"> <i class="material-icons">face</i>
-            <h3>-&nbsp;&nbsp;Gabriel Hipolito</h3>
-          </div>-->
-          <!-- END PAGE TITLE -->
-          <!-- CONTEUDO -->
+          <li>
+            <p>VOCÊ ESTÁ EM </p>
+          </li>
+          <li><a href="#" class="active">Meu perfil</a> </li>
+        </ul>
 
-          <div class="content" style="padding-top:20px;">
+        <!-- CONTEUDO -->
+
+        <div class="content" style="padding-top:20px;">
           <div class="row">
             <div class="col-md-12">
               <div class=" tiles white no-padding">
@@ -409,15 +348,15 @@ $anos =floor(($tempo)/(60*60*24*365));
                       <h5 class="normal">Colegas ( <span class="text-success"> <?php echo $result2['COLEGAS']; ?> </span> )</h5>
                       <ul class="my-friends">
                         <?php
-                        foreach($result3 as $key => $value ) 
-                          { 
-                            echo
-                              '<li>
-                                <div class="profile-pic">
-                                  <img width="35" height="35" title="'. $value['EMAIL'] .'" src="data:image/jpeg;base64,'.base64_encode(stream_get_contents($value['IMAGEM'])).'">
-                                </div>
-                              </li>';
-                          }
+                        foreach($result3 as $value ) 
+                        { 
+                          echo
+                            '<li>
+                              <div class="profile-pic">
+                                <img width="35" height="35" title="'. $value['EMAIL'] .'" src="data:image/jpeg;base64,'.base64_encode(stream_get_contents($value['IMAGEM'])).'">
+                              </div>
+                            </li>';
+                        }
                         ?>
                       </ul>
                     </div>
@@ -430,7 +369,9 @@ $anos =floor(($tempo)/(60*60*24*365));
       </div>
       <!-- END PAGE CONTAINER -->
       <?php
-      print_r($result3)."\n";
+      //  var_dump($result3[2][IMAGEM]);
+
+      //  echo $result3[IMAGEM];
       // print_r($result1);
       ?>
       &nbsp;&nbsp;<br/>
