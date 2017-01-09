@@ -5,40 +5,42 @@ proteger();
 
 $host="10.0.0.2";
 $service="//10.0.0.2:1521/orcl";
-$id=$_SESSION['usuarioId'];
+$id=$_GET['id'];
+$idl=$_SESSION['usuarioId'];
 $conn= new \PDO("oci:host=$host;dbname=$service","INTRANET","ifnefy6b9");
 
 $query1 = "SELECT * FROM VW_PERFIL WHERE ID=:id";
 $query2 = "SELECT COUNT(EMAIL) AS COLEGAS FROM IN_USUARIOS WHERE SETOR =:setor AND ID !=:id";
-$query3 = "SELECT USR.EMAIL, USR.IMG_PERFIL, IMG.IMAGEM FROM IN_USUARIOS USR, IN_IMAGENS IMG WHERE USR.IMG_PERFIL = IMG.ID AND USR.SETOR =:setor AND USR.ID != 1";
+$query3 = "SELECT USR.ID, USR.NOME || ' ' || USR.SOBRENOME AS NOME_COMPLETO, USR.EMAIL, USR.IMG_PERFIL, IMG.IMAGEM FROM IN_USUARIOS USR, IN_IMAGENS IMG WHERE USR.IMG_PERFIL = IMG.ID AND USR.SETOR =:setor AND USR.ID != :id";
+$query4 = "SELECT * FROM VW_PERFIL WHERE ID=:id";
 
-//#1
+//#1 INFO PERFIL
 $stmt1 = $conn->prepare($query1);
 $stmt1->bindValue(':id',$id);
 $stmt1->execute();
 $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
 
-//#2
+//#2 COUNT COLEGAS
 $stmt2 = $conn->prepare($query2);
 $stmt2->bindValue(':setor',$result1['SETOR']);
 $stmt2->bindValue(':id',$result1['ID']);
 $stmt2->execute();
 $result2=$stmt2->fetch(PDO::FETCH_ASSOC);
 
-//#3
+//#3 COLEGAS
 $stmt3 = $conn->prepare($query3);
 $stmt3->bindValue(':setor',$result1['SETOR']);
-$stmt3->bindValue(':id',$result1['ID']);
+$stmt3->bindValue(':id',$id);
 $stmt3->execute();
 $result3=$stmt3->fetchAll(PDO::FETCH_ASSOC);
 
-//#4
+//#4 FOTO SIDEBAR
 $stmt4 = $conn->prepare($query1);
-$stmt4->bindValue(':id',$id);
+$stmt4->bindValue(':id',$idl);
 $stmt4->execute();
 $result4=$stmt4->fetch(PDO::FETCH_ASSOC);
 
-//#5
+//#5 TEMPO
 $adm=date("d-M-y",strtotime($result1['ADMISSAO']));
 $hj=date('d-M-y');
 $tempo=strtotime($hj)-strtotime($adm);
@@ -228,7 +230,7 @@ $anos =floor(($tempo)/(60*60*24*365));
           <div class="user-info-wrapper sm">
             <div class="profile-wrapper sm">
               <?php
-                echo '<img width="69" height="69" src="data:image/jpeg;base64,'.base64_encode(stream_get_contents($result1['IMAGEM'])).'">';
+                echo '<img width="69" height="69" src="data:image/jpeg;base64,'.base64_encode(stream_get_contents($result4['IMAGEM'])).'">';
               ?>
               <div class="availability-bubble online"></div>
             </div>
@@ -306,7 +308,7 @@ $anos =floor(($tempo)/(60*60*24*365));
                     <div class="col-md-3 col-sm-3">
                       <div class="user-profile-pic">
                         <?php
-                          echo '<img width="69" height="69" src="data:image/jpeg;base64,'.base64_encode(stream_get_contents($result4['IMAGEM'])).'">';
+                          echo '<img width="69" height="69" src="data:image/jpeg;base64,'.base64_encode(stream_get_contents($result1['IMAGEM'])).'">';
                         ?>
                       </div>
                       <div class="user-mini-description">
@@ -348,13 +350,14 @@ $anos =floor(($tempo)/(60*60*24*365));
                       <h5 class="normal">Colegas ( <span class="text-success"> <?php echo $result2['COLEGAS']; ?> </span> )</h5>
                       <ul class="my-friends">
                         <?php
-                        foreach($result3 as $value ) 
-                        { 
+                        foreach ($result3 as $key => $value) {
                           echo
                             '<li>
-                              <div class="profile-pic">
-                                <img width="35" height="35" title="'. $value['EMAIL'] .'" src="data:image/jpeg;base64,'.base64_encode(stream_get_contents($value['IMAGEM'])).'">
-                              </div>
+                              <a href="perfil.php?id='.$result3[$key]['ID'].'">
+                                <div class="profile-pic">
+                                  <img width="35" height="35" title="'. $result3[$key]['NOME_COMPLETO'] .'" src="data:image/jpeg;base64,'.base64_encode(stream_get_contents($result3[$key]['IMAGEM'])).'">
+                                </div>
+                              </a>
                             </li>';
                         }
                         ?>
@@ -368,12 +371,6 @@ $anos =floor(($tempo)/(60*60*24*365));
         </div>
       </div>
       <!-- END PAGE CONTAINER -->
-      <?php
-      //  var_dump($result3[2][IMAGEM]);
-
-      //  echo $result3[IMAGEM];
-      // print_r($result1);
-      ?>
       &nbsp;&nbsp;<br/>
       &nbsp;&nbsp;<br/>
     </div>

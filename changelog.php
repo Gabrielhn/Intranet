@@ -359,8 +359,16 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
                           <ul class="fa-ul">
                             <li><i class="fa-li fa fa-th"></i><span style="font-style: italic; font-size: 11px;">Nova página: Dados</span></li>
                             <ul class="fa-ul">
-                            <li><i class="fa-li fa fa-check-square-o"></i><span style="font-style: italic; font-size: 11px;">Criada página menu para os cadastros no banco de dados.</span></li>
+                              <li><i class="fa-li fa fa-check-square-o"></i><span style="font-style: italic; font-size: 11px;">Criada página menu para os cadastros no banco de dados.</span></li>
+                            </ul>
                           </ul>
+                          <li><i class="fa-li fa fa-th"></i>Dados</li>
+                          <ul class="fa-ul">
+                            <li><i class="fa-li fa fa-check-square-o"></i><span style="font-style: italic; font-size: 11px;">Consulta/Cadastro/Remoção de Usuários.</span></li>
+                            <li><i class="fa-li fa fa-check-square-o"></i><span style="font-style: italic; font-size: 11px;">Consulta/Cadastro/Remoção de Setores.</span></li>
+                            <li><i class="fa-li fa fa-check-square-o"></i><span style="font-style: italic; font-size: 11px;">Consulta/Cadastro/Remoção de Locais.</span></li>
+                            <li><i class="fa-li fa fa-check-square-o"></i><span style="font-style: italic; font-size: 11px;">Consulta/Cadastro/Remoção de Murais e Postagens.</span></li>
+                            <li><i class="fa-li fa fa-check-square-o"></i><span style="font-style: italic; font-size: 11px;">Consulta/Cadastro/Remoção de Menus.</span></li>
                           </ul>
                         </ul>                                            
                       </div>
