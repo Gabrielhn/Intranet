@@ -157,7 +157,7 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
                 </a>
                 <ul class="dropdown-menu  pull-right" role="menu" aria-labelledby="user-options">
                   <li class="">
-                    <a href="../perfil.php" title="Acesse seu perfil"><i class="fa fa-male fa-fw"></i>&nbsp;&nbsp;Meu perfil</a>
+                    <?php echo '<a href="../perfil.php?id='.$id.'" title="Acesse seu perfil"><i class="fa fa-male fa-fw"></i>&nbsp;&nbsp;Meu perfil</a>';?>
                   </li>                  
                   <li class="divider"></li>
                   <li>

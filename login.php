@@ -1,6 +1,6 @@
 <?php
   session_start();
-  define("versao", "1.2");
+  define("versao", "1.3");
   $_SESSION['versao'] = versao;
 ?>
 
@@ -33,7 +33,7 @@
   <!-- CONTAINER -->
   <body class="error-body no-top lazy" data-original="assets/img/work3.jpg" style="background-image: url('assets/img/work3.jpg')">
     <div class="container">
-      <div class="row login-container animated fadeInUp" style="margin-top:5%;">
+      <div class="row login-container animated fadeIn" style="margin-top:5%;">
         <div class="col-md-6 col-md-offset-3 tiles white no-padding">
           <div class="p-t-30 p-l-40 p-b-20 xs-p-t-10 xs-p-l-10 xs-p-b-10">
             <h2 class="normal">

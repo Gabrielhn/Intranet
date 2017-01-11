@@ -734,7 +734,7 @@ body.boxed-layout .footer-widget {
 .page-sidebar.mini {
   width: 50px;
   overflow: visible !important;
-  background-color: #0aa699 !important;
+  background-color: #0090d9 !important;
   height: 100%;
   margin-top: 0;
   position: fixed;
@@ -5659,7 +5659,6 @@ form legend,
 .label-fin {
   background-color: #fdd01c;
   color: #5E5E5E;
-}
 }
 .label-pcp {
   background-color: #0aa699;

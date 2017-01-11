@@ -157,7 +157,7 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
                 </a>
                 <ul class="dropdown-menu  pull-right" role="menu" aria-labelledby="user-options">
                   <li class="">
-                    <a href="../perfil.php" title="Acesse seu perfil"><i class="fa fa-male fa-fw"></i>&nbsp;&nbsp;Meu perfil</a>
+                    <?php echo '<a href="../perfil.php?id='.$id.'" title="Acesse seu perfil"><i class="fa fa-male fa-fw"></i>&nbsp;&nbsp;Meu perfil</a>';?>
                   </li>                  
                   <li class="divider"></li>
                   <li>
@@ -300,9 +300,9 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
                             <td class="v-align-middle">'.$result2[$key]['LOCAL'].'</td>
                             <td class="v-align-middle"><span class="muted">'.$result2[$key]['NOME'].'</span></td>
                             <td class="v-align-middle">
-                              <a href="locais.u.php"><i class="fa fa-pencil"></i></a>
-                              <a href="locais.d.php"><i class="fa fa-trash"></i></a>
-                              <a href="locais.r.php?id='.$result2[$key]['LOCAL'].'"><i class="fa fa-search"></i></a>
+                              <a href="locais.u.php?id='.$result2[$key]['LOCAL'].'"title="Editar"><i class="fa fa-pencil"></i></a>
+                              <a href="locais.d.php?id='.$result2[$key]['LOCAL'].'"title="Excluir"><i class="fa fa-trash"></i></a>
+                              <a href="locais.r.php?id='.$result2[$key]['LOCAL'].'"title="Detalhes"><i class="fa fa-search"></i></a>
                             </td>
                           </tr>
                           ';                      

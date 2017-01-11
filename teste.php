@@ -1,4 +1,8 @@
 <?php
+setlocale(LC_ALL,'pt_BR.UTF8');
+header('Content-Type: text/html; charset=UTF-8');
+// mb_internal_encoding('UTF8'); 
+// mb_regex_encoding('UTF8');
 // require_once("assets/php/class/class.seg.php");
 session_start();
 // proteger();
@@ -31,32 +35,20 @@ $stmt3->execute();
 $result3=$stmt3->fetchAll();
 
 
-
-
-
-
-    //   foreach($result3 as $value ) 
-    //                     { 
-    //                       echo
-    //                         '<li>
-    //                           <div class="profile-pic">
-    //                             <img width="35" height="35" title="'. $value['EMAIL'] .'" src="data:image/jpeg;base64,'.base64_encode(stream_get_contents($value['IMAGEM'])).'">
-    //                           </div>
-    //                         </li>';
-    //                     }
-
-
-    //   print_r($result1);
-      echo "<br>" ;
-      $ii="2";
-      echo "<br>" ;
-      echo "<br>" ;
-      print_r($result3[$ii][EMAIL]);
-      echo "<br>" ;
-      echo "<br>" ;
-      var_dump($result3) ;
-      echo "<br>" ;
-      echo '<img width="35" height="35" title="'. $result3['EMAIL'] .'" src="data:image/jpeg;base64,'.base64_encode(stream_get_contents($result3[IMAGEM])).'">';
-
-
 ?>
+
+<html>
+  <head>
+    <title>Aniger - Home</title>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <meta charset=utf-8 />
+  </head>
+  <body>
+<?php
+  var_dump($result1);
+  echo "<br/>";
+  echo $result1['NOME'];
+  phpinfo();
+?>
+  </body>
+</html>

@@ -1,4 +1,6 @@
 <?php
+setlocale(LC_ALL,'pt_BR.UTF8');
+header('Content-Type: text/html; charset=UTF-8');
 require_once("assets/php/class/class.seg.php");
 session_start();
 proteger();
@@ -14,33 +16,33 @@ $query2 = "SELECT COUNT(EMAIL) AS COLEGAS FROM IN_USUARIOS WHERE SETOR =:setor A
 $query3 = "SELECT USR.ID, USR.NOME || ' ' || USR.SOBRENOME AS NOME_COMPLETO, USR.EMAIL, USR.IMG_PERFIL, IMG.IMAGEM FROM IN_USUARIOS USR, IN_IMAGENS IMG WHERE USR.IMG_PERFIL = IMG.ID AND USR.SETOR =:setor AND USR.ID != :id";
 $query4 = "SELECT * FROM VW_PERFIL WHERE ID=:id";
 
-//#1 INFO PERFIL
+// #1 INFO PERFIL
 $stmt1 = $conn->prepare($query1);
 $stmt1->bindValue(':id',$id);
 $stmt1->execute();
 $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
 
-//#2 COUNT COLEGAS
+// #2 COUNT COLEGAS
 $stmt2 = $conn->prepare($query2);
 $stmt2->bindValue(':setor',$result1['SETOR']);
 $stmt2->bindValue(':id',$result1['ID']);
 $stmt2->execute();
 $result2=$stmt2->fetch(PDO::FETCH_ASSOC);
 
-//#3 COLEGAS
+// #3 COLEGAS
 $stmt3 = $conn->prepare($query3);
 $stmt3->bindValue(':setor',$result1['SETOR']);
 $stmt3->bindValue(':id',$id);
 $stmt3->execute();
 $result3=$stmt3->fetchAll(PDO::FETCH_ASSOC);
 
-//#4 FOTO SIDEBAR
+// #4 FOTO SIDEBAR
 $stmt4 = $conn->prepare($query1);
 $stmt4->bindValue(':id',$idl);
 $stmt4->execute();
 $result4=$stmt4->fetch(PDO::FETCH_ASSOC);
 
-//#5 TEMPO
+// #5 TEMPO
 $adm=date("d-M-y",strtotime($result1['ADMISSAO']));
 $hj=date('d-M-y');
 $tempo=strtotime($hj)-strtotime($adm);
@@ -182,7 +184,7 @@ $anos =floor(($tempo)/(60*60*24*365));
                 </a>
                 <ul class="dropdown-menu  pull-right" role="menu" aria-labelledby="user-options">
                   <li class="">
-                    <a href="perfil.php" title="Acesse seu perfil"><i class="fa fa-male fa-fw"></i>&nbsp;&nbsp;Meu perfil</a>
+                    <?php echo '<a href="perfil.php?id='.$id.'" title="Acesse seu perfil"><i class="fa fa-male fa-fw"></i>&nbsp;&nbsp;Meu perfil</a>';?>
                   </li>
                   <!-- <li class="disabled">
                     <a href="calender.php" title="Recurso ainda não implementado.">Calendário</a>
@@ -367,6 +369,15 @@ $anos =floor(($tempo)/(60*60*24*365));
                   <hr/>
                   &nbsp;&nbsp;<br/>                  
                   &nbsp;&nbsp;<br/>
+                  <?php
+                   
+                   echo mb_detect_encoding($result1['NOME']);
+
+                  // // mb_check_encoding($id, 'UTF-8');
+                  // echo utf8_encode($result1['NOME']);
+                  // echo mb_strlen($result1['NOME']);
+                  // echo mb_internal_encoding();
+                  ?>
           <!-- FIM CONTEÚDO -->
         </div>
       </div>

@@ -332,7 +332,7 @@ $result3=$stmt3->fetchAll(PDO::FETCH_ASSOC);
           <!-- CONTEUDO -->
                     
           <div class="row">
-            <div class="col-md-5 col-sm-6">
+            <div class="col-md-6 col-sm-6">
               <div class="grid simple ">
                 <div class="grid-title no-border">
                   <div class="tools">                                      
@@ -366,7 +366,7 @@ $result3=$stmt3->fetchAll(PDO::FETCH_ASSOC);
               </div>
             </div>
 
-            <div class="col-md-4 col-sm-6">
+            <div class="col-md-6 col-sm-6">
               <div class="grid simple ">
                 <div class="grid-title no-border">
                   <div class="tools">                                      
@@ -400,7 +400,7 @@ $result3=$stmt3->fetchAll(PDO::FETCH_ASSOC);
               </div>
             </div>
 
-          <div class="col-md-3 col-sm-6">
+          <div class="col-md-4 col-sm-6">
               <div class="grid simple ">
                 <div class="grid-title no-border">
                   <div class="tools">                                      
@@ -415,16 +415,30 @@ $result3=$stmt3->fetchAll(PDO::FETCH_ASSOC);
                   <br/>&nbsp;
                   <br/>&nbsp;
                   <br/>&nbsp;
-                  <br/>&nbsp;
-                  <br/>&nbsp;
-                  <br/>&nbsp;
-                  <br/>&nbsp;
-                  <br/>&nbsp;              
+                  <br/>&nbsp;                               
                 </div>
               </div>
             </div>
 
-            
+            <div class="col-md-4 col-sm-6">
+              <div class="grid simple ">
+                <div class="grid-title no-border">
+                  <div class="tools">                                      
+                  </div>
+                </div>
+                <div class="grid-body no-border">
+                  <h4><i class="fa fa-bookmark fa-1x"></i><span class="semi-bold">&nbsp; Vagas</span></h4>
+                  <br/>&nbsp;
+                  <br/>&nbsp;
+                  <br/>&nbsp;
+                  <br/>&nbsp;
+                  <br/>&nbsp;
+                  <br/>&nbsp;
+                  <br/>&nbsp;
+                  <br/>&nbsp;                               
+                </div>
+              </div>
+            </div>
 
 
         </div>             

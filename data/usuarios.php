@@ -157,7 +157,7 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
                 </a>
                 <ul class="dropdown-menu  pull-right" role="menu" aria-labelledby="user-options">
                   <li class="">
-                    <a href="../perfil.php" title="Acesse seu perfil"><i class="fa fa-male fa-fw"></i>&nbsp;&nbsp;Meu perfil</a>
+                    <?php echo '<a href="../perfil.php?id='.$id.'" title="Acesse seu perfil"><i class="fa fa-male fa-fw"></i>&nbsp;&nbsp;Meu perfil</a>';?>
                   </li>                  
                   <li class="divider"></li>
                   <li>
@@ -308,7 +308,11 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
                             <td class="v-align-middle"><span class="muted">'.$result2[$key]['CARGO'].'</span></td>
                             <td class="v-align-middle"><span class="muted">'.$result2[$key]['LOCAL'].'</span></td>
                             <td class="v-align-middle"><span class="muted">'.$result2[$key]['RAMAL'].'</span></td>
-                            <td class="v-align-middle"><i class="fa fa-pencil"></i>&nbsp;<i class="fa fa-trash"></i><i>&nbsp;<i class="fa fa-search"></i></td>                            
+                            <td class="v-align-middle">
+                              <a href="usuarios.u.php?id='.$result2[$key]['ID'].'"title="Editar"><i class="fa fa-pencil"></i></a>
+                              <a href="usuarios.d.php?id='.$result2[$key]['ID'].'"title="Excluir"><i class="fa fa-trash"></i></a>
+                              <a href="usuarios.r.php?id='.$result2[$key]['ID'].'"title="Detalhes"><i class="fa fa-search"></i></a>
+                            </td>
                           </tr>
                           ';
                         $rr++;

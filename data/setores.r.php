@@ -6,11 +6,11 @@ proteger();
 $host="10.0.0.2";
 $service="//10.0.0.2:1521/orcl";
 $id=$_SESSION['usuarioId'];
-$localu=$_GET['id'];
+$setu=$_GET['id'];
 $conn= new \PDO("oci:host=$host;dbname=$service","INTRANET","ifnefy6b9");
 
 $query1 = "SELECT USR.EMAIL, USR.IMG_PERFIL, IMG.IMAGEM FROM IN_USUARIOS USR, IN_IMAGENS IMG WHERE USR.IMG_PERFIL = IMG.ID AND USR.ID =:id";
-$query2 = "SELECT * FROM IN_LOCAIS WHERE LOCAL ='$localu'";
+$query2 = "SELECT SE.SIGLA, SE.NOME,'(' || SE.GESTOR || ') ' || USR.NOME AS GESTOR, SE.LABEL FROM IN_SETORES SE, IN_USUARIOS USR WHERE SE.GESTOR = USR.ID AND SIGLA = '$setu'";
 
 //#1
 $stmt1 = $conn->prepare($query1);
@@ -18,7 +18,7 @@ $stmt1->bindValue(':id',$id);
 $stmt1->execute();
 $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
 
-//#2
+//#2 DADOS
 $stmt2 = $conn->prepare($query2);
 $stmt2->execute();
 $result2=$stmt2->fetch(PDO::FETCH_ASSOC);
@@ -28,7 +28,7 @@ $result2=$stmt2->fetch(PDO::FETCH_ASSOC);
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Aniger - Dados - Locais</title>
+    <title>Aniger - Dados - Setores</title>
     <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
@@ -261,7 +261,7 @@ $result2=$stmt2->fetch(PDO::FETCH_ASSOC);
             <a href="../dados.php">Dados</a> 
           </li>
           <li>
-            <a href="locais.php" class="">Locais</a> 
+            <a href="setores.php" class="">Setores</a> 
           </li>
           <li>
             <a href="#" class="active">Detalhes</a> 
@@ -286,21 +286,31 @@ $result2=$stmt2->fetch(PDO::FETCH_ASSOC);
                   </div>
                 </div>
                 <div class="grid-body no-border">
-                  <h3><i class="fa fa-globe fa-1x"></i><span class="semi-bold">&nbsp; Locais</span></h3>
+                  <h3><i class="fa fa-sitemap fa-1x"></i><span class="semi-bold">&nbsp; Setores</span></h3>
                   <div class="form" >
-                    &nbsp; <br/>                                       
+                    &nbsp; <br/>                                     
                     <div class="control-group">
-                      <label class="control-label"><strong>Local: </strong><?php echo $result2['LOCAL'];?></label>                                                                      
+                      <label class="control-label"><strong>ID: </strong><?php echo $result2['SIGLA'];?></label>                                                                      
                     </div>
                     <br/>
                     <div class="control-group">
                       <label class="control-label"><strong>Nome: </strong><?php echo $result2['NOME'];?></label>                      
-                    </div>                    
+                    </div>
+                    <br/>
+                    <div class="control-group">
+                      <label class="control-label"><strong>Gestor: </strong><?php echo $result2['GESTOR'].' '.$result2['SOBRENOME'];?></label>                                                                      
+                    </div>
+                    <br/>
+                    <div class="control-group">
+                      <label class="control-label"><strong>Label: </strong><?php echo $result2['LABEL'];?></label>                                                                      
+                    </div>
+                                           
                   </div>
                 </div>
               </div>
             </div>
-          </div>            
+          </div>
+
           <!-- /CONTEUDO -->
         </div>
       </div>
