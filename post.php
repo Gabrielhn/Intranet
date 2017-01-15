@@ -11,7 +11,17 @@ $id=$_SESSION['usuarioId'];
 $postid=$_GET['id'];
 $conn= new \PDO("oci:host=$host;dbname=$service","INTRANET","ifnefy6b9");
 
-$query1 = "SELECT USR.EMAIL, USR.IMG_PERFIL, IMG.IMAGEM FROM IN_USUARIOS USR, IN_IMAGENS IMG WHERE USR.IMG_PERFIL = IMG.ID AND USR.ID =:id";
+$query1 = "SELECT USR.EMAIL, USR.TIPO_USUARIO, USR.SETOR, USR.IMG_PERFIL, IMG.IMAGEM,
+    CASE
+     WHEN USR.SETOR IN (SELECT SIGLA FROM IN_SETORES SETO, IN_MURAL MUR WHERE MUR.SETOR = SETO.SIGLA)
+     THEN 'S'
+     ELSE 'N'
+     END AS MURAL
+FROM 
+    IN_USUARIOS USR, 
+    IN_IMAGENS IMG 
+WHERE 
+    USR.IMG_PERFIL = IMG.ID AND USR.ID =:id";
 $query2 = "SELECT POST.*, IMG.IMAGEM AS IMG_MURAL , MUR.DESCRICAO AS TIT_MURAL, SETO.LABEL, USU.NOME || ' ' || USU.SOBRENOME AS AUTOR FROM IN_MURAL_POST POST, IN_USUARIOS USU, IN_IMAGENS IMG, IN_MURAL MUR, IN_SETORES SETO WHERE POST.USUARIO = USU.EMAIL AND POST.IMG_POST = IMG.ID AND POST.MURAL = MUR.ID AND MUR.SETOR = SETO.SIGLA AND POST.ID =:post";
 
 //#1
@@ -32,7 +42,7 @@ $result2=$stmt2->fetch(PDO::FETCH_ASSOC);
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Aniger - Mural</title>
+    <title>Aniger - Avisos</title>
     <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
@@ -78,7 +88,7 @@ $result2=$stmt2->fetch(PDO::FETCH_ASSOC);
               </a>
             </li>
             <li class="dropdown hidden-xs hidden-sm">
-              <a href="https://aniger.tomticket.com/helpdesk/login?" class="dropdown-toggle">
+              <a href="chamados.php" class="dropdown-toggle">
                 <i class="material-icons">desktop_mac</i><!-- <span class="badge bubble-only"></span> -->
               </a>
             </li>
@@ -113,11 +123,23 @@ $result2=$stmt2->fetch(PDO::FETCH_ASSOC);
                 </a>
               </li>
               <li class="quicklinks"> <span class="h-seperate"></span></li>
-              <li class="quicklinks">
-                <a href="dados.php">
-                  <i class="material-icons">apps</i>
-                </a>
-              </li>
+              <?php
+                if ($result1['TIPO_USUARIO'] == 'ADM') {
+                  echo '
+                  <li class="quicklinks">
+                    <a href="dados.php">
+                      <i class="material-icons">apps</i>
+                    </a>
+                  </li>';
+                } elseif ($result1['MURAL'] == 'S') {
+                  echo '
+                  <li class="quicklinks">
+                    <a href="dados.php">
+                      <i class="material-icons">apps</i>
+                    </a>
+                  </li>';
+                }                  
+              ?>
               <!--<li class="m-r-10 input-prepend inside search-form no-boarder">
                 <span class="add-on"> <i class="material-icons">search</i></span>
                 <input name="" type="text" class="no-boarder " placeholder="Buscar" style="width:250px;">
@@ -263,11 +285,11 @@ $result2=$stmt2->fetch(PDO::FETCH_ASSOC);
             <li>
               <p>VOCÊ ESTÁ EM </p>
             </li>
-            <li><a href="#" class="active">Postagem</a></li>
+            <li><a href="#" class="active">Aviso</a></li>
           </ul>
           <!-- BEGIN PAGE TITLE -->
           <div class="page-title"><i class="fa fa-newspaper-o fa-1x"></i>
-            <h3>Mural do Marketing </h3>
+            <h3><?php echo $result2['TIT_MURAL']  ?></h3>
           </div>
           <!-- END PAGE TITLE -->
           <!-- CONTEUDO -->
@@ -279,21 +301,20 @@ $result2=$stmt2->fetch(PDO::FETCH_ASSOC);
                   <div class="grid simple ">
                     <div class="grid-title">
                       <h3><span class="bold">&nbsp;'.$result2['ASSUNTO'].'</span></h3>
-                      <div class="muted">'.$result2['AUTOR'].' - '.$result2['INCLUSAO'].'</div>
+                      <span class="muted">&nbsp;&nbsp;&nbsp;'.$result2['AUTOR'].'</span>
                     </div>
                     <div class="grid-body">
                       <div class="col-md-12">
                         '.stream_get_contents($result2['CONTEUDO']).'
+                        <hr>
+                        <div class="muted" style="text-align:right;">'.strftime('%A, %d de %B de %Y', strtotime($result2['INCLUSAO'])).'</div>
                       </div>                    
-                    </div>                                                                    
+                    </div>                                                                                       
                   </div>
                 </div>
               </div>'        
-          ?>
-         
-            
-                                
-        </div>             
+            ?>                                                   
+          </div>             
 
           <!-- FIM CONTEUDO -->
         </div>

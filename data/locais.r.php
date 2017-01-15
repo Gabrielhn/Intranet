@@ -9,7 +9,17 @@ $id=$_SESSION['usuarioId'];
 $localu=$_GET['id'];
 $conn= new \PDO("oci:host=$host;dbname=$service","INTRANET","ifnefy6b9");
 
-$query1 = "SELECT USR.EMAIL, USR.IMG_PERFIL, IMG.IMAGEM FROM IN_USUARIOS USR, IN_IMAGENS IMG WHERE USR.IMG_PERFIL = IMG.ID AND USR.ID =:id";
+$query1 = "SELECT USR.EMAIL, USR.TIPO_USUARIO, USR.SETOR, USR.IMG_PERFIL, IMG.IMAGEM,
+    CASE
+     WHEN USR.SETOR IN (SELECT SIGLA FROM IN_SETORES SETO, IN_MURAL MUR WHERE MUR.SETOR = SETO.SIGLA)
+     THEN 'S'
+     ELSE 'N'
+     END AS MURAL
+FROM 
+    IN_USUARIOS USR, 
+    IN_IMAGENS IMG 
+WHERE 
+    USR.IMG_PERFIL = IMG.ID AND USR.ID =:id";
 $query2 = "SELECT * FROM IN_LOCAIS WHERE LOCAL ='$localu'";
 
 //#1
@@ -74,7 +84,7 @@ $result2=$stmt2->fetch(PDO::FETCH_ASSOC);
               </a>
             </li>
             <li class="dropdown hidden-xs hidden-sm">
-              <a href="https://aniger.tomticket.com/helpdesk/login?" class="dropdown-toggle">
+              <a href="../chamados.php" class="dropdown-toggle"> 
                 <i class="material-icons">desktop_mac</i><!-- <span class="badge bubble-only"></span> -->
               </a>
             </li>
@@ -109,11 +119,23 @@ $result2=$stmt2->fetch(PDO::FETCH_ASSOC);
                 </a>
               </li>
               <li class="quicklinks"> <span class="h-seperate"></span></li>
-              <li class="quicklinks">
-                <a href="../dados.php">
-                  <i class="material-icons">apps</i>
-                </a>
-              </li>
+              <?php
+                if ($result1['TIPO_USUARIO'] == 'ADM') {
+                  echo '
+                  <li class="quicklinks">
+                    <a href="../dados.php">
+                      <i class="material-icons">apps</i>
+                    </a>
+                  </li>';
+                } elseif ($result1['MURAL'] == 'S') {
+                  echo '
+                  <li class="quicklinks">
+                    <a href="../dados.php">
+                      <i class="material-icons">apps</i>
+                    </a>
+                  </li>';
+                }                  
+              ?>
               <!--<li class="m-r-10 input-prepend inside search-form no-boarder">
                 <span class="add-on"> <i class="material-icons">search</i></span>
                 <input name="" type="text" class="no-boarder " placeholder="Buscar" style="width:250px;">

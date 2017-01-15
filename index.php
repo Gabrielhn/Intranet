@@ -91,7 +91,7 @@ $result3=$stmt3->fetchAll(PDO::FETCH_ASSOC);
               </a>
             </li>
             <li class="dropdown hidden-xs hidden-sm">
-              <a href="https://aniger.tomticket.com/helpdesk/login?" class="dropdown-toggle">
+              <a href="chamados.php" class="dropdown-toggle">              
                 <i class="material-icons">desktop_mac</i><!-- <span class="badge bubble-only"></span> -->
               </a>
             </li>
@@ -141,9 +141,7 @@ $result3=$stmt3->fetchAll(PDO::FETCH_ASSOC);
                       <i class="material-icons">apps</i>
                     </a>
                   </li>';
-                }
-                  
-
+                }                  
               ?>
               <!--<li class="m-r-10 input-prepend inside search-form no-boarder">
                 <span class="add-on"> <i class="material-icons">search</i></span>
@@ -310,6 +308,7 @@ $result3=$stmt3->fetchAll(PDO::FETCH_ASSOC);
                 <div class="grid-body no-border">
                   <div class="col-md-12">  
                     <h4><i class="fa fa-newspaper-o fa-1x"></i><span class="semi-bold">&nbsp; <?php echo $result2[0]['TIT_MURAL'] ?></span><div class="pull-right"><span class="label label-mkt">MKT</span></div></h4>
+                    <br/>
                   </div>
                   <!--DESTAQUE-->
                   <div class="col-md-12 p-b-10 m-b-10">
@@ -354,29 +353,34 @@ $result3=$stmt3->fetchAll(PDO::FETCH_ASSOC);
                    </div>
                  </div>
                  <div class="grid-body no-border">
-                   <h4><i class="fa fa-newspaper-o fa-1x"></i><span class="semi-bold">&nbsp; <?php echo $result3[0]['TIT_MURAL']?></span><div class="pull-right"><span class="label label-rh">RH</span></div></h4>
+                  <div class="col-md-12">
+                    <h4><i class="fa fa-newspaper-o fa-1x"></i><span class="semi-bold">&nbsp; <?php echo $result3[0]['TIT_MURAL']?></span><div class="pull-right"><span class="label label-rh">RH</span></div></h4>
+                    <br/>                  
                    <?php
                      foreach ($result3 as $key3 => $value) {
                        echo '
-                       <div class="notification-messages info">
-                         <div class="user-profile">
-                           <img alt=""  width="35" height="35" src="data:image/jpeg;base64,'.base64_encode(stream_get_contents($result3[$key3]['IMG_AUTOR'])).'">
-                         </div>
-                         <div class="message-wrapper">
-                           <div class="heading">
-                             '.$result3[$key3]['ASSUNTO'].' <div class="date">por '.$result3[$key3]['AUTOR'].'</div>
-                           </div>
-                           <div class="description">
-                             '.$result3[$key3]['CONTEUDO'].'
-                           </div>
-                           <div class="date pull-right">
-                             '.strftime('%A, %d de %B de %Y', strtotime($result3[$key3]['INCLUSAO'])).'
-                           </div>
-                         </div>
-                         <div class="clearfix"></div>
-                       </div>';
+                       <a href="post.php?id='.$result3[$key3]['ID'].'">
+                        <div class="notification-messages info">
+                          <div class="user-profile">
+                            <img alt=""  width="35" height="35" src="data:image/jpeg;base64,'.base64_encode(stream_get_contents($result3[$key3]['IMG_AUTOR'])).'">
+                          </div>
+                          <div class="message-wrapper">
+                            <div class="heading">
+                              '.$result3[$key3]['ASSUNTO'].' <div class="date">por '.$result3[$key3]['AUTOR'].'</div>
+                            </div>
+                            <div class="description">
+                              '.$result3[$key3]['CONTEUDO'].'
+                            </div>
+                            <div class="date pull-right">
+                              '.strftime('%A, %d de %B de %Y', strtotime($result3[$key3]['INCLUSAO'])).'
+                            </div>
+                          </div>
+                          <div class="clearfix"></div>
+                        </div>
+                      </a>';
                      }
-                   ?>                                   
+                   ?>
+                   </div>                                   
                  </div>
                </div>
              </div>        

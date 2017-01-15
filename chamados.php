@@ -10,25 +10,23 @@ $service="//10.0.0.2:1521/orcl";
 $id=$_SESSION['usuarioId'];
 $conn= new \PDO("oci:host=$host;dbname=$service","INTRANET","ifnefy6b9");
 
-$query1 = "SELECT USR.EMAIL, USR.IMG_PERFIL, IMG.IMAGEM FROM IN_USUARIOS USR, IN_IMAGENS IMG WHERE USR.IMG_PERFIL = IMG.ID AND USR.ID =:id";
-$query2 = "SELECT POST.*, MUR.DESCRICAO AS TIT_MURAL, SETO.LABEL, USU.NOME || ' ' || USU.SOBRENOME AS AUTOR, USU.IMG_PERFIL, IMG.IMAGEM AS IMG_AUTOR FROM IN_MURAL_POST POST, IN_USUARIOS USU, IN_IMAGENS IMG, IN_MURAL MUR, IN_SETORES SETO WHERE POST.USUARIO = USU.EMAIL AND USU.IMG_PERFIL  = IMG.ID AND POST.MURAL = MUR.ID AND MUR.SETOR = SETO.SIGLA AND POST.MURAL = '2' AND ROWNUM <=3 ORDER BY POST.ID DESC";
-$query3 = "SELECT POST.*, MUR.DESCRICAO AS TIT_MURAL, SETO.LABEL, USU.NOME || ' ' || USU.SOBRENOME AS AUTOR, USU.IMG_PERFIL, IMG.IMAGEM AS IMG_AUTOR FROM IN_MURAL_POST POST, IN_USUARIOS USU, IN_IMAGENS IMG, IN_MURAL MUR, IN_SETORES SETO WHERE POST.USUARIO = USU.EMAIL AND USU.IMG_PERFIL  = IMG.ID AND POST.MURAL = MUR.ID AND MUR.SETOR = SETO.SIGLA AND POST.MURAL = '3' AND ROWNUM <=3 ORDER BY POST.ID DESC";
+$query1 = "SELECT USR.EMAIL, USR.TIPO_USUARIO, USR.SETOR, USR.IMG_PERFIL, IMG.IMAGEM,
+    CASE
+     WHEN USR.SETOR IN (SELECT SIGLA FROM IN_SETORES SETO, IN_MURAL MUR WHERE MUR.SETOR = SETO.SIGLA)
+     THEN 'S'
+     ELSE 'N'
+     END AS MURAL
+FROM 
+    IN_USUARIOS USR, 
+    IN_IMAGENS IMG 
+WHERE 
+    USR.IMG_PERFIL = IMG.ID AND USR.ID =:id";
 
 //#1
 $stmt1 = $conn->prepare($query1);
 $stmt1->bindValue(':id',$id);
 $stmt1->execute();
 $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
-
-//#2
-$stmt2 = $conn->prepare($query2);
-$stmt2->execute();
-$result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
-
-//#3
-$stmt3 = $conn->prepare($query3);
-$stmt3->execute();
-$result3=$stmt3->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
 
@@ -116,11 +114,23 @@ $result3=$stmt3->fetchAll(PDO::FETCH_ASSOC);
                 </a>
               </li>
               <li class="quicklinks"> <span class="h-seperate"></span></li>
-              <li class="quicklinks">
-                <a href="dados.php">
-                  <i class="material-icons">apps</i>
-                </a>
-              </li>
+              <?php
+                if ($result1['TIPO_USUARIO'] == 'ADM') {
+                  echo '
+                  <li class="quicklinks">
+                    <a href="dados.php">
+                      <i class="material-icons">apps</i>
+                    </a>
+                  </li>';
+                } elseif ($result1['MURAL'] == 'S') {
+                  echo '
+                  <li class="quicklinks">
+                    <a href="dados.php">
+                      <i class="material-icons">apps</i>
+                    </a>
+                  </li>';
+                }                  
+              ?>
               <!--<li class="m-r-10 input-prepend inside search-form no-boarder">
                 <span class="add-on"> <i class="material-icons">search</i></span>
                 <input name="" type="text" class="no-boarder " placeholder="Buscar" style="width:250px;">

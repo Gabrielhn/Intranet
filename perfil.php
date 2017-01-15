@@ -14,7 +14,17 @@ $conn= new \PDO("oci:host=$host;dbname=$service","INTRANET","ifnefy6b9");
 $query1 = "SELECT * FROM VW_PERFIL WHERE ID=:id";
 $query2 = "SELECT COUNT(EMAIL) AS COLEGAS FROM IN_USUARIOS WHERE SETOR =:setor AND ID !=:id";
 $query3 = "SELECT USR.ID, USR.NOME || ' ' || USR.SOBRENOME AS NOME_COMPLETO, USR.EMAIL, USR.IMG_PERFIL, IMG.IMAGEM FROM IN_USUARIOS USR, IN_IMAGENS IMG WHERE USR.IMG_PERFIL = IMG.ID AND USR.SETOR =:setor AND USR.ID != :id";
-$query4 = "SELECT * FROM VW_PERFIL WHERE ID=:id";
+$query4 = "SELECT USR.EMAIL, USR.TIPO_USUARIO, USR.SETOR, USR.IMG_PERFIL, IMG.IMAGEM,
+    CASE
+     WHEN USR.SETOR IN (SELECT SIGLA FROM IN_SETORES SETO, IN_MURAL MUR WHERE MUR.SETOR = SETO.SIGLA)
+     THEN 'S'
+     ELSE 'N'
+     END AS MURAL
+FROM 
+    IN_USUARIOS USR, 
+    IN_IMAGENS IMG 
+WHERE 
+    USR.IMG_PERFIL = IMG.ID AND USR.ID =:id";
 
 // #1 INFO PERFIL
 $stmt1 = $conn->prepare($query1);
@@ -37,7 +47,7 @@ $stmt3->execute();
 $result3=$stmt3->fetchAll(PDO::FETCH_ASSOC);
 
 // #4 FOTO SIDEBAR
-$stmt4 = $conn->prepare($query1);
+$stmt4 = $conn->prepare($query4);
 $stmt4->bindValue(':id',$idl);
 $stmt4->execute();
 $result4=$stmt4->fetch(PDO::FETCH_ASSOC);
@@ -100,7 +110,7 @@ $anos =floor(($tempo)/(60*60*24*365));
               </a>
             </li>
             <li class="dropdown hidden-xs hidden-sm">
-              <a href="https://aniger.tomticket.com/helpdesk/login?" class="dropdown-toggle">
+              <a href="chamados.php" class="dropdown-toggle">
                 <i class="material-icons">desktop_mac</i><!-- <span class="badge bubble-only"></span> -->
               </a>
             </li>
@@ -135,11 +145,23 @@ $anos =floor(($tempo)/(60*60*24*365));
                 </a>
               </li>
               <li class="quicklinks"> <span class="h-seperate"></span></li>
-              <li class="quicklinks">
-                <a href="dados.php">
-                  <i class="material-icons">apps</i>
-                </a>
-              </li>
+              <?php
+                if ($result4['TIPO_USUARIO'] == 'ADM') {
+                  echo '
+                  <li class="quicklinks">
+                    <a href="dados.php">
+                      <i class="material-icons">apps</i>
+                    </a>
+                  </li>';
+                } elseif ($result4['MURAL'] == 'S') {
+                  echo '
+                  <li class="quicklinks">
+                    <a href="dados.php">
+                      <i class="material-icons">apps</i>
+                    </a>
+                  </li>';
+                }                  
+              ?>
               <!--<li class="m-r-10 input-prepend inside search-form no-boarder">
                 <span class="add-on"> <i class="material-icons">search</i></span>
                 <input name="" type="text" class="no-boarder " placeholder="Buscar" style="width:250px;">
