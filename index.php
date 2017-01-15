@@ -321,7 +321,7 @@ $result3=$stmt3->fetchAll(PDO::FETCH_ASSOC);
                     foreach ($result2 as $key2 => $value) {
                       echo '                      
                       <div class="col-md-4  col-sm-4 m-b-10" data-aspect-ratio="true">
-                        <a href="post.php?id='.$result2[$key2]['ID'].'">
+                        <a href="data/post.php?id='.$result2[$key2]['ID'].'">
                           <div class="live-tile slide ha">
                             <div class="slide-front ha tiles green ">
                               <div class="overlayer bottom-left fullwidth">
@@ -359,7 +359,7 @@ $result3=$stmt3->fetchAll(PDO::FETCH_ASSOC);
                    <?php
                      foreach ($result3 as $key3 => $value) {
                        echo '
-                       <a href="post.php?id='.$result3[$key3]['ID'].'">
+                       <a href="data/post.php?id='.$result3[$key3]['ID'].'">
                         <div class="notification-messages info">
                           <div class="user-profile">
                             <img alt=""  width="35" height="35" src="data:image/jpeg;base64,'.base64_encode(stream_get_contents($result3[$key3]['IMG_AUTOR'])).'">
