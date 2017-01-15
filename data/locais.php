@@ -39,6 +39,8 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
     <link href="../assets/plugins/bootstrapv3/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css" />
     <link href="../assets/plugins/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css" />
     <link href="../assets/plugins/animate.min.css" rel="stylesheet" type="text/css" />
+    <link href="../assets/plugins/jquery-datatable/css/jquery.dataTables.css" rel="stylesheet" type="text/css" />
+    <link href="../assets/plugins/datatables-responsive/css/datatables.responsive.css" rel="stylesheet" type="text/css" media="screen" />
     <!-- <link href="../assets/plugins/jquery-scrollbar/jquery.scrollbar.css" rel="stylesheet" type="text/css" /> -->
     <!-- END PLUGIN CSS -->
     <!-- BEGIN CORE CSS FRAMEWORK -->
@@ -216,7 +218,7 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
               <a href="../index.php"><i class="material-icons" title="Home">home</i> <span class="title">Home</span> <span class="title"></span> </a>
             </li>
             <li class=""> 
-              <a href="https://aniger.tomticket.com/helpdesk/login?"><i class="material-icons" title="Chamados">desktop_mac</i> <span class="title">Chamados</span></a>
+              <a href="../chamados.php"><i class="material-icons" title="Chamados">desktop_mac</i> <span class="title">Chamados</span></a>
             </li>
             <li class=""> 
               <a href="../ramais.php"><i class="material-icons" title="Ramais">phone_forwarded</i> <span class="title">Ramais</span></a>
@@ -284,7 +286,7 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
                 </div>
                 <div class="grid-body no-border">
                   <h3><i class="fa fa-globe fa-1x"></i><span class="semi-bold">&nbsp; Locais</span></h3>
-                  <table class="table no-more-tables">
+                  <table class="table table-hover" >
                     <thead>
                       <tr>                        
                         <th style="width:20%">Local</th>
@@ -509,10 +511,38 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
     <script src="../assets/plugins/jquery-numberAnimate/jquery.animateNumbers.js" type="text/javascript"></script>
     <script src="../assets/plugins/jquery-validation/js/jquery.validate.min.js" type="text/javascript"></script>
     <script src="../assets/plugins/bootstrap-select2/select2.min.js" type="text/javascript"></script>
+    <script src="../assets/plugins/jquery-datatable/js/jquery.dataTables.min.js" type="text/javascript"></script>
+    <script src="../assets/plugins/jquery-datatable/extra/js/dataTables.tableTools.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="../assets/plugins/datatables-responsive/js/datatables.responsive.js"></script>
+    <script type="text/javascript" src="../assets/plugins/datatables-responsive/js/lodash.min.js"></script>
     <!-- END CORE JS DEPENDECENCIES-->
+    <!--<script type="text/javascript">
+      $(document).ready(function() {
+        $('#tLocais').DataTable( {
+          "paging":   false
+          "oLanguage": {
+            "sLengthMenu": "_MENU_",
+            "sZeroRecords": "Nenhum registro encontrado",
+            "sInfo": " Mostrando _START_ / _END_ de _TOTAL_ registro(s)",
+            "sInfoEmpty": "Mostrando 0 / 0 de 0 registros",
+            "sInfoFiltered": "(filtrado de _MAX_ registros)",
+            "sSearch": "Pesquisar: ",
+            "sEmptyTable": "Nenhum registro encontrado",
+            "oPaginate": {
+                "sFirst": "Início",
+                "sPrevious": "Anterior ",
+                "sNext": "Próximo ",
+                "sLast": "Último"
+            }
+        }
+        
+    } );
+} );
+    </script>-->
     <!-- BEGIN CORE TEMPLATE JS -->
     <script src="../webarch/js/webarch.js" type="text/javascript"></script>
     <script src="../assets/js/chat.js" type="text/javascript"></script>
+    <script src="../assets/js/datatables.js" type="text/javascript"></script>
     <!-- END CORE TEMPLATE JS -->
   </body>
 </html>

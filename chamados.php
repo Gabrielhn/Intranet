@@ -1,4 +1,6 @@
 <?php
+setlocale(LC_ALL, 'pt_BR', 'pt_BR.utf-8', 'pt_BR.utf-8', 'portuguese');
+date_default_timezone_set('America/Sao_Paulo');
 require_once("assets/php/class/class.seg.php");
 session_start();
 proteger();
@@ -9,6 +11,8 @@ $id=$_SESSION['usuarioId'];
 $conn= new \PDO("oci:host=$host;dbname=$service","INTRANET","ifnefy6b9");
 
 $query1 = "SELECT USR.EMAIL, USR.IMG_PERFIL, IMG.IMAGEM FROM IN_USUARIOS USR, IN_IMAGENS IMG WHERE USR.IMG_PERFIL = IMG.ID AND USR.ID =:id";
+$query2 = "SELECT POST.*, MUR.DESCRICAO AS TIT_MURAL, SETO.LABEL, USU.NOME || ' ' || USU.SOBRENOME AS AUTOR, USU.IMG_PERFIL, IMG.IMAGEM AS IMG_AUTOR FROM IN_MURAL_POST POST, IN_USUARIOS USU, IN_IMAGENS IMG, IN_MURAL MUR, IN_SETORES SETO WHERE POST.USUARIO = USU.EMAIL AND USU.IMG_PERFIL  = IMG.ID AND POST.MURAL = MUR.ID AND MUR.SETOR = SETO.SIGLA AND POST.MURAL = '2' AND ROWNUM <=3 ORDER BY POST.ID DESC";
+$query3 = "SELECT POST.*, MUR.DESCRICAO AS TIT_MURAL, SETO.LABEL, USU.NOME || ' ' || USU.SOBRENOME AS AUTOR, USU.IMG_PERFIL, IMG.IMAGEM AS IMG_AUTOR FROM IN_MURAL_POST POST, IN_USUARIOS USU, IN_IMAGENS IMG, IN_MURAL MUR, IN_SETORES SETO WHERE POST.USUARIO = USU.EMAIL AND USU.IMG_PERFIL  = IMG.ID AND POST.MURAL = MUR.ID AND MUR.SETOR = SETO.SIGLA AND POST.MURAL = '3' AND ROWNUM <=3 ORDER BY POST.ID DESC";
 
 //#1
 $stmt1 = $conn->prepare($query1);
@@ -16,12 +20,22 @@ $stmt1->bindValue(':id',$id);
 $stmt1->execute();
 $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
 
+//#2
+$stmt2 = $conn->prepare($query2);
+$stmt2->execute();
+$result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
+
+//#3
+$stmt3 = $conn->prepare($query3);
+$stmt3->execute();
+$result3=$stmt3->fetchAll(PDO::FETCH_ASSOC);
+
 ?>
 
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Aniger - Veículos</title>
+    <title>Aniger - Chamados</title>
     <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
@@ -42,7 +56,7 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
     <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon">
     <link rel="icon" href="assets/img/favicon.ico" type="image/x-icon">
   </head>
-  <body class="">
+  <body class="hide-top-content-header">
     <!-- BEGIN HEADER -->
     <div class="header navbar navbar-inverse ">
       <!-- BEGIN TOP NAVIGATION BAR -->
@@ -50,7 +64,7 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
         <div class="header-seperation">
           <ul class="nav pull-left notifcation-center visible-xs visible-sm">
             <li class="dropdown">
-              <a href="#main-menu" data-webarch="toggle-left-side">
+              <a href="#main-menu" id="foo" data-webarch="toggle-left-side">
                 <i class="material-icons">menu</i>
               </a>
             </li>
@@ -62,12 +76,12 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
           <!-- END LOGO -->
           <ul class="nav pull-right notifcation-center">
             <li class="dropdown hidden-xs hidden-sm">
-              <a href="index.php" class="dropdown-toggle active" data-toggle="">
+              <a href="index.php" class="dropdown-toggle active">
                 <i class="material-icons">home</i>
               </a>
             </li>
             <li class="dropdown hidden-xs hidden-sm">
-              <a href="https://aniger.tomticket.com/helpdesk/login?" class="dropdown-toggle">
+              <a href="chamados.php" class="dropdown-toggle">
                 <i class="material-icons">desktop_mac</i><!-- <span class="badge bubble-only"></span> -->
               </a>
             </li>
@@ -163,7 +177,7 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
                   </li> -->
                   <li class="divider"></li>
                   <li>
-                    <a href="login.php"><i class="material-icons">power_settings_new</i>&nbsp;&nbsp;Sair</a>
+                    <a href="logout.php"><i class="material-icons">power_settings_new</i>&nbsp;&nbsp;Sair</a>
                   </li>
                 </ul>
               </li>
@@ -216,7 +230,7 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
             <li class=""> 
               <a href="index.php"><i class="material-icons" title="Home">home</i> <span class="title">Home</span> <span class="title"></span> </a>
             </li>
-            <li class=""> 
+            <li class="start active"> 
               <a href="chamados.php"><i class="material-icons" title="Chamados">desktop_mac</i> <span class="title">Chamados</span></a>
             </li>
             <li class=""> 
@@ -225,10 +239,10 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
             <li class=""> 
               <a href="cadastros.php"><i class="material-icons" title="Cadastros">library_add</i> <span class="title">Cadastros</span></a>
             </li>
-            <li class="start active"> 
+            <li class=""> 
               <a href="solicitacoes.php"><i class="material-icons" title="Solicitações">assignment</i> <span class="title">Solicitações</span></a>
             </li>
-          </ul>          
+          </ul>
           <div class="clearfix"></div>
           <!-- END SIDEBAR MENU -->
         </div>
@@ -236,76 +250,48 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
       <a href="#" class="scrollup">Scroll</a>
       <div class="footer-widget">
         <div class="pull-left">
-          <i class="material-icons">alarm</i> 
+          <i class="material-icons">alarm</i>
           <iframe src="http://free.timeanddate.com/clock/i5hp9yxv/n595/tlbr5/fn17/fc555/tc22262e/pa0/th1" frameborder="0" width="66" height="14"></iframe>
         </div>
         <div class="pull-right">
           <!-- IMPLEMENTAR LOCKSCREEN -->
-          <a href="login.php"><i class="material-icons">power_settings_new</i></a>
+          <a href="logout.php"><i class="material-icons">power_settings_new</i></a>
         </div>
       </div>
       <!-- END SIDEBAR -->
       <!-- BEGIN PAGE CONTAINER-->
       <div class="page-content">
         <div class="content">
-        <ul class="breadcrumb">
+        <!--<ul class="breadcrumb">
             <li>
               <p>VOCÊ ESTÁ EM </p>
             </li>
-            <li><a href="index.php">Home</a></li>
-            <li><a href="solicitacoes.php">Solicitações</a></li>
-            <li><a href="#.php" class="active">Veículos</a></li>
-          </ul>
+            <li>
+              <a href="index.php" class="">Home</a> 
+            </li>
+            <li>
+              <a href="#" class="active">Chamados</a> 
+            </li>
+          </ul>-->
           <!-- BEGIN PAGE TITLE -->
-          <div class="page-title"> <i class="fa fa-car fa-lg fa-fw" aria-hidden="true"></i>
-            <h3>Veículos </h3>
-          </div>
+          <!--<div class="page-title"> <i class="material-icons">home</i>
+            <h3>Chamados </h3>
+          </div>-->
           <!-- END PAGE TITLE -->
-          <!-- CONTEÚDO -->
-          
+          <!-- CONTEUDO -->
+                    
           <div class="row">
-            <div class="col-md-6">
-              <div class="grid simple">
-                <div class="grid-title no-border">
-                  <h4>Informações <span class="semi-bold"></span></h4>
-                  <div class="tools">
-                    <a href="javascript:;" class="collapse"></a>
-                  </div>
-                </div>
-                <div class="grid-body no-border">
-                  <br>
-                  <div class="row">
-                    <form>
-                      <div class="col-md-12 col-sm-12 col-xs-12">
-                        <div class="form-group">
-                          <!-- <label class="form-label">Solicitante</label> -->
-                          <div class="controls">
-                            <input type="text" placeholder="Solicitante" class="form-control input-sm">
-                          </div>
-                        </div>
-                        <div class="form-group">
-                          <!-- <label class="form-label">Email</label> -->
-                          <div class="controls">
-                            <input type="text" placeholder="Email" class="form-control input-sm">
-                          </div>
-                        </div>
-                        
-                        <div class="form-actions">
-                          <div class="pull-right">
-                            <button type="submit" class="btn btn-success btn-cons-md">Enviar</button>
-                            <button type="reset" class="btn btn-white btn-cons-md" value="Reset">Limpar</button>
-                          </div>
-                        </div>
-                      </div>
-                    </form>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+            
 
-          
-          <!-- FIM CONTEÚDO -->
+            <iframe src="https://aniger.tomticket.com" style="border:none;width:100%;height:1000px;"></iframe>
+                                
+
+
+        </div>             
+
+
+
+          <!-- FIM CONTEUDO -->
         </div>
       </div>
       <!-- END PAGE CONTAINER -->
@@ -499,6 +485,11 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
     <script src="assets/plugins/jquery-numberAnimate/jquery.animateNumbers.js" type="text/javascript"></script>
     <script src="assets/plugins/jquery-validation/js/jquery.validate.min.js" type="text/javascript"></script>
     <script src="assets/plugins/bootstrap-select2/select2.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+     $(document).ready(function() {
+    $("#foo").trigger('click');
+});
+    </script>
     <!-- END CORE JS DEPENDECENCIES-->
     <!-- BEGIN CORE TEMPLATE JS -->
     <script src="webarch/js/webarch.js" type="text/javascript"></script>

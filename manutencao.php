@@ -217,7 +217,7 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
               <a href="index.php"><i class="material-icons" title="Home">home</i> <span class="title">Home</span> <span class="title"></span> </a>
             </li>
             <li class=""> 
-              <a href="https://aniger.tomticket.com/helpdesk/login?"><i class="material-icons" title="Chamados">desktop_mac</i> <span class="title">Chamados</span></a>
+              <a href="chamados.php"><i class="material-icons" title="Chamados">desktop_mac</i> <span class="title">Chamados</span></a>
             </li>
             <li class=""> 
               <a href="ramais.php"><i class="material-icons" title="Ramais">phone_forwarded</i> <span class="title">Ramais</span></a>
@@ -228,24 +228,7 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
             <li class="start active"> 
               <a href="solicitacoes.php"><i class="material-icons" title="Solicitações">assignment</i> <span class="title">Solicitações</span></a>
             </li>
-          </ul>
-          <!--<div class="side-bar-widgets">
-            <p class="menu-title sm">FOLDER <span class="pull-right"><a href="#" class="create-folder"> <i class="material-icons">add</i></a></span></p>
-            <ul class="folders">
-              <li>
-                <a href="#">
-                  <div class="status-icon green"></div>
-                  My quick tasks </a>
-              </li>
-            </ul>
-            <p class="menu-title">PROJECTS </p>
-            <div class="status-widget">
-              <div class="status-widget-wrapper">
-                <div class="title">Freelancer<a href="#" class="remove-widget"><i class="material-icons">close</i></a></div>
-                <p>Redesign home page</p>
-              </div>
-            </div>
-          </div>-->
+          </ul>          
           <div class="clearfix"></div>
           <!-- END SIDEBAR MENU -->
         </div>

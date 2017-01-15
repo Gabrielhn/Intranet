@@ -10,8 +10,18 @@ $service="//10.0.0.2:1521/orcl";
 $id=$_SESSION['usuarioId'];
 $conn= new \PDO("oci:host=$host;dbname=$service","INTRANET","ifnefy6b9");
 
-$query1 = "SELECT USR.EMAIL, USR.IMG_PERFIL, IMG.IMAGEM FROM IN_USUARIOS USR, IN_IMAGENS IMG WHERE USR.IMG_PERFIL = IMG.ID AND USR.ID =:id";
-$query2 = "SELECT POST.*, MUR.DESCRICAO AS TIT_MURAL, SETO.LABEL, USU.NOME || ' ' || USU.SOBRENOME AS AUTOR, USU.IMG_PERFIL, IMG.IMAGEM AS IMG_AUTOR FROM IN_MURAL_POST POST, IN_USUARIOS USU, IN_IMAGENS IMG, IN_MURAL MUR, IN_SETORES SETO WHERE POST.USUARIO = USU.EMAIL AND USU.IMG_PERFIL  = IMG.ID AND POST.MURAL = MUR.ID AND MUR.SETOR = SETO.SIGLA AND POST.MURAL = '2' AND ROWNUM <=3 ORDER BY POST.ID DESC";
+$query1 = "SELECT USR.EMAIL, USR.TIPO_USUARIO, USR.SETOR, USR.IMG_PERFIL, IMG.IMAGEM,
+    CASE
+     WHEN USR.SETOR IN (SELECT SIGLA FROM IN_SETORES SETO, IN_MURAL MUR WHERE MUR.SETOR = SETO.SIGLA)
+     THEN 'S'
+     ELSE 'N'
+     END AS MURAL
+FROM 
+    IN_USUARIOS USR, 
+    IN_IMAGENS IMG 
+WHERE 
+    USR.IMG_PERFIL = IMG.ID AND USR.ID =:id";
+$query2 = "SELECT POST.*, IMG.IMAGEM AS IMG_MURAL , MUR.DESCRICAO AS TIT_MURAL, SETO.LABEL, USU.NOME || ' ' || USU.SOBRENOME AS AUTOR FROM IN_MURAL_POST POST, IN_USUARIOS USU, IN_IMAGENS IMG, IN_MURAL MUR, IN_SETORES SETO WHERE POST.USUARIO = USU.EMAIL AND POST.IMG_POST = IMG.ID AND POST.MURAL = MUR.ID AND MUR.SETOR = SETO.SIGLA AND POST.MURAL = '2' AND ROWNUM <=3 ORDER BY POST.ID DESC";
 $query3 = "SELECT POST.*, MUR.DESCRICAO AS TIT_MURAL, SETO.LABEL, USU.NOME || ' ' || USU.SOBRENOME AS AUTOR, USU.IMG_PERFIL, IMG.IMAGEM AS IMG_AUTOR FROM IN_MURAL_POST POST, IN_USUARIOS USU, IN_IMAGENS IMG, IN_MURAL MUR, IN_SETORES SETO WHERE POST.USUARIO = USU.EMAIL AND USU.IMG_PERFIL  = IMG.ID AND POST.MURAL = MUR.ID AND MUR.SETOR = SETO.SIGLA AND POST.MURAL = '3' AND ROWNUM <=3 ORDER BY POST.ID DESC";
 
 //#1
@@ -112,15 +122,29 @@ $result3=$stmt3->fetchAll(PDO::FETCH_ASSOC);
               <li class="quicklinks">
                 <a href="#" class="" id="my-task-list" data-placement="bottom" data-content='' data-toggle="dropdown" data-original-title="Novidades">
                   <i class="material-icons">notifications_none</i>
-                  <span class="badge badge-important bubble-on  ly"></span>
+                  <span class="badge badge-important bubble-on ly"></span>
                 </a>
               </li>
               <li class="quicklinks"> <span class="h-seperate"></span></li>
-              <li class="quicklinks">
-                <a href="dados.php">
-                  <i class="material-icons">apps</i>
-                </a>
-              </li>
+              <?php
+                if ($result1['TIPO_USUARIO'] == 'ADM') {
+                  echo '
+                  <li class="quicklinks">
+                    <a href="dados.php">
+                      <i class="material-icons">apps</i>
+                    </a>
+                  </li>';
+                } elseif ($result1['MURAL'] == 'S') {
+                  echo '
+                  <li class="quicklinks">
+                    <a href="dados.php">
+                      <i class="material-icons">apps</i>
+                    </a>
+                  </li>';
+                }
+                  
+
+              ?>
               <!--<li class="m-r-10 input-prepend inside search-form no-boarder">
                 <span class="add-on"> <i class="material-icons">search</i></span>
                 <input name="" type="text" class="no-boarder " placeholder="Buscar" style="width:250px;">
@@ -167,14 +191,14 @@ $result3=$stmt3->fetchAll(PDO::FETCH_ASSOC);
                   <li class="">
                     <?php echo '<a href="perfil.php?id='.$id.'" title="Acesse seu perfil"><i class="fa fa-male fa-fw"></i>&nbsp;&nbsp;Meu perfil</a>';?>
                   </li>
-                  <!-- <li class="disabled">
+                   <!--<li class="disabled">
                     <a href="calender.php" title="Recurso ainda não implementado.">Calendário</a>
-                  </li> -->
-                  <!-- <li>
+                  </li>
+                   <li>
                     <a href="email.php"> My Inbox&nbsp;&nbsp;
                       <span class="badge badge-important animated bounceIn">2</span>
                     </a>
-                  </li> -->
+                  </li>-->
                   <li class="divider"></li>
                   <li>
                     <a href="logout.php"><i class="material-icons">power_settings_new</i>&nbsp;&nbsp;Sair</a>
@@ -231,7 +255,7 @@ $result3=$stmt3->fetchAll(PDO::FETCH_ASSOC);
               <a href="index.php"><i class="material-icons" title="Home">home</i> <span class="title">Home</span> <span class="title"></span> </a>
             </li>
             <li class=""> 
-              <a href="https://aniger.tomticket.com/helpdesk/login?"><i class="material-icons" title="Chamados">desktop_mac</i> <span class="title">Chamados</span></a>
+              <a href="chamados.php"><i class="material-icons" title="Chamados">desktop_mac</i> <span class="title">Chamados</span></a>
             </li>
             <li class=""> 
               <a href="ramais.php"><i class="material-icons" title="Ramais">phone_forwarded</i> <span class="title">Ramais</span></a>
@@ -242,63 +266,7 @@ $result3=$stmt3->fetchAll(PDO::FETCH_ASSOC);
             <li class=""> 
               <a href="solicitacoes.php"><i class="material-icons" title="Solicitações">assignment</i> <span class="title">Solicitações</span></a>
             </li>
-            <!--<li class="">
-              <a href="#"> <i class="material-icons">email</i> <span class="title">Link</span> <span class=" badge badge-disable pull-right ">203</span>
-              </a>
-            </li>
-            <li class="">
-              <a href="javascript:;"> <i class="material-icons">more_horiz</i> <span class="title">Link</span> <span class=" arrow"></span> </a>
-              <ul class="sub-menu">
-                <li> <a href="javascript:;"> Level 1 </a> </li>
-                <li>
-                  <a href="javascript:;"> <span class="title">Level 2</span> <span class=" arrow"></span> </a>
-                  <ul class="sub-menu">
-                    <li> <a href="javascript:;"> Sub Menu </a> </li>
-                    <li> <a href="ujavascript:;"> Sub Menu </a> </li>
-                  </ul>
-                </li>
-              </ul>
-            </li>-->
-            <li class="hidden-lg hidden-md hidden-xs" id="more-widgets">
-              <a href="javascript:;"> <i class="material-icons"></i></a>
-              <ul class="sub-menu">
-                <li class="side-bar-widgets">
-                  <p class="menu-title sm">FOLDER <span class="pull-right"><a href="#" class="create-folder"><i class="material-icons">add</i></a></span></p>
-                  <ul class="folders">
-                    <li>
-                      <a href="#">
-                        <div class="status-icon green"></div>
-                        My quick tasks </a>
-                    </li>
-                  </ul>
-                  <p class="menu-title">PROJECTS </p>
-                  <div class="status-widget">
-                    <div class="status-widget-wrapper">
-                      <div class="title">Freelancer<a href="#" class="remove-widget"><i class="material-icons">close</i></a></div>
-                      <p>Redesign home page</p>
-                    </div>
-                  </div>
-                </li>
-              </ul>
-            </li>
           </ul>
-          <!--<div class="side-bar-widgets">
-            <p class="menu-title sm">FOLDER <span class="pull-right"><a href="#" class="create-folder"> <i class="material-icons">add</i></a></span></p>
-            <ul class="folders">
-              <li>
-                <a href="#">
-                  <div class="status-icon green"></div>
-                  My quick tasks </a>
-              </li>
-            </ul>
-            <p class="menu-title">PROJECTS </p>
-            <div class="status-widget">
-              <div class="status-widget-wrapper">
-                <div class="title">Freelancer<a href="#" class="remove-widget"><i class="material-icons">close</i></a></div>
-                <p>Redesign home page</p>
-              </div>
-            </div>
-          </div>-->
           <div class="clearfix"></div>
           <!-- END SIDEBAR MENU -->
         </div>
@@ -317,7 +285,7 @@ $result3=$stmt3->fetchAll(PDO::FETCH_ASSOC);
       <!-- END SIDEBAR -->
       <!-- BEGIN PAGE CONTAINER-->
       <div class="page-content">
-        <div class="content">
+        <div class="content"  style="padding:0, 0, 0, 0;">
         <ul class="breadcrumb">
             <li>
               <p>VOCÊ ESTÁ EM </p>
@@ -325,82 +293,96 @@ $result3=$stmt3->fetchAll(PDO::FETCH_ASSOC);
             <li><a href="#" class="active">Home</a> </li>
           </ul>
           <!-- BEGIN PAGE TITLE -->
-          <div class="page-title"> <i class="material-icons">home</i>
+          <!--<div class="page-title"> <i class="material-icons">home</i>
             <h3>Home </h3>
-          </div>
+          </div>-->
           <!-- END PAGE TITLE -->
           <!-- CONTEUDO -->
                     
           <div class="row">
-            <div class="col-md-6 col-sm-6">
-              <div class="grid simple ">
-                <div class="grid-title no-border">
-                  <div class="tools">                                      
-                  </div>
-                </div>
-                <div class="grid-body no-border">
-                  <h4><i class="fa fa-newspaper-o fa-1x"></i><span class="semi-bold">&nbsp; <?php echo $result3[0]['TIT_MURAL']?></span><div class="pull-right"><span class="label label-rh">RH</span></div></h4>
-                  <?php
-                    foreach ($result3 as $key3 => $value) {
-                      echo '
-                      <div class="notification-messages info">
-                        <div class="user-profile">
-                          <img alt=""  width="35" height="35" src="data:image/jpeg;base64,'.base64_encode(stream_get_contents($result3[$key3]['IMG_AUTOR'])).'">
-                        </div>
-                        <div class="message-wrapper">
-                          <div class="heading">
-                            '.$result3[$key3]['ASSUNTO'].' <div class="date">por '.$result3[$key3]['AUTOR'].'</div>
-                          </div>
-                          <div class="description">
-                            '.$result3[$key3]['CONTEUDO'].'
-                          </div>
-                          <div class="date pull-right">
-                            '.strftime('%A, %d de %B de %Y', strtotime($result3[$key3]['INCLUSAO'])).'
-                          </div>
-                        </div>
-                        <div class="clearfix"></div>
-                      </div>';
-                    }
-                  ?>                                   
-                </div>
-              </div>
-            </div>
 
-            <div class="col-md-6 col-sm-6">
+          <!--#1-->
+            <div class="col-md-12 col-sm-12">
               <div class="grid simple ">
                 <div class="grid-title no-border">
-                  <div class="tools">                                      
-                  </div>
+                  <div class="tools"></div>
                 </div>
                 <div class="grid-body no-border">
-                  <h4><i class="fa fa-newspaper-o fa-1x"></i><span class="semi-bold">&nbsp; <?php echo $result2[0]['TIT_MURAL'] ?></span><div class="pull-right"><span class="label label-mkt">MKT</span></div></h4>
+                  <div class="col-md-12">  
+                    <h4><i class="fa fa-newspaper-o fa-1x"></i><span class="semi-bold">&nbsp; <?php echo $result2[0]['TIT_MURAL'] ?></span><div class="pull-right"><span class="label label-mkt">MKT</span></div></h4>
+                  </div>
+                  <!--DESTAQUE-->
+                  <div class="col-md-12 p-b-10 m-b-10">
+                    <a href="#">
+                      <img src="assets/img/others/banner1_2.png" alt="" class="image-responsive-width xs-image-responsive-width lazy">
+                    </a>
+                  </div>
+                  <!--NOTICIAS-->
                   <?php
                     foreach ($result2 as $key2 => $value) {
-                      echo '
-                      <div class="notification-messages info">
-                        <div class="user-profile">
-                          <img alt=""  width="35" height="35" src="data:image/jpeg;base64,'.base64_encode(stream_get_contents($result2[$key2]['IMG_AUTOR'])).'">
+                      echo '                      
+                      <div class="col-md-4  col-sm-4 m-b-10" data-aspect-ratio="true">
+                        <a href="post.php?id='.$result2[$key2]['ID'].'">
+                          <div class="live-tile slide ha">
+                            <div class="slide-front ha tiles green ">
+                              <div class="overlayer bottom-left fullwidth">
+                                <div class="overlayer-wrapper">
+                                  <div class="tiles gradient-black p-l-20 p-r-10 p-b-20 p-t-20">
+                                    <h4 class="text-white semi-bold no-margin">'.$result2[$key2]['ASSUNTO'].'</h4>
+                                    <div class="muted">'.$result2[$key2]['AUTOR'].'</div>
+                                    <div class="preview-wrapper pull-right"><i class="icon-custom-up "></i> Leia mais...</p></div>                            
+                                  </div>
+                                </div>
+                              </div>
+                              <img src="data:image/jpeg;base64,'.base64_encode(stream_get_contents($result2[$key2]['IMG_MURAL'])).'" alt="" class="image-responsive-width xs-image-responsive-width lazy> </div>
+                            <div class="slide-back ha tiles white">                                                  
+                            </div>
+                          </div>
                         </div>
-                        <div class="message-wrapper">
-                          <div class="heading">
-                            '.$result2[$key2]['ASSUNTO'].' <div class="date">por '.$result2[$key2]['AUTOR'].'</div>
-                          </div>
-                          <div class="description">
-                            '.$result2[$key2]['CONTEUDO'].'
-                          </div>
-                          <div class="date pull-right">
-                            '.strftime('%A, %d de %B de %Y', strtotime($result2[$key2]['INCLUSAO'])).'
-                          </div>
-                        </div>
-                        <div class="clearfix"></div>
-                      </div>';
+                      </a>';
                     }
                   ?>                  
                 </div>
               </div>
             </div>
 
-          <div class="col-md-4 col-sm-6">
+          <!--#2-->            
+             <div class="col-md-6 col-sm-6">
+               <div class="grid simple ">
+                 <div class="grid-title no-border">
+                   <div class="tools">                                      
+                   </div>
+                 </div>
+                 <div class="grid-body no-border">
+                   <h4><i class="fa fa-newspaper-o fa-1x"></i><span class="semi-bold">&nbsp; <?php echo $result3[0]['TIT_MURAL']?></span><div class="pull-right"><span class="label label-rh">RH</span></div></h4>
+                   <?php
+                     foreach ($result3 as $key3 => $value) {
+                       echo '
+                       <div class="notification-messages info">
+                         <div class="user-profile">
+                           <img alt=""  width="35" height="35" src="data:image/jpeg;base64,'.base64_encode(stream_get_contents($result3[$key3]['IMG_AUTOR'])).'">
+                         </div>
+                         <div class="message-wrapper">
+                           <div class="heading">
+                             '.$result3[$key3]['ASSUNTO'].' <div class="date">por '.$result3[$key3]['AUTOR'].'</div>
+                           </div>
+                           <div class="description">
+                             '.$result3[$key3]['CONTEUDO'].'
+                           </div>
+                           <div class="date pull-right">
+                             '.strftime('%A, %d de %B de %Y', strtotime($result3[$key3]['INCLUSAO'])).'
+                           </div>
+                         </div>
+                         <div class="clearfix"></div>
+                       </div>';
+                     }
+                   ?>                                   
+                 </div>
+               </div>
+             </div>        
+
+          <!--#3-->
+          <div class="col-md-3 col-sm-6">
               <div class="grid simple ">
                 <div class="grid-title no-border">
                   <div class="tools">                                      
@@ -415,12 +397,16 @@ $result3=$stmt3->fetchAll(PDO::FETCH_ASSOC);
                   <br/>&nbsp;
                   <br/>&nbsp;
                   <br/>&nbsp;
-                  <br/>&nbsp;                               
+                  <br/>&nbsp;
+                  <br/>&nbsp;
+                  <br/>&nbsp;
+                  <br/>&nbsp;                                  
                 </div>
               </div>
             </div>
 
-            <div class="col-md-4 col-sm-6">
+          <!--#4-->
+            <div class="col-md-3 col-sm-6">
               <div class="grid simple ">
                 <div class="grid-title no-border">
                   <div class="tools">                                      
@@ -435,197 +421,21 @@ $result3=$stmt3->fetchAll(PDO::FETCH_ASSOC);
                   <br/>&nbsp;
                   <br/>&nbsp;
                   <br/>&nbsp;
-                  <br/>&nbsp;                               
+                  <br/>&nbsp;
+                  <br/>&nbsp;
+                  <br/>&nbsp; 
+                  <br/>&nbsp;                                                                                                     
                 </div>
               </div>
             </div>
-
-
+            
+                                
         </div>             
-
-
 
           <!-- FIM CONTEUDO -->
         </div>
       </div>
       <!-- END PAGE CONTAINER -->
-      <!-- BEGIN CHAT -->
-      <div class="chat-window-wrapper">
-        <div id="main-chat-wrapper" class="inner-content">
-          <div class="chat-window-wrapper scroller scrollbar-dynamic" id="chat-users">
-            <!-- BEGIN CHAT HEADER -->
-            <div class="chat-header">
-              <!-- BEGIN CHAT SEARCH BAR -->
-              <div class="pull-left">
-                <input type="text" placeholder="search">
-              </div>
-              <!-- END CHAT SEARCH BAR -->
-              <!-- BEGIN CHAT QUICKLINKS -->
-              <div class="pull-right">
-                <a href="#" class="">
-                  <div class="iconset top-settings-dark"></div>
-                </a>
-              </div>
-              <!-- END CHAT QUICKLINKS -->
-            </div>
-            <!-- END CHAT HEADER -->
-            <!-- BEGIN GROUP WIDGET -->
-            <div class="side-widget">
-              <div class="side-widget-title">group chats</div>
-              <div class="side-widget-content">
-                <div id="groups-list">
-                  <ul class="groups">
-                    <li>
-                      <a href="#">
-                        <div class="status-icon green"></div>Group Chat 1</a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <!-- END GROUP WIDGET -->
-            <!-- BEGIN FAVORITES WIDGET -->
-            <div class="side-widget">
-              <div class="side-widget-title">favorites</div>
-              <div class="side-widget-content">
-                <!-- BEGIN SAMPLE CHAT -->
-                <div class="user-details-wrapper active" data-chat-status="online" data-chat-user-pic="assets/img/profiles/d.jpg" data-chat-user-pic-retina="assets/img/profiles/d2x.jpg" data-user-name="Jane Smith">
-                  <!-- BEGIN PROFILE PIC -->
-                  <div class="user-profile">
-                    <img src="assets/img/profiles/d.jpg" alt="" data-src="assets/img/profiles/d.jpg" data-src-retina="assets/img/profiles/d2x.jpg" width="35" height="35">
-                  </div>
-                  <!-- END PROFILE PIC -->
-                  <!-- BEGIN MESSAGE -->
-                  <div class="user-details">
-                    <div class="user-name">Jane Smith</div>
-                    <div class="user-more">Message...</div>
-                  </div>
-                  <!-- END MESSAGE -->
-                  <!-- BEGIN MESSAGES BADGE -->
-                  <div class="user-details-status-wrapper">
-                    <span class="badge badge-important">3</span>
-                  </div>
-                  <!-- END MESSAGES BADGE -->
-                  <!-- BEGIN STATUS -->
-                  <div class="user-details-count-wrapper">
-                    <div class="status-icon green"></div>
-                  </div>
-                  <!-- END STATUS -->
-                  <div class="clearfix"></div>
-                </div>
-                <!-- END SAMPLE CHAT -->
-              </div>
-            </div>
-            <!-- END FAVORITES WIDGET -->
-            <!-- BEGIN MORE FRIENDS WIDGET -->
-            <div class="side-widget">
-              <div class="side-widget-title">more friends</div>
-              <div class="side-widget-content" id="friends-list">
-                <!-- BEGIN SAMPLE CHAT -->
-                <div class="user-details-wrapper" data-chat-status="online" data-chat-user-pic="assets/img/profiles/d.jpg" data-chat-user-pic-retina="assets/img/profiles/d2x.jpg" data-user-name="Jane Smith">
-                  <!-- BEGIN PROFILE PIC -->
-                  <div class="user-profile">
-                    <img src="assets/img/profiles/d.jpg" alt="" data-src="assets/img/profiles/d.jpg" data-src-retina="assets/img/profiles/d2x.jpg" width="35" height="35">
-                  </div>
-                  <!-- END PROFILE PIC -->
-                  <!-- BEGIN MESSAGE -->
-                  <div class="user-details">
-                    <div class="user-name">Jane Smith</div>
-                    <div class="user-more">Message...</div>
-                  </div>
-                  <!-- END MESSAGE -->
-                  <!-- BEGIN MESSAGES BADGE -->
-                  <div class="user-details-status-wrapper">
-                    <span class="badge badge-important">3</span>
-                  </div>
-                  <!-- END MESSAGES BADGE -->
-                  <!-- BEGIN STATUS -->
-                  <div class="user-details-count-wrapper">
-                    <div class="status-icon green"></div>
-                  </div>
-                  <!-- END STATUS -->
-                  <div class="clearfix"></div>
-                </div>
-                <!-- END SAMPLE CHAT -->
-              </div>
-            </div>
-            <!-- END MORE FRIENDS WIDGET -->
-          </div>
-          <!-- BEGIN DUMMY CHAT CONVERSATION -->
-          <div class="chat-window-wrapper" id="messages-wrapper" style="display:none">
-            <!-- BEGIN CHAT HEADER BAR -->
-            <div class="chat-header">
-              <!-- BEGIN SEARCH BAR -->
-              <div class="pull-left">
-                <input type="text" placeholder="search">
-              </div>
-              <!-- END SEARCH BAR -->
-              <!-- BEGIN CLOSE TOGGLE -->
-              <div class="pull-right">
-                <a href="#" class="">
-                  <div class="iconset top-settings-dark"></div>
-                </a>
-              </div>
-              <!-- END CLOSE TOGGLE -->
-            </div>
-            <div class="clearfix"></div>
-            <!-- END CHAT HEADER BAR -->
-            <!-- BEGIN CHAT BODY -->
-            <div class="chat-messages-header">
-              <div class="status online"></div>
-              <span class="semi-bold">Jane Smith(Typing..)</span>
-              <a href="#" class="chat-back"><i class="icon-custom-cross"></i></a>
-            </div>
-            <!-- BEGIN CHAT MESSAGES CONTAINER -->
-            <div class="chat-messages scrollbar-dynamic clearfix">
-              <!-- BEGIN TIME STAMP EXAMPLE -->
-              <div class="sent_time">Yesterday 11:25pm</div>
-              <!-- END TIME STAMP EXAMPLE -->
-              <!-- BEGIN EXAMPLE CHAT MESSAGE -->
-              <div class="user-details-wrapper">
-                <!-- BEGIN MESSENGER PROFILE -->
-                <div class="user-profile">
-                  <img src="assets/img/profiles/d.jpg" alt="" data-src="assets/img/profiles/d.jpg" data-src-retina="assets/img/profiles/d2x.jpg" width="35" height="35">
-                </div>
-                <!-- END MESSENGER PROFILE -->
-                <!-- BEGIN MESSENGER MESSAGE -->
-                <div class="user-details">
-                  <div class="bubble">Hello, You there?</div>
-                </div>
-                <!-- END MESSENGER MESSAGE -->
-                <div class="clearfix"></div>
-                <!-- BEGIN TIMESTAMP ON CLICK TOGGLE -->
-                <div class="sent_time off">Yesterday 11:25pm</div>
-                <!-- END TIMESTAMP ON CLICK TOGGLE -->
-              </div>
-              <!-- END EXAMPLE CHAT MESSAGE -->
-              <!-- BEGIN TIME STAMP EXAMPLE -->
-              <div class="sent_time">Today 11:25pm</div>
-              <!-- BEGIN TIME STAMP EXAMPLE -->
-              <!-- BEGIN EXAMPLE CHAT MESSAGE (FROM SELF) -->
-              <div class="user-details-wrapper pull-right">
-                <!-- BEGIN MESSENGER MESSAGE -->
-                <div class="user-details">
-                  <div class="bubble sender">Let me know when you free</div>
-                </div>
-                <!-- END MESSENGER MESSAGE -->
-                <div class="clearfix"></div>
-                <!-- BEGIN TIMESTAMP ON CLICK TOGGLE -->
-                <div class="sent_time off">Sent On Tue, 2:45pm</div>
-                <!-- END TIMESTAMP ON CLICK TOGGLE -->
-              </div>
-              <!-- END EXAMPLE CHAT MESSAGE (FROM SELF) -->
-            </div>
-            <!-- END CHAT MESSAGES CONTAINER -->
-          </div>
-          <div class="chat-input-wrapper" style="display:none">
-            <textarea id="chat-message-input" rows="1" placeholder="Type your message"></textarea>
-          </div>
-          <div class="clearfix"></div>
-          <!-- END DUMMY CHAT CONVERSATION -->
-        </div>
-      </div>
-      <!-- END CHAT -->
     </div>
     <!-- END CONTENT -->
     <!-- BEGIN CORE JS FRAMEWORK-->

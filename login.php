@@ -47,7 +47,7 @@
               <form class="animated fadeIn" method="post" action="assets\php\vLogin.php" id="">
                 <div class="row form-row">
                   <div class="col-md-12 col-sm-12" style="padding-right:25px;">
-                    <input class="form-control input-lg" id="login_email" name="login_username" placeholder="E-mail" type="email" style="text-align: center">
+                    <input class="form-control input-lg" id="login_email" name="login_username" placeholder="E-mail" type="email" style="text-align: center" autofocus>
                   </div>
                   <div class="col-md-12 col-sm-12" style="padding-right:25px;">
                     <input class="form-control input-lg" id="login_senha" name="login_pass" placeholder="Senha" type="password" style="text-align: center">
