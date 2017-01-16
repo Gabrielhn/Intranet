@@ -8,6 +8,7 @@ proteger();
 $host="10.0.0.2";
 $service="//10.0.0.2:1521/orcl";
 $id=$_SESSION['usuarioId'];
+$email=$_SESSION['usuarioEmail'];
 $conn= new \PDO("oci:host=$host;dbname=$service","INTRANET","ifnefy6b9");
 
 $query1 = "SELECT USR.EMAIL, USR.TIPO_USUARIO, USR.SETOR, USR.IMG_PERFIL, IMG.IMAGEM,
@@ -21,6 +22,7 @@ FROM
     IN_IMAGENS IMG 
 WHERE 
     USR.IMG_PERFIL = IMG.ID AND USR.ID =:id";
+$query2 = "SELECT USR.NOME || ' ' || USR.SOBRENOME AS AUTOR, MUR.ID AS ID_MURAL, MUR.DESCRICAO AS DESC_MURAL FROM IN_USUARIOS USR, IN_MURAL MUR WHERE USR.SETOR=MUR.SETOR AND USR.ID=:id";
 
 //#1
 $stmt1 = $conn->prepare($query1);
@@ -28,6 +30,13 @@ $stmt1->bindValue(':id',$id);
 $stmt1->execute();
 $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
 $setu=$result1['SETOR'];
+
+//#2
+$stmt2 = $conn->prepare($query2);
+$stmt2->bindValue(':id',$id);
+$stmt2->execute();
+$result2=$stmt2->fetch(PDO::FETCH_ASSOC);
+
 
 
 ?>
@@ -308,7 +317,7 @@ $setu=$result1['SETOR'];
                 <div class="grid-body no-border">
                   <h3><i class="fa fa-commenting-o fa-1x"></i><span class="semi-bold">&nbsp; Nova postagem</span></h3>
                   <div class="form-group col-md-12 col-sm-12 col-xs-12"></div>
-                  <form method="POST" name="postagem" action="">
+                  <form method="post" name="postagem" action="post.I.php">
 
                     <div class="form-group col-md-5 col-sm-5 col-xs-5">
                       <div class="controls">
@@ -317,29 +326,32 @@ $setu=$result1['SETOR'];
                     </div>
 
                     <div class="form-group col-md-12 col-sm-12 col-xs-12 m-b-5">
-                      <textarea id="conteudo" placeholder="Digite o texto ..." class="form-control" rows="10"></textarea>
+                      <textarea id="conteudo" placeholder="Digite o texto ..." class="form-control" rows="10" name="conteudo"></textarea>
                       <hr>
                     </div>
 
                     <div class="form-group col-md-3 col-sm-3 col-xs-3">
                       <div class="controls">
-                        <input type="text" placeholder="Mural" class="form-control input-sm" name="mural"readonly>
+                        <label class="bold">Mural</label>
+                        <input type="text" value="<?php echo '('.$result2['ID_MURAL'].') '.$result2['DESC_MURAL']; ?>" class="form-control input" name="mural" readonly>
                       </div>
                     </div>
 
                     <div class="form-group col-md-3 col-sm-3 col-xs-3">
                       <div class="controls">
-                        <input type="text" placeholder="Autor" class="form-control input-sm" name="autor"readonly>
+                        <label class="bold">Autor</label>
+                        <input type="text" value="<?php echo $result2['AUTOR']; ?>" class="form-control input" name="autor" readonly>
                       </div>
                     </div>
                     
+                    <div class="form-group col-md-12 col-sm-12 col-xs-12"></div>
+
                     <div class="form-actions">
                       <div class="pull-right">
                         <!---->
-                        <button type="button" class="btn btn-info btn-cons-md" data-toggle="modal" data-target="#pModal" value="submit">Criar</button>
+                        <button type="submit" class="btn btn-info btn-cons-md" value="submit"> Enviar</button>
                         <button type="reset" class="btn btn-white btn-cons-md" value="reset">Limpar</button>
-                      </div>
-                      <div class="form-group col-md-12 col-sm-12 col-xs-12"></div>
+                      </div>                      
                     </div>
 
                   </form>
