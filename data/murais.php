@@ -327,8 +327,8 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
                       foreach ($result2 as $key => $value) {
                         echo '
                           <tr>
-                            <td class="v-align-middle">'.$result2[$key]['MURAL'].'</td>
-                            <td class="v-align-middle"><span class="muted">'.$result2[$key]['ASSUNTO'].'</span></td>
+                            <td class="v-align-middle"><span class="muted">'.$result2[$key]['MURAL'].'</span></td>
+                            <td class="v-align-middle">'.$result2[$key]['ASSUNTO'].'</td>
                             <td class="v-align-middle"><span class="muted">'.$result2[$key]['AUTOR'].'</span></td>
                             <td class="v-align-middle"><span class="muted">'.strftime('%A, %d de %B de %Y', strtotime($result2[$key]['INCLUSAO'])).'</span></td>
                             <td class="v-align-middle">

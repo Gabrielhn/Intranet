@@ -333,7 +333,7 @@ $result3=$stmt3->fetchAll(PDO::FETCH_ASSOC);
                                   </div>
                                 </div>
                               </div>
-                              <img src="data:image/jpeg;base64,'.base64_encode(stream_get_contents($result2[$key2]['IMG_MURAL'])).'" alt="" class="image-responsive-width xs-image-responsive-width lazy> </div>
+                              <img src="data:image/jpeg;base64,'.base64_encode(stream_get_contents($result2[$key2]['IMG_MURAL'])).'" alt="" class="image-responsive-width xs-image-responsive-width lazy"> </div>
                             <div class="slide-back ha tiles white">                                                  
                             </div>
                           </div>
@@ -369,7 +369,7 @@ $result3=$stmt3->fetchAll(PDO::FETCH_ASSOC);
                               '.$result3[$key3]['ASSUNTO'].' <div class="date">por '.$result3[$key3]['AUTOR'].'</div>
                             </div>
                             <div class="description">
-                              '.$result3[$key3]['CONTEUDO'].'
+                              Clique para visualizar.
                             </div>
                             <div class="date pull-right">
                               '.strftime('%A, %d de %B de %Y', strtotime($result3[$key3]['INCLUSAO'])).'
@@ -394,17 +394,9 @@ $result3=$stmt3->fetchAll(PDO::FETCH_ASSOC);
                 </div>
                 <div class="grid-body no-border">
                   <h4><i class="fa fa-birthday-cake fa-1x"></i><span class="semi-bold">&nbsp; Aniversários</span></h4>
-                  <br/>&nbsp;
-                  <br/>&nbsp;
-                  <br/>&nbsp;
-                  <br/>&nbsp;
-                  <br/>&nbsp;
-                  <br/>&nbsp;
-                  <br/>&nbsp;
-                  <br/>&nbsp;
-                  <br/>&nbsp;
-                  <br/>&nbsp;
-                  <br/>&nbsp;                                  
+                  <a href="assets/img/janeiro-sul.png" target="blank">
+                    <img src="assets/img/janeiro-sul.png" class="image-responsive-width xs-image-responsive-width lazy"></img>                                  
+                  </a>
                 </div>
               </div>
             </div>

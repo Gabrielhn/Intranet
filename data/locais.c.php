@@ -299,49 +299,38 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
           <div class="row">
             <div class="col-md-12">
               <div class="grid simple ">
-                <div class="grid-title no-border">
-                  <div class="tools">
-                    <a href=""><i class="fa fa-plus fa-lg"></i> </a>                   
-                  </div>
+                <div class="grid-title no-border">                  
                 </div>
                 <div class="grid-body no-border">
-                  <h3><i class="fa fa-globe fa-1x"></i><span class="semi-bold">&nbsp; Locais</span></h3>
-                  <table class="table no-more-tables">
-                    <thead>
-                      <tr>
-                        <th style="width:5%">
-                          <div class="checkbox check-info">
-                            <input id="checkbox10" type="checkbox" value="1" class="checkall">
-                            <label for="checkbox10"></label>
-                          </div>
-                        </th>
-                        <th style="width:30%">Local (PK)</th>
-                        <th style="width:65%">Nome</th>                    
-                        <th style="width:10%">Ações</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <?php
-                      $rr=1;
-                      foreach ($result2 as $key => $value) {
-                        echo '
-                          <tr>
-                            <td class="v-align-middle">
-                              <div class="checkbox check-success">
-                                <input id="checkbox'.$rr.'" type="checkbox" value="1">
-                                <label for="checkbox'.$rr.'"></label>
-                              </div>
-                            </td>
-                            <td class="v-align-middle">'.$result2[$key]['LOCAL'].'</td>
-                            <td class="v-align-middle"><span class="muted">'.$result2[$key]['NOME'].'</span></td>
-                            <td class="v-align-middle"><i class="fa fa-pencil"></i>&nbsp;<i class="fa fa-trash"></i><i>&nbsp;<i class="fa fa-search"></i></td>                                                                   
-                          </tr>
-                          ';
-                        $rr++;
-                      }                        
-                      ?>
-                    </tbody>
-                  </table>
+                  <h3><i class="fa fa-globe fa-1x"></i><span class="semi-bold">&nbsp; Novo local</span></h3>
+                  <div class="form-group col-md-12 col-sm-12 col-xs-12"></div>
+                  <form method="post" name="postagem" action="locais.I.php">
+
+                    <div class="form-group col-md-6 col-sm-6 col-xs-6">
+                      <div class="controls">
+                        <input type="text" placeholder="Local" class="form-control input" name="local" required>
+                      </div>
+                    </div>
+
+                    <div class="form-group col-md-6 col-sm-6 col-xs-6">
+                      <div class="controls">
+                        <input type="text" placeholder="Nome" class="form-control input" name="nome" required>
+                      </div>
+                    </div>
+
+                                        
+                    
+                    <div class="form-group col-md-12 col-sm-12 col-xs-12"></div>
+
+                    <div class="form-actions">
+                      <div class="pull-right">
+                        <!---->
+                        <button type="submit" class="btn btn-info btn-cons-md" value="submit"> Cadastrar</button>
+                        <button type="reset" class="btn btn-white btn-cons-md" value="reset">Limpar</button>
+                      </div>                      
+                    </div>
+
+                  </form>
                 </div>
               </div>
             </div>

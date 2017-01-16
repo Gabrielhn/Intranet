@@ -348,7 +348,7 @@ $anos =floor(($tempo)/(60*60*24*365));
                         </h3>
                         <h5>Tempo</h5>
                         <h3 class="text-info semi-bold" style="line-height:40px;">
-                          <span class="label label-ti"> <?php echo $result1['SETOR']; ?></span>
+                          <span class="<?php echo $result1['LABEL_SETOR']; ?>"> <?php echo $result1['SETOR']; ?></span>
                         </h3>
                         <h5>Setor</h5>
                       </div>
