@@ -13,11 +13,8 @@ $id=$_SESSION['usuarioId'];
 $conn= new \PDO("oci:host=$host;dbname=$service","INTRANET","ifnefy6b9");
 
 $query1 = "SELECT * FROM VW_PERFIL WHERE ID=:id";
-// $query3 = "SELECT USR.EMAIL, USR.IMG_PERFIL, IMG.IMAGEM FROM IN_USUARIOS USR, IN_IMAGENS IMG WHERE USR.IMG_PERFIL = IMG.ID AND USR.SETOR =:setor AND USR.ID != 1";
-$query3 = "SELECT IMG.ID, IMG.IMAGEM, USR.ID AS ID_USR, USR.IMG_PERFIL, USR.EMAIL 
-FROM IN_IMAGENS IMG 
-INNER JOIN IN_USUARIOS USR ON IMG.ID = USR.IMG_PERFIL
-WHERE USR.SETOR =:setor AND USR.ID !=2";
+$query3 = "SELECT USR.EMAIL, USR.IMG_PERFIL, IMG.IMAGEM AS FOT FROM IN_USUARIOS USR, IN_IMAGENS IMG WHERE USR.IMG_PERFIL = IMG.ID AND USR.SETOR =:setor AND USR.ID != 1";
+// $query3 = "SELECT IMG.ID, IMG.IMAGEM, USR.ID AS ID_USR, USR.IMG_PERFIL, USR.EMAIL FROM IN_IMAGENS IMG INNER JOIN IN_USUARIOS USR ON IMG.ID = USR.IMG_PERFILWHERE USR.SETOR =:setor AND USR.ID !=1";
 
 //#1
 $stmt1 = $conn->prepare($query1);
@@ -45,10 +42,26 @@ $result3=$stmt3->fetchAll();
   </head>
   <body>
 <?php
-  var_dump($result1);
-  echo "<br/>";
-  echo $result1['NOME'];
-  phpinfo();
+echo '<br/>';
+echo '<br/>';
+var_dump($result1);
+
+
+echo '<br/>';
+echo '<br/>';
+var_dump($result3);
+
+
+echo '<br/>';
+echo '<br/>';
+foreach ($result3 as $key => $value) {
+  
+    var_dump[0]($key).'<br/>'.print_r[0]($value);
+}
+
+
+echo '<br/>';
+echo '<br/>';
 ?>
   </body>
 </html>

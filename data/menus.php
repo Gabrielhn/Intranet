@@ -306,14 +306,14 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
                 </div>
                 <div class="grid-body no-border">
                   <h3><i class="fa fa-bars fa-1x"></i><span class="semi-bold">&nbsp; Menus</span></h3>
-                  <table class="table no-more-tables">
+                  <table class="table table-hover">
                     <thead>
                       <tr>                                                
                         <th style="width:8%">Página</th>                    
                         <th style="width:8%">Título</th>
                         <th style="width:15%">Ícone</th>
                         <th style="width:17%">Atributos 1</th>
-                        <th style="width:17%">Atrubutos 2</th>
+                        <th style="width:17%">Atributos 2</th>
                         <th style="width:10%">Link</th>
                         <th style="width:4%">Ações</th>
                       </tr>

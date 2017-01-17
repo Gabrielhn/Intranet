@@ -318,7 +318,7 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
               }
             } elseif ($result1['MURAL'] == 'S') {
                 echo
-                  '<a href="data/murais.php" style="color: #edeeef;">
+                  '<a href="data/mural.php" style="color: #edeeef;">
                     <div class="col-md-3 col-sm-3 m-b-10">          
                       <div class="tiles black blend">
                         <div class="tiles-body">              

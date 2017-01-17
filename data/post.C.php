@@ -311,12 +311,12 @@ $result2=$stmt2->fetch(PDO::FETCH_ASSOC);
           
           <div class="row">
             <div class="col-md-12">
-              <div class="grid simple ">
-                <div class="grid-title no-border">                  
-                </div>
-                <div class="grid-body no-border">
-                  <h3><i class="fa fa-commenting-o fa-1x"></i><span class="semi-bold">&nbsp; Nova postagem</span></h3>
-                  <div class="form-group col-md-12 col-sm-12 col-xs-12"></div>
+              <div class="grid simple ">                
+                <div class="grid-body no-border" style="background-color: #f6f7f8;">
+                <div class="form-group col-md-12 col-sm-12 col-xs-12"></div>
+                  <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                    <h3><i class="fa fa-commenting-o fa-1x"></i><span class="semi-bold">&nbsp; Nova postagem</span></h3>
+                  </div>                  
                   <form method="post" name="postagem" action="post.I.php">
 
                     <div class="form-group col-md-5 col-sm-5 col-xs-5">

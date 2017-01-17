@@ -64,7 +64,7 @@ $anos =floor(($tempo)/(60*60*24*365));
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Aniger - Meu perfil</title>
+    <title>Aniger - Perfil</title>
     <meta http-equiv="content-type" content="text/html;charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
@@ -308,7 +308,7 @@ $anos =floor(($tempo)/(60*60*24*365));
           <li>
             <p>VOCÊ ESTÁ EM </p>
           </li>
-          <li><a href="#" class="active">Meu perfil</a> </li>
+          <li><a href="#" class="active">Perfil</a> </li>
         </ul>
 
         <!-- CONTEUDO -->

@@ -23,7 +23,7 @@ $stmt3->bindValue(':email',$email);
 $stmt3->bindValue(':assunto',$assunto);
 $stmt3->bindValue(':conteudo',$conteudo);  
 $stmt3->execute();
-header("Location: murais.php");
+header("Location: mural.php");
 
 
 ?>

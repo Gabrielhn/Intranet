@@ -306,7 +306,7 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
                 </div>
                 <div class="grid-body no-border">
                   <h3><i class="fa fa-male fa-1x"></i><span class="semi-bold">&nbsp; Usuários</span></h3>
-                  <table class="table no-more-tables">
+                  <table class="table table-hover">
                     <thead>
                       <tr>                                              
                         <th style="width:20%">Nome completo</th>

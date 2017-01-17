@@ -92,7 +92,7 @@ $result3=$stmt3->fetchAll(PDO::FETCH_ASSOC);
             </li>
             <li class="dropdown hidden-xs hidden-sm">
               <a href="chamados.php" class="dropdown-toggle">              
-                <i class="material-icons">desktop_mac</i><!-- <span class="badge bubble-only"></span> -->
+                <i class="material-icons">desktop_mac</i>
               </a>
             </li>
             <!--<li class="dropdown visible-xs visible-sm">
@@ -122,7 +122,7 @@ $result3=$stmt3->fetchAll(PDO::FETCH_ASSOC);
               <li class="quicklinks">
                 <a href="#" class="" id="my-task-list" data-placement="bottom" data-content='' data-toggle="dropdown" data-original-title="Novidades">
                   <i class="material-icons">notifications_none</i>
-                  <span class="badge badge-important bubble-on ly"></span>
+                  <span class="badge badge-important bubble-only"></span>
                 </a>
               </li>
               <li class="quicklinks"> <span class="h-seperate"></span></li>
