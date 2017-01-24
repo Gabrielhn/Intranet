@@ -29,7 +29,7 @@ $stmt3 = $conn->prepare($query3);
 $stmt3->bindValue(':setor',$result1['SETOR']);
 $stmt3->bindValue(':id',$result1['ID']);
 $stmt3->execute();
-$result3=$stmt3->fetchAll();
+$result3=$stmt3->fetchAll(PDO::FETCH_ASSOC);
 
 
 ?>
@@ -55,8 +55,14 @@ var_dump($result3);
 echo '<br/>';
 echo '<br/>';
 foreach ($result3 as $key => $value) {
-  
-    var_dump[0]($key).'<br/>'.print_r[0]($value);
+  echo
+    '<li>
+      <a href="perfil.php?id='.$result3[$key]['ID'].'">
+        <div class="profile-pic">
+          <img width="35" height="35" src="data:image/jpeg;base64,'.base64_encode(stream_get_contents($result3[$key]['FOT'])).'">
+        </div>
+      </a>
+    </li>';
 }
 
 

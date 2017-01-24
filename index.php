@@ -21,8 +21,15 @@ FROM
     IN_IMAGENS IMG 
 WHERE 
     USR.IMG_PERFIL = IMG.ID AND USR.ID =:id";
-$query2 = "SELECT POST.*, IMG.IMAGEM AS IMG_MURAL , MUR.DESCRICAO AS TIT_MURAL, SETO.LABEL, USU.NOME || ' ' || USU.SOBRENOME AS AUTOR FROM IN_MURAL_POST POST, IN_USUARIOS USU, IN_IMAGENS IMG, IN_MURAL MUR, IN_SETORES SETO WHERE POST.USUARIO = USU.EMAIL AND POST.IMG_POST = IMG.ID AND POST.MURAL = MUR.ID AND MUR.SETOR = SETO.SIGLA AND POST.MURAL = '2' AND ROWNUM <=3 ORDER BY POST.ID DESC";
-$query3 = "SELECT POST.*, MUR.DESCRICAO AS TIT_MURAL, SETO.LABEL, USU.NOME || ' ' || USU.SOBRENOME AS AUTOR, USU.IMG_PERFIL, IMG.IMAGEM AS IMG_AUTOR FROM IN_MURAL_POST POST, IN_USUARIOS USU, IN_IMAGENS IMG, IN_MURAL MUR, IN_SETORES SETO WHERE POST.USUARIO = USU.EMAIL AND USU.IMG_PERFIL  = IMG.ID AND POST.MURAL = MUR.ID AND MUR.SETOR = SETO.SIGLA AND POST.MURAL = '3' AND ROWNUM <=3 ORDER BY POST.ID DESC";
+
+
+$query2 = "SELECT * FROM VW_POST_2 WHERE POSICAO = 1";
+$query3 = "SELECT * FROM VW_POST_2 WHERE POSICAO = 2";
+$query4 = "SELECT * FROM VW_POST_2 WHERE POSICAO = 3";
+
+$query6 = "SELECT * FROM VW_POST_3 WHERE POSICAO = 1";
+$query7 = "SELECT * FROM VW_POST_3 WHERE POSICAO = 2";
+$query8 = "SELECT * FROM VW_POST_3 WHERE POSICAO = 3";
 
 //#1
 $stmt1 = $conn->prepare($query1);
@@ -33,12 +40,37 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
 //#2
 $stmt2 = $conn->prepare($query2);
 $stmt2->execute();
-$result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
+$result2=$stmt2->fetch(PDO::FETCH_ASSOC);
 
 //#3
 $stmt3 = $conn->prepare($query3);
 $stmt3->execute();
-$result3=$stmt3->fetchAll(PDO::FETCH_ASSOC);
+$result3=$stmt3->fetch(PDO::FETCH_ASSOC);
+
+//#4
+$stmt4 = $conn->prepare($query4);
+$stmt4->execute();
+$result4=$stmt4->fetch(PDO::FETCH_ASSOC);
+
+//#5
+// $stmt3 = $conn->prepare($query3);
+// $stmt3->execute();
+// $result3=$stmt3->fetchAll(PDO::FETCH_ASSOC);
+
+//#6
+$stmt6 = $conn->prepare($query6);
+$stmt6->execute();
+$result6=$stmt6->fetch(PDO::FETCH_ASSOC);
+
+//#7
+$stmt7 = $conn->prepare($query7);
+$stmt7->execute();
+$result7=$stmt7->fetch(PDO::FETCH_ASSOC);
+
+//#8
+$stmt8 = $conn->prepare($query8);
+$stmt8->execute();
+$result8=$stmt8->fetch(PDO::FETCH_ASSOC);
 
 ?>
 
@@ -307,7 +339,7 @@ $result3=$stmt3->fetchAll(PDO::FETCH_ASSOC);
                 </div>
                 <div class="grid-body no-border">
                   <div class="col-md-12">  
-                    <h4><i class="fa fa-newspaper-o fa-1x"></i><span class="semi-bold">&nbsp; <?php echo $result2[0]['TIT_MURAL'] ?></span><div class="pull-right"><span class="label label-mkt">MKT</span></div></h4>
+                    <h4><i class="fa fa-newspaper-o fa-1x"></i><span class="semi-bold">&nbsp; <?php echo $result2['TIT_MURAL'] ?></span><div class="pull-right"><span class="label label-mkt">MKT</span></div></h4>
                     <br/>
                   </div>
                   <!--DESTAQUE-->
@@ -318,35 +350,78 @@ $result3=$stmt3->fetchAll(PDO::FETCH_ASSOC);
                   </div>
                   <!--NOTICIAS-->
                   <?php
-                    foreach ($result2 as $key2 => $value) {
+                    
                       echo '                      
                       <div class="col-md-4  col-sm-4 m-b-10" data-aspect-ratio="true">
-                        <a href="data/post.php?id='.$result2[$key2]['ID'].'">
+                        <a href="data/post.php?id='.$result2['ID'].'">
                           <div class="live-tile slide ha">
                             <div class="slide-front ha tiles green ">
                               <div class="overlayer bottom-left fullwidth">
                                 <div class="overlayer-wrapper">
                                   <div class="tiles gradient-black p-l-20 p-r-10 p-b-20 p-t-20">
-                                    <h4 class="text-white semi-bold no-margin">'.$result2[$key2]['ASSUNTO'].'</h4>
-                                    <div class="muted">'.$result2[$key2]['AUTOR'].'</div>
+                                    <h4 class="text-white semi-bold no-margin">'.$result2['ASSUNTO'].'</h4>
+                                    <div class="muted">'.$result2['AUTOR'].'</div>
                                     <div class="preview-wrapper pull-right"><i class="icon-custom-up "></i> Leia mais...</p></div>                            
                                   </div>
                                 </div>
                               </div>
-                              <img src="data:image/jpeg;base64,'.base64_encode(stream_get_contents($result2[$key2]['IMG_MURAL'])).'" alt="" class="image-responsive-width xs-image-responsive-width lazy"> </div>
+                              <img src="data:image/jpeg;base64,'.base64_encode(stream_get_contents($result2['IMG_MURAL'])).'" alt="" class="image-responsive-width xs-image-responsive-width lazy"> </div>
                             <div class="slide-back ha tiles white">                                                  
                             </div>
                           </div>
                         </div>
                       </a>';
-                    }
+
+                      echo '                      
+                      <div class="col-md-4  col-sm-4 m-b-10" data-aspect-ratio="true">
+                        <a href="data/post.php?id='.$result3['ID'].'">
+                          <div class="live-tile slide ha">
+                            <div class="slide-front ha tiles green ">
+                              <div class="overlayer bottom-left fullwidth">
+                                <div class="overlayer-wrapper">
+                                  <div class="tiles gradient-black p-l-20 p-r-10 p-b-20 p-t-20">
+                                    <h4 class="text-white semi-bold no-margin">'.$result3['ASSUNTO'].'</h4>
+                                    <div class="muted">'.$result3['AUTOR'].'</div>
+                                    <div class="preview-wrapper pull-right"><i class="icon-custom-up "></i> Leia mais...</p></div>                            
+                                  </div>
+                                </div>
+                              </div>
+                              <img src="data:image/jpeg;base64,'.base64_encode(stream_get_contents($result3['IMG_MURAL'])).'" alt="" class="image-responsive-width xs-image-responsive-width lazy"> </div>
+                            <div class="slide-back ha tiles white">                                                  
+                            </div>
+                          </div>
+                        </div>
+                      </a>';
+
+                      echo '                      
+                      <div class="col-md-4  col-sm-4 m-b-10" data-aspect-ratio="true">
+                        <a href="data/post.php?id='.$result4['ID'].'">
+                          <div class="live-tile slide ha">
+                            <div class="slide-front ha tiles green ">
+                              <div class="overlayer bottom-left fullwidth">
+                                <div class="overlayer-wrapper">
+                                  <div class="tiles gradient-black p-l-20 p-r-10 p-b-20 p-t-20">
+                                    <h4 class="text-white semi-bold no-margin">'.$result4['ASSUNTO'].'</h4>
+                                    <div class="muted">'.$result4['AUTOR'].'</div>
+                                    <div class="preview-wrapper pull-right"><i class="icon-custom-up "></i> Leia mais...</p></div>                            
+                                  </div>
+                                </div>
+                              </div>
+                              <img src="data:image/jpeg;base64,'.base64_encode(stream_get_contents($result4['IMG_MURAL'])).'" alt="" class="image-responsive-width xs-image-responsive-width lazy"> </div>
+                            <div class="slide-back ha tiles white">                                                  
+                            </div>
+                          </div>
+                        </div>
+                      </a>';
+                    
                   ?>                  
                 </div>
               </div>
             </div>
 
           <!--#2-->            
-             <div class="col-md-6 col-sm-6">
+
+            <div class="col-md-6 col-sm-6">
                <div class="grid simple ">
                  <div class="grid-title no-border">
                    <div class="tools">                                      
@@ -354,36 +429,77 @@ $result3=$stmt3->fetchAll(PDO::FETCH_ASSOC);
                  </div>
                  <div class="grid-body no-border">
                   <div class="col-md-12">
-                    <h4><i class="fa fa-newspaper-o fa-1x"></i><span class="semi-bold">&nbsp; <?php echo $result3[0]['TIT_MURAL']?></span><div class="pull-right"><span class="label label-rh">RH</span></div></h4>
+                    <h4><i class="fa fa-newspaper-o fa-1x"></i><span class="semi-bold">&nbsp; <?php echo $result6['TIT_MURAL']?></span><div class="pull-right"><span class="label label-rh">RH</span></div></h4>
                     <br/>                  
-                   <?php
-                     foreach ($result3 as $key3 => $value) {
+                   <?php                     
                        echo '
-                       <a href="data/post.php?id='.$result3[$key3]['ID'].'">
+                       <a href="data/post.php?id='.$result6['ID'].'">
                         <div class="notification-messages info">
                           <div class="user-profile">
-                            <img alt=""  width="35" height="35" src="data:image/jpeg;base64,'.base64_encode(stream_get_contents($result3[$key3]['IMG_AUTOR'])).'">
+                            <img alt=""  width="35" height="35" src="data:image/jpeg;base64,'.base64_encode(stream_get_contents($result6['IMG_AUTOR'])).'">
                           </div>
                           <div class="message-wrapper">
                             <div class="heading">
-                              '.$result3[$key3]['ASSUNTO'].' <div class="date">por '.$result3[$key3]['AUTOR'].'</div>
+                              '.$result6['ASSUNTO'].' <div class="date">por '.$result6['AUTOR'].'</div>
                             </div>
                             <div class="description">
                               Clique para visualizar.
                             </div>
                             <div class="date pull-right">
-                              '.strftime('%A, %d de %B de %Y', strtotime($result3[$key3]['INCLUSAO'])).'
+                              '.strftime('%A, %d de %B de %Y', strtotime($result6['INCLUSAO'])).'
                             </div>
                           </div>
                           <div class="clearfix"></div>
                         </div>
                       </a>';
-                     }
+
+                      echo '
+                       <a href="data/post.php?id='.$result7['ID'].'">
+                        <div class="notification-messages info">
+                          <div class="user-profile">
+                            <img alt=""  width="35" height="35" src="data:image/jpeg;base64,'.base64_encode(stream_get_contents($result7['IMG_AUTOR'])).'">
+                          </div>
+                          <div class="message-wrapper">
+                            <div class="heading">
+                              '.$result7['ASSUNTO'].' <div class="date">por '.$result7['AUTOR'].'</div>
+                            </div>
+                            <div class="description">
+                              Clique para visualizar.
+                            </div>
+                            <div class="date pull-right">
+                              '.strftime('%A, %d de %B de %Y', strtotime($result7['INCLUSAO'])).'
+                            </div>
+                          </div>
+                          <div class="clearfix"></div>
+                        </div>
+                      </a>'; 
+
+                      echo '
+                       <a href="data/post.php?id='.$result8['ID'].'">
+                        <div class="notification-messages info">
+                          <div class="user-profile">
+                            <img alt=""  width="35" height="35" src="data:image/jpeg;base64,'.base64_encode(stream_get_contents($result8['IMG_AUTOR'])).'">
+                          </div>
+                          <div class="message-wrapper">
+                            <div class="heading">
+                              '.$result8['ASSUNTO'].' <div class="date">por '.$result8['AUTOR'].'</div>
+                            </div>
+                            <div class="description">
+                              Clique para visualizar.
+                            </div>
+                            <div class="date pull-right">
+                              '.strftime('%A, %d de %B de %Y', strtotime($result8['INCLUSAO'])).'
+                            </div>
+                          </div>
+                          <div class="clearfix"></div>
+                        </div>
+                      </a>'; 
+
                    ?>
                    </div>                                   
                  </div>
                </div>
-             </div>        
+             </div>
 
           <!--#3-->
           <div class="col-md-3 col-sm-6">

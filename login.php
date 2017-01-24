@@ -42,6 +42,17 @@
             <p class="p-b-20">
               "Quanto mais trabalhamos, mais sorte temos!"
             </p>
+            <?php
+            if (isset($_SESSION['erro'])) {
+              echo
+                '<div class="alert alert-error" style=" margin-right: 30px;">
+                    <i class="pull-left material-icons">feedback</i>
+                      <h6 style="padding-left: 30px;">'                                  
+                          .$_SESSION['erro'].                                          
+                      '</h6>                      
+                  </div>';
+            }              
+            ?> 
             <div class="tiles white no-margin text-black tab-content">
             <div role="tabpanel" class="tab-pane active" id="tab_login" style="padding-left:0px; padding-bottom:0px;" >
               <form class="animated fadeIn" method="post" action="assets\php\vLogin.php" id="">

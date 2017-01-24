@@ -319,8 +319,8 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
 
                       <li><i class="fa-li fa fa-home"></i>Home</li>
                           <ul class="fa-ul">
-                            <li><i class="fa-li fa fa-check-square-o"></i><span style="font-style: italic; font-size: 11px;">Adicionado "Avisos do RH" no layout 1.</span></li>
-                            <li><i class="fa-li fa fa-check-square-o"></i><span style="font-style: italic; font-size: 11px;">Adicionado "Mural do Marketing" no layout 2.</span></li>
+                            <li><i class="fa-li fa fa-check-square-o"></i><span style="font-style: italic; font-size: 11px;">Adicionado "Avisos do RH" no layout lista.</span></li>
+                            <li><i class="fa-li fa fa-check-square-o"></i><span style="font-style: italic; font-size: 11px;">Adicionado "Mural do Marketing" no layout box.</span></li>
                             <li><i class="fa-li fa fa-check-square-o"></i><span style="font-style: italic; font-size: 11px;">Adicionado "Aniversários".</span></li>                            
                           </ul>
 
