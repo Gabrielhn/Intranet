@@ -19,7 +19,7 @@ FROM
     IN_IMAGENS IMG 
 WHERE 
     USR.IMG_PERFIL = IMG.ID AND USR.ID =:id";
-$query2 = "SELECT SE.SIGLA, SE.NOME,'(' || SE.GESTOR || ') ' || USR.NOME AS GESTOR, SE.LABEL FROM IN_SETORES SE, IN_USUARIOS USR WHERE SE.GESTOR = USR.ID ORDER BY 2";
+$query2 = "SELECT ID, NOME || ' ' || SOBRENOME AS NOME_COMPLETO FROM IN_USUARIOS ORDER BY 2 ";
 
 //#1
 $stmt1 = $conn->prepare($query1);
@@ -27,7 +27,7 @@ $stmt1->bindValue(':id',$id);
 $stmt1->execute();
 $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
 
-//#2 DADOS
+//#2
 $stmt2 = $conn->prepare($query2);
 $stmt2->execute();
 $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
@@ -282,7 +282,10 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
             <a href="../dados.php">Dados</a> 
           </li>
           <li>
-            <a href="#" class="active">Setores</a> 
+            <a href="setores.php">Setores</a> 
+          </li>
+          <li>
+            <a href="#" class="active"> Novo Setor</a> 
           </li>
         </ul>
 
@@ -298,78 +301,60 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
           
           <div class="row">
             <div class="col-md-12">
-              <div class="grid simple ">
-                <div class="grid-title no-border">
-                  <div class="tools">
-                    <a href="setores.C.php"><i class="fa fa-plus fa-lg"></i> </a>                   
-                  </div>
-                </div>
-                <div class="grid-body no-border">
-                  <h3><i class="fa fa-sitemap fa-1x"></i><span class="semi-bold">&nbsp; Setores</span></h3>
-                  <table class="table table-hover">
-                    <thead>
-                      <tr>                        
-                        <th style="width:20%">Sigla</th>
-                        <th style="width:35%">Nome</th>
-                        <th style="width:20%">Gestor</th>
-                        <th style="width:20%">Label</th>
-                        <th style="width:10%">Ações</th>                     
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <?php
-                      $rr=1;
-                      foreach ($result2 as $key => $value) {
-                        echo '
-                          <tr>                            
-                            <td class="v-align-middle">'.$result2[$key]['SIGLA'].'</td>
-                            <td class="v-align-middle"><span class="muted">'.$result2[$key]['NOME'].'</span></td>
-                            <td class="v-align-middle"><span class="muted">'.$result2[$key]['GESTOR'].'</span></td>
-                            <td class="v-align-middle"><span class="muted">'.$result2[$key]['LABEL'].'</span></td>
-                            <td class="v-align-middle">
-                              <a href="setores.u.php?id='.$result2[$key]['SIGLA'].'"title="Editar"><i class="fa fa-pencil"></i></a>
-                               <span data-toggle="modal" data-target="#'.$result2[$key]['SIGLA'].'Modal"><a href="#" title="Excluir"><i class="fa fa-trash"></i></a></span>
-                              <a href="setores.r.php?id='.$result2[$key]['SIGLA'].'"title="Detalhes"><i class="fa fa-search"></i></a>
-                            </td>
-                          </tr>
+              <div class="grid simple ">                
+                <div class="grid-body no-border" style="background-color: #f6f7f8;">
+                <div class="form-group col-md-12 col-sm-12 col-xs-12"></div>
+                  <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                    <h3><i class="fa fa-sitemap fa-1x"></i><span class="semi-bold">&nbsp; Novo setor</span></h3>
+                  </div> 
+                  <form method="post" name="setor" action="setores.I.php">
 
-                          <!-- MODAL #1 -->
-                          <div class="modal fade" id="'.$result2[$key]['SIGLA'].'Modal" tabindex="-1" role="dialog" aria-labelledby="'.$result2[$key]['SIGLA'].'ModalLabel" aria-hidden="true">
-                            <div class="modal-dialog">
-                              <div class="modal-content">
-                                <div class="modal-header">
-                                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                  <br>
-                                  <i class="fa fa-trash fa-6x"></i>
-                                  <h4 id="1ModalLabel" class="semi-bold">Excluir</h4>
-                                </div>
-                                <div class="modal-body">
-                                  <div class="alert alert-danger">
-                                    <i class="pull-left material-icons">feedback</i>
-                                    <div>
-                                      <span style="padding-left: 20px;">
-                                        Você tem certeza que deseja excluir este registro?                                             
-                                      </span>
-                                      <div class="pull-right">
-                                      <a href="setores.D.php?id='.$result2[$key]['SIGLA'].'"><button class="btn btn-danger btn-small">Sim </button></a>
-                                      <button type="button" class="btn btn-default btn-small" data-dismiss="modal">Não </button>    
-                                      </div>
-                                      </div>
-                                  </div>             
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          ';
-                        $rr++;
-                      }                        
-                      ?>
-                    </tbody>
-                  </table>
+                    <div class="form-group col-md-3 col-sm-3 col-xs-3">
+                      <div class="controls">
+                        <input type="text" placeholder="Sigla" class="form-control input" name="sigla" maxlength="4" required>
+                      </div>
+                    </div>
+
+                    <div class="form-group col-md-3 col-sm-3 col-xs-3">
+                      <div class="controls">
+                        <input type="text" placeholder="Nome" class="form-control input" name="nome" maxlength="35" required>
+                      </div>
+                    </div>
+
+                    <div class="form-group col-md-3 col-sm-3 col-xs-3">
+                      <div class="controls">
+                        <select id="source"  class="form-control input" name="gestor" required>
+                          <?php
+                          foreach ($result2 as $key2 => $value) {
+                            echo 
+                              '<option value="'.$result2[$key2]['ID'].'">('.$result2[$key2]['ID'].') '.$result2[$key2]['NOME_COMPLETO'].'</option>';
+                          }                            
+                          ?>                     
+                        </select>                        
+                      </div>
+                    </div>
+
+                    <div class="form-group col-md-3 col-sm-3 col-xs-3">
+                      <div class="controls">
+                        <input type="text" placeholder="Label" class="form-control input" name="label" maxlength="25">
+                      </div>
+                    </div>
+                    
+                    <div class="form-group col-md-12 col-sm-12 col-xs-12"></div>
+
+                    <div class="form-actions">
+                      <div class="pull-right">
+                        <!---->
+                        <button type="submit" class="btn btn-info btn-cons-md" value="submit"> Cadastrar</button>
+                        <button type="reset" class="btn btn-white btn-cons-md" value="reset">Limpar</button>
+                      </div>                      
+                    </div>
+
+                  </form>
                 </div>
               </div>
             </div>
-          </div>        
+          </div>       
           <!-- /CONTEUDO -->
         </div>
       </div>

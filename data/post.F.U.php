@@ -1,4 +1,6 @@
 <?php
+setlocale(LC_ALL, 'pt_BR', 'pt_BR.utf-8', 'pt_BR.utf-8', 'portuguese');
+date_default_timezone_set('America/Sao_Paulo');
 require_once("../assets/php/class/class.seg.php");
 session_start();
 proteger();
@@ -6,6 +8,8 @@ proteger();
 $host="10.0.0.2";
 $service="//10.0.0.2:1521/orcl";
 $id=$_SESSION['usuarioId'];
+$email=$_SESSION['usuarioEmail'];
+$postid=$_GET['id'];
 $conn= new \PDO("oci:host=$host;dbname=$service","INTRANET","ifnefy6b9");
 
 $query1 = "SELECT USR.EMAIL, USR.TIPO_USUARIO, USR.SETOR, USR.IMG_PERFIL, IMG.IMAGEM,
@@ -19,25 +23,37 @@ FROM
     IN_IMAGENS IMG 
 WHERE 
     USR.IMG_PERFIL = IMG.ID AND USR.ID =:id";
-$query2 = "SELECT SE.SIGLA, SE.NOME,'(' || SE.GESTOR || ') ' || USR.NOME AS GESTOR, SE.LABEL FROM IN_SETORES SE, IN_USUARIOS USR WHERE SE.GESTOR = USR.ID ORDER BY 2";
+$query2 = "SELECT USR.NOME || ' ' || USR.SOBRENOME AS AUTOR, MUR.ID AS ID_MURAL, MUR.DESCRICAO AS DESC_MURAL FROM IN_USUARIOS USR, IN_MURAL MUR WHERE USR.SETOR=MUR.SETOR AND USR.ID=:id";
+
+$query3 = "SELECT POST.*, IMG.IMAGEM AS IMG_MURAL , MUR.DESCRICAO AS TIT_MURAL, SETO.LABEL, USU.NOME || ' ' || USU.SOBRENOME AS AUTOR FROM IN_MURAL_POST POST, IN_USUARIOS USU, IN_IMAGENS IMG, IN_MURAL MUR, IN_SETORES SETO WHERE POST.USUARIO = USU.EMAIL AND POST.IMG_POST = IMG.ID AND POST.MURAL = MUR.ID AND MUR.SETOR = SETO.SIGLA AND POST.ID =:post";
 
 //#1
 $stmt1 = $conn->prepare($query1);
 $stmt1->bindValue(':id',$id);
 $stmt1->execute();
 $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
+$setu=$result1['SETOR'];
 
-//#2 DADOS
+//#2
 $stmt2 = $conn->prepare($query2);
+$stmt2->bindValue(':id',$id);
 $stmt2->execute();
-$result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
+$result2=$stmt2->fetch(PDO::FETCH_ASSOC);
+
+//#3
+$stmt3 = $conn->prepare($query3);
+$stmt3->bindValue(':post',$postid);
+$stmt3->execute();
+$result3=$stmt3->fetch(PDO::FETCH_ASSOC);
+
+
 
 ?>
 
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Aniger - Dados - Setores</title>
+    <title>Aniger - Mural - Post</title>
     <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
@@ -49,6 +65,9 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
     <link href="../assets/plugins/bootstrapv3/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css" />
     <link href="../assets/plugins/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css" />
     <link href="../assets/plugins/animate.min.css" rel="stylesheet" type="text/css" />
+    <link href="../assets/plugins/jquery-datatable/css/jquery.dataTables.css" rel="stylesheet" type="text/css" />
+    <link href="../assets/plugins/datatables-responsive/css/datatables.responsive.css" rel="stylesheet" type="text/css" media="screen" />
+    <link href="../assets/plugins/bootstrap-wysihtml5/bootstrap-wysihtml5.css" rel="stylesheet" type="text/css" />
     <!-- <link href="../assets/plugins/jquery-scrollbar/jquery.scrollbar.css" rel="stylesheet" type="text/css" /> -->
     <!-- END PLUGIN CSS -->
     <!-- BEGIN CORE CSS FRAMEWORK -->
@@ -282,7 +301,10 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
             <a href="../dados.php">Dados</a> 
           </li>
           <li>
-            <a href="#" class="active">Setores</a> 
+            <a href="../murais" class="">Mural</a> 
+          </li>
+          <li>
+            <a href="#" class="active">Editar Postagem</a> 
           </li>
         </ul>
 
@@ -298,260 +320,59 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
           
           <div class="row">
             <div class="col-md-12">
-              <div class="grid simple ">
-                <div class="grid-title no-border">
-                  <div class="tools">
-                    <a href="setores.C.php"><i class="fa fa-plus fa-lg"></i> </a>                   
-                  </div>
-                </div>
-                <div class="grid-body no-border">
-                  <h3><i class="fa fa-sitemap fa-1x"></i><span class="semi-bold">&nbsp; Setores</span></h3>
-                  <table class="table table-hover">
-                    <thead>
-                      <tr>                        
-                        <th style="width:20%">Sigla</th>
-                        <th style="width:35%">Nome</th>
-                        <th style="width:20%">Gestor</th>
-                        <th style="width:20%">Label</th>
-                        <th style="width:10%">Ações</th>                     
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <?php
-                      $rr=1;
-                      foreach ($result2 as $key => $value) {
-                        echo '
-                          <tr>                            
-                            <td class="v-align-middle">'.$result2[$key]['SIGLA'].'</td>
-                            <td class="v-align-middle"><span class="muted">'.$result2[$key]['NOME'].'</span></td>
-                            <td class="v-align-middle"><span class="muted">'.$result2[$key]['GESTOR'].'</span></td>
-                            <td class="v-align-middle"><span class="muted">'.$result2[$key]['LABEL'].'</span></td>
-                            <td class="v-align-middle">
-                              <a href="setores.u.php?id='.$result2[$key]['SIGLA'].'"title="Editar"><i class="fa fa-pencil"></i></a>
-                               <span data-toggle="modal" data-target="#'.$result2[$key]['SIGLA'].'Modal"><a href="#" title="Excluir"><i class="fa fa-trash"></i></a></span>
-                              <a href="setores.r.php?id='.$result2[$key]['SIGLA'].'"title="Detalhes"><i class="fa fa-search"></i></a>
-                            </td>
-                          </tr>
+              <div class="grid simple ">                
+                <div class="grid-body no-border" style="background-color: #f6f7f8;">
+                <div class="form-group col-md-12 col-sm-12 col-xs-12"></div>
+                  <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                    <h3><i class="fa fa-commenting-o fa-1x"></i><span class="semi-bold">&nbsp; Editar postagem</span></h3>
+                  </div>                  
+                  <form method="post" name="postagem" action="post.U.php">
+                  <?php echo '
+                    <div class="form-group col-md-5 col-sm-5 col-xs-5">
+                      <div class="controls">
+                        <input type="text" placeholder="Assunto" value="'.$result3['ASSUNTO'].'" class="form-control input-lg" name="assunto" required>
+                      </div>
+                    </div>
 
-                          <!-- MODAL #1 -->
-                          <div class="modal fade" id="'.$result2[$key]['SIGLA'].'Modal" tabindex="-1" role="dialog" aria-labelledby="'.$result2[$key]['SIGLA'].'ModalLabel" aria-hidden="true">
-                            <div class="modal-dialog">
-                              <div class="modal-content">
-                                <div class="modal-header">
-                                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                  <br>
-                                  <i class="fa fa-trash fa-6x"></i>
-                                  <h4 id="1ModalLabel" class="semi-bold">Excluir</h4>
-                                </div>
-                                <div class="modal-body">
-                                  <div class="alert alert-danger">
-                                    <i class="pull-left material-icons">feedback</i>
-                                    <div>
-                                      <span style="padding-left: 20px;">
-                                        Você tem certeza que deseja excluir este registro?                                             
-                                      </span>
-                                      <div class="pull-right">
-                                      <a href="setores.D.php?id='.$result2[$key]['SIGLA'].'"><button class="btn btn-danger btn-small">Sim </button></a>
-                                      <button type="button" class="btn btn-default btn-small" data-dismiss="modal">Não </button>    
-                                      </div>
-                                      </div>
-                                  </div>             
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          ';
-                        $rr++;
-                      }                        
-                      ?>
-                    </tbody>
-                  </table>
+                    <div class="form-group col-md-12 col-sm-12 col-xs-12 m-b-5">
+                      <textarea id="conteudo" placeholder="Digite o texto ..." value="'.stream_get_contents($result3['CONTEUDO']).'" class="form-control" rows="10" name="conteudo"></textarea>
+                      <hr>
+                    </div>
+
+                    <div class="form-group col-md-3 col-sm-3 col-xs-3">
+                      <div class="controls">
+                        <label class="bold">Mural</label>
+                        <input type="text" value="'.'('.$result3['MURAL'].') '.$result3['TIT_MURAL'].'" class="form-control input" name="mural" readonly>
+                      </div>
+                    </div>
+
+                    <div class="form-group col-md-3 col-sm-3 col-xs-3">
+                      <div class="controls">
+                        <label class="bold">Autor</label>
+                        <input type="text" value="'.$result2['AUTOR'].'" class="form-control input" name="autor" readonly>
+                      </div>
+                    </div>
+                    
+                    <div class="form-group col-md-12 col-sm-12 col-xs-12"></div>
+
+                    <div class="form-actions">
+                      <div class="pull-right">
+                        <!---->
+                        <button type="submit" class="btn btn-info btn-cons-md" value="submit"> Enviar</button>
+                        <button type="reset" class="btn btn-white btn-cons-md" value="reset">Limpar</button>
+                      </div>                      
+                    </div>
+                    ';?>
+                  </form>
                 </div>
               </div>
             </div>
-          </div>        
+          </div>           
           <!-- /CONTEUDO -->
         </div>
       </div>
       <!-- CONTAINER -->
-
-      <!-- BEGIN CHAT -->
-      <div class="chat-window-wrapper">
-        <div id="main-chat-wrapper" class="inner-content">
-          <div class="chat-window-wrapper scroller scrollbar-dynamic" id="chat-users">
-            <!-- BEGIN CHAT HEADER -->
-            <div class="chat-header">
-              <!-- BEGIN CHAT SEARCH BAR -->
-              <div class="pull-left">
-                <input type="text" placeholder="search">
-              </div>
-              <!-- END CHAT SEARCH BAR -->
-              <!-- BEGIN CHAT QUICKLINKS -->
-              <div class="pull-right">
-                <a href="#" class="">
-                  <div class="iconset top-settings-dark"></div>
-                </a>
-              </div>
-              <!-- END CHAT QUICKLINKS -->
-            </div>
-            <!-- END CHAT HEADER -->
-            <!-- BEGIN GROUP WIDGET -->
-            <div class="side-widget">
-              <div class="side-widget-title">group chats</div>
-              <div class="side-widget-content">
-                <div id="groups-list">
-                  <ul class="groups">
-                    <li>
-                      <a href="#">
-                        <div class="status-icon green"></div>Group Chat 1</a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <!-- END GROUP WIDGET -->
-            <!-- BEGIN FAVORITES WIDGET -->
-            <div class="side-widget">
-              <div class="side-widget-title">favorites</div>
-              <div class="side-widget-content">
-                <!-- BEGIN SAMPLE CHAT -->
-                <div class="user-details-wrapper active" data-chat-status="online" data-chat-user-pic="../assets/img/profiles/d.jpg" data-chat-user-pic-retina="../assets/img/profiles/d2x.jpg" data-user-name="Jane Smith">
-                  <!-- BEGIN PROFILE PIC -->
-                  <div class="user-profile">
-                    <img src="../assets/img/profiles/d.jpg" alt="" data-src="../assets/img/profiles/d.jpg" data-src-retina="../assets/img/profiles/d2x.jpg" width="35" height="35">
-                  </div>
-                  <!-- END PROFILE PIC -->
-                  <!-- BEGIN MESSAGE -->
-                  <div class="user-details">
-                    <div class="user-name">Jane Smith</div>
-                    <div class="user-more">Message...</div>
-                  </div>
-                  <!-- END MESSAGE -->
-                  <!-- BEGIN MESSAGES BADGE -->
-                  <div class="user-details-status-wrapper">
-                    <span class="badge badge-important">3</span>
-                  </div>
-                  <!-- END MESSAGES BADGE -->
-                  <!-- BEGIN STATUS -->
-                  <div class="user-details-count-wrapper">
-                    <div class="status-icon green"></div>
-                  </div>
-                  <!-- END STATUS -->
-                  <div class="clearfix"></div>
-                </div>
-                <!-- END SAMPLE CHAT -->
-              </div>
-            </div>
-            <!-- END FAVORITES WIDGET -->
-            <!-- BEGIN MORE FRIENDS WIDGET -->
-            <div class="side-widget">
-              <div class="side-widget-title">more friends</div>
-              <div class="side-widget-content" id="friends-list">
-                <!-- BEGIN SAMPLE CHAT -->
-                <div class="user-details-wrapper" data-chat-status="online" data-chat-user-pic="../assets/img/profiles/d.jpg" data-chat-user-pic-retina="../assets/img/profiles/d2x.jpg" data-user-name="Jane Smith">
-                  <!-- BEGIN PROFILE PIC -->
-                  <div class="user-profile">
-                    <img src="../assets/img/profiles/d.jpg" alt="" data-src="../assets/img/profiles/d.jpg" data-src-retina="../assets/img/profiles/d2x.jpg" width="35" height="35">
-                  </div>
-                  <!-- END PROFILE PIC -->
-                  <!-- BEGIN MESSAGE -->
-                  <div class="user-details">
-                    <div class="user-name">Jane Smith</div>
-                    <div class="user-more">Message...</div>
-                  </div>
-                  <!-- END MESSAGE -->
-                  <!-- BEGIN MESSAGES BADGE -->
-                  <div class="user-details-status-wrapper">
-                    <span class="badge badge-important">3</span>
-                  </div>
-                  <!-- END MESSAGES BADGE -->
-                  <!-- BEGIN STATUS -->
-                  <div class="user-details-count-wrapper">
-                    <div class="status-icon green"></div>
-                  </div>
-                  <!-- END STATUS -->
-                  <div class="clearfix"></div>
-                </div>
-                <!-- END SAMPLE CHAT -->
-              </div>
-            </div>
-            <!-- END MORE FRIENDS WIDGET -->
-          </div>
-          <!-- BEGIN DUMMY CHAT CONVERSATION -->
-          <div class="chat-window-wrapper" id="messages-wrapper" style="display:none">
-            <!-- BEGIN CHAT HEADER BAR -->
-            <div class="chat-header">
-              <!-- BEGIN SEARCH BAR -->
-              <div class="pull-left">
-                <input type="text" placeholder="search">
-              </div>
-              <!-- END SEARCH BAR -->
-              <!-- BEGIN CLOSE TOGGLE -->
-              <div class="pull-right">
-                <a href="#" class="">
-                  <div class="iconset top-settings-dark"></div>
-                </a>
-              </div>
-              <!-- END CLOSE TOGGLE -->
-            </div>
-            <div class="clearfix"></div>
-            <!-- END CHAT HEADER BAR -->
-            <!-- BEGIN CHAT BODY -->
-            <div class="chat-messages-header">
-              <div class="status online"></div>
-              <span class="semi-bold">Jane Smith(Typing..)</span>
-              <a href="#" class="chat-back"><i class="icon-custom-cross"></i></a>
-            </div>
-            <!-- BEGIN CHAT MESSAGES CONTAINER -->
-            <div class="chat-messages scrollbar-dynamic clearfix">
-              <!-- BEGIN TIME STAMP EXAMPLE -->
-              <div class="sent_time">Yesterday 11:25pm</div>
-              <!-- END TIME STAMP EXAMPLE -->
-              <!-- BEGIN EXAMPLE CHAT MESSAGE -->
-              <div class="user-details-wrapper">
-                <!-- BEGIN MESSENGER PROFILE -->
-                <div class="user-profile">
-                  <img src="../assets/img/profiles/d.jpg" alt="" data-src="../assets/img/profiles/d.jpg" data-src-retina="../assets/img/profiles/d2x.jpg" width="35" height="35">
-                </div>
-                <!-- END MESSENGER PROFILE -->
-                <!-- BEGIN MESSENGER MESSAGE -->
-                <div class="user-details">
-                  <div class="bubble">Hello, You there?</div>
-                </div>
-                <!-- END MESSENGER MESSAGE -->
-                <div class="clearfix"></div>
-                <!-- BEGIN TIMESTAMP ON CLICK TOGGLE -->
-                <div class="sent_time off">Yesterday 11:25pm</div>
-                <!-- END TIMESTAMP ON CLICK TOGGLE -->
-              </div>
-              <!-- END EXAMPLE CHAT MESSAGE -->
-              <!-- BEGIN TIME STAMP EXAMPLE -->
-              <div class="sent_time">Today 11:25pm</div>
-              <!-- BEGIN TIME STAMP EXAMPLE -->
-              <!-- BEGIN EXAMPLE CHAT MESSAGE (FROM SELF) -->
-              <div class="user-details-wrapper pull-right">
-                <!-- BEGIN MESSENGER MESSAGE -->
-                <div class="user-details">
-                  <div class="bubble sender">Let me know when you free</div>
-                </div>
-                <!-- END MESSENGER MESSAGE -->
-                <div class="clearfix"></div>
-                <!-- BEGIN TIMESTAMP ON CLICK TOGGLE -->
-                <div class="sent_time off">Sent On Tue, 2:45pm</div>
-                <!-- END TIMESTAMP ON CLICK TOGGLE -->
-              </div>
-              <!-- END EXAMPLE CHAT MESSAGE (FROM SELF) -->
-            </div>
-            <!-- END CHAT MESSAGES CONTAINER -->
-          </div>
-          <div class="chat-input-wrapper" style="display:none">
-            <textarea id="chat-message-input" rows="1" placeholder="Type your message"></textarea>
-          </div>
-          <div class="clearfix"></div>
-          <!-- END DUMMY CHAT CONVERSATION -->
-        </div>
-      </div>
-      <!-- END CHAT -->
+      
     </div>
     <!-- END CONTENT -->
     <!-- BEGIN CORE JS FRAMEWORK-->
@@ -565,10 +386,44 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
     <script src="../assets/plugins/jquery-numberAnimate/jquery.animateNumbers.js" type="text/javascript"></script>
     <script src="../assets/plugins/jquery-validation/js/jquery.validate.min.js" type="text/javascript"></script>
     <script src="../assets/plugins/bootstrap-select2/select2.min.js" type="text/javascript"></script>
+    <script src="../assets/plugins/jquery-datatable/js/jquery.dataTables.min.js" type="text/javascript"></script>
+    <script src="../assets/plugins/jquery-datatable/extra/js/dataTables.tableTools.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="../assets/plugins/datatables-responsive/js/datatables.responsive.js"></script>
+    <script type="text/javascript" src="../assets/plugins/datatables-responsive/js/lodash.min.js"></script>
+    <script src="../assets/plugins/bootstrap-wysihtml5/wysihtml5-0.3.0.js" type="text/javascript"></script>
+    <script src="../assets/plugins/bootstrap-wysihtml5/bootstrap-wysihtml5.js" type="text/javascript"></script>
     <!-- END CORE JS DEPENDECENCIES-->
+    <script type="text/javascript">
+    $('#conteudo').wysihtml5();
+    </script>
+
+    <!--<script type="text/javascript">
+      $(document).ready(function() {
+        $('#tLocais').DataTable( {
+          "paging":   false
+          "oLanguage": {
+            "sLengthMenu": "_MENU_",
+            "sZeroRecords": "Nenhum registro encontrado",
+            "sInfo": " Mostrando _START_ / _END_ de _TOTAL_ registro(s)",
+            "sInfoEmpty": "Mostrando 0 / 0 de 0 registros",
+            "sInfoFiltered": "(filtrado de _MAX_ registros)",
+            "sSearch": "Pesquisar: ",
+            "sEmptyTable": "Nenhum registro encontrado",
+            "oPaginate": {
+                "sFirst": "Início",
+                "sPrevious": "Anterior ",
+                "sNext": "Próximo ",
+                "sLast": "Último"
+            }
+        }
+        
+    } );
+} );
+    </script>-->
     <!-- BEGIN CORE TEMPLATE JS -->
     <script src="../webarch/js/webarch.js" type="text/javascript"></script>
     <script src="../assets/js/chat.js" type="text/javascript"></script>
+    <script src="../assets/js/datatables.js" type="text/javascript"></script>
     <!-- END CORE TEMPLATE JS -->
   </body>
 </html>

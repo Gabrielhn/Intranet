@@ -307,7 +307,7 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
               <div class="grid simple ">
                 <div class="grid-title no-border">
                   <div class="tools">
-                    <a href="post.c.php"><i class="fa fa-plus fa-lg"></i> </a>                   
+                    <a href="post.C.php"><i class="fa fa-plus fa-lg"></i> </a>                   
                   </div>
                 </div>
                 <div class="grid-body no-border">
@@ -332,11 +332,40 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
                             <td class="v-align-middle"><span class="muted">'.$result2[$key]['AUTOR'].'</span></td>
                             <td class="v-align-middle"><span class="muted">'.strftime('%A, %d de %B de %Y', strtotime($result2[$key]['INCLUSAO'])).'</span></td>
                             <td class="v-align-middle">
-                              <a href="locais.u.php?id='.$result2[$key]['ID'].'"title="Editar"><i class="fa fa-pencil"></i></a>
-                              <a href="locais.d.php?id='.$result2[$key]['ID'].'"title="Excluir"><i class="fa fa-trash"></i></a>
+                              <a href="post.F.U.php?id='.$result2[$key]['ID'].'"title="Editar"><i class="fa fa-pencil"></i></a>
+                              <span data-toggle="modal" data-target="#'.$result2[$key]['ID'].'Modal"><a href="#" title="Excluir"><i class="fa fa-trash"></i></a></span>
                               <a href="post.php?id='.$result2[$key]['ID'].'"title="Detalhes"><i class="fa fa-search"></i></a>                              
                             </td>
                           </tr>
+
+                          <!-- MODAL #1 -->
+                          <div class="modal fade" id="'.$result2[$key]['ID'].'Modal" tabindex="-1" role="dialog" aria-labelledby="'.$result2[$key]['ID'].'ModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                  <br>
+                                  <i class="fa fa-trash fa-6x"></i>
+                                  <h4 id="1ModalLabel" class="semi-bold">Excluir</h4>
+                                </div>
+                                <div class="modal-body">
+                                  <div class="alert alert-danger">
+                                    <i class="pull-left material-icons">feedback</i>
+                                    <div>
+                                      <span style="padding-left: 20px;">
+                                        Você tem certeza que deseja excluir este registro?                                             
+                                      </span>
+                                      <div class="pull-right">
+                                      <a href="post.D.php?id='.$result2[$key]['ID'].'"><button class="btn btn-danger btn-small">Sim </button></a>
+                                      <button type="button" class="btn btn-default btn-small" data-dismiss="modal">Não </button>    
+                                      </div>
+                                      </div>
+                                  </div>             
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
                           ';                      
                       }                        
                       ?>
@@ -345,7 +374,11 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
                 </div>
               </div>
             </div>
-          </div>           
+          </div>
+
+          
+
+
           <!-- /CONTEUDO -->
         </div>
       </div>

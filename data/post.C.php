@@ -292,7 +292,7 @@ $result2=$stmt2->fetch(PDO::FETCH_ASSOC);
             <a href="../dados.php">Dados</a> 
           </li>
           <li>
-            <a href="../murais" class="">Mural</a> 
+            <a href="mural.php">Mural</a> 
           </li>
           <li>
             <a href="#" class="active">Nova Postagem</a> 

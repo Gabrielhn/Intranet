@@ -282,7 +282,10 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
             <a href="../dados.php">Dados</a> 
           </li>
           <li>
-            <a href="#" class="active">Locais</a> 
+            <a href="locais.php">Locais</a> 
+          </li>
+          <li>
+            <a href="#" class="active">Novo Local</a> 
           </li>
         </ul>
 
