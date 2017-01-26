@@ -10,7 +10,7 @@ $conn= new \PDO("oci:host=$host;dbname=$service","INTRANET","ifnefy6b9");
 
 
     // Valida
-    $query = "SELECT ID, EMAIL, NOME, SOBRENOME, SENHA FROM IN_USUARIOS WHERE EMAIL=:email AND SENHA=:senha";
+    $query = "SELECT ID, EMAIL, NOME, SOBRENOME, SENHA FROM IN_USUARIOS WHERE ATIVO='S' AND EMAIL=:email AND SENHA=:senha";
 
     $stmt = $conn->prepare($query);
     $stmt->bindValue(':email',$login_username);

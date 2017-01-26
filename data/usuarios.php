@@ -21,7 +21,7 @@ FROM
     IN_IMAGENS IMG 
 WHERE 
     USR.IMG_PERFIL = IMG.ID AND USR.ID =:id";
-$query2 = "SELECT ID, NOME || ' ' || SOBRENOME AS NOME_COMPLETO, EMAIL, SETOR, CARGO, LOCAL, RAMAL FROM VW_PERFIL ORDER BY 2";
+$query2 = "SELECT ID, NOME || ' ' || SOBRENOME AS NOME_COMPLETO, EMAIL, SETOR, CARGO, LOCAL, RAMAL, ATIVO FROM VW_PERFIL ORDER BY 8 DESC, 2 ASC";
 
 //#1
 $stmt1 = $conn->prepare($query1);
@@ -317,6 +317,7 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
                         <th style="width:20%">Cargo</th>
                         <th style="width:20%">Local</th>
                         <th style="width:8%">Ramal</th>
+                        <th style="width:5%">Ativo</th>
                         <th style="width:5%">A&ccedil;&otilde;es</th>                     
                       </tr>
                     </thead>
@@ -332,6 +333,7 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
                             <td class="v-align-middle"><span class="muted">'.$result2[$key]['CARGO'].'</span></td>
                             <td class="v-align-middle"><span class="muted">'.$result2[$key]['LOCAL'].'</span></td>
                             <td class="v-align-middle"><span class="muted">'.$result2[$key]['RAMAL'].'</span></td>
+                            <td class="v-align-middle"><span class="muted">'.$result2[$key]['ATIVO'].'</span></td>
                             <td class="v-align-middle">
                               <a href="usuarios.u.php?id='.$result2[$key]['ID'].'"title="Editar"><i class="fa fa-pencil"></i></a>
                               <a href="usuarios.d.php?id='.$result2[$key]['ID'].'"title="Excluir"><i class="fa fa-trash"></i></a>
