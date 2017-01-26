@@ -154,7 +154,7 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
                 <div class="message-wrapper">
                   <div class="heading" style="text-align:center;">
                     <?php
-                      echo "Versão " . $_SESSION['versao']
+                      echo "Vers&atilde;o " . $_SESSION['versao']
                     ?>
                   </div>
                   <div class="description" style="text-align:center;">
@@ -185,7 +185,7 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
                     <a href="perfil.php" title="Acesse seu perfil"><i class="fa fa-male fa-fw"></i>&nbsp;&nbsp;Meu perfil</a>
                   </li>
                   <!-- <li class="disabled">
-                    <a href="calender.php" title="Recurso ainda não implementado.">Calendário</a>
+                    <a href="calender.php" title="Recurso ainda n&atilde;o implementado.">Calend&aacute;rio</a>
                   </li> -->
                   <!-- <li>
                     <a href="email.php"> My Inbox&nbsp;&nbsp;
@@ -201,7 +201,7 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
               <!--<li class="quicklinks"> <span class="h-seperate"></span></li>-->
               <!--<li class="quicklinks">-->
                 <!-- <a href="#" class="chat-menu-toggle" data-webarch="toggle-right-side"><i class="material-icons">chat</i><span class="badge badge-important hide">1</span> -->
-                <!--<a href="#" class="chat-menu-toggle"><i class="material-icons" title="Recurso ainda não implementado.">chat</i><span class="badge badge-important hide">1</span>-->
+                <!--<a href="#" class="chat-menu-toggle"><i class="material-icons" title="Recurso ainda n&atilde;o implementado.">chat</i><span class="badge badge-important hide">1</span>-->
                 <!--</a>-->
                 <!--<div class="simple-chat-popup chat-menu-toggle hide">-->
                   <!--<div class="simple-chat-popup-arrow"></div>
@@ -257,7 +257,7 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
               <a href="cadastros.php"><i class="material-icons" title="Cadastros">library_add</i> <span class="title">Cadastros</span></a>
             </li>
             <li class="start active"> 
-              <a href="solicitacoes.php"><i class="material-icons" title="Solicitações">assignment</i> <span class="title">Solicitações</span></a>
+              <a href="solicitacoes.php"><i class="material-icons" title="Solicita&ccedil;&otilde;es">assignment</i> <span class="title">Solicita&ccedil;&otilde;es</span></a>
             </li>
           </ul>          
           <div class="clearfix"></div>
@@ -281,10 +281,10 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
         <div class="content">
         <ul class="breadcrumb">
             <li>
-              <p>VOCÊ ESTÁ EM </p>
+              <p>VOC&Ecirc; EST&Aacute; EM </p>
             </li>
             <li><a href="index.php">Home</a></li>
-            <li><a href="solicitacoes.php">Solicitações</a></li>
+            <li><a href="solicitacoes.php">Solicita&ccedil;&otilde;es</a></li>
             <li><a href="#.php" class="active">Viagens</a></li>
           </ul>
           <!-- BEGIN PAGE TITLE -->
@@ -301,8 +301,8 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
                   <img src="assets\img\logo3.png">
                   <p></p>
                   <div class="form-group col-md-12 col-sm-12 col-xs-12">
-                    <span class="help">Preencha abaixo as informações para solicitar uma viagem.
-                    <p>Após enviar os dados, aguarde retorno por e-mail com a cotação.</p>
+                    <span class="help">Preencha abaixo as informa&ccedil;&otilde;es para solicitar uma viagem.
+                    <p>Ap&oacute;s enviar os dados, aguarde retorno por e-mail com a cota&ccedil;&atilde;o.</p>
                     </span>
                   </div>
                   <div class="tools">
@@ -323,7 +323,7 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                                 <br>
                                 <i class="fa fa-pencil-square-o fa-6x"></i>
-                                <h4 id="pModalLabel" class="semi-bold">Termos e condições.</h4>
+                                <h4 id="pModalLabel" class="semi-bold">Termos e condi&ccedil;&otilde;es.</h4>
                               </div>
                               <div class="modal-body">
                                 <div class="alert alert-info">
@@ -366,29 +366,29 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
                                 <option value="COM - Comercial">COM - Comercial</option>
                                 <option value="CMP - Compras">CMP - Compras</option>
                                 <option value="CTB - Contabilidade">CTB - Contabilidade</option>
-                                <option value="CRI - Criação">CRI - Criação</option>
+                                <option value="CRI - Cria&ccedil;&atilde;o">CRI - Cria&ccedil;&atilde;o</option>
                                 <option value="EST - Estoque">EST - Estoque</option>
                                 <option value="FIN - Financeiro">FIN - Financeiro</option>
-                                <option value="LOG - Logística">LOG - Logística</option>
+                                <option value="LOG - Log&iacute;stica">LOG - Log&iacute;stica</option>
                                 <option value="MKT - Marketing">MKT - Marketing</option>
                                 <option value="MTZ - Matrizaria">MTZ - Matrizaria</option>
                                 <option value="MOD - Modelagem">MOD - Modelagem</option>
-                                <option value="PCP - PCP/Produção">PCP - PCP/Produção</option>
+                                <option value="PCP - PCP/Produ&ccedil;&atilde;o">PCP - PCP/Produ&ccedil;&atilde;o</option>
                                 <option value="RH - Recursos Humanos">RH - Recursos Humanos</option>                             
-                                <option value="TI - Tecnologia da Informação">TI - Tecnologia da Informação</option>
+                                <option value="TI - Tecnologia da Informa&ccedil;&atilde;o">TI - Tecnologia da Informa&ccedil;&atilde;o</option>
                             </select>
                           </div>
                         </div>
 
                         <div class="form-group col-md-9 col-sm-9 col-xs-9">
                           <div class="controls">
-                            <input type="text" placeholder="Endereço" class="form-control input" name="endereco" required>
+                            <input type="text" placeholder="Endere&ccedil;o" class="form-control input" name="endereco" required>
                           </div>
                         </div>
 
                         <div class="form-group col-md-3 col-sm-3 col-xs-3" >
                           <div class="controls">
-                            <input type="text" placeholder="Nº/Comp." class="form-control input" maxlength="16" name="nro" required>
+                            <input type="text" placeholder="N&ordm;/Comp." class="form-control input" maxlength="16" name="nro" required>
                           </div>
                         </div>
                         
@@ -416,7 +416,7 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
                           <div class="controls">
                             <select id="source"  class="form-control input" name="estado" required>                             
                                 <option value="RS">RS - Rio Grande do Sul</option>
-                                <option value="CE">CE - Ceará</option>
+                                <option value="CE">CE - Cear&aacute;</option>
                             </select>
                           </div>
                         </div>
@@ -478,7 +478,7 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
 
                         <div class="form-group col-md-12 col-sm-12 col-xs-12">
                           <div class="controls">
-                            <textarea id="Obs" placeholder="Observações" class="form-control input" rows="5" name="obs"></textarea>
+                            <textarea id="Obs" placeholder="Observa&ccedil;&otilde;es" class="form-control input" rows="5" name="obs"></textarea>
                           </div>
                         </div>
 
@@ -536,7 +536,7 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
                   <img src="assets\img\logo3.png">
                   <p></p>
                   <div class="form-group col-md-12 col-sm-12 col-xs-12">
-                    <span class="help">Preencha abaixo as informações a respeito das despesas de sua viagem.
+                    <span class="help">Preencha abaixo as informa&ccedil;&otilde;es a respeito das despesas de sua viagem.
                     <p>Antes de registrar suas despesas, leia as <span class="bold"> <a href="./assets/docs/normas_viagem.pdf" target="blank" >normas de reembolso </a></span>.</p>                  
                     </span>
                   </div>
@@ -558,7 +558,7 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                                 <br>
                                 <i class="fa fa-pencil-square-o fa-6x"></i>
-                                <h4 id="pModalLabel" class="semi-bold">Termos e condições.</h4>
+                                <h4 id="pModalLabel" class="semi-bold">Termos e condi&ccedil;&otilde;es.</h4>
                               </div>
                               <div class="modal-body">
                                 <div class="alert alert-info">
@@ -651,9 +651,9 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
                                     <td class="v-align-middle"><input type="text" class="form-control input input-sm" placeholder="" class="form-control input" name="quem" required></td>
                                     <td class="v-align-middle">
                                       <select  class="form-control input input-sm" name="oque" required>
-                                        <option value="Alimentação">Alimentação</option>
+                                        <option value="Alimenta&ccedil;&atilde;o">Alimenta&ccedil;&atilde;o</option>
                                         <option value="Transporte">Transporte</option>
-                                        <option value="Aluguel de veículo">Aluguel de veículo</option>
+                                        <option value="Aluguel de ve&iacute;culo">Aluguel de ve&iacute;culo</option>
                                         <option value="Hospedagem">Hospedagem</option>                                        
                                       </select>
                                     </td>

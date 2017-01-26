@@ -1,5 +1,6 @@
 <?php
 require_once("assets/php/class/class.seg.php");
+header ('Content-type: text/html; charset=UTF-8');
 session_start();
 proteger();
 
@@ -31,7 +32,7 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Aniger - Solicitações</title>
+    <title>Aniger - Solicita&ccedil;&otilde;es</title>
     <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
@@ -145,7 +146,7 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
                 <div class="message-wrapper">
                   <div class="heading" style="text-align:center;">
                     <?php
-                      echo "Versão " . $_SESSION['versao']
+                      echo "Vers&atilde;o " . $_SESSION['versao']
                     ?>
                   </div>
                   <div class="description" style="text-align:center;">
@@ -176,7 +177,7 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
                     <?php echo '<a href="perfil.php?id='.$id.'" title="Acesse seu perfil"><i class="fa fa-male fa-fw"></i>&nbsp;&nbsp;Meu perfil</a>';?>
                   </li>
                   <!-- <li class="disabled">
-                    <a href="calender.php" title="Recurso ainda não implementado.">Calendário</a>
+                    <a href="calender.php" title="Recurso ainda n&atilde;o implementado.">Calend&aacute;rio</a>
                   </li> -->
                   <!-- <li>
                     <a href="email.php"> My Inbox&nbsp;&nbsp;
@@ -192,7 +193,7 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
               <!--<li class="quicklinks"> <span class="h-seperate"></span></li>-->
               <!--<li class="quicklinks">-->
                 <!-- <a href="#" class="chat-menu-toggle" data-webarch="toggle-right-side"><i class="material-icons">chat</i><span class="badge badge-important hide">1</span> -->
-                <!--<a href="#" class="chat-menu-toggle"><i class="material-icons" title="Recurso ainda não implementado.">chat</i><span class="badge badge-important hide">1</span>-->
+                <!--<a href="#" class="chat-menu-toggle"><i class="material-icons" title="Recurso ainda n&atilde;o implementado.">chat</i><span class="badge badge-important hide">1</span>-->
                 <!--</a>-->
                 <!--<div class="simple-chat-popup chat-menu-toggle hide">-->
                   <!--<div class="simple-chat-popup-arrow"></div>
@@ -248,7 +249,7 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
               <a href="cadastros.php"><i class="material-icons" title="Cadastros">library_add</i> <span class="title">Cadastros</span></a>
             </li>
             <li class="start active"> 
-              <a href="solicitacoes.php"><i class="material-icons" title="Solicitações">assignment</i> <span class="title">Solicitações</span></a>
+              <a href="solicitacoes.php"><i class="material-icons" title="Solicita&ccedil;&otilde;es">assignment</i> <span class="title">Solicita&ccedil;&otilde;es</span></a>
             </li>
           </ul>          
           <div class="clearfix"></div>
@@ -272,16 +273,16 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
         <div class="content">
         <ul class="breadcrumb">
             <li>
-              <p>VOCÊ ESTÁ EM </p>
+              <p>VOC&Ecirc; EST&Aacute; EM </p>
             </li>
             <li>
             <a href="index.php">Home</a>
             </li>
-            <li><a href="#" class="active">Solicitações</a> </li>
+            <li><a href="#" class="active">Solicita&ccedil;&otilde;es</a> </li>
           </ul>
           <!-- BEGIN PAGE TITLE -->
           <div class="page-title"> <i class="material-icons">assignment</i>
-            <h3>Solicitações </h3>
+            <h3>Solicita&ccedil;&otilde;es </h3>
           </div>
           <!-- END PAGE TITLE -->
           <!-- BEGIN PlACE PAGE CONTENT HERE -->
@@ -326,15 +327,15 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
                   <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                   <br>
                   <i class="fa fa-info fa-6x"></i>
-                  <h4 id="1ModalLabel" class="semi-bold">Informação.</h4>
+                  <h4 id="1ModalLabel" class="semi-bold">Informa&ccedil;&atilde;o.</h4>
                 </div>
                 <div class="modal-body">
                   <div class="alert alert-info">
                     <i class="pull-left material-icons">feedback</i>
                     <h5 style="padding-left: 30px;">
-                      <p>Utilize este cadastro para solicitar cotações de <span class="bold">viagens</span>.
-                      Após informar os dados solicitados,  aguarde o retorno do setor responsável pela cotação, em seu email. <br>                      
-                      <p>As solicitações são encaminhados para: <span class="bold"> juliana.dias@aniger.com.br</span></p>
+                      <p>Utilize este cadastro para solicitar cota&ccedil;&otilde;es de <span class="bold">viagens</span>.
+                      Ap&oacute;s informar os dados solicitados,  aguarde o retorno do setor respons&aacute;vel pela cota&ccedil;&atilde;o, em seu email. <br>                      
+                      <p>As solicita&ccedil;&otilde;es s&atilde;o encaminhados para: <span class="bold"> juliana.dias@aniger.com.br</span></p>
                       <p>Ramal: <span class="bold">166</span></p>   
                     </h5>    
                   </div>             
@@ -350,7 +351,7 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
               <div class="tiles-body">
                 <a href="veiculos.php" style="color: #edeeef;">
                   <div class="heading">
-                    <div class="pull-left">Veículos </div>
+                    <div class="pull-left">Ve&iacute;culos </div>
                     <div class="clearfix"></div>
                   </div>
                   <div class="big-icon">
@@ -384,7 +385,7 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
                   <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                   <br>
                   <i class="fa fa-info fa-6x"></i>
-                  <h4 id="2ModalLabel" class="semi-bold">Informação.</h4>
+                  <h4 id="2ModalLabel" class="semi-bold">Informa&ccedil;&atilde;o.</h4>
                 </div>
                 <div class="modal-body">
                   <div class="alert alert-info" >
@@ -440,7 +441,7 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
                   <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                   <br>
                   <i class="fa fa-info fa-6x"></i>
-                  <h4 id="3ModalLabel" class="semi-bold">Informação.</h4>
+                  <h4 id="3ModalLabel" class="semi-bold">Informa&ccedil;&atilde;o.</h4>
                 </div>
                 <div class="modal-body">
                   <div class="alert alert-info" >
@@ -461,7 +462,7 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
               <div class="tiles-body">
                 <a href="manutencao.php" style="color: #edeeef;">
                   <div class="heading">
-                    <div class="pull-left">Manutenção </div>
+                    <div class="pull-left">Manuten&ccedil;&atilde;o </div>
                     <div class="clearfix"></div>
                   </div>
                   <div class="big-icon">
@@ -495,7 +496,7 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
                   <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                   <br>
                   <i class="fa fa-info fa-6x"></i>
-                  <h4 id="4ModalLabel" class="semi-bold">Informação.</h4>
+                  <h4 id="4ModalLabel" class="semi-bold">Informa&ccedil;&atilde;o.</h4>
                 </div>
                 <div class="modal-body">
                   <div class="alert alert-info" >

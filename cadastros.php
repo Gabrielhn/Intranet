@@ -145,7 +145,7 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
                 <div class="message-wrapper">
                   <div class="heading" style="text-align:center;">
                     <?php
-                      echo "Versão " . $_SESSION['versao']
+                      echo "Vers&atilde;o " . $_SESSION['versao']
                     ?>
                   </div>
                   <div class="description" style="text-align:center;">
@@ -176,7 +176,7 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
                     <?php echo '<a href="perfil.php?id='.$id.'" title="Acesse seu perfil"><i class="fa fa-male fa-fw"></i>&nbsp;&nbsp;Meu perfil</a>';?>
                   </li>
                   <!-- <li class="disabled">
-                    <a href="calender.php" title="Recurso ainda não implementado.">Calendário</a>
+                    <a href="calender.php" title="Recurso ainda n&atilde;o implementado.">Calend&aacute;rio</a>
                   </li> -->
                   <!-- <li>
                     <a href="email.php"> My Inbox&nbsp;&nbsp;
@@ -192,7 +192,7 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
               <!--<li class="quicklinks"> <span class="h-seperate"></span></li>-->
               <!--<li class="quicklinks">-->
                 <!-- <a href="#" class="chat-menu-toggle" data-webarch="toggle-right-side"><i class="material-icons">chat</i><span class="badge badge-important hide">1</span> -->
-                <!--<a href="#" class="chat-menu-toggle"><i class="material-icons" title="Recurso ainda não implementado.">chat</i><span class="badge badge-important hide">1</span>-->
+                <!--<a href="#" class="chat-menu-toggle"><i class="material-icons" title="Recurso ainda n&atilde;o implementado.">chat</i><span class="badge badge-important hide">1</span>-->
                 <!--</a>-->
                 <!--<div class="simple-chat-popup chat-menu-toggle hide">-->
                   <!--<div class="simple-chat-popup-arrow"></div>
@@ -248,7 +248,7 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
               <a href="cadastros.php"><i class="material-icons" title="Cadastros">library_add</i> <span class="title">Cadastros</span></a>
             </li>
             <li class=""> 
-              <a href="solicitacoes.php"><i class="material-icons" title="Solicitações">assignment</i> <span class="title">Solicitações</span></a>
+              <a href="solicitacoes.php"><i class="material-icons" title="Solicita&ccedil;&otilde;es">assignment</i> <span class="title">Solicita&ccedil;&otilde;es</span></a>
             </li>
           </ul>
           <div class="clearfix"></div>
@@ -272,7 +272,7 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
         <div class="content">
         <ul class="breadcrumb">
             <li>
-              <p>VOCÊ ESTÁ EM </p>
+              <p>VOC&Ecirc; EST&Aacute; EM </p>
             </li>
             <li>
             <a href="index.php">Home</a>
@@ -327,15 +327,15 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
                   <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                   <br>
                   <i class="fa fa-info fa-6x"></i>
-                  <h4 id="1ModalLabel" class="semi-bold">Informação.</h4>
+                  <h4 id="1ModalLabel" class="semi-bold">Informa&ccedil;&atilde;o.</h4>
                 </div>
                 <div class="modal-body">
                   <div class="alert alert-info">
                     <i class="pull-left material-icons">feedback</i>
                     <h5 style="padding-left: 30px;">
-                      <p>Utilize este cadastro para solicitar a inclusão de novos <span class="bold">clientes</span> no sistema.
-                      Após informar os dados solicitados,  aguarde o retorno do setor responsável pelo cadastramento, em seu email. <br>                      
-                      <p>Os cadastro são encaminhados para: <span class="bold"> iraci.kraemer@aniger.com.br</span></p>
+                      <p>Utilize este cadastro para solicitar a inclus&atilde;o de novos <span class="bold">clientes</span> no sistema.
+                      Ap&oacute;s informar os dados solicitados,  aguarde o retorno do setor respons&aacute;vel pelo cadastramento, em seu email. <br>                      
+                      <p>Os cadastro s&atilde;o encaminhados para: <span class="bold"> iraci.kraemer@aniger.com.br</span></p>
                       <p>Ramal: <span class="bold">105</span></p>
                     </h5>    
                   </div>             
@@ -384,15 +384,15 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
                   <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                   <br>
                   <i class="fa fa-info fa-6x"></i>
-                  <h4 id="2ModalLabel" class="semi-bold">Informação.</h4>
+                  <h4 id="2ModalLabel" class="semi-bold">Informa&ccedil;&atilde;o.</h4>
                 </div>
                 <div class="modal-body">
                   <div class="alert alert-info">
                     <i class="pull-left material-icons">feedback</i>
                     <h5 style="padding-left: 30px;">
-                      <p>Utilize este cadastro para solicitar a inclusão de novos <span class="bold">fornecedores</span> no sistema.
-                      Após informar os dados solicitados,  aguarde o retorno do setor responsável pelo cadastramento, em seu email. <br>                      
-                      <p>Os cadastro são encaminhados para: <span class="bold"> iraci.kraemer@aniger.com.br</span></p> 
+                      <p>Utilize este cadastro para solicitar a inclus&atilde;o de novos <span class="bold">fornecedores</span> no sistema.
+                      Ap&oacute;s informar os dados solicitados,  aguarde o retorno do setor respons&aacute;vel pelo cadastramento, em seu email. <br>                      
+                      <p>Os cadastro s&atilde;o encaminhados para: <span class="bold"> iraci.kraemer@aniger.com.br</span></p> 
                       <p>Ramal: <span class="bold">105</span></p>
                     </h5>    
                   </div>             
@@ -441,7 +441,7 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
                   <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                   <br>
                   <i class="fa fa-info fa-6x"></i>
-                  <h4 id="3ModalLabel" class="semi-bold">Informação.</h4>
+                  <h4 id="3ModalLabel" class="semi-bold">Informa&ccedil;&atilde;o.</h4>
                 </div>
                 <div class="modal-body">
                   <div class="alert alert-info">

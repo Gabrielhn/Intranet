@@ -20,7 +20,7 @@ $conn= new \PDO("oci:host=$host;dbname=$service","INTRANET","ifnefy6b9");
     $result=$stmt->fetch(PDO::FETCH_ASSOC);
 
     if ( ! $result) { // Nenhum registro                
-        $erro = "Usuário ou senha incorretos. Verifique os dados digitados!";
+        $erro = "Usu&aacute;rio ou senha incorretos. Verifique os dados digitados!";
         $_SESSION['erro'] = $erro;    
         header("Location: ../../login.php"); 
     } else {

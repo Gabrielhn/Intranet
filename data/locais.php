@@ -153,7 +153,7 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
                 <div class="message-wrapper">
                   <div class="heading" style="text-align:center;">
                     <?php
-                      echo "Versão " . $_SESSION['versao']
+                      echo "Vers&atilde;o " . $_SESSION['versao']
                     ?>
                   </div>
                   <div class="description" style="text-align:center;">
@@ -192,7 +192,7 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
               <!--<li class="quicklinks"> <span class="h-seperate"></span></li>-->
               <!--<li class="quicklinks">-->
                 <!-- <a href="#" class="chat-menu-toggle" data-webarch="toggle-right-side"><i class="material-icons">chat</i><span class="badge badge-important hide">1</span> -->
-                <!--<a href="#" class="chat-menu-toggle"><i class="material-icons" title="Recurso ainda não implementado.">chat</i><span class="badge badge-important hide">1</span>-->
+                <!--<a href="#" class="chat-menu-toggle"><i class="material-icons" title="Recurso ainda n&atilde;o implementado.">chat</i><span class="badge badge-important hide">1</span>-->
                 <!--</a>-->
                 <!--<div class="simple-chat-popup chat-menu-toggle hide">-->
                   <!--<div class="simple-chat-popup-arrow"></div>
@@ -249,7 +249,7 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
               <a href="../cadastros.php"><i class="material-icons" title="Cadastros">library_add</i> <span class="title">Cadastros</span></a>
             </li>
             <li class=""> 
-              <a href="../solicitacoes.php"><i class="material-icons" title="Solicitações">assignment</i> <span class="title">Solicitações</span></a>
+              <a href="../solicitacoes.php"><i class="material-icons" title="Solicita&ccedil;&otilde;es">assignment</i> <span class="title">Solicita&ccedil;&otilde;es</span></a>
             </li>
            </ul>            
           <div class="clearfix"></div>
@@ -275,7 +275,7 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
         <div class="content">
         <ul class="breadcrumb">
           <li>
-            <p>VOCÊ ESTÁ EM </p>
+            <p>VOC&Ecirc; EST&Aacute; EM </p>
           </li>
           <li>
             <a href="../index.php">Home</a>
@@ -313,7 +313,7 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
                       <tr>                        
                         <th style="width:20%">Local</th>
                         <th style="width:80%">Nome</th>                    
-                        <th style="width:10%">Ações</th>
+                        <th style="width:10%">A&ccedil;&otilde;es</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -345,11 +345,11 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
                                     <i class="pull-left material-icons">feedback</i>
                                     <div>
                                       <span style="padding-left: 20px;">
-                                        Você tem certeza que deseja excluir este registro?                                             
+                                        Voc&ecirc; tem certeza que deseja excluir este registro?                                             
                                       </span>
                                       <div class="pull-right">
                                       <a href="locais.D.php?id='.$result2[$key]['LOCAL'].'"><button class="btn btn-danger btn-small">Sim </button></a>
-                                      <button type="button" class="btn btn-default btn-small" data-dismiss="modal">Não </button>    
+                                      <button type="button" class="btn btn-default btn-small" data-dismiss="modal">N&atilde;o </button>    
                                       </div>
                                       </div>
                                   </div>             
@@ -580,7 +580,7 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
             "sSearch": "Pesquisar: ",
             "sEmptyTable": "Nenhum registro encontrado",
             "oPaginate": {
-                "sFirst": "Início",
+                "sFirst": "In&iacute;cio",
                 "sPrevious": "Anterior ",
                 "sNext": "Próximo ",
                 "sLast": "Último"

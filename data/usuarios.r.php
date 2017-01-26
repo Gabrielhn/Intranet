@@ -38,7 +38,7 @@ $result2=$stmt2->fetch(PDO::FETCH_ASSOC);
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Aniger - Dados - Usuários</title>
+    <title>Aniger - Dados - Usu&aacute;rios</title>
     <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
@@ -152,7 +152,7 @@ $result2=$stmt2->fetch(PDO::FETCH_ASSOC);
                 <div class="message-wrapper">
                   <div class="heading" style="text-align:center;">
                     <?php
-                      echo "Versão " . $_SESSION['versao']
+                      echo "Vers&atilde;o " . $_SESSION['versao']
                     ?>
                   </div>
                   <div class="description" style="text-align:center;">
@@ -191,7 +191,7 @@ $result2=$stmt2->fetch(PDO::FETCH_ASSOC);
               <!--<li class="quicklinks"> <span class="h-seperate"></span></li>-->
               <!--<li class="quicklinks">-->
                 <!-- <a href="#" class="chat-menu-toggle" data-webarch="toggle-right-side"><i class="material-icons">chat</i><span class="badge badge-important hide">1</span> -->
-                <!--<a href="#" class="chat-menu-toggle"><i class="material-icons" title="Recurso ainda não implementado.">chat</i><span class="badge badge-important hide">1</span>-->
+                <!--<a href="#" class="chat-menu-toggle"><i class="material-icons" title="Recurso ainda n&atilde;o implementado.">chat</i><span class="badge badge-important hide">1</span>-->
                 <!--</a>-->
                 <!--<div class="simple-chat-popup chat-menu-toggle hide">-->
                   <!--<div class="simple-chat-popup-arrow"></div>
@@ -248,7 +248,7 @@ $result2=$stmt2->fetch(PDO::FETCH_ASSOC);
               <a href="../cadastros.php"><i class="material-icons" title="Cadastros">library_add</i> <span class="title">Cadastros</span></a>
             </li>
             <li class=""> 
-              <a href="../solicitacoes.php"><i class="material-icons" title="Solicitações">assignment</i> <span class="title">Solicitações</span></a>
+              <a href="../solicitacoes.php"><i class="material-icons" title="Solicita&ccedil;&otilde;es">assignment</i> <span class="title">Solicita&ccedil;&otilde;es</span></a>
             </li>
            </ul>            
           <div class="clearfix"></div>
@@ -274,7 +274,7 @@ $result2=$stmt2->fetch(PDO::FETCH_ASSOC);
         <div class="content">
         <ul class="breadcrumb">
           <li>
-            <p>VOCÊ ESTÁ EM </p>
+            <p>VOC&Ecirc; EST&Aacute; EM </p>
           </li>
           <li>
             <a href="../index.php">Home</a>
@@ -283,7 +283,7 @@ $result2=$stmt2->fetch(PDO::FETCH_ASSOC);
             <a href="../dados.php">Dados</a> 
           </li>
           <li>
-            <a href="usuarios.php" class="">Usuários</a> 
+            <a href="usuarios.php" class="">Usu&aacute;rios</a> 
           </li>
           <li>
             <a href="#" class="active">Detalhes</a> 
@@ -308,7 +308,7 @@ $result2=$stmt2->fetch(PDO::FETCH_ASSOC);
                   </div>
                 </div>
                 <div class="grid-body no-border">
-                  <h3><i class="fa fa-male fa-1x"></i><span class="semi-bold">&nbsp; Usuários</span></h3>
+                  <h3><i class="fa fa-male fa-1x"></i><span class="semi-bold">&nbsp; Usu&aacute;rios</span></h3>
                   <div class="form" >
                     &nbsp; <br/>                                     
                     <div class="control-group">
@@ -344,7 +344,7 @@ $result2=$stmt2->fetch(PDO::FETCH_ASSOC);
                     </div>
                     <br/>
                     <div class="control-group">
-                      <label class="control-label"><strong>Admissão: </strong><?php echo $result2['ADMISSAO'];?></label>                                                                      
+                      <label class="control-label"><strong>Admiss&atilde;o: </strong><?php echo $result2['ADMISSAO'];?></label>                                                                      
                     </div>
                     <br/>                       
                   </div>

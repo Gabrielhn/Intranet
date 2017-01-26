@@ -82,7 +82,7 @@
               <div class="alert alert-info" style=" margin-right: 30px;">
                 <i class="pull-left material-icons">feedback</i>
                   <h6 style="padding-left: 30px;">
-                    Este é um espaço que está sendo desenvolvido, para reunir várias informações uteis para os colaboradores do grupo Aniger. 
+                    Este &eacute; um espa&ccedil;o que est&aacute; sendo desenvolvido, para reunir v&aacute;rias informa&ccedil;&otilde;es uteis para os colaboradores do grupo Aniger. 
                     <br>&nbsp;  
                     <p>Aguarde novidades =)</p>
                   </h6>

@@ -31,7 +31,7 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Aniger - Manutenção</title>
+    <title>Aniger - Manuten&ccedil;&atilde;o</title>
     <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
@@ -145,7 +145,7 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
                 <div class="message-wrapper">
                   <div class="heading" style="text-align:center;">
                     <?php
-                      echo "Versão " . $_SESSION['versao']
+                      echo "Vers&atilde;o " . $_SESSION['versao']
                     ?>
                   </div>
                   <div class="description" style="text-align:center;">
@@ -176,7 +176,7 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
                     <?php echo '<a href="perfil.php?id='.$id.'" title="Acesse seu perfil"><i class="fa fa-male fa-fw"></i>&nbsp;&nbsp;Meu perfil</a>';?>
                   </li>
                   <!-- <li class="disabled">
-                    <a href="calender.php" title="Recurso ainda não implementado.">Calendário</a>
+                    <a href="calender.php" title="Recurso ainda n&atilde;o implementado.">Calend&aacute;rio</a>
                   </li> -->
                   <!-- <li>
                     <a href="email.php"> My Inbox&nbsp;&nbsp;
@@ -192,7 +192,7 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
               <!--<li class="quicklinks"> <span class="h-seperate"></span></li>-->
               <!--<li class="quicklinks">-->
                 <!-- <a href="#" class="chat-menu-toggle" data-webarch="toggle-right-side"><i class="material-icons">chat</i><span class="badge badge-important hide">1</span> -->
-                <!--<a href="#" class="chat-menu-toggle"><i class="material-icons" title="Recurso ainda não implementado.">chat</i><span class="badge badge-important hide">1</span>-->
+                <!--<a href="#" class="chat-menu-toggle"><i class="material-icons" title="Recurso ainda n&atilde;o implementado.">chat</i><span class="badge badge-important hide">1</span>-->
                 <!--</a>-->
                 <!--<div class="simple-chat-popup chat-menu-toggle hide">-->
                   <!--<div class="simple-chat-popup-arrow"></div>
@@ -248,7 +248,7 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
               <a href="cadastros.php"><i class="material-icons" title="Cadastros">library_add</i> <span class="title">Cadastros</span></a>
             </li>
             <li class="start active"> 
-              <a href="solicitacoes.php"><i class="material-icons" title="Solicitações">assignment</i> <span class="title">Solicitações</span></a>
+              <a href="solicitacoes.php"><i class="material-icons" title="Solicita&ccedil;&otilde;es">assignment</i> <span class="title">Solicita&ccedil;&otilde;es</span></a>
             </li>
           </ul>          
           <div class="clearfix"></div>
@@ -272,15 +272,15 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
         <div class="content">
         <ul class="breadcrumb">
             <li>
-              <p>VOCÊ ESTÁ EM </p>
+              <p>VOC&Ecirc; EST&Aacute; EM </p>
             </li>
             <li><a href="index.php">Home</a></li>
-            <li><a href="solicitacoes.php">Solicitações</a></li>
-            <li><a href="#.php" class="active">Manutenção</a></li>
+            <li><a href="solicitacoes.php">Solicita&ccedil;&otilde;es</a></li>
+            <li><a href="#.php" class="active">Manuten&ccedil;&atilde;o</a></li>
           </ul>
           <!-- BEGIN PAGE TITLE -->
           <div class="page-title"> <i class="fa fa-wrench fa-lg fa-fw" aria-hidden="true"></i>
-            <h3>Manutenção </h3>
+            <h3>Manuten&ccedil;&atilde;o </h3>
           </div>
           <!-- END PAGE TITLE -->
           <!-- CONTEÚDO -->

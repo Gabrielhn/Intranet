@@ -145,7 +145,7 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
                 <div class="message-wrapper">
                   <div class="heading" style="text-align:center;">
                     <?php
-                      echo "Versão " . $_SESSION['versao']
+                      echo "Vers&atilde;o " . $_SESSION['versao']
                     ?>
                   </div>
                   <div class="description" style="text-align:center;">
@@ -176,7 +176,7 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
                    <?php echo '<a href="perfil.php?id='.$id.'" title="Acesse seu perfil"><i class="fa fa-male fa-fw"></i>&nbsp;&nbsp;Meu perfil</a>';?>
                   </li>
                   <!-- <li class="disabled">
-                    <a href="calender.php" title="Recurso ainda não implementado.">Calendário</a>
+                    <a href="calender.php" title="Recurso ainda n&atilde;o implementado.">Calend&aacute;rio</a>
                   </li> -->
                   <!-- <li>
                     <a href="email.php"> My Inbox&nbsp;&nbsp;
@@ -192,7 +192,7 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
               <!--<li class="quicklinks"> <span class="h-seperate"></span></li>-->
               <!--<li class="quicklinks">-->
                 <!-- <a href="#" class="chat-menu-toggle" data-webarch="toggle-right-side"><i class="material-icons">chat</i><span class="badge badge-important hide">1</span> -->
-                <!--<a href="#" class="chat-menu-toggle"><i class="material-icons" title="Recurso ainda não implementado.">chat</i><span class="badge badge-important hide">1</span>-->
+                <!--<a href="#" class="chat-menu-toggle"><i class="material-icons" title="Recurso ainda n&atilde;o implementado.">chat</i><span class="badge badge-important hide">1</span>-->
                 <!--</a>-->
                 <!--<div class="simple-chat-popup chat-menu-toggle hide">-->
                   <!--<div class="simple-chat-popup-arrow"></div>
@@ -248,7 +248,7 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
               <a href="cadastros.php"><i class="material-icons" title="Cadastros">library_add</i> <span class="title">Cadastros</span></a>
             </li>
             <li class=""> 
-              <a href="solicitacoes.php"><i class="material-icons" title="Solicitações">assignment</i> <span class="title">Solicitações</span></a>
+              <a href="solicitacoes.php"><i class="material-icons" title="Solicita&ccedil;&otilde;es">assignment</i> <span class="title">Solicita&ccedil;&otilde;es</span></a>
             </li>
           </ul>          
           <div class="clearfix"></div>
@@ -272,7 +272,7 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
         <div class="content">
         <ul class="breadcrumb">
             <li>
-              <p>VOCÊ ESTÁ EM </p>
+              <p>VOC&Ecirc; EST&Aacute; EM </p>
             </li>
             <li><a href="index.php">Home</a></li>
             <li><a href="cadastros.php">Cadastros</a></li>
@@ -292,8 +292,8 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
                   <img src="assets\img\logo3.png">
                   <p></p>
                   <div class="form-group col-md-12 col-sm-12 col-xs-12">
-                    <span class="help">Preencha abaixo as informações solicitadas para cadastro de novos clientes.
-                    <p>Após enviar os dados, aguarde retorno por e-mail com o código do cliente.</p>
+                    <span class="help">Preencha abaixo as informa&ccedil;&otilde;es solicitadas para cadastro de novos clientes.
+                    <p>Ap&oacute;s enviar os dados, aguarde retorno por e-mail com o código do cliente.</p>
                     </span>
                   </div>
                   <div class="tools">
@@ -345,7 +345,7 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
 
                         <div class="form-group col-md-6 col-sm-6 col-xs-6">
                           <div class="controls">
-                            <input type="text" placeholder="Razão social" class="form-control input" name="nome" required>
+                            <input type="text" placeholder="Raz&atilde;o social" class="form-control input" name="nome" required>
                           </div>
                         </div>
 
@@ -357,13 +357,13 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
 
                         <div class="form-group col-md-9 col-sm-9 col-xs-9">
                           <div class="controls">
-                            <input type="text" placeholder="Endereço" class="form-control input" name="endereco" required>
+                            <input type="text" placeholder="Endere&ccedil;o" class="form-control input" name="endereco" required>
                           </div>
                         </div>
 
                         <div class="form-group col-md-3 col-sm-3 col-xs-3" >
                           <div class="controls">
-                            <input type="text" placeholder="Nº/Comp." class="form-control input" maxlength="7" name="nro" required>
+                            <input type="text" placeholder="N&ordm;/Comp." class="form-control input" maxlength="7" name="nro" required>
                           </div>
                         </div>
                         
@@ -390,42 +390,42 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
                         <div class="form-group col-md-4 col-sm-4 col-xs-4">
                           <div class="controls">
                             <select id="source"  class="form-control input" name="estado" required>
-                              <optgroup label="Região Sul">
+                              <optgroup label="Regi&atilde;o Sul">
                                 <option value="RS">RS - Rio Grande do Sul</option>
                                 <option value="SC">SC - Santa Catarina</option>
-                                <option value="PR">PR - Paraná</option>
+                                <option value="PR">PR - Paran&aacute;</option>
                               </optgroup>
-                              <optgroup label="Região Sudeste">
-                                <option value="RS">SP - São Paulo</option>
+                              <optgroup label="Regi&atilde;o Sudeste">
+                                <option value="RS">SP - S&atilde;o Paulo</option>
                                 <option value="SC">RJ - Rio de Janeiro</option>
                                 <option value="PR">MG - Minas Gerais</option>
-                                <option value="PR">ES - Espírito Santo</option>
+                                <option value="PR">ES - Esp&iacute;rito Santo</option>
                               </optgroup>
-                              <optgroup label="Região Centro-Oeste">
+                              <optgroup label="Regi&atilde;o Centro-Oeste">
                                 <option value="RS">MS - Mato Grosso do Sul</option>
-                                <option value="SC">GO - Goiás</option>
+                                <option value="SC">GO - Goi&aacute;s</option>
                                 <option value="PR">MT - Mato Grosso</option>
                                 <option value="PR">DF - Distrito Federal</option>
                               </optgroup>
-                              <optgroup label="Região Nordeste">
+                              <optgroup label="Regi&atilde;o Nordeste">
                                 <option value="BA">BA - Bahia</option>
                                 <option value="SE">SE - Sergipe</option>
                                 <option value="AL">AL - Alagoas</option>
                                 <option value="PE">PE - Pernambuco</option>
-                                <option value="PI">PI - Piauí</option>
-                                <option value="PB">PB - Paraíba</option>
-                                <option value="MA">MA - Maranhão</option>
-                                <option value="CE">CE - Ceará</option>
+                                <option value="PI">PI - Piau&iacute;</option>
+                                <option value="PB">PB - Para&iacute;ba</option>
+                                <option value="MA">MA - Maranh&atilde;o</option>
+                                <option value="CE">CE - Cear&aacute;</option>
                                 <option value="RN">RN - Rio Grande do Norte</option>
                               </optgroup>
-                              <optgroup label="Região Norte">
+                              <optgroup label="Regi&atilde;o Norte">
                                 <option value="TO">TO - Tocantins</option>
-                                <option value="RO">RO - Rondônia</option>
+                                <option value="RO">RO - Rond&ocirc;nia</option>
                                 <option value="AC">AC - Acre</option>
                                 <option value="AM">AM - Amazonas</option>
-                                <option value="PA">PA - Pará</option>
+                                <option value="PA">PA - Par&aacute;</option>
                                 <option value="RR">RR - Roraima</option>
-                                <option value="AP">AP - Amapá</option>
+                                <option value="AP">AP - Amap&aacute;</option>
                               </optgroup>
                             </select>
                           </div>
@@ -439,7 +439,7 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
 
                         <div class="form-group col-md-6 col-sm-6 col-xs-6">
                           <div class="controls">
-                            <input type="text" placeholder="Inscrição Estadual (IE)" class="form-control input" name="ie" maxlength="20">
+                            <input type="text" placeholder="Inscri&ccedil;&atilde;o Estadual (IE)" class="form-control input" name="ie" maxlength="20">
                           </div>
                         </div>
 
@@ -469,7 +469,7 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
 
                         <div class="form-group col-md-12 col-sm-12 col-xs-12">
                           <div class="controls">
-                            <textarea id="Obs" placeholder="Observações" class="form-control input" rows="5" name="obs"></textarea>
+                            <textarea id="Obs" placeholder="Observa&ccedil;&otilde;es" class="form-control input" rows="5" name="obs"></textarea>
                           </div>
                         </div>
 

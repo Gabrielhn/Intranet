@@ -1,6 +1,5 @@
 <?php
 setlocale(LC_ALL,'pt_BR.UTF8');
-header('Content-Type: text/html; charset=UTF-8');
 require_once("assets/php/class/class.seg.php");
 session_start();
 proteger();
@@ -178,7 +177,7 @@ $anos =floor(($tempo)/(60*60*24*365));
                 <div class="message-wrapper">
                   <div class="heading" style="text-align:center;">
                     <?php
-                      echo "Versão " . $_SESSION['versao']
+                      echo "Vers&atilde;o " . $_SESSION['versao']
                     ?>
                   </div>
                   <div class="description" style="text-align:center;">
@@ -209,7 +208,7 @@ $anos =floor(($tempo)/(60*60*24*365));
                     <?php echo '<a href="perfil.php?id='.$id.'" title="Acesse seu perfil"><i class="fa fa-male fa-fw"></i>&nbsp;&nbsp;Meu perfil</a>';?>
                   </li>
                   <!-- <li class="disabled">
-                    <a href="calender.php" title="Recurso ainda não implementado.">Calendário</a>
+                    <a href="calender.php" title="Recurso ainda n&atilde;o implementado.">Calend&aacute;rio</a>
                   </li> -->
                   <!-- <li>
                     <a href="email.php"> My Inbox&nbsp;&nbsp;
@@ -225,7 +224,7 @@ $anos =floor(($tempo)/(60*60*24*365));
               <!--<li class="quicklinks"> <span class="h-seperate"></span></li>-->
               <!--<li class="quicklinks">-->
                 <!-- <a href="#" class="chat-menu-toggle" data-webarch="toggle-right-side"><i class="material-icons">chat</i><span class="badge badge-important hide">1</span> -->
-                <!--<a href="#" class="chat-menu-toggle"><i class="material-icons" title="Recurso ainda não implementado.">chat</i><span class="badge badge-important hide">1</span>-->
+                <!--<a href="#" class="chat-menu-toggle"><i class="material-icons" title="Recurso ainda n&atilde;o implementado.">chat</i><span class="badge badge-important hide">1</span>-->
                 <!--</a>-->
                 <!--<div class="simple-chat-popup chat-menu-toggle hide">-->
                   <!--<div class="simple-chat-popup-arrow"></div>
@@ -280,7 +279,7 @@ $anos =floor(($tempo)/(60*60*24*365));
               <a href="cadastros.php"><i class="material-icons" title="Cadastros">library_add</i> <span class="title">Cadastros</span></a>
             </li>
             <li class=""> 
-              <a href="solicitacoes.php"><i class="material-icons" title="Solicitações">assignment</i> <span class="title">Solicitações</span></a>
+              <a href="solicitacoes.php"><i class="material-icons" title="Solicita&ccedil;&otilde;es">assignment</i> <span class="title">Solicita&ccedil;&otilde;es</span></a>
             </li>
           </ul>
           <div class="clearfix"></div>
@@ -306,7 +305,7 @@ $anos =floor(($tempo)/(60*60*24*365));
         <div class="content">
         <ul class="breadcrumb">
           <li>
-            <p>VOCÊ ESTÁ EM </p>
+            <p>VOC&Ecirc; EST&Aacute; EM </p>
           </li>
           <li><a href="#" class="active">Perfil</a> </li>
         </ul>

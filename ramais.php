@@ -145,7 +145,7 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
                 <div class="message-wrapper">
                   <div class="heading" style="text-align:center;">
                     <?php
-                      echo "Versão " . $_SESSION['versao']
+                      echo "Vers&atilde;o " . $_SESSION['versao']
                     ?>
                   </div>
                   <div class="description" style="text-align:center;">
@@ -176,7 +176,7 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
                     <?php echo '<a href="perfil.php?id='.$id.'" title="Acesse seu perfil"><i class="fa fa-male fa-fw"></i>&nbsp;&nbsp;Meu perfil</a>';?>
                   </li>
                   <!-- <li class="disabled">
-                    <a href="calender.php" title="Recurso ainda não implementado.">Calendário</a>
+                    <a href="calender.php" title="Recurso ainda n&atilde;o implementado.">Calend&aacute;rio</a>
                   </li> -->
                   <!-- <li>
                     <a href="email.php"> My Inbox&nbsp;&nbsp;
@@ -192,7 +192,7 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
               <!--<li class="quicklinks"> <span class="h-seperate"></span></li>-->
               <!--<li class="quicklinks">-->
                 <!-- <a href="#" class="chat-menu-toggle" data-webarch="toggle-right-side"><i class="material-icons">chat</i><span class="badge badge-important hide">1</span> -->
-                <!--<a href="#" class="chat-menu-toggle"><i class="material-icons" title="Recurso ainda não implementado.">chat</i><span class="badge badge-important hide">1</span>-->
+                <!--<a href="#" class="chat-menu-toggle"><i class="material-icons" title="Recurso ainda n&atilde;o implementado.">chat</i><span class="badge badge-important hide">1</span>-->
                 <!--</a>-->
                 <!--<div class="simple-chat-popup chat-menu-toggle hide">-->
                   <!--<div class="simple-chat-popup-arrow"></div>
@@ -248,7 +248,7 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
               <a href="cadastros.php"><i class="material-icons" title="Cadastros">library_add</i> <span class="title">Cadastros</span></a>
             </li>
             <li class=""> 
-              <a href="solicitacoes.php"><i class="material-icons" title="Solicitações">assignment</i> <span class="title">Solicitações</span></a>
+              <a href="solicitacoes.php"><i class="material-icons" title="Solicita&ccedil;&otilde;es">assignment</i> <span class="title">Solicita&ccedil;&otilde;es</span></a>
             </li>           
           </ul>          
           <div class="clearfix"></div>
@@ -272,7 +272,7 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
         <div class="content">
         <ul class="breadcrumb">
             <li>
-              <p>VOCÊ ESTÁ EM </p>
+              <p>VOC&Ecirc; EST&Aacute; EM </p>
             </li>
             <li>
             <a href="index.php">Home</a>
@@ -290,7 +290,7 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
             <div class="span12">
               <div class="grid simple ">
                 <div class="grid-title">
-                  <h4><span class="bold">Direção &nbsp;</span><span class="label label-adm">ADM</span></h4>
+                  <h4><span class="bold">Dire&ccedil;&atilde;o &nbsp;</span><span class="label label-adm">ADM</span></h4>
                   <div class="tools">
                     <a href="javascript:;" class="collapse"></a>
                     <a href="#grid-config" data-toggle="modal" class="config"></a>
@@ -413,7 +413,7 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
                         <td class="center">339</td>
                       </tr>
                       <tr class="even gradeX">
-                        <td>João Gustavo</td>
+                        <td>Jo&atilde;o Gustavo</td>
                         <td class="center">139</td>
                       </tr>
                     </tbody>
@@ -644,7 +644,7 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
             <div class="span12">
               <div class="grid simple ">
                 <div class="grid-title">
-                  <h4><span class="bold">Recepção &nbsp;</span><span class="label label-ti">REC</span></h4>
+                  <h4><span class="bold">Recep&ccedil;&atilde;o &nbsp;</span><span class="label label-ti">REC</span></h4>
                   <div class="tools">
                     <a href="javascript:;" class="collapse"></a>
                     <a href="#grid-config" data-toggle="modal" class="config"></a>
@@ -679,7 +679,7 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
             <div class="span12">
               <div class="grid simple ">
                 <div class="grid-title">
-                  <h4><span class="bold">Manutenção &nbsp;</span><span class="label label-ti">MAN</span></h4>
+                  <h4><span class="bold">Manuten&ccedil;&atilde;o &nbsp;</span><span class="label label-ti">MAN</span></h4>
                   <div class="tools">
                     <a href="javascript:;" class="collapse"></a>
                     <a href="#grid-config" data-toggle="modal" class="config"></a>
@@ -863,7 +863,7 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
             <div class="span12">
               <div class="grid simple ">
                 <div class="grid-title">
-                  <h4><span class="bold">Produção &nbsp;</span><span class="label label-success">PCP</span></h4>
+                  <h4><span class="bold">Produ&ccedil;&atilde;o &nbsp;</span><span class="label label-success">PCP</span></h4>
                   <div class="tools">
                     <a href="javascript:;" class="collapse"></a>
                     <a href="#grid-config" data-toggle="modal" class="config"></a>
@@ -950,7 +950,7 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
             <div class="span12">
               <div class="grid simple ">
                 <div class="grid-title">
-                  <h4><span class="bold">Exportação &nbsp;</span><span class="label label-com">EXP</span></h4>
+                  <h4><span class="bold">Exporta&ccedil;&atilde;o &nbsp;</span><span class="label label-com">EXP</span></h4>
                   <div class="tools">
                     <a href="javascript:;" class="collapse"></a>
                     <a href="#grid-config" data-toggle="modal" class="config"></a>
@@ -1140,7 +1140,7 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
                         <td class="center">115</td>
                       </tr>
                       <tr class="even gradeX">
-                        <td>Márcio Maciel</td>
+                        <td>M&aacute;rcio Maciel</td>
                         <td class="center">115</td>
                       </tr>
                       <tr class="even gradeX">
@@ -1160,7 +1160,7 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
                         <td class="center">196</td>
                       </tr>
                       <tr class="even gradeX">
-                        <td>Marcelo Pavão</td>
+                        <td>Marcelo Pav&atilde;o</td>
                         <td class="center">196</td>
                       </tr>
                       <tr class="even gradeX">
