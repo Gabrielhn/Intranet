@@ -8946,7 +8946,7 @@ body.rtl .footer-widget {
     width: 45px;
     position: absolute;
     height: 100%;
-    background-color: #0aa699 !important;
+    background-color: #0090D9 !important;
   }
   .page-sidebar.opened .inner-menu {
     display: inline-block;
@@ -9264,7 +9264,7 @@ body.rtl .footer-widget {
     height: 100%;
   }
   .inner-menu-always-open .page-sidebar .page-sidebar-wrapper {
-    background-color: #0aa699 !important;
+    background-color: #0090D9 !important;
   }
   .inner-menu-always-open .page-sidebar .slimScrollDiv {
     overflow: visible !important;
@@ -9525,7 +9525,7 @@ body.rtl .footer-widget {
     overflow: visible;
   }
   .inner-menu-always-open .page-sidebar .page-sidebar-wrapper ul {
-    background-color: #0aa699;
+    background-color: #0090D9;
   }
   .inner-menu-always-open .page-sidebar .slimScrollDiv {
     overflow: visible !important;

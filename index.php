@@ -1,4 +1,5 @@
 <?php
+//setlocale(LC_ALL, 'pt_BR', 'pt_BR.iso-8859-1', 'pt_BR.iso-8859-1', 'portuguese');
 setlocale(LC_ALL, 'pt_BR', 'pt_BR.utf-8', 'pt_BR.utf-8', 'portuguese');
 date_default_timezone_set('America/Sao_Paulo');
 require_once("assets/php/class/class.seg.php");
@@ -78,8 +79,8 @@ $result8=$stmt8->fetch(PDO::FETCH_ASSOC);
 <html>
   <head>
     <title>Aniger - Home</title>
-    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
-    <meta charset="utf-8" />
+    <meta http-equiv="content-type" content="text/html;charset=iso-8859-1" />
+    <meta charset="iso-8859-1" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <meta content="" name="description" />
     <meta content="" name="author" />

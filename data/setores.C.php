@@ -336,7 +336,7 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
 
                     <div class="form-group col-md-3 col-sm-3 col-xs-3">
                       <div class="controls">
-                        <input type="text" placeholder="Label" class="form-control input" name="label" maxlength="25">
+                        <input type="text" placeholder="Label" value="label" class="form-control input" name="label" maxlength="25">
                       </div>
                     </div>
                     

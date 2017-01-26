@@ -7,8 +7,10 @@ $login_username=$_POST['login_username'];
 $login_pass=$_POST['login_pass'];
 $conn= new \PDO("oci:host=$host;dbname=$service","INTRANET","ifnefy6b9");
 
+
+
     // Valida
-    $query = "SELECT * FROM IN_USUARIOS WHERE EMAIL=:email AND SENHA=:senha";
+    $query = "SELECT ID, EMAIL, NOME, SOBRENOME, SENHA FROM IN_USUARIOS WHERE EMAIL=:email AND SENHA=:senha";
 
     $stmt = $conn->prepare($query);
     $stmt->bindValue(':email',$login_username);

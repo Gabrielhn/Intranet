@@ -3,6 +3,8 @@ require_once("../assets/php/class/class.seg.php");
 session_start();
 proteger();
 
+// ini_set('default_charset','iso-8859-1');
+
 $host="10.0.0.2";
 $service="//10.0.0.2:1521/orcl";
 $id=$_SESSION['usuarioId'];
@@ -38,7 +40,7 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
 <html>
   <head>
     <title>Aniger - Dados - Usuários</title>
-    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <meta http-equiv="content-type" content="text/html;charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <meta content="" name="description" />

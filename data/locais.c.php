@@ -311,13 +311,13 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
 
                     <div class="form-group col-md-6 col-sm-6 col-xs-6">
                       <div class="controls">
-                        <input type="text" placeholder="Local" class="form-control input" name="local" required>
+                        <input type="text" placeholder="Local" class="form-control input" name="local" maxlength="5" required>
                       </div>
                     </div>
 
                     <div class="form-group col-md-6 col-sm-6 col-xs-6">
                       <div class="controls">
-                        <input type="text" placeholder="Nome" class="form-control input" name="nome" required>
+                        <input type="text" placeholder="Nome" class="form-control input" name="nome" maxlength="40" required>
                       </div>
                     </div>
 

@@ -20,11 +20,18 @@ FROM
 WHERE 
     USR.IMG_PERFIL = IMG.ID AND USR.ID =:id";
 
+$query2 = "SELECT * FROM IN_SETORES ORDER BY 1";
+
 //#1
 $stmt1 = $conn->prepare($query1);
 $stmt1->bindValue(':id',$id);
 $stmt1->execute();
 $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
+
+//#2
+$stmt2 = $conn->prepare($query2);
+$stmt2->execute();
+$result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
 
@@ -43,6 +50,8 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
     <link href="assets/plugins/bootstrapv3/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css" />
     <link href="assets/plugins/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css" />
     <link href="assets/plugins/animate.min.css" rel="stylesheet" type="text/css" />
+    <link href="assets/plugins/jquery-datatable/css/jquery.dataTables.css" rel="stylesheet" type="text/css" />
+    <link href="assets/plugins/datatables-responsive/css/datatables.responsive.css" rel="stylesheet" type="text/css" media="screen" />
     <!-- <link href="assets/plugins/jquery-scrollbar/jquery.scrollbar.css" rel="stylesheet" type="text/css" /> -->
     <!-- END PLUGIN CSS -->
     <!-- BEGIN CORE CSS FRAMEWORK -->
@@ -280,7 +289,7 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
           </ul>
           <!-- BEGIN PAGE TITLE -->
           <div class="page-title"> <i class="fa fa-plane fa-lg fa-fw" aria-hidden="true"></i>
-            <h3>Viagens </h3>
+            <h3>Solicitar Viagem </h3>
           </div>
           <!-- END PAGE TITLE -->
           <!-- CONTEÚDO -->
@@ -514,6 +523,167 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
             </div>
           </div>
 
+          <hr>
+
+          <div class="page-title"> <i class="fa fa-money fa-lg fa-fw" aria-hidden="true"></i>
+            <h3>Registro de despesas </h3>
+          </div>
+
+          <div class="row">
+            <div class="col-md-10">
+              <div class="grid simple">
+                <div class="grid-title no-border">
+                  <img src="assets\img\logo3.png">
+                  <p></p>
+                  <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                    <span class="help">Preencha abaixo as informações a respeito das despesas de sua viagem.
+                    <p>Antes de registrar suas despesas, leia as <span class="bold"> <a href="./assets/docs/normas_viagem.pdf" target="blank" >normas de reembolso </a></span>.</p>                  
+                    </span>
+                  </div>
+                  <div class="tools">
+                    <!-- Controles -->
+                  </div>
+                </div>
+                <div class="grid-body no-border">
+                  <br>
+
+                  <div class="row">
+                    <form method="POST" name="clientes" action="assets\php\viagem_mail.php" target="place">
+
+                      <!-- PMODAL -->
+                        <div class="modal fade" id="pModal" tabindex="-1" role="dialog" aria-labelledby="pModalLabel" aria-hidden="true">
+                          <div class="modal-dialog">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                <br>
+                                <i class="fa fa-pencil-square-o fa-6x"></i>
+                                <h4 id="pModalLabel" class="semi-bold">Termos e condições.</h4>
+                              </div>
+                              <div class="modal-body">
+                                <div class="alert alert-info">
+                                  <i class="pull-left material-icons">feedback</i>
+                                  <h6 style="padding-left: 30px;">
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro enim laudantium explicabo nobis ad possimus commodi reprehenderit. Odio provident accusamus, ipsam, totam magnam nobis sunt voluptatem, facere maxime sequi quia.
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non, ipsa. Hic omnis, sapiente at non, veritatis iusto facere consectetur excepturi esse voluptas ducimus possimus explicabo illo distinctio quae ab? Expedita.</p>
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ullam qui quisquam vitae beatae sequi aspernatur totam ab, assumenda, quasi ipsa ducimus nulla tempore eveniet minus cumque! Quos necessitatibus sunt, laudantium.
+                                  <br>&nbsp;
+                                  </h6>  
+                                </div>
+                                <div align="left">                               
+                                  <input type="checkbox" id="term" onchange="isChecked(this, 'btenv')"align="left"/>
+                                  Eu li, aceito os termos descritos acima e concordo com as<span class="bold"> <a href="./assets/docs/normas_viagem.pdf" target="blank" >normas de reembolso </a></span>em viagens.
+                                </div>
+                                <div align="right" style="padding-top: 20px;">
+                                  <button type="submit" id="btenv" class="btn btn-info btn-cons-md" value="submit" disabled="disabled" >Enviar</button>
+                                </div>             
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                      <div class="col-md-12 col-sm-12 col-xs-12">
+
+                        <div class="form-group col-md-12 col-sm-12 col-xs-12"></div>
+
+                        <div class="form-group col-md-12 col-sm-12 col-xs-12"></div>
+
+                        <div class="form-group col-md-8 col-sm-8 col-xs-8">
+                          <div class="controls">
+                            <input type="text" placeholder="Nome Completo" value="<?php echo $_SESSION['usuarioNome'] . " " . $_SESSION['usuarioSobreNome'] ;?>" class="form-control input" name="nome" required>
+                          </div>
+                        </div>
+
+                        <div class="form-group col-md-4 col-sm-4 col-xs-4">
+                          <div class="controls">
+                            <select id="source"  class="form-control input" name="setor" required>
+                              <?php
+                                foreach ($result2 as $key2 => $value) {
+                                  echo 
+                                  '<option value="'.$result2[$key2]['SIGLA'].'">'.$result2[$key2]['SIGLA'].' - '.$result2[$key2]['NOME'].'</option>';
+                                }                                                                  
+                              ?>
+                            </select>
+                          </div>
+                        </div>
+
+                       <div class="form-group col-md-5 col-sm-4 col-xs-4">
+                          <div class="controls">
+                            <div class="input-append" data-date-format="dd-mm-yyyy">
+                             <input type="date" class="form-control input" maxlength="10" name="ida" required>
+                              <span class="add-on"><span class="arrow"></span><i class="fa fa-calendar"></i></span>
+                            </div>
+                          </div>
+                        </div>                     
+
+                        <div class="form-group col-md-3 col-sm-4 col-xs-4">
+                          <div class="controls">
+                            <input style="text-align: center ;" type="text" placeholder="" class="form-control input" readonly>
+                          </div>
+                        </div>
+
+                        <div class="form-group col-md-4 col-sm-4 col-xs-4">
+                          <div class="controls">
+                            <div class="input-append" data-date-format="dd-mm-yyyy">
+                             <input type="date" class="form-control input" maxlength="10" name="volta" required>
+                              <span class="add-on"><span class="arrow"></span><i class="fa fa-calendar"></i></span>
+                            </div>
+                          </div>
+                        </div>                        
+
+                        <div class="form-group col-md-12 col-sm-12 col-xs-12"><hr></div>
+
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                          <table class="table table-hover" id="tDespesa">
+                            <thead>
+                              <tr>                        
+                                <th style="width:10%">Data</th>
+                                <th style="width:15%">Valor</th>
+                                <th style="width:20%">Quem</th>
+                                <th style="width:15%">O que</th>
+                                <th style="width:20%">OBS</th>                                                    
+                              </tr>
+                            </thead>
+                            <tbody>                      
+                                  <tr>                            
+                                    <td class="v-align-middle"><input type="date" class="form-control input input-sm" maxlength="10" name="volta" required></td>
+                                    <td class="v-align-middle"><input type="text" class="form-control input input-sm" placeholder="" class="form-control input" name="valor" required></td>
+                                    <td class="v-align-middle"><input type="text" class="form-control input input-sm" placeholder="" class="form-control input" name="quem" required></td>
+                                    <td class="v-align-middle">
+                                      <select  class="form-control input input-sm" name="oque" required>
+                                        <option value="Alimentação">Alimentação</option>
+                                        <option value="Transporte">Transporte</option>
+                                        <option value="Aluguel de veículo">Aluguel de veículo</option>
+                                        <option value="Hospedagem">Hospedagem</option>                                        
+                                      </select>
+                                    </td>
+                                    <td class="v-align-middle"><input type="text" class="form-control input input-sm" placeholder="" class="form-control input" name="obs" required></td>                            
+                                  </tr>                                            
+                            </tbody>
+                          </table>
+                        </div>
+
+                        <div class="form-group col-md-12 col-sm-12 col-xs-12"></div>
+
+                        <iframe name="place" style="display:none;"></iframe>
+ 
+                        <div class="form-actions">
+                          <div class="pull-right">
+
+                            <!---->
+                            <button type="button" class="btn btn-info btn-cons-md" data-toggle="modal" data-target="#pModal" value="submit">Registrar</button>
+                            <button type="reset" class="btn btn-white btn-cons-md" value="reset">Limpar</button>
+                          </div>
+                          <div class="form-group col-md-12 col-sm-12 col-xs-12"></div>
+                        </div>
+
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
           
           <!-- FIM CONTEÚDO -->
         </div>
@@ -709,16 +879,24 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
     <script src="assets/plugins/jquery-numberAnimate/jquery.animateNumbers.js" type="text/javascript"></script>
     <script src="assets/plugins/jquery-validation/js/jquery.validate.min.js" type="text/javascript"></script>
     <script src="assets/plugins/bootstrap-select2/select2.min.js" type="text/javascript"></script>
+    <script src="assets/plugins/datatables-responsive/js/datatables.responsive.js" type="text/javascript"></script>
+    <script src="assets/plugins/datatables-responsive/js/lodash.min.js" type="text/javascript"></script>
     <script>
       function isChecked(checkbox, btenv) 
         {
           document.getElementById(btenv).disabled = !checkbox.checked;
         }
     </script>
+    <script type="text/javascript">
+      $(document).ready(function() {
+        $('#tDespesa').DataTable()
+} );
+    </script>
     <!-- END CORE JS DEPENDECENCIES-->
     <!-- BEGIN CORE TEMPLATE JS -->
     <script src="webarch/js/webarch.js" type="text/javascript"></script>
     <script src="assets/js/chat.js" type="text/javascript"></script>
+    <script src="assets/js/datatables.js" type="text/javascript"></script>
     <!-- END CORE TEMPLATE JS -->
   </body>
 </html>
