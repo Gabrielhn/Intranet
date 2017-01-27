@@ -434,17 +434,17 @@
     var locale = $.fn.wysihtml5.locale = {
         en: {
             font_styles: {
-                normal: "Padrão",
-                h1: "Título 1",
-                h2: "Título 2",
-                h3: "Título 3",
-                h4: "Título 4",
-                h5: "Título 5",
-                h6: "Título 6"                  
+                normal: "Padr&atilde;o",
+                h1: "T&iacute;tulo 1",
+                h2: "T&iacute;tulo 2",
+                h3: "T&iacute;tulo 3",
+                h4: "T&iacute;tulo 4",
+                h5: "T&iacute;tulo 5",
+                h6: "T&iacute;tulo 6"                  
             },
             emphasis: {
                 bold: "Negrito",
-                italic: "Itálico",
+                italic: "It&aacute;lico",
                 underline: "Sublinhado",
                 small: "Pequeno"
             },

@@ -346,6 +346,10 @@ $result2=$stmt2->fetch(PDO::FETCH_ASSOC);
                     <div class="control-group">
                       <label class="control-label"><strong>Admiss&atilde;o: </strong><?php echo $result2['ADMISSAO'];?></label>                                                                      
                     </div>
+                    <br/>
+                    <div class="control-group">
+                      <label class="control-label"><strong>Ativo: </strong><?php echo $result2['ATIVO'];?></label>                                                                      
+                    </div>
                     <br/>                       
                   </div>
                 </div>
