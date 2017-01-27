@@ -11,6 +11,7 @@ $service="//10.0.0.2:1521/orcl";
 $id=$_SESSION['usuarioId'];
 $conn= new \PDO("oci:host=$host;dbname=$service","INTRANET","ifnefy6b9");
 
+//Dados e permissão mural
 $query1 = "SELECT USR.EMAIL, USR.TIPO_USUARIO, USR.SETOR, USR.IMG_PERFIL, IMG.IMAGEM,
     CASE
      WHEN USR.SETOR IN (SELECT SIGLA FROM IN_SETORES SETO, IN_MURAL MUR WHERE MUR.SETOR = SETO.SIGLA)
@@ -308,9 +309,8 @@ $result8=$stmt8->fetch(PDO::FETCH_ASSOC);
           <i class="material-icons">alarm</i>
           <iframe src="http://free.timeanddate.com/clock/i5hp9yxv/n595/tlbr5/fn17/fc555/tc22262e/pa0/th1" frameborder="0" width="66" height="14"></iframe>
         </div>
-        <div class="pull-right">
-          <!-- IMPLEMENTAR LOCKSCREEN -->
-          <a href="logout.php"><i class="material-icons">power_settings_new</i></a>
+        <div class="pull-right">          
+          <a href="bloquear.php"><i class="material-icons">power_settings_new</i></a>
         </div>
       </div>
       <!-- END SIDEBAR -->

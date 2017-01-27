@@ -3,7 +3,7 @@ session_start();
 // GET e SET
 $host="10.0.0.2";
 $service="//10.0.0.2:1521/orcl";
-$login_username=$_POST['login_username'];
+$login_username=$_SESSION['usuarioEmail'];
 $login_pass=$_POST['login_pass'];
 $conn= new \PDO("oci:host=$host;dbname=$service","INTRANET","ifnefy6b9");
 
@@ -22,13 +22,9 @@ $conn= new \PDO("oci:host=$host;dbname=$service","INTRANET","ifnefy6b9");
     if ( ! $result) { // Nenhum registro                
         $erro = "Usu&aacute;rio ou senha incorretos. Verifique os dados digitados e tente novamente.";
         $_SESSION['erro'] = $erro;    
-        header("Location: ../../login.php"); 
+        header("Location: ../../bloquear.php"); 
     } else {
-        unset($_SESSION['erro']);
-        $_SESSION['usuarioId'] = $result['ID']; // Valor da coluna EMAIL -> SESSION_usuarioId
-        $_SESSION['usuarioEmail'] = $result['EMAIL']; // Valor da coluna EMAIL -> SESSION_usuarioEmail
-        $_SESSION['usuarioNome'] = $result['NOME']; //Valor da coluna NOME -> SESSION_usuarioNome
-        $_SESSION['usuarioSobreNome'] = $result['SOBRENOME']; //Valor da coluna SOBRENOME -> SESSION_usuarioSobreNome
+        unset($_SESSION['erro']);       
         sleep(1);
         header("Location: ../../index.php"); //Abre index
 

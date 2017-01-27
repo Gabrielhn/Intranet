@@ -282,7 +282,7 @@ $result3=$stmt3->fetch(PDO::FETCH_ASSOC);
         </div>
         <div class="pull-right">
           <!-- IMPLEMENTAR LOCKSCREEN -->
-          <a href="../logout.php"><i class="material-icons">power_settings_new</i></a>
+          <a href="../bloquear.php"><i class="material-icons">power_settings_new</i></a>
         </div>
       </div>
       <!-- /SIDEBAR -->

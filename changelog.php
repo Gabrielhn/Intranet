@@ -185,7 +185,7 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
                   </li> -->
                   <li class="divider"></li>
                   <li>
-                    <a href="login.php"><i class="material-icons">power_settings_new</i>&nbsp;&nbsp;Sair</a>
+                    <a href="logout.php"><i class="material-icons">power_settings_new</i>&nbsp;&nbsp;Sair</a>
                   </li>
                 </ul>
               </li>
@@ -263,7 +263,7 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
         </div>
         <div class="pull-right">
           <!-- IMPLEMENTAR LOCKSCREEN -->
-          <a href="login.php"><i class="material-icons">power_settings_new</i></a>
+          <a href="bloquear.php"><i class="material-icons">power_settings_new</i></a>
         </div>
       </div>
       <!-- END SIDEBAR -->
@@ -308,7 +308,8 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
                     <ul class="fa-ul">
                       <li><i class="fa-li fa fa-user"></i>Login</li>
                       <ul class="fa-ul">
-                        <li><i class="fa-li fa fa-check-square-o"></i><span style="font-style: italic; font-size: 11px;">Tratamento para dados incorretos.</span></li>
+                        <li><i class="fa-li fa fa-check-square-o"></i><span style="font-style: italic; font-size: 11px;">Tratamento para dados incorretos no logon.</span></li>
+                        <li><i class="fa-li fa fa-check-square-o"></i><span style="font-style: italic; font-size: 11px;">Bloqueio da tela do usu&aacute;rio.</span></li>
                       </ul> 
 
                       <li><i class="fa-li fa fa-male"></i>Perfil</li>
