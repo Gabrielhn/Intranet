@@ -322,9 +322,10 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
                     <thead>
                       <tr>                        
                         <th style="width:20%">Sigla</th>
-                        <th style="width:35%">Nome</th>
+                        <th style="width:25%">Nome</th>
                         <th style="width:20%">Gestor</th>
-                        <th style="width:20%">Label</th>
+                        <th style="width:20%">Desc.Label</th>
+                        <th style="width:10%">Label</th>
                         <th style="width:10%">A&ccedil;&otilde;es</th>                     
                       </tr>
                     </thead>
@@ -338,6 +339,7 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
                             <td class="v-align-middle"><span class="muted">'.$result2[$key]['NOME'].'</span></td>
                             <td class="v-align-middle"><span class="muted">'.$result2[$key]['GESTOR'].'</span></td>
                             <td class="v-align-middle"><span class="muted">'.$result2[$key]['LABEL'].'</span></td>
+                            <td class="v-align-middle"><span class="muted"><span class="'.$result2[$key]['LABEL'].'">'.$result2[$key]['SIGLA'].'</span></span></td>
                             <td class="v-align-middle">
                               <a href="setores.u.php?id='.$result2[$key]['SIGLA'].'"title="Editar"><i class="fa fa-pencil"></i></a>
                                <span data-toggle="modal" data-target="#'.$result2[$key]['SIGLA'].'Modal"><a href="#" title="Excluir"><i class="fa fa-trash"></i></a></span>

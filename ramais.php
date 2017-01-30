@@ -25,11 +25,110 @@ FROM
 WHERE 
     USR.IMG_PERFIL = IMG.ID AND USR.ID =:id";
 
+$query2 = "SELECT * FROM IN_RAMAIS WHERE SETOR = :setor ORDER BY GESTOR DESC, NOME ASC";
+
 //#1
 $stmt1 = $conn->prepare($query1);
 $stmt1->bindValue(':id',$id);
 $stmt1->execute();
 $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
+
+//#2
+$stmt2 = $conn->prepare($query2);
+$stmt2->bindValue(':setor','ADM');
+$stmt2->execute();
+$result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
+
+//#3
+$stmt3 = $conn->prepare($query2);
+$stmt3->bindValue(':setor','RH');
+$stmt3->execute();
+$result3=$stmt3->fetchAll(PDO::FETCH_ASSOC);
+
+//#4
+$stmt4 = $conn->prepare($query2);
+$stmt4->bindValue(':setor','TI');
+$stmt4->execute();
+$result4=$stmt4->fetchAll(PDO::FETCH_ASSOC);
+
+//#5
+$stmt5 = $conn->prepare($query2);
+$stmt5->bindValue(':setor','CTB');
+$stmt5->execute();
+$result5=$stmt5->fetchAll(PDO::FETCH_ASSOC);
+
+//#6
+$stmt6 = $conn->prepare($query2);
+$stmt6->bindValue(':setor','MKT');
+$stmt6->execute();
+$result6=$stmt6->fetchAll(PDO::FETCH_ASSOC);
+
+//#7
+$stmt7 = $conn->prepare($query2);
+$stmt7->bindValue(':setor','FIN');
+$stmt7->execute();
+$result7=$stmt7->fetchAll(PDO::FETCH_ASSOC);
+
+//#8
+$stmt8 = $conn->prepare($query2);
+$stmt8->bindValue(':setor','REC');
+$stmt8->execute();
+$result8=$stmt8->fetchAll(PDO::FETCH_ASSOC);
+
+//#9
+$stmt9 = $conn->prepare($query2);
+$stmt9->bindValue(':setor','MAN');
+$stmt9->execute();
+$result9=$stmt9->fetchAll(PDO::FETCH_ASSOC);
+
+//#10
+$stmt10 = $conn->prepare($query2);
+$stmt10->bindValue(':setor','COM');
+$stmt10->execute();
+$result10=$stmt10->fetchAll(PDO::FETCH_ASSOC);
+
+//$11
+$stmt11 = $conn->prepare($query2);
+$stmt11->bindValue(':setor','NFS');
+$stmt11->execute();
+$result11=$stmt11->fetchAll(PDO::FETCH_ASSOC);
+
+//#12
+$stmt12 = $conn->prepare($query2);
+$stmt12->bindValue(':setor','PCP');
+$stmt12->execute();
+$result12=$stmt12->fetchAll(PDO::FETCH_ASSOC);
+
+//#13
+$stmt13 = $conn->prepare($query2);
+$stmt13->bindValue(':setor','CEXP');
+$stmt13->execute();
+$result13=$stmt13->fetchAll(PDO::FETCH_ASSOC);
+
+//#14
+$stmt14 = $conn->prepare($query2);
+$stmt14->bindValue(':setor','ECOM');
+$stmt14->execute();
+$result14=$stmt14->fetchAll(PDO::FETCH_ASSOC);
+
+//#15
+$stmt15 = $conn->prepare($query2);
+$stmt15->bindValue(':setor','CMX');
+$stmt15->execute();
+$result15=$stmt15->fetchAll(PDO::FETCH_ASSOC);
+
+//#16
+$stmt16 = $conn->prepare($query2);
+$stmt16->bindValue(':setor','CMP');
+$stmt16->execute();
+$result16=$stmt16->fetchAll(PDO::FETCH_ASSOC);
+
+//#17
+$stmt17 = $conn->prepare($query2);
+$stmt17->bindValue(':setor','AUD');
+$stmt17->execute();
+$result17=$stmt17->fetchAll(PDO::FETCH_ASSOC);
+
 
 ?>
 
@@ -296,8 +395,8 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
             <h3>Lista de ramais </h3>
           </div>
           <!-- END PAGE TITLE -->
-          <!-- BEGIN PlACE PAGE CONTENT HERE -->
-
+          <!-- CONTEUDO -->
+          
           <div class="col-md-4 col-sm-6 m-b-10">
             <div class="span12">
               <div class="grid simple ">
@@ -318,22 +417,15 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
                       </tr>
                     </thead>
                     <tbody>
-                      <tr class="even gradeX">
-                        <td>Sergio Ermel<i class="material-icons pull-right" style="font-size: 18px;">stars</i></td>
-                        <td class="center">183</td>
-                      </tr>
-                      <tr class="even gradeX">
-                        <td>Alan Sergio Ermel<i class="material-icons pull-right" style="font-size: 18px;">stars</i></td>
-                        <td class="center">138</td>
-                      </tr>
-                      <tr class="even gradeX">
-                        <td>Ariane Regina Ermel<i class="material-icons pull-right" style="font-size: 18px;">stars</i></td>
-                        <td class="center">170</td>
-                      </tr>
-                      <tr class="even gradeX">
-                        <td>Laci Ritzel<i class="material-icons pull-right" style="font-size: 18px;">stars</i></td>
-                        <td class="center">104</td>
-                      </tr>
+                      <?php
+                        foreach ($result2 as $key2 => $value) {
+                          echo
+                            '<tr class="even gradeX">
+                              <td>'.$result2[$key2]['NOME'].'<i class="material-icons pull-right" style="font-size: 18px;">stars</i></td>
+                              <td class="center">'.$result2[$key2]['RAMAL'].'</td>
+                            </tr>';
+                        }
+                      ?>                                            
                     </tbody>
                   </table>
                 </div>
@@ -361,26 +453,23 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
                       </tr>
                     </thead>
                     <tbody>
-                      <tr class="even gradeX">
-                        <td>Nara Less<i class="material-icons pull-right" style="font-size: 18px;">stars</i></td>
-                        <td class="center">123</td>
-                      </tr>
-                      <tr class="even gradeX">
-                        <td>Bruna Atz</td>
-                        <td class="center">153</td>
-                      </tr>
-                      <tr class="even gradeX">
-                        <td>Jessica Nunes</td>
-                        <td class="center">135</td>
-                      </tr>
-                      <tr class="even gradeX">
-                        <td>Marcia Correa</td>
-                        <td class="center">153</td>
-                      </tr>
-                      <tr class="even gradeX">
-                        <td>Debora Severo</td>
-                        <td class="center">135</td>
-                      </tr>
+                      <?php
+                        foreach ($result3 as $key3 => $value) {
+                          if ($result3[$key3]['GESTOR'] == 'S') {
+                            echo
+                            '<tr class="even gradeX">
+                              <td>'.$result3[$key3]['NOME'].'<i class="material-icons pull-right" style="font-size: 18px;">stars</i></td>
+                              <td class="center">'.$result3[$key3]['RAMAL'].'</td>
+                            </tr>';
+                          } else {
+                            echo
+                            '<tr class="even gradeX">
+                              <td>'.$result3[$key3]['NOME'].'</td>
+                              <td class="center">'.$result3[$key3]['RAMAL'].'</td>
+                            </tr>';
+                          }                          
+                        }
+                      ?>
                     </tbody>
                   </table>
                 </div>
@@ -392,7 +481,7 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
             <div class="span12">
               <div class="grid simple ">
                 <div class="grid-title">
-                  <h4><span class="bold">Informática &nbsp;</span><span class="label label-ti">TI</span></h4>
+                  <h4><span class="bold">Inform&aacute;tica &nbsp;</span><span class="label label-ti">TI</span></h4>
                   <div class="tools">
                     <a href="javascript:;" class="collapse"></a>
                     <a href="#grid-config" data-toggle="modal" class="config"></a>
@@ -408,26 +497,23 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
                       </tr>
                     </thead>
                     <tbody>
-                      <tr class="even gradeX">
-                        <td>Fernando Horbach<i class="material-icons pull-right" style="font-size: 18px;">stars</i></td>
-                        <td class="center">338</td>
-                      </tr>
-                      <tr class="even gradeX">
-                        <td>Gabriel Hipolito</td>
-                        <td class="center">171</td>
-                      </tr>
-                      <tr class="even gradeX">
-                        <td>Fábio Geiger</td>
-                        <td class="center">191</td>
-                      </tr>
-                      <tr class="even gradeX">
-                        <td>Ronaldo Ribeiro</td>
-                        <td class="center">339</td>
-                      </tr>
-                      <tr class="even gradeX">
-                        <td>Jo&atilde;o Gustavo</td>
-                        <td class="center">139</td>
-                      </tr>
+                      <?php
+                        foreach ($result4 as $key4 => $value) {
+                          if ($result4[$key4]['GESTOR'] == 'S') {
+                            echo
+                            '<tr class="even gradeX">
+                              <td>'.$result4[$key4]['NOME'].'<i class="material-icons pull-right" style="font-size: 18px;">stars</i></td>
+                              <td class="center">'.$result4[$key4]['RAMAL'].'</td>
+                            </tr>';
+                          } else {
+                            echo
+                            '<tr class="even gradeX">
+                              <td>'.$result4[$key4]['NOME'].'</td>
+                              <td class="center">'.$result4[$key4]['RAMAL'].'</td>
+                            </tr>';
+                          }                          
+                        }
+                      ?>
                     </tbody>
                   </table>
                 </div>
@@ -455,54 +541,23 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
                       </tr>
                     </thead>
                     <tbody>
-                      <tr class="even gradeX">
-                        <td>Luis Roberto da Silva<i class="material-icons pull-right" style="font-size: 18px;">stars</i></td>
-                        <td class="center">310</td>
-                      </tr>
-                      <tr class="even gradeX">
-                        <td>Marcos Miranda</td>
-                        <td class="center">190</td>
-                      </tr>
-                      <tr class="even gradeX">
-                        <td>Jonas Amaral</td>
-                        <td class="center">156</td>
-                      </tr>
-                      <tr class="even gradeX">
-                        <td>Alan Schneider</td>
-                        <td class="center">341</td>
-                      </tr>
-                      <tr class="even gradeX">
-                        <td>Anna Weber</td>
-                        <td class="center">336</td>
-                      </tr>
-                      <tr class="even gradeX">
-                        <td>Daniel Voltz</td>
-                        <td class="center">105</td>
-                      </tr>
-                      <tr class="even gradeX">
-                        <td>Douglas Duarte</td>
-                        <td class="center">336</td>
-                      </tr>
-                      <tr class="even gradeX">
-                        <td>Fernanda Cavitchoni</td>
-                        <td class="center">113</td>
-                      </tr>
-                      <tr class="even gradeX">
-                        <td>Iraci Kraemer</td>
-                        <td class="center">105</td>
-                      </tr>
-                      <tr class="even gradeX">
-                        <td>Natacha Vetter</td>
-                        <td class="center">105</td>
-                      </tr>
-                      <tr class="even gradeX">
-                        <td>Sidneia Padilha</td>
-                        <td class="center">113</td>
-                      </tr>
-                      <tr class="even gradeX">
-                        <td>Juliane Mattes</td>
-                        <td class="center">341</td>
-                      </tr>
+                      <?php
+                        foreach ($result5 as $key5 => $value) {
+                          if ($result5[$key5]['GESTOR'] == 'S') {
+                            echo
+                            '<tr class="even gradeX">
+                              <td>'.$result5[$key5]['NOME'].'<i class="material-icons pull-right" style="font-size: 18px;">stars</i></td>
+                              <td class="center">'.$result5[$key5]['RAMAL'].'</td>
+                            </tr>';
+                          } else {
+                            echo
+                            '<tr class="even gradeX">
+                              <td>'.$result5[$key5]['NOME'].'</td>
+                              <td class="center">'.$result5[$key5]['RAMAL'].'</td>
+                            </tr>';
+                          }                          
+                        }
+                      ?>
                     </tbody>
                   </table>
                 </div>
@@ -522,7 +577,7 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
                   </div>
                 </div>
                 <div class="grid-body ">
-                  <table class="table table-hover table-bordered" id="TI">
+                  <table class="table table-hover table-bordered" id="MKT">
                     <thead>
                       <tr>
                         <th>Nome</th>
@@ -530,50 +585,23 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
                       </tr>
                     </thead>
                     <tbody>
-                      <tr class="even gradeX">
-                        <td>Mirele Rittel<i class="material-icons pull-right" style="font-size: 18px;">stars</i></td>
-                        <td class="center">173</td>
-                      </tr>
-                      <tr class="even gradeX">
-                        <td>Ana Sost</td>
-                        <td class="center">173</td>
-                      </tr>
-                      <tr class="even gradeX">
-                        <td>Fernanda Fabian</td>
-                        <td class="center">173</td>
-                      </tr>
-                      <tr class="even gradeX">
-                        <td>Camila Slengmann</td>
-                        <td class="center">175</td>
-                      </tr>
-                      <tr class="even gradeX">
-                        <td>Tuane Moraes</td>
-                        <td class="center">175</td>
-                      </tr>
-                      <tr class="even gradeX">
-                        <td>Arthur Lerina</td>
-                        <td class="center">314</td>
-                      </tr>
-                      <tr class="even gradeX">
-                        <td>Thalita Diniz</td>
-                        <td class="center">314</td>
-                      </tr>
-                      <tr class="even gradeX">
-                        <td>Emiline Apolinario</td>
-                        <td class="center">177</td>
-                      </tr>
-                      <tr class="even gradeX">
-                        <td>Emilly Terres</td>
-                        <td class="center">177</td>
-                      </tr>
-                      <tr class="even gradeX">
-                        <td>Jessica Blankenheim</td>
-                        <td class="center">177</td>
-                      </tr>
-                      <tr class="even gradeX">
-                        <td>Mayara Cruz</td>
-                        <td class="center">177</td>
-                      </tr>
+                      <?php
+                        foreach ($result6 as $key6 => $value) {
+                          if ($result6[$key6]['GESTOR'] == 'S') {
+                            echo
+                            '<tr class="even gradeX">
+                              <td>'.$result6[$key6]['NOME'].'<i class="material-icons pull-right" style="font-size: 18px;">stars</i></td>
+                              <td class="center">'.$result6[$key6]['RAMAL'].'</td>
+                            </tr>';
+                          } else {
+                            echo
+                            '<tr class="even gradeX">
+                              <td>'.$result6[$key6]['NOME'].'</td>
+                              <td class="center">'.$result6[$key6]['RAMAL'].'</td>
+                            </tr>';
+                          }                          
+                        }
+                      ?>
                     </tbody>
                   </table>
                 </div>
@@ -601,50 +629,23 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
                       </tr>
                     </thead>
                     <tbody>
-                      <tr class="even gradeX">
-                        <td>Carmen dos Santos<i class="material-icons pull-right" style="font-size: 18px;">stars</i></td>
-                        <td class="center">124</td>
-                      </tr>
-                      <tr class="even gradeX">
-                        <td>Fernanda Ferreira</td>
-                        <td class="center">185</td>
-                      </tr>
-                      <tr class="even gradeX">
-                        <td>Lisiane Alves</td>
-                        <td class="center">102</td>
-                      </tr>
-                      <tr class="even gradeX">
-                        <td>Sandra Beatto</td>
-                        <td class="center">318</td>
-                      </tr>
-                      <tr class="even gradeX">
-                        <td>Bruna Thomas</td>
-                        <td class="center">303</td>
-                      </tr>
-                      <tr class="even gradeX">
-                        <td>Estefani Duarte</td>
-                        <td class="center">182</td>
-                      </tr>
-                      <tr class="even gradeX">
-                        <td>Karina Silva</td>
-                        <td class="center">136</td>
-                      </tr>
-                      <tr class="even gradeX">
-                        <td>Andrea Less</td>
-                        <td class="center">102</td>
-                      </tr>
-                      <tr class="even gradeX">
-                        <td>Andreia Scholles</td>
-                        <td class="center">130</td>
-                      </tr>
-                      <tr class="even gradeX">
-                        <td>Cristiane Freitas</td>
-                        <td class="center">119</td>
-                      </tr>
-                      <tr class="even gradeX">
-                        <td>Juliano Neves</td>
-                        <td class="center">130</td>
-                      </tr>
+                      <?php
+                        foreach ($result7 as $key7 => $value) {
+                          if ($result7[$key7]['GESTOR'] == 'S') {
+                            echo
+                            '<tr class="even gradeX">
+                              <td>'.$result7[$key7]['NOME'].'<i class="material-icons pull-right" style="font-size: 18px;">stars</i></td>
+                              <td class="center">'.$result7[$key7]['RAMAL'].'</td>
+                            </tr>';
+                          } else {
+                            echo
+                            '<tr class="even gradeX">
+                              <td>'.$result7[$key7]['NOME'].'</td>
+                              <td class="center">'.$result7[$key7]['RAMAL'].'</td>
+                            </tr>';
+                          }                          
+                        }
+                      ?>
                     </tbody>
                   </table>
                 </div>
@@ -664,7 +665,7 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
                   </div>
                 </div>
                 <div class="grid-body ">
-                  <table class="table table-hover table-bordered" id="TI">
+                  <table class="table table-hover table-bordered" id="REC">
                     <thead>
                       <tr>
                         <th>Nome</th>
@@ -672,14 +673,23 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
                       </tr>
                     </thead>
                     <tbody>
-                      <tr class="even gradeX">
-                        <td>Elisangela Silva</td>
-                        <td class="center">100</td>
-                      </tr>
-                      <tr class="even gradeX">
-                        <td>Juliana Dias</td>
-                        <td class="center">166</td>
-                      </tr>
+                      <?php
+                        foreach ($result8 as $key8 => $value) {
+                          if ($result8[$key8]['GESTOR'] == 'S') {
+                            echo
+                            '<tr class="even gradeX">
+                              <td>'.$result8[$key8]['NOME'].'<i class="material-icons pull-right" style="font-size: 18px;">stars</i></td>
+                              <td class="center">'.$result8[$key8]['RAMAL'].'</td>
+                            </tr>';
+                          } else {
+                            echo
+                            '<tr class="even gradeX">
+                              <td>'.$result8[$key8]['NOME'].'</td>
+                              <td class="center">'.$result8[$key8]['RAMAL'].'</td>
+                            </tr>';
+                          }                          
+                        }
+                      ?>
                     </tbody>
                   </table>
                 </div>
@@ -707,55 +717,29 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
                       </tr>
                     </thead>
                     <tbody>
-                      <tr class="even gradeX">
-                        <td>Robinson Souza</td>
-                        <td class="center">172</td>
-                      </tr>
-                      <tr class="even gradeX">
-                        <td>Juliano Carvalho</td>
-                        <td class="center">172</td>
-                      </tr>
+                     <?php
+                        foreach ($result9 as $key9 => $value) {
+                          if ($result9[$key9]['GESTOR'] == 'S') {
+                            echo
+                            '<tr class="even gradeX">
+                              <td>'.$result9[$key9]['NOME'].'<i class="material-icons pull-right" style="font-size: 18px;">stars</i></td>
+                              <td class="center">'.$result9[$key9]['RAMAL'].'</td>
+                            </tr>';
+                          } else {
+                            echo
+                            '<tr class="even gradeX">
+                              <td>'.$result9[$key9]['NOME'].'</td>
+                              <td class="center">'.$result9[$key9]['RAMAL'].'</td>
+                            </tr>';
+                          }                          
+                        }
+                      ?>
                     </tbody>
                   </table>
                 </div>
               </div>
             </div>
-          </div>
-
-          <div class="col-md-4 col-sm-6 m-b-10">
-            <div class="span12">
-              <div class="grid simple ">
-                <div class="grid-title">
-                  <h4><span class="bold">Transportes &nbsp;</span><span class="label label-ti">TRA</span></h4>
-                  <div class="tools">
-                    <a href="javascript:;" class="collapse"></a>
-                    <a href="#grid-config" data-toggle="modal" class="config"></a>
-                    <a href="javascript:;" class="reload"></a>
-                  </div>
-                </div>
-                <div class="grid-body ">
-                  <table class="table table-hover table-bordered" id="TI">
-                    <thead>
-                      <tr>
-                        <th>Nome</th>
-                        <th>Ramal</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr class="even gradeX">
-                        <td>Alexandre Konrath</td>
-                        <td class="center">186</td>
-                      </tr>
-                      <tr class="even gradeX">
-                        <td>Michael Bortuluzzi</td>
-                        <td class="center">186</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-          </div>
+          </div>          
 
           <div class="col-md-4 col-sm-6 m-b-10">
             <div class="span12">
@@ -777,30 +761,23 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
                       </tr>
                     </thead>
                     <tbody>
-                      <tr class="even gradeX">
-                        <td>Tatiane Cristofoli<i class="material-icons pull-right" style="font-size: 18px;">stars</i></td>
-                        <td class="center">178</td>
-                      </tr>
-                      <tr class="even gradeX">
-                        <td>Vanessa Silva</td>
-                        <td class="center">317</td>
-                      </tr>
-                      <tr class="even gradeX">
-                        <td>Susana Silva</td>
-                        <td class="center">152</td>
-                      </tr>
-                      <tr class="even gradeX">
-                        <td>Rosiane Ev</td>
-                        <td class="center">193</td>
-                      </tr>
-                      <tr class="even gradeX">
-                        <td>Tais Oliveira</td>
-                        <td class="center">157</td>
-                      </tr>
-                      <tr class="even gradeX">
-                        <td>Daniéli Costa</td>
-                        <td class="center">331</td>
-                      </tr>
+                     <?php
+                        foreach ($result10 as $key10 => $value) {
+                          if ($result10[$key10]['GESTOR'] == 'S') {
+                            echo
+                            '<tr class="even gradeX">
+                              <td>'.$result10[$key10]['NOME'].'<i class="material-icons pull-right" style="font-size: 18px;">stars</i></td>
+                              <td class="center">'.$result10[$key10]['RAMAL'].'</td>
+                            </tr>';
+                          } else {
+                            echo
+                            '<tr class="even gradeX">
+                              <td>'.$result10[$key10]['NOME'].'</td>
+                              <td class="center">'.$result10[$key10]['RAMAL'].'</td>
+                            </tr>';
+                          }                          
+                        }
+                      ?>
                     </tbody>
                   </table>
                 </div>
@@ -828,42 +805,23 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
                       </tr>
                     </thead>
                     <tbody>
-                      <tr class="even gradeX">
-                        <td>Daiana Less<i class="material-icons pull-right" style="font-size: 18px;">stars</i></td>
-                        <td class="center">128</td>
-                      </tr>
-                      <tr class="even gradeX">
-                        <td>Teilor Oliveira</td>
-                        <td class="center">131</td>
-                      </tr>
-                      <tr class="even gradeX">
-                        <td>Roger Bauer</td>
-                        <td class="center">131</td>
-                      </tr>
-                      <tr class="even gradeX">
-                        <td>Greice Reis</td>
-                        <td class="center">107</td>
-                      </tr>
-                      <tr class="even gradeX">
-                        <td>Bruna Silva</td>
-                        <td class="center">107</td>
-                      </tr>
-                      <tr class="even gradeX">
-                        <td>Adenoel Saldanha</td>
-                        <td class="center">131</td>
-                      </tr>
-                      <tr class="even gradeX">
-                        <td>Amanda Scur</td>
-                        <td class="center">313</td>
-                      </tr>
-                      <tr class="even gradeX">
-                        <td>Alessane Gomes</td>
-                        <td class="center">313</td>
-                      </tr>
-                      <tr class="even gradeX">
-                        <td>Patricia Santos</td>
-                        <td class="center">128</td>
-                      </tr>
+                      <?php
+                        foreach ($result11 as $key11 => $value) {
+                          if ($result11[$key11]['GESTOR'] == 'S') {
+                            echo
+                            '<tr class="even gradeX">
+                              <td>'.$result11[$key11]['NOME'].'<i class="material-icons pull-right" style="font-size: 18px;">stars</i></td>
+                              <td class="center">'.$result11[$key11]['RAMAL'].'</td>
+                            </tr>';
+                          } else {
+                            echo
+                            '<tr class="even gradeX">
+                              <td>'.$result11[$key11]['NOME'].'</td>
+                              <td class="center">'.$result11[$key11]['RAMAL'].'</td>
+                            </tr>';
+                          }                          
+                        }
+                      ?>
                     </tbody>
                   </table>
                 </div>
@@ -875,7 +833,7 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
             <div class="span12">
               <div class="grid simple ">
                 <div class="grid-title">
-                  <h4><span class="bold">Produ&ccedil;&atilde;o &nbsp;</span><span class="label label-success">PCP</span></h4>
+                  <h4><span class="bold">Plan. Produ&ccedil;&atilde;o &nbsp;</span><span class="label label-success">PCP</span></h4>
                   <div class="tools">
                     <a href="javascript:;" class="collapse"></a>
                     <a href="#grid-config" data-toggle="modal" class="config"></a>
@@ -891,66 +849,23 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
                       </tr>
                     </thead>
                     <tbody>
-                      <tr class="even gradeX">
-                        <td>Paula Hirchman<i class="material-icons pull-right" style="font-size: 18px;">stars</i></td>
-                        <td class="center">328</td>
-                      </tr>
-                      <tr class="even gradeX">
-                        <td>Tiessa Hochscheidt</td>
-                        <td class="center">301</td>
-                      </tr>
-                      <tr class="even gradeX">
-                        <td>Alessandro Koeche</td>
-                        <td class="center">301</td>
-                      </tr>
-                      <tr class="even gradeX">
-                        <td>Daiane Saenger</td>
-                        <td class="center">141</td>
-                      </tr>
-                      <tr class="even gradeX">
-                        <td>Bruna Krieger</td>
-                        <td class="center">335</td>
-                      </tr>
-                      <tr class="even gradeX">
-                        <td>Daiane Freitas</td>
-                        <td class="center">309</td>
-                      </tr>
-                      <tr class="even gradeX">
-                        <td>Damiani Amorim</td>
-                        <td class="center">141</td>
-                      </tr>
-                      <tr class="even gradeX">
-                        <td>Adriana Moraes</td>
-                        <td class="center">335</td>
-                      </tr>
-                      <tr class="even gradeX">
-                        <td>Daniela Michel</td>
-                        <td class="center">197</td>
-                      </tr>
-                      <tr class="even gradeX">
-                        <td>Miriele Juchem</td>
-                        <td class="center">309</td>
-                      </tr>
-                      <tr class="even gradeX">
-                        <td>Tatiana Severo</td>
-                        <td class="center">309</td>
-                      </tr>
-                      <tr class="even gradeX">
-                        <td>Sabrina Heckler</td>
-                        <td class="center">330</td>
-                      </tr>
-                      <tr class="even gradeX">
-                        <td>Elisabethi Santos</td>
-                        <td class="center">330</td>
-                      </tr>
-                      <tr class="even gradeX">
-                        <td>Patricia Benetti</td>
-                        <td class="center">197</td>
-                      </tr>
-                      <tr class="even gradeX">
-                        <td>Daniel Jacobus</td>
-                        <td class="center">154</td>
-                      </tr>
+                      <?php
+                        foreach ($result12 as $key12 => $value) {
+                          if ($result12[$key12]['GESTOR'] == 'S') {
+                            echo
+                            '<tr class="even gradeX">
+                              <td>'.$result12[$key12]['NOME'].'<i class="material-icons pull-right" style="font-size: 18px;">stars</i></td>
+                              <td class="center">'.$result12[$key12]['RAMAL'].'</td>
+                            </tr>';
+                          } else {
+                            echo
+                            '<tr class="even gradeX">
+                              <td>'.$result12[$key12]['NOME'].'</td>
+                              <td class="center">'.$result12[$key12]['RAMAL'].'</td>
+                            </tr>';
+                          }                          
+                        }
+                      ?>
                     </tbody>
                   </table>
                 </div>
@@ -962,7 +877,7 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
             <div class="span12">
               <div class="grid simple ">
                 <div class="grid-title">
-                  <h4><span class="bold">Exporta&ccedil;&atilde;o &nbsp;</span><span class="label label-com">EXP</span></h4>
+                  <h4><span class="bold">Com. Exporta&ccedil;&atilde;o &nbsp;</span><span class="label label-com">CEXP</span></h4>
                   <div class="tools">
                     <a href="javascript:;" class="collapse"></a>
                     <a href="#grid-config" data-toggle="modal" class="config"></a>
@@ -970,7 +885,7 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
                   </div>
                 </div>
                 <div class="grid-body ">
-                  <table class="table table-hover table-bordered" id="EXP">
+                  <table class="table table-hover table-bordered" id="CEXP">
                     <thead>
                       <tr>
                         <th>Nome</th>
@@ -978,18 +893,23 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
                       </tr>
                     </thead>
                     <tbody>
-                      <tr class="even gradeX">
-                        <td>Alexandra Hans<i class="material-icons pull-right" style="font-size: 18px;">stars</i></td>
-                        <td class="center">180</td>
-                      </tr>
-                      <tr class="even gradeX">
-                        <td>Jéssica Santos</td>
-                        <td class="center">316</td>
-                      </tr>
-                      <tr class="even gradeX">
-                        <td>Jéssica Bender</td>
-                        <td class="center">180</td>
-                      </tr>
+                      <?php
+                        foreach ($result13 as $key13 => $value) {
+                          if ($result13[$key13]['GESTOR'] == 'S') {
+                            echo
+                            '<tr class="even gradeX">
+                              <td>'.$result13[$key13]['NOME'].'<i class="material-icons pull-right" style="font-size: 18px;">stars</i></td>
+                              <td class="center">'.$result13[$key13]['RAMAL'].'</td>
+                            </tr>';
+                          } else {
+                            echo
+                            '<tr class="even gradeX">
+                              <td>'.$result13[$key13]['NOME'].'</td>
+                              <td class="center">'.$result13[$key13]['RAMAL'].'</td>
+                            </tr>';
+                          }                          
+                        }
+                      ?>
                     </tbody>
                   </table>
                 </div>
@@ -1017,14 +937,23 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
                       </tr>
                     </thead>
                     <tbody>
-                      <tr class="even gradeX">
-                        <td>Aline Johann</td>
-                        <td class="center">149</td>
-                      </tr>
-                      <tr class="even gradeX">
-                        <td>Carlos Junior</td>
-                        <td class="center">(51) 3598-1955</td>
-                      </tr>
+                      <?php
+                        foreach ($result14 as $key14 => $value) {
+                          if ($result14[$key14]['GESTOR'] == 'S') {
+                            echo
+                            '<tr class="even gradeX">
+                              <td>'.$result14[$key14]['NOME'].'<i class="material-icons pull-right" style="font-size: 18px;">stars</i></td>
+                              <td class="center">'.$result14[$key14]['RAMAL'].'</td>
+                            </tr>';
+                          } else {
+                            echo
+                            '<tr class="even gradeX">
+                              <td>'.$result14[$key14]['NOME'].'</td>
+                              <td class="center">'.$result14[$key14]['RAMAL'].'</td>
+                            </tr>';
+                          }                          
+                        }
+                      ?>
                     </tbody>
                   </table>
                 </div>
@@ -1036,7 +965,7 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
             <div class="span12">
               <div class="grid simple ">
                 <div class="grid-title">
-                  <h4><span class="bold">Comércio Ext. &nbsp;</span><span class="label label-mkt">CMX</span></h4>
+                  <h4><span class="bold">Com&eacute;rcio Ext. &nbsp;</span><span class="label label-mkt">CMX</span></h4>
                   <div class="tools">
                     <a href="javascript:;" class="collapse"></a>
                     <a href="#grid-config" data-toggle="modal" class="config"></a>
@@ -1052,18 +981,23 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
                       </tr>
                     </thead>
                     <tbody>
-                      <tr class="even gradeX">
-                        <td>Marcia Silva<i class="material-icons pull-right" style="font-size: 18px;">stars</i></td>
-                        <td class="center">308</td>
-                      </tr>
-                      <tr class="even gradeX">
-                        <td>Elemar Breier</td>
-                        <td class="center">127</td>
-                      </tr>
-                      <tr class="even gradeX">
-                        <td>Patricia Sebolt</td>
-                        <td class="center">127</td>
-                      </tr>
+                      <?php
+                        foreach ($result15 as $key15 => $value) {
+                          if ($result15[$key15]['GESTOR'] == 'S') {
+                            echo
+                            '<tr class="even gradeX">
+                              <td>'.$result15[$key15]['NOME'].'<i class="material-icons pull-right" style="font-size: 18px;">stars</i></td>
+                              <td class="center">'.$result15[$key15]['RAMAL'].'</td>
+                            </tr>';
+                          } else {
+                            echo
+                            '<tr class="even gradeX">
+                              <td>'.$result15[$key15]['NOME'].'</td>
+                              <td class="center">'.$result15[$key15]['RAMAL'].'</td>
+                            </tr>';
+                          }                          
+                        }
+                      ?>
                     </tbody>
                   </table>
                 </div>
@@ -1091,106 +1025,23 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
                       </tr>
                     </thead>
                     <tbody>
-                      <tr class="even gradeX">
-                        <td>Vinicius Paulo<i class="material-icons pull-right" style="font-size: 18px;">stars</i></td>
-                        <td class="center">338</td>
-                      </tr>
-                      <tr class="even gradeX">
-                        <td>Daiane Bender</td>
-                        <td class="center">343</td>
-                      </tr>
-                      <tr class="even gradeX">
-                        <td>Maria Dolores</td>
-                        <td class="center">306</td>
-                      </tr>
-                      <tr class="even gradeX">
-                        <td>Elen Souza</td>
-                        <td class="center">349</td>
-                      </tr>
-                      <tr class="even gradeX">
-                        <td>Maicon Silva</td>
-                        <td class="center">306</td>
-                      </tr>
-                      <tr class="even gradeX">
-                        <td>Eduardo Thome</td>
-                        <td class="center">167</td>
-                      </tr>
-                      <tr class="even gradeX">
-                        <td>Marcelo Michel</td>
-                        <td class="center">349</td>
-                      </tr>
-                      <tr class="even gradeX">
-                        <td>Gabriela Almeida</td>
-                        <td class="center">167</td>
-                      </tr>
-                      <tr class="even gradeX">
-                        <td>Sauane Padilha</td>
-                        <td class="center">144</td>
-                      </tr>
-                      <tr class="even gradeX">
-                        <td>Ana Medeiros</td>
-                        <td class="center">342</td>
-                      </tr>
-                      <tr class="even gradeX">
-                        <td>Rael Michaelsen</td>
-                        <td class="center">146</td>
-                      </tr>
-                      <tr class="even gradeX">
-                        <td>Ellen Colling</td>
-                        <td class="center">309</td>
-                      </tr>
-                      <tr class="even gradeX">
-                        <td>Fabricio Kampgen</td>
-                        <td class="center">112</td>
-                      </tr>
-                      <tr class="even gradeX">
-                        <td>Vani Masera</td>
-                        <td class="center">332</td>
-                      </tr>
-                      <tr class="even gradeX">
-                        <td>Rita Mello</td>
-                        <td class="center">115</td>
-                      </tr>
-                      <tr class="even gradeX">
-                        <td>M&aacute;rcio Maciel</td>
-                        <td class="center">115</td>
-                      </tr>
-                      <tr class="even gradeX">
-                        <td>Junior Torres</td>
-                        <td class="center">196</td>
-                      </tr>
-                      <tr class="even gradeX">
-                        <td>Elisandro Garcia</td>
-                        <td class="center">350</td>
-                      </tr>
-                      <tr class="even gradeX">
-                        <td>Marlon Pereira</td>
-                        <td class="center">192</td>
-                      </tr>
-                      <tr class="even gradeX">
-                        <td>Marco Lima</td>
-                        <td class="center">196</td>
-                      </tr>
-                      <tr class="even gradeX">
-                        <td>Marcelo Pav&atilde;o</td>
-                        <td class="center">196</td>
-                      </tr>
-                      <tr class="even gradeX">
-                        <td>Marcia Silveira</td>
-                        <td class="center">111</td>
-                      </tr>
-                      <tr class="even gradeX">
-                        <td>Angelica Martins</td>
-                        <td class="center">325</td>
-                      </tr>
-                      <tr class="even gradeX">
-                        <td>Lisangela Hermes</td>
-                        <td class="center">333</td>
-                      </tr>
-                      <tr class="even gradeX">
-                        <td>Joseane Oliveira</td>
-                        <td class="center">333</td>
-                      </tr>
+                      <?php
+                        foreach ($result16 as $key16 => $value) {
+                          if ($result16[$key16]['GESTOR'] == 'S') {
+                            echo
+                            '<tr class="even gradeX">
+                              <td>'.$result16[$key16]['NOME'].'<i class="material-icons pull-right" style="font-size: 18px;">stars</i></td>
+                              <td class="center">'.$result16[$key16]['RAMAL'].'</td>
+                            </tr>';
+                          } else {
+                            echo
+                            '<tr class="even gradeX">
+                              <td>'.$result16[$key16]['NOME'].'</td>
+                              <td class="center">'.$result16[$key16]['RAMAL'].'</td>
+                            </tr>';
+                          }                          
+                        }
+                      ?>
                     </tbody>
                   </table>
                 </div>
@@ -1218,10 +1069,23 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
                       </tr>
                     </thead>
                     <tbody>
-                      <tr class="even gradeX">
-                        <td>Jonas Riedel<i class="material-icons pull-right" style="font-size: 18px;">stars</i></td>
-                        <td class="center">352</td>
-                      </tr>
+                     <?php
+                        foreach ($result17 as $key17 => $value) {
+                          if ($result17[$key17]['GESTOR'] == 'S') {
+                            echo
+                            '<tr class="even gradeX">
+                              <td>'.$result17[$key17]['NOME'].'<i class="material-icons pull-right" style="font-size: 18px;">stars</i></td>
+                              <td class="center">'.$result17[$key17]['RAMAL'].'</td>
+                            </tr>';
+                          } else {
+                            echo
+                            '<tr class="even gradeX">
+                              <td>'.$result17[$key17]['NOME'].'</td>
+                              <td class="center">'.$result17[$key17]['RAMAL'].'</td>
+                            </tr>';
+                          }                          
+                        }
+                      ?>
                     </tbody>
                   </table>
                 </div>
@@ -1234,184 +1098,7 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
           <!-- END PLACE PAGE CONTENT HERE -->
         </div>
       </div>
-      <!-- END PAGE CONTAINER -->
-      <!-- BEGIN CHAT -->
-      <div class="chat-window-wrapper">
-        <div id="main-chat-wrapper" class="inner-content">
-          <div class="chat-window-wrapper scroller scrollbar-dynamic" id="chat-users">
-            <!-- BEGIN CHAT HEADER -->
-            <div class="chat-header">
-              <!-- BEGIN CHAT SEARCH BAR -->
-              <div class="pull-left">
-                <input type="text" placeholder="search">
-              </div>
-              <!-- END CHAT SEARCH BAR -->
-              <!-- BEGIN CHAT QUICKLINKS -->
-              <div class="pull-right">
-                <a href="#" class="">
-                  <div class="iconset top-settings-dark"></div>
-                </a>
-              </div>
-              <!-- END CHAT QUICKLINKS -->
-            </div>
-            <!-- END CHAT HEADER -->
-            <!-- BEGIN GROUP WIDGET -->
-            <div class="side-widget">
-              <div class="side-widget-title">group chats</div>
-              <div class="side-widget-content">
-                <div id="groups-list">
-                  <ul class="groups">
-                    <li>
-                      <a href="#">
-                        <div class="status-icon green"></div>Group Chat 1</a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <!-- END GROUP WIDGET -->
-            <!-- BEGIN FAVORITES WIDGET -->
-            <div class="side-widget">
-              <div class="side-widget-title">favorites</div>
-              <div class="side-widget-content">
-                <!-- BEGIN SAMPLE CHAT -->
-                <div class="user-details-wrapper active" data-chat-status="online" data-chat-user-pic="assets/img/profiles/d.jpg" data-chat-user-pic-retina="assets/img/profiles/d2x.jpg" data-user-name="Jane Smith">
-                  <!-- BEGIN PROFILE PIC -->
-                  <div class="user-profile">
-                    <img src="assets/img/profiles/d.jpg" alt="" data-src="assets/img/profiles/d.jpg" data-src-retina="assets/img/profiles/d2x.jpg" width="35" height="35">
-                  </div>
-                  <!-- END PROFILE PIC -->
-                  <!-- BEGIN MESSAGE -->
-                  <div class="user-details">
-                    <div class="user-name">Jane Smith</div>
-                    <div class="user-more">Message...</div>
-                  </div>
-                  <!-- END MESSAGE -->
-                  <!-- BEGIN MESSAGES BADGE -->
-                  <div class="user-details-status-wrapper">
-                    <span class="badge badge-important">3</span>
-                  </div>
-                  <!-- END MESSAGES BADGE -->
-                  <!-- BEGIN STATUS -->
-                  <div class="user-details-count-wrapper">
-                    <div class="status-icon green"></div>
-                  </div>
-                  <!-- END STATUS -->
-                  <div class="clearfix"></div>
-                </div>
-                <!-- END SAMPLE CHAT -->
-              </div>
-            </div>
-            <!-- END FAVORITES WIDGET -->
-            <!-- BEGIN MORE FRIENDS WIDGET -->
-            <div class="side-widget">
-              <div class="side-widget-title">more friends</div>
-              <div class="side-widget-content" id="friends-list">
-                <!-- BEGIN SAMPLE CHAT -->
-                <div class="user-details-wrapper" data-chat-status="online" data-chat-user-pic="assets/img/profiles/d.jpg" data-chat-user-pic-retina="assets/img/profiles/d2x.jpg" data-user-name="Jane Smith">
-                  <!-- BEGIN PROFILE PIC -->
-                  <div class="user-profile">
-                    <img src="assets/img/profiles/d.jpg" alt="" data-src="assets/img/profiles/d.jpg" data-src-retina="assets/img/profiles/d2x.jpg" width="35" height="35">
-                  </div>
-                  <!-- END PROFILE PIC -->
-                  <!-- BEGIN MESSAGE -->
-                  <div class="user-details">
-                    <div class="user-name">Jane Smith</div>
-                    <div class="user-more">Message...</div>
-                  </div>
-                  <!-- END MESSAGE -->
-                  <!-- BEGIN MESSAGES BADGE -->
-                  <div class="user-details-status-wrapper">
-                    <span class="badge badge-important">3</span>
-                  </div>
-                  <!-- END MESSAGES BADGE -->
-                  <!-- BEGIN STATUS -->
-                  <div class="user-details-count-wrapper">
-                    <div class="status-icon green"></div>
-                  </div>
-                  <!-- END STATUS -->
-                  <div class="clearfix"></div>
-                </div>
-                <!-- END SAMPLE CHAT -->
-              </div>
-            </div>
-            <!-- END MORE FRIENDS WIDGET -->
-          </div>
-          <!-- BEGIN DUMMY CHAT CONVERSATION -->
-          <div class="chat-window-wrapper" id="messages-wrapper" style="display:none">
-            <!-- BEGIN CHAT HEADER BAR -->
-            <div class="chat-header">
-              <!-- BEGIN SEARCH BAR -->
-              <div class="pull-left">
-                <input type="text" placeholder="search">
-              </div>
-              <!-- END SEARCH BAR -->
-              <!-- BEGIN CLOSE TOGGLE -->
-              <div class="pull-right">
-                <a href="#" class="">
-                  <div class="iconset top-settings-dark"></div>
-                </a>
-              </div>
-              <!-- END CLOSE TOGGLE -->
-            </div>
-            <div class="clearfix"></div>
-            <!-- END CHAT HEADER BAR -->
-            <!-- BEGIN CHAT BODY -->
-            <div class="chat-messages-header">
-              <div class="status online"></div>
-              <span class="semi-bold">Jane Smith(Typing..)</span>
-              <a href="#" class="chat-back"><i class="icon-custom-cross"></i></a>
-            </div>
-            <!-- BEGIN CHAT MESSAGES CONTAINER -->
-            <div class="chat-messages scrollbar-dynamic clearfix">
-              <!-- BEGIN TIME STAMP EXAMPLE -->
-              <div class="sent_time">Yesterday 11:25pm</div>
-              <!-- END TIME STAMP EXAMPLE -->
-              <!-- BEGIN EXAMPLE CHAT MESSAGE -->
-              <div class="user-details-wrapper">
-                <!-- BEGIN MESSENGER PROFILE -->
-                <div class="user-profile">
-                  <img src="assets/img/profiles/d.jpg" alt="" data-src="assets/img/profiles/d.jpg" data-src-retina="assets/img/profiles/d2x.jpg" width="35" height="35">
-                </div>
-                <!-- END MESSENGER PROFILE -->
-                <!-- BEGIN MESSENGER MESSAGE -->
-                <div class="user-details">
-                  <div class="bubble">Hello, You there?</div>
-                </div>
-                <!-- END MESSENGER MESSAGE -->
-                <div class="clearfix"></div>
-                <!-- BEGIN TIMESTAMP ON CLICK TOGGLE -->
-                <div class="sent_time off">Yesterday 11:25pm</div>
-                <!-- END TIMESTAMP ON CLICK TOGGLE -->
-              </div>
-              <!-- END EXAMPLE CHAT MESSAGE -->
-              <!-- BEGIN TIME STAMP EXAMPLE -->
-              <div class="sent_time">Today 11:25pm</div>
-              <!-- BEGIN TIME STAMP EXAMPLE -->
-              <!-- BEGIN EXAMPLE CHAT MESSAGE (FROM SELF) -->
-              <div class="user-details-wrapper pull-right">
-                <!-- BEGIN MESSENGER MESSAGE -->
-                <div class="user-details">
-                  <div class="bubble sender">Let me know when you free</div>
-                </div>
-                <!-- END MESSENGER MESSAGE -->
-                <div class="clearfix"></div>
-                <!-- BEGIN TIMESTAMP ON CLICK TOGGLE -->
-                <div class="sent_time off">Sent On Tue, 2:45pm</div>
-                <!-- END TIMESTAMP ON CLICK TOGGLE -->
-              </div>
-              <!-- END EXAMPLE CHAT MESSAGE (FROM SELF) -->
-            </div>
-            <!-- END CHAT MESSAGES CONTAINER -->
-          </div>
-          <div class="chat-input-wrapper" style="display:none">
-            <textarea id="chat-message-input" rows="1" placeholder="Type your message"></textarea>
-          </div>
-          <div class="clearfix"></div>
-          <!-- END DUMMY CHAT CONVERSATION -->
-        </div>
-      </div>
-      <!-- END CHAT -->
+      <!-- END PAGE CONTAINER -->      
     </div>
     <!-- END CONTENT -->
     <!-- BEGIN CORE JS FRAMEWORK-->
