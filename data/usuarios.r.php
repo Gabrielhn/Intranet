@@ -11,10 +11,15 @@ $conn= new \PDO("oci:host=$host;dbname=$service","INTRANET","ifnefy6b9");
 
 $query1 = "SELECT USR.EMAIL, USR.TIPO_USUARIO, USR.SETOR, USR.IMG_PERFIL, IMG.IMAGEM,
     CASE
-     WHEN USR.SETOR IN (SELECT SIGLA FROM IN_SETORES SETO, IN_MURAL MUR WHERE MUR.SETOR = SETO.SIGLA)
-     THEN 'S'
-     ELSE 'N'
-     END AS MURAL
+      WHEN USR.SETOR IN (SELECT SIGLA FROM IN_SETORES SETO, IN_MURAL MUR WHERE MUR.SETOR = SETO.SIGLA)
+      THEN 'S'
+      ELSE 'N'
+      END AS MURAL,
+    CASE
+      WHEN USR.ID IN (SELECT GESTOR FROM IN_SETORES WHERE GESTOR = :id)
+      THEN 'S'
+      ELSE 'N'
+      END AS GESTOR
 FROM 
     IN_USUARIOS USR, 
     IN_IMAGENS IMG 
@@ -134,7 +139,14 @@ $result2=$stmt2->fetch(PDO::FETCH_ASSOC);
                       <i class="material-icons">apps</i>
                     </a>
                   </li>';
-                }                  
+                } elseif ($result1['GESTOR'] == 'S') {
+                  echo '
+                  <li class="quicklinks">
+                    <a href="../dados.php">
+                      <i class="material-icons">apps</i>
+                    </a>
+                  </li>';
+                }                 
               ?>
               <!--<li class="m-r-10 input-prepend inside search-form no-boarder">
                 <span class="add-on"> <i class="material-icons">search</i></span>

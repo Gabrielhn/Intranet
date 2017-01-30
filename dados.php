@@ -12,16 +12,21 @@ $conn= new \PDO("oci:host=$host;dbname=$service","INTRANET","ifnefy6b9");
 
 $query1 = "SELECT USR.EMAIL, USR.TIPO_USUARIO, USR.SETOR, USR.IMG_PERFIL, IMG.IMAGEM,
     CASE
-     WHEN USR.SETOR IN (SELECT SIGLA FROM IN_SETORES SETO, IN_MURAL MUR WHERE MUR.SETOR = SETO.SIGLA)
-     THEN 'S'
-     ELSE 'N'
-     END AS MURAL
+      WHEN USR.SETOR IN (SELECT SIGLA FROM IN_SETORES SETO, IN_MURAL MUR WHERE MUR.SETOR = SETO.SIGLA)
+      THEN 'S'
+      ELSE 'N'
+      END AS MURAL,
+    CASE
+      WHEN USR.ID IN (SELECT GESTOR FROM IN_SETORES WHERE GESTOR = :id)
+      THEN 'S'
+      ELSE 'N'
+      END AS GESTOR
 FROM 
     IN_USUARIOS USR, 
     IN_IMAGENS IMG 
 WHERE 
     USR.IMG_PERFIL = IMG.ID AND USR.ID =:id";
-$query2 = "SELECT * FROM IN_MENU_ITEM WHERE MENU = $idmenu";
+$query2 = "SELECT * FROM IN_MENU_ITEM WHERE MENU = $idmenu ORDER BY ID";
 
 //#1
 $stmt1 = $conn->prepare($query1);
@@ -135,7 +140,14 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
                       <i class="material-icons">apps</i>
                     </a>
                   </li>';
-                }                  
+                } elseif ($result1['GESTOR'] == 'S') {
+                  echo '
+                  <li class="quicklinks">
+                    <a href="dados.php">
+                      <i class="material-icons">apps</i>
+                    </a>
+                  </li>';
+                }                 
               ?>
               <!--<li class="m-r-10 input-prepend inside search-form no-boarder">
                 <span class="add-on"> <i class="material-icons">search</i></span>
@@ -336,7 +348,49 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
                         </div>
                       </div>
                     </div>';
-            }                   
+                if ($result1['GESTOR'] == 'S') {
+                  echo
+                  '<a href="#" style="color: #edeeef;">
+                    <div class="col-md-3 col-sm-3 m-b-10">          
+                      <div class="tiles black blend">
+                        <div class="tiles-body">              
+                          <div class="" style="text-align:center;">
+                            <i class="fa fa-check-square-o fa-7x"></i>
+                          </div>
+                          <div class="clearfix"></div>
+                          </div>               
+                        <div class="tile-footer">
+                          <div style="text-align:center;">
+                            <span class="semi-bold">Autoriza&ccedil;&otilde;es</span>
+                          </div>
+                          <div class="clearfix"></div>
+                          </a>
+                        </div>
+                      </div>
+                    </div>';
+                }
+
+            } elseif ($result1['GESTOR'] == 'S') {
+              echo
+                  '<a href="#" style="color: #edeeef;">
+                    <div class="col-md-3 col-sm-3 m-b-10">          
+                      <div class="tiles black blend">
+                        <div class="tiles-body">              
+                          <div class="" style="text-align:center;">
+                            <i class="fa fa-check-square-o fa-7x"></i>
+                          </div>
+                          <div class="clearfix"></div>
+                          </div>               
+                        <div class="tile-footer">
+                          <div style="text-align:center;">
+                            <span class="semi-bold">Autoriza&ccedil;&otilde;es</span>
+                          </div>
+                          <div class="clearfix"></div>
+                          </a>
+                        </div>
+                      </div>
+                    </div>';
+            }               
           ?>
           
           <!-- FIM CONTEUDO -->

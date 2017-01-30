@@ -20,7 +20,7 @@ $conn= new \PDO("oci:host=$host;dbname=$service","INTRANET","ifnefy6b9");
     $result=$stmt->fetch(PDO::FETCH_ASSOC);
 
     if ( ! $result) { // Nenhum registro                
-        $erro = "Usu&aacute;rio ou senha incorretos. Verifique os dados digitados e tente novamente.";
+        $erro = "Senha incorreta. Verifique os dados digitados e tente novamente.";
         $_SESSION['erro'] = $erro;    
         header("Location: ../../bloquear.php"); 
     } else {

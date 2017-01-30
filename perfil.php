@@ -15,10 +15,15 @@ $query2 = "SELECT COUNT(EMAIL) AS COLEGAS FROM IN_USUARIOS WHERE SETOR =:setor A
 $query3 = "SELECT USR.ID, USR.NOME || ' ' || USR.SOBRENOME AS NOME_COMPLETO, USR.EMAIL, USR.IMG_PERFIL, IMG.IMAGEM FROM IN_USUARIOS USR, IN_IMAGENS IMG WHERE USR.IMG_PERFIL = IMG.ID AND USR.SETOR =:setor AND USR.ID != :id";
 $query4 = "SELECT USR.EMAIL, USR.TIPO_USUARIO, USR.SETOR, USR.IMG_PERFIL, IMG.IMAGEM,
     CASE
-     WHEN USR.SETOR IN (SELECT SIGLA FROM IN_SETORES SETO, IN_MURAL MUR WHERE MUR.SETOR = SETO.SIGLA)
-     THEN 'S'
-     ELSE 'N'
-     END AS MURAL
+      WHEN USR.SETOR IN (SELECT SIGLA FROM IN_SETORES SETO, IN_MURAL MUR WHERE MUR.SETOR = SETO.SIGLA)
+      THEN 'S'
+      ELSE 'N'
+      END AS MURAL,
+    CASE
+      WHEN USR.ID IN (SELECT GESTOR FROM IN_SETORES WHERE GESTOR = :id)
+      THEN 'S'
+      ELSE 'N'
+      END AS GESTOR
 FROM 
     IN_USUARIOS USR, 
     IN_IMAGENS IMG 
@@ -153,6 +158,13 @@ $anos =floor(($tempo)/(60*60*24*365));
                     </a>
                   </li>';
                 } elseif ($result4['MURAL'] == 'S') {
+                  echo '
+                  <li class="quicklinks">
+                    <a href="dados.php">
+                      <i class="material-icons">apps</i>
+                    </a>
+                  </li>';
+                } elseif ($result1['GESTOR'] == 'S') {
                   echo '
                   <li class="quicklinks">
                     <a href="dados.php">
@@ -389,16 +401,7 @@ $anos =floor(($tempo)/(60*60*24*365));
                   </div>
                   <hr/>
                   &nbsp;&nbsp;<br/>                  
-                  &nbsp;&nbsp;<br/>
-                  <?php
-                   
-                   echo mb_detect_encoding($result1['NOME']);
-
-                  // // mb_check_encoding($id, 'UTF-8');
-                  // echo utf8_encode($result1['NOME']);
-                  // echo mb_strlen($result1['NOME']);
-                  // echo mb_internal_encoding();
-                  ?>
+                  &nbsp;&nbsp;<br/>                  
           <!-- FIM CONTEÚDO -->
         </div>
       </div>
