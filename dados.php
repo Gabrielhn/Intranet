@@ -350,7 +350,7 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
                     </div>';
                 if ($result1['GESTOR'] == 'S') {
                   echo
-                  '<a href="#" style="color: #edeeef;">
+                  '<a href="data/autorizacoes.php" style="color: #edeeef;">
                     <div class="col-md-3 col-sm-3 m-b-10">          
                       <div class="tiles black blend">
                         <div class="tiles-body">              
@@ -372,7 +372,7 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
 
             } elseif ($result1['GESTOR'] == 'S') {
               echo
-                  '<a href="#" style="color: #edeeef;">
+                  '<a href="data/autorizacoes.php" style="color: #edeeef;">
                     <div class="col-md-3 col-sm-3 m-b-10">          
                       <div class="tiles black blend">
                         <div class="tiles-body">              
