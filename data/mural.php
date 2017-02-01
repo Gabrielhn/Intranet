@@ -26,7 +26,7 @@ FROM
     IN_IMAGENS IMG 
 WHERE 
     USR.IMG_PERFIL = IMG.ID AND USR.ID =:id";
-$query2 = "SELECT POST.ID, '(' || POST.MURAL || ') ' || MUR.DESCRICAO AS MURAL, POST.USUARIO, POST.ASSUNTO, POST.INCLUSAO, USU.NOME || ' ' || USU.SOBRENOME AS AUTOR FROM IN_MURAL_POST POST, IN_USUARIOS USU, IN_MURAL MUR WHERE POST.USUARIO = USU.EMAIL AND POST.MURAL = MUR.ID AND MUR.SETOR =:setu ORDER BY POST.ID DESC";
+$query2 = "SELECT POST.ID, '(' || POST.MURAL || ') ' || MUR.DESCRICAO AS MURAL, POST.USUARIO, POST.ASSUNTO, POST.INCLUSAO, USU.NOME || ' ' || USU.SOBRENOME AS AUTOR, POST.VIEWS FROM IN_MURAL_POST POST, IN_USUARIOS USU, IN_MURAL MUR WHERE POST.USUARIO = USU.EMAIL AND POST.MURAL = MUR.ID AND MUR.SETOR =:setu ORDER BY POST.ID DESC";
 
 //#1
 $stmt1 = $conn->prepare($query1);
@@ -331,7 +331,8 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
                         <th style="width:25%">Assunto</th>
                         <th style="width:20%">Autor</th>                    
                         <th style="width:25%">Data</th>
-                        <th style="width:5%">A&ccedil;&otilde;es</th>
+                        <th style="width:5%">Views</th>                        
+                        <th style="width:8%">A&ccedil;&otilde;es</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -343,6 +344,7 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
                             <td class="v-align-middle">'.$result2[$key]['ASSUNTO'].'</td>
                             <td class="v-align-middle"><span class="muted">'.$result2[$key]['AUTOR'].'</span></td>
                             <td class="v-align-middle"><span class="muted">'.strftime('%A, %d de %B de %Y', strtotime($result2[$key]['INCLUSAO'])).'</span></td>
+                            <td class="v-align-middle" align=center ><span class="muted">'.$result2[$key]['VIEWS'].'</span></td>
                             <td class="v-align-middle">
                               <a href="post.F.U.php?id='.$result2[$key]['ID'].'"title="Editar"><i class="fa fa-pencil"></i></a>
                               <span data-toggle="modal" data-target="#'.$result2[$key]['ID'].'Modal"><a href="#" title="Excluir"><i class="fa fa-trash"></i></a></span>

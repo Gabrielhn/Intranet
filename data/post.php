@@ -10,6 +10,7 @@ $id=$_SESSION['usuarioId'];
 $postid=$_GET['id'];
 $conn= new \PDO("oci:host=$host;dbname=$service","INTRANET","ifnefy6b9");
 
+
 $query1 = "SELECT USR.EMAIL, USR.TIPO_USUARIO, USR.SETOR, USR.IMG_PERFIL, IMG.IMAGEM,
     CASE
       WHEN USR.SETOR IN (SELECT SIGLA FROM IN_SETORES SETO, IN_MURAL MUR WHERE MUR.SETOR = SETO.SIGLA)
@@ -26,13 +27,22 @@ FROM
     IN_IMAGENS IMG 
 WHERE 
     USR.IMG_PERFIL = IMG.ID AND USR.ID =:id";
+
 $query2 = "SELECT POST.*, IMG.IMAGEM AS IMG_MURAL , MUR.DESCRICAO AS TIT_MURAL, SETO.LABEL, USU.NOME || ' ' || USU.SOBRENOME AS AUTOR FROM IN_MURAL_POST POST, IN_USUARIOS USU, IN_IMAGENS IMG, IN_MURAL MUR, IN_SETORES SETO WHERE POST.USUARIO = USU.EMAIL AND POST.IMG_POST = IMG.ID AND POST.MURAL = MUR.ID AND MUR.SETOR = SETO.SIGLA AND POST.ID =:post";
+
+$queryview = "UPDATE IN_MURAL_POST SET VIEWS = VIEWS+1 WHERE ID =:post";
+
 
 //#1
 $stmt1 = $conn->prepare($query1);
 $stmt1->bindValue(':id',$id);
 $stmt1->execute();
 $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
+
+//#views
+$stmtview = $conn->prepare($queryview);
+$stmtview->bindValue(':post',$postid);
+$stmtview->execute();
 
 //#2
 $stmt2 = $conn->prepare($query2);
@@ -318,7 +328,10 @@ $result2=$stmt2->fetch(PDO::FETCH_ASSOC);
                       <div class="col-md-12">
                         '.stream_get_contents($result2['CONTEUDO']).'
                         <hr>
-                        <div class="muted" style="text-align:right;">'.strftime('%A, %d de %B de %Y', strtotime($result2['INCLUSAO'])).'</div>
+                        <div>
+                          <div class="col-md-6 col-sm-6 col-xs-6" style="text-align:left;"><i class="fa fa-eye fa-lg"></i>&nbsp;&nbsp;<span style="font-weight:500; font-size:13px;">'.$result2['VIEWS'].'</span></div>
+                          <div class="col-md-6 col-sm-6 col-xs-6" style="text-align:right;">'.strftime('%A, %d de %B de %Y', strtotime($result2['INCLUSAO'])).'</div>
+                        </div>
                       </div>                    
                     </div>                                                                                       
                   </div>

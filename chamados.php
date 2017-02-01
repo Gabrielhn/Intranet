@@ -59,7 +59,7 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
     <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon">
     <link rel="icon" href="assets/img/favicon.ico" type="image/x-icon">
   </head>
-  <body class="">
+  <body class="collapsed">
     <!-- BEGIN HEADER -->
     <div class="header navbar navbar-inverse ">
       <!-- BEGIN TOP NAVIGATION BAR -->
