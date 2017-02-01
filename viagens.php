@@ -325,7 +325,7 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
                   <br>
 
                   <div class="row">
-                    <form method="POST" name="clientes" action="assets\php\viagem_mail.php" target="place">
+                    <form method="POST" name="clientes" action="data\viagens.S.php" target="place">
 
                       <!-- PMODAL -->
                         <div class="modal fade" id="pModal" tabindex="-1" role="dialog" aria-labelledby="pModalLabel" aria-hidden="true">

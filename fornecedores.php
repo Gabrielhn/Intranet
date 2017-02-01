@@ -338,7 +338,7 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
                   </div>
                   
                   <div class="row">
-                    <form method="POST" name="fornecedores" action="assets\php\fornecedor_mail.php" target="place">
+                    <form method="POST" name="fornecedores" action="data\fornecedores.S.php" target="place">
                       <div class="col-md-12 col-sm-12 col-xs-12">
 
                         <div class="form-group col-md-12 col-sm-12 col-xs-12"></div>
