@@ -305,7 +305,7 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
                   <p></p>
                   <div class="form-group col-md-12 col-sm-12 col-xs-12">
                     <span class="help">Preencha abaixo as informa&ccedil;&otilde;es solicitadas para cadastro de novos fornecedores.
-                    <p>Ap&oacute;s enviar os dados, aguarde retorno por e-mail com o código do fornecedor.</p>
+                    <p>Ap&oacute;s enviar os dados, solicite autoriza&ccedil;&atilde;o de seu gestor e aguarde retorno por e-mail com o c&oacute;digo do fornecedor.</p>
                     </span>
                   </div>
                   <div class="tools">

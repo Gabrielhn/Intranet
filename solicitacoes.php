@@ -300,7 +300,7 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
           <!-- BEGIN PlACE PAGE CONTENT HERE -->
           
           <!-- TILE #1 -->
-          <div class="col-md-3 col-sm-4 m-b-10">
+          <div class="col-md-3 col-sm-4 m-b-20">
             <div class="tiles blue weather-widget ">
               <div class="tiles-body">
                 <a href="viagens.php" style="color: #edeeef;">
@@ -344,12 +344,12 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
                 <div class="modal-body">
                   <div class="alert alert-info">
                     <i class="pull-left material-icons">feedback</i>
-                    <h5 style="padding-left: 30px;">
+                    <div style="padding-left: 30px;">
                       <p>Utilize este cadastro para solicitar cota&ccedil;&otilde;es de <span class="bold">viagens</span>.
-                      Ap&oacute;s informar os dados solicitados,  aguarde o retorno do setor respons&aacute;vel pela cota&ccedil;&atilde;o, em seu email. <br>                      
+                      Ap&oacute;s enviar os dados, solicite autoriza&ccedil;&atilde;o de seu gestor e aguarde retorno por e-mail com a cota&ccedil;&atilde;o. <br>                      
                       <p>As solicita&ccedil;&otilde;es s&atilde;o encaminhados para: <span class="bold"> juliana.dias@aniger.com.br</span></p>
                       <p>Ramal: <span class="bold">166</span></p>   
-                    </h5>    
+                    </div>    
                   </div>             
                 </div>
               </div>
@@ -358,7 +358,7 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
 
 
           <!-- TILE #2 -->
-          <div class="col-md-3 col-sm-4 m-b-10">
+          <div class="col-md-3 col-sm-4 m-b-20">
             <div class="tiles blue weather-widget ">
               <div class="tiles-body">
                 <a href="veiculos.php" style="color: #edeeef;">
@@ -414,7 +414,7 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
 
 
           <!-- TILE #3 -->
-          <div class="col-md-3 col-sm-4 m-b-10">
+          <div class="col-md-3 col-sm-4 m-b-20">
             <div class="tiles blue weather-widget ">
               <div class="tiles-body">
                 <a href="notas.php" style="color: #edeeef;">
@@ -469,7 +469,7 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
           </div>
 
           <!-- TILE #4 -->
-          <div class="col-md-3 col-sm-4 m-b-10">
+          <div class="col-md-3 col-sm-4 m-b-20">
             <div class="tiles blue weather-widget ">
               <div class="tiles-body">
                 <a href="manutencao.php" style="color: #edeeef;">
@@ -522,6 +522,62 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
               </div>
             </div>
           </div>
+
+          <!-- TILE #5 -->
+          <div class="col-md-3 col-sm-4 m-b-20">
+            <div class="tiles blue weather-widget ">
+              <div class="tiles-body">
+                <a href="#" style="color: #edeeef;">
+                  <div class="heading">
+                    <div class="pull-left">Dispensa </div>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="big-icon">
+                    <i class="fa fa-clock-o fa-7x fa-fw"></i>
+                  </div>
+                  <div class="clearfix"></div>
+              </div>
+                </a>
+              <div class="tile-footer">
+                <div class="pull-left">
+                  <canvas id="" width="1" height="30"></canvas>
+                  <i class="material-icons">label_outline</i><span class=" small-text-description">&nbsp;&nbsp;<span class="label">NFS</span>&nbsp;</span>
+                </div>
+                <div class="pull-right">
+                  <canvas id="" width="1" height="28"></canvas>
+                  <span style="cursor: pointer;" data-toggle="modal" data-target="#5Modal"><i class="fa fa-info fa-2x"></i> </span>
+                </div>
+                <div class="pull-right">
+                  <canvas id="" width="32" height="32"></canvas>
+                  <span class="text-white small-text-description"></span> 
+                </div>
+                <div class="clearfix"></div>
+              </div>
+            </div>
+          </div>
+          <!-- MODAL #5 -->
+          <div class="modal fade" id="5Modal" tabindex="-1" role="dialog" aria-labelledby="5ModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                  <br>
+                  <i class="fa fa-info fa-6x"></i>
+                  <h4 id="5ModalLabel" class="semi-bold">Informa&ccedil;&atilde;o.</h4>
+                </div>
+                <div class="modal-body">
+                  <div class="alert alert-info" >
+                    <i class="pull-left material-icons">feedback</i>
+                    <h6 style="padding-left: 30px;">
+                      <5555></5555> 
+                    <br>&nbsp;  
+                    </h6>    
+                  </div>             
+                </div>
+              </div>
+            </div>
+          </div>
+
           <!-- END PLACE PAGE CONTENT HERE -->
         </div>
       </div>

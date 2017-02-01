@@ -25,7 +25,7 @@ FROM
 WHERE 
     USR.IMG_PERFIL = IMG.ID AND USR.ID =:id";
 
-$query2 = "SELECT AUT.ID, AUT.TIPO, TP.ICONE AS ICONE_TP, AUT.DESCRICAO, '(' || AUT.SOLICITANTE || ') ' || USR.NOME || ' ' || USR.SOBRENOME AS SOLICITANTE, AUT.DATA, AUT.AUTORIZADO FROM IN_AUTORIZACOES AUT, IN_USUARIOS USR,  IN_TIPO_AUTORIZACAO TP, IN_SETORES SETO WHERE AUT.SOLICITANTE = USR.ID AND AUT.TIPO = TP.ID AND USR.SETOR = SETO.SIGLA AND USR.SETOR =:setu";
+$query2 = "SELECT AUT.ID, AUT.TIPO, TP.ICONE AS ICONE_TP, AUT.DESCRICAO, '(' || AUT.SOLICITANTE || ') ' || USR.NOME || ' ' || USR.SOBRENOME AS SOLICITANTE, AUT.DATA, AUT.AUTORIZADO FROM IN_AUTORIZACOES AUT, IN_USUARIOS USR,  IN_TIPO_AUTORIZACAO TP, IN_SETORES SETO WHERE AUT.SOLICITANTE = USR.ID AND AUT.TIPO = TP.ID AND USR.SETOR = SETO.SIGLA AND AUT.AUTORIZADO = 'N' AND AUT.CANCELADO = 'N' AND USR.SETOR =:setu";
 
 //#1
 $stmt1 = $conn->prepare($query1);
@@ -316,10 +316,7 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
           <div class="row">
             <div class="col-md-12">
               <div class="grid simple ">
-                <div class="grid-title no-border">
-                  <div class="tools">
-                    <a href="locais.C.php"><i class="fa fa-plus fa-lg"></i> </a>                   
-                  </div>
+                <div class="grid-title no-border">                  
                 </div>
                 <div class="grid-body no-border">
                   <h3><i class="fa fa-check-square-o fa-1x"></i><span class="semi-bold">&nbsp; Autoriza&ccedil;&otilde;es</span></h3>
@@ -328,8 +325,8 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
                       <tr>                        
                         <th style="width:3%">Tipo</th>
                         <th style="width:30%">Descri&ccedil;&atilde;o</th>
-                        <th style="width:15%">Solicitante</th>
-                        <th style="width:5%">Data</th>                                            
+                        <th style="width:25%">Solicitante</th>
+                        <th style="width:15%">Data</th>                                            
                         <th style="width:10%">A&ccedil;&otilde;es</th>
                       </tr>
                     </thead>
@@ -344,9 +341,8 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
                               <td class="v-align-middle"><span class="muted">'.$result2[$key]['SOLICITANTE'].'</span></td>
                               <td class="v-align-middle"><span class="muted">'.$result2[$key]['DATA'].'</span></td>
                               <td class="v-align-middle">
-                                <a href="locais.u.php?id='.$result2[$key]['LOCAL'].'"title="Editar"><i class="fa fa-pencil"></i></a>
-                                <span data-toggle="modal" data-target="#'.$result2[$key]['LOCAL'].'Modal"><a href="#" title="Excluir"><i class="fa fa-trash"></i></a></span>
-                                <a href="locais.R.php?id='.$result2[$key]['LOCAL'].'"title="Detalhes"><i class="fa fa-search"></i></a>
+                                <a href="autorizacoes.A.php?id='.$result2[$key]['ID'].'"title="Autorizar"><i class="fa fa-check fa-lg"></i>&nbsp;</a>                                
+                                &nbsp;<a href="autorizacoes.C.php?id='.$result2[$key]['ID'].'"title="Cancelar"><i class="fa fa-close fa-lg"></i></a>
                               </td>
                             </tr>                          
                             ';                      

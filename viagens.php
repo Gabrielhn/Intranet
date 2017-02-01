@@ -314,7 +314,7 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
                   <p></p>
                   <div class="form-group col-md-12 col-sm-12 col-xs-12">
                     <span class="help">Preencha abaixo as informa&ccedil;&otilde;es para solicitar uma viagem.
-                    <p>Ap&oacute;s enviar os dados, aguarde retorno por e-mail com a cota&ccedil;&atilde;o.</p>
+                    <p>Ap&oacute;s enviar os dados, solicite autoriza&ccedil;&atilde;o de seu gestor e aguarde retorno por e-mail com a cota&ccedil;&atilde;o.</p>
                     </span>
                   </div>
                   <div class="tools">
@@ -374,20 +374,12 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
                         <div class="form-group col-md-4 col-sm-4 col-xs-4">
                           <div class="controls">
                             <select id="source"  class="form-control input" name="setor" required>
-                                <option value="ADM - Administrativo">ADM - Administrativo</option>
-                                <option value="COM - Comercial">COM - Comercial</option>
-                                <option value="CMP - Compras">CMP - Compras</option>
-                                <option value="CTB - Contabilidade">CTB - Contabilidade</option>
-                                <option value="CRI - Cria&ccedil;&atilde;o">CRI - Cria&ccedil;&atilde;o</option>
-                                <option value="EST - Estoque">EST - Estoque</option>
-                                <option value="FIN - Financeiro">FIN - Financeiro</option>
-                                <option value="LOG - Log&iacute;stica">LOG - Log&iacute;stica</option>
-                                <option value="MKT - Marketing">MKT - Marketing</option>
-                                <option value="MTZ - Matrizaria">MTZ - Matrizaria</option>
-                                <option value="MOD - Modelagem">MOD - Modelagem</option>
-                                <option value="PCP - PCP/Produ&ccedil;&atilde;o">PCP - PCP/Produ&ccedil;&atilde;o</option>
-                                <option value="RH - Recursos Humanos">RH - Recursos Humanos</option>                             
-                                <option value="TI - Tecnologia da Informa&ccedil;&atilde;o">TI - Tecnologia da Informa&ccedil;&atilde;o</option>
+                              <?php
+                                foreach ($result2 as $key2 => $value) {
+                                  echo 
+                                  '<option value="'.$result2[$key2]['SIGLA'].'">'.$result2[$key2]['SIGLA'].' - '.$result2[$key2]['NOME'].'</option>';
+                                }                                                                  
+                              ?>
                             </select>
                           </div>
                         </div>
@@ -658,9 +650,9 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
                             </thead>
                             <tbody>                      
                                   <tr>                            
-                                    <td class="v-align-middle"><input type="date" class="form-control input input-sm" maxlength="10" name="volta" required></td>
-                                    <td class="v-align-middle"><input type="text" class="form-control input input-sm" placeholder="" class="form-control input" name="valor" required></td>
-                                    <td class="v-align-middle"><input type="text" class="form-control input input-sm" placeholder="" class="form-control input" name="quem" required></td>
+                                    <td class="v-align-middle"><input type="date" class="form-control input" maxlength="10" name="data" required></td>
+                                    <td class="v-align-middle"><input type="text" class="form-control input" placeholder="" class="form-control input" name="valor" required></td>
+                                    <td class="v-align-middle"><input type="text" class="form-control input" placeholder="" class="form-control input" name="quem" required></td>
                                     <td class="v-align-middle">
                                       <select  class="form-control input input-sm" name="oque" required>
                                         <option value="Alimenta&ccedil;&atilde;o">Alimenta&ccedil;&atilde;o</option>
@@ -669,7 +661,7 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
                                         <option value="Hospedagem">Hospedagem</option>                                        
                                       </select>
                                     </td>
-                                    <td class="v-align-middle"><input type="text" class="form-control input input-sm" placeholder="" class="form-control input" name="obs" required></td>                            
+                                    <td class="v-align-middle"><input type="text" class="form-control input" placeholder="" class="form-control input" name="obs" required></td>                            
                                   </tr>                                            
                             </tbody>
                           </table>

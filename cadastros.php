@@ -344,12 +344,12 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
                 <div class="modal-body">
                   <div class="alert alert-info">
                     <i class="pull-left material-icons">feedback</i>
-                    <h5 style="padding-left: 30px;">
+                    <div style="padding-left: 30px;">
                       <p>Utilize este cadastro para solicitar a inclus&atilde;o de novos <span class="bold">clientes</span> no sistema.
-                      Ap&oacute;s informar os dados solicitados,  aguarde o retorno do setor respons&aacute;vel pelo cadastramento, em seu email. <br>                      
-                      <p>Os cadastro s&atilde;o encaminhados para: <span class="bold"> iraci.kraemer@aniger.com.br</span></p>
+                      Ap&oacute;s informar os dados solicitados, solicite autoriza&ccedil;&atilde;o do seu gestor e aguarde o retorno do setor respons&aacute;vel pelo cadastramento, em seu email. <br>                      
+                      <p>Os cadastros autorizados s&atilde;o encaminhados para: <span class="bold"> iraci.kraemer@aniger.com.br</span></p>
                       <p>Ramal: <span class="bold">105</span></p>
-                    </h5>    
+                    </div>    
                   </div>             
                 </div>
               </div>
@@ -401,12 +401,12 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
                 <div class="modal-body">
                   <div class="alert alert-info">
                     <i class="pull-left material-icons">feedback</i>
-                    <h5 style="padding-left: 30px;">
+                    <div style="padding-left: 30px;">
                       <p>Utilize este cadastro para solicitar a inclus&atilde;o de novos <span class="bold">fornecedores</span> no sistema.
-                      Ap&oacute;s informar os dados solicitados,  aguarde o retorno do setor respons&aacute;vel pelo cadastramento, em seu email. <br>                      
-                      <p>Os cadastro s&atilde;o encaminhados para: <span class="bold"> iraci.kraemer@aniger.com.br</span></p> 
+                      Ap&oacute;s informar os dados solicitados, solicite autoriza&ccedil;&atilde;o do seu gestor e aguarde o retorno do setor respons&aacute;vel pelo cadastramento, em seu email. <br>                      
+                      <p>Os cadastros autorizados s&atilde;o encaminhados para: <span class="bold"> iraci.kraemer@aniger.com.br</span></p> 
                       <p>Ramal: <span class="bold">105</span></p>
-                    </h5>    
+                    </div>    
                   </div>             
                 </div>
               </div>
@@ -458,10 +458,11 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
                 <div class="modal-body">
                   <div class="alert alert-info">
                     <i class="pull-left material-icons">feedback</i>
-                    <h6 style="padding-left: 30px;">
-                      3333
-                    <br>&nbsp;  
-                    </h6>    
+                    <div style="padding-left: 30px;">
+                      Utilize este link para acessar a plataforma de solicita&ccedil;&atilde;o de cadastro de materiais.
+                      <p>Os cadastros s&atilde;o encaminhados para: <span class="bold">lisangela.hermes@aniger.com.br</span> ou <span class="bold">joseane.oliveira@aniger.com.br</span></p> 
+                      <p>Ramal: <span class="bold">333</span></p>  
+                    </div>    
                   </div>             
                 </div>
               </div>
