@@ -1,5 +1,4 @@
 <?php
-setlocale(LC_ALL,'pt_BR.UTF8');
 require_once("assets/php/class/class.seg.php");
 session_start();
 proteger();
@@ -57,8 +56,8 @@ $stmt4->execute();
 $result4=$stmt4->fetch(PDO::FETCH_ASSOC);
 
 // #5 TEMPO
-$adm=date("d-M-y",strtotime($result1['ADMISSAO']));
-$hj=date('d-M-y');
+$adm=date('m/d/y',strtotime($result1['ADMISSAO']));
+$hj=date('d/m/y');
 $tempo=strtotime($hj)-strtotime($adm);
 $anos =floor(($tempo)/(60*60*24*365));
 
@@ -414,7 +413,16 @@ $anos =floor(($tempo)/(60*60*24*365));
                     </div>
                   </div>
                   <hr/>
-                  &nbsp;&nbsp;<br/>                  
+                  &nbsp;&nbsp;<br/>  
+                  <?php
+                  echo 'hj: '.$hj;    
+                    echo '<br/>';
+                    echo 'Adm: '.$adm;    
+                    echo '<br/>';  
+                    echo 'bd: '.$result1['ADMISSAO'];
+                    echo '<br/>';              
+                    echo 'Anos: '.$anos;
+                  ?>                
                   &nbsp;&nbsp;<br/>                  
           <!-- FIM CONTEÚDO -->
         </div>
