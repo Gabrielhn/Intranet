@@ -34,6 +34,8 @@ $query2 = "SELECT * FROM VW_POST_2 WHERE POSICAO = 1";
 $query3 = "SELECT * FROM VW_POST_2 WHERE POSICAO = 2";
 $query4 = "SELECT * FROM VW_POST_2 WHERE POSICAO = 3";
 
+$query5 = "SELECT * FROM IN_VAGAS WHERE ATIVO = 'S' AND ROWNUM < 4 ORDER BY DT_CADASTRO";
+
 $query6 = "SELECT * FROM VW_POST_3 WHERE POSICAO = 1";
 $query7 = "SELECT * FROM VW_POST_3 WHERE POSICAO = 2";
 $query8 = "SELECT * FROM VW_POST_3 WHERE POSICAO = 3";
@@ -60,9 +62,9 @@ $stmt4->execute();
 $result4=$stmt4->fetch(PDO::FETCH_ASSOC);
 
 //#5
-// $stmt3 = $conn->prepare($query3);
-// $stmt3->execute();
-// $result3=$stmt3->fetchAll(PDO::FETCH_ASSOC);
+$stmt5 = $conn->prepare($query5);
+$stmt5->execute();
+$result5=$stmt5->fetchAll(PDO::FETCH_ASSOC);
 
 //#6
 $stmt6 = $conn->prepare($query6);
@@ -310,6 +312,9 @@ $result8=$stmt8->fetch(PDO::FETCH_ASSOC);
             <li class=""> 
               <a href="solicitacoes.php"><i class="material-icons" title="Solicita&ccedil;&otilde;es">assignment</i> <span class="title">Solicita&ccedil;&otilde;es</span></a>
             </li>
+            <li class=""> 
+              <a href="#"><i class="material-icons" title="Indicadores">insert_chart</i> <span class="title">Indicadores</span></a>
+            </li>
           </ul>
           <div class="clearfix"></div>
           <!-- END SIDEBAR MENU -->
@@ -344,7 +349,7 @@ $result8=$stmt8->fetch(PDO::FETCH_ASSOC);
                     
           <div class="row">
 
-          <!--#1-->
+          <!--#1 MURAL 1-->
             <div class="col-md-12 col-sm-12">
               <div class="grid simple ">
                 <div class="grid-title no-border">
@@ -432,7 +437,7 @@ $result8=$stmt8->fetch(PDO::FETCH_ASSOC);
               </div>
             </div>
 
-          <!--#2-->            
+          <!--#2 MURAL 2-->            
 
             <div class="col-md-6 col-sm-6">
                <div class="grid simple ">
@@ -452,7 +457,7 @@ $result8=$stmt8->fetch(PDO::FETCH_ASSOC);
                             <img alt=""  width="35" height="35" src="data:image/jpeg;base64,'.base64_encode(stream_get_contents($result6['IMG_AUTOR'])).'">
                           </div>
                           <div class="message-wrapper">
-                            <div class="heading">
+                            <div class="heading" style="overflow:visible;">
                               '.$result6['ASSUNTO'].' <div class="date">por '.$result6['AUTOR'].'</div>
                             </div>
                             <div class="description">
@@ -473,7 +478,7 @@ $result8=$stmt8->fetch(PDO::FETCH_ASSOC);
                             <img alt=""  width="35" height="35" src="data:image/jpeg;base64,'.base64_encode(stream_get_contents($result7['IMG_AUTOR'])).'">
                           </div>
                           <div class="message-wrapper">
-                            <div class="heading">
+                            <div class="heading" style="overflow:visible;">
                               '.$result7['ASSUNTO'].' <div class="date">por '.$result7['AUTOR'].'</div>
                             </div>
                             <div class="description">
@@ -494,7 +499,7 @@ $result8=$stmt8->fetch(PDO::FETCH_ASSOC);
                             <img alt=""  width="35" height="35" src="data:image/jpeg;base64,'.base64_encode(stream_get_contents($result8['IMG_AUTOR'])).'">
                           </div>
                           <div class="message-wrapper">
-                            <div class="heading">
+                            <div class="heading" style="overflow:visible;">
                               '.$result8['ASSUNTO'].' <div class="date">por '.$result8['AUTOR'].'</div>
                             </div>
                             <div class="description">
@@ -514,7 +519,7 @@ $result8=$stmt8->fetch(PDO::FETCH_ASSOC);
                </div>
              </div>
 
-          <!--#3-->
+          <!--#3 ANIVERSARIANTES-->
           <div class="col-md-3 col-sm-6">
               <div class="grid simple ">
                 <div class="grid-title no-border">
@@ -523,6 +528,7 @@ $result8=$stmt8->fetch(PDO::FETCH_ASSOC);
                 </div>
                 <div class="grid-body no-border">
                   <h4><i class="fa fa-birthday-cake fa-1x"></i><span class="semi-bold">&nbsp; Anivers&aacute;rios</span></h4>
+                  <br/>
                   <a href="assets/img/janeiro-sul.png" target="blank">
                     <img src="assets/img/janeiro-sul.png" class="image-responsive-width xs-image-responsive-width lazy"></img>                                  
                   </a>
@@ -530,7 +536,7 @@ $result8=$stmt8->fetch(PDO::FETCH_ASSOC);
               </div>
             </div>
 
-          <!--#4-->
+          <!--#4 VAGAS-->
             <div class="col-md-3 col-sm-6">
               <div class="grid simple ">
                 <div class="grid-title no-border">
@@ -539,17 +545,58 @@ $result8=$stmt8->fetch(PDO::FETCH_ASSOC);
                 </div>
                 <div class="grid-body no-border">
                   <h4><i class="fa fa-bookmark fa-1x"></i><span class="semi-bold">&nbsp; Vagas</span></h4>
-                  <br/>&nbsp;
-                  <br/>&nbsp;
-                  <br/>&nbsp;
-                  <br/>&nbsp;
-                  <br/>&nbsp;
-                  <br/>&nbsp;
-                  <br/>&nbsp;
-                  <br/>&nbsp;
-                  <br/>&nbsp;
-                  <br/>&nbsp; 
-                  <br/>&nbsp;                                                                                                     
+                  <br/>              
+                  <?php
+                    foreach ($result5 as $key5 => $value) {
+                      echo '
+                      <span style="cursor: pointer;" data-toggle="modal" data-target="#'.$result5[$key5]['ID'].'Modal">                        
+                        <div class="notification-messages info">                          
+                          <div class="" style="font-weight: 450; font-size:13px;">
+                            <div class="heading" style="overflow:visible; text-align: center;">
+                              <div><span class="label label-'.strtolower($result5[$key5]['SETOR']).'">'.$result5[$key5]['SETOR'].'</span></div>
+                              <p> </p>
+                              '.$result5[$key5]['FUNCAO'].'
+                            </div>                                                        
+                          </div>
+                          <div class="clearfix"></div>
+                        </div>                      
+                      </span>
+                      
+                      <div class="modal fade" id="'.$result5[$key5]['ID'].'Modal" tabindex="-1" role="dialog" aria-labelledby="'.$result5[$key5]['ID'].'ModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <div>
+                                <div class="col-md-6 col-sm-6 col-xs-6" style="text-align:left;">#'.$result5[$key5]['ID'].'</div>
+                                <div class="col-md-6 col-sm-6 col-xs-6" style="text-align:right;"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button></div>
+                              </div>                              
+                              <br>
+                              <i class="fa fa-bookmark fa-6x"></i>
+                              <h4 id="'.$result5[$key5]['ID'].'ModalLabel" class="semi-bold">Cargo: '.$result5[$key5]['FUNCAO'].'</h4>
+                              <span class="label label-'.strtolower($result5[$key5]['SETOR']).'">'.$result5[$key5]['SETOR'].'</span>
+                            </div>
+                            <div class="modal-body">
+                              <div class="alert alert-info" >
+                                Descri&ccedil;&atilde;o:
+                                <h6 style="padding-left: 30px;">
+                                  '.$result5[$key5]['DESCRICAO'].' 
+                                <br>&nbsp;  
+                                </h6>    
+                              </div>
+                              <div class="alert alert-info" >
+                                Requisitos:
+                                <h6 style="padding-left: 30px;">
+                                  '.$result5[$key5]['REQUISITOS'].' 
+                                <br>&nbsp;  
+                                </h6>    
+                              </div>             
+                            </div>
+                          </div>
+                        </div>
+                      </div>'
+                      ;
+                    }                                            
+                    ?>
                 </div>
               </div>
             </div>
