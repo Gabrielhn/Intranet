@@ -1,14 +1,12 @@
 <?php
-require_once("assets/php/class/class.seg.php");
+require_once("../assets/php/class/class.seg.php");
 session_start();
 proteger();
 
 $host="10.0.0.2";
 $service="//10.0.0.2:1521/orcl";
 $id=$_SESSION['usuarioId'];
-$idmenu=1;
 $conn= new \PDO("oci:host=$host;dbname=$service","INTRANET","ifnefy6b9");
-
 
 $query1 = "SELECT USR.EMAIL, USR.TIPO_USUARIO, USR.SETOR, USR.IMG_PERFIL, IMG.IMAGEM,
     CASE
@@ -26,7 +24,7 @@ FROM
     IN_IMAGENS IMG 
 WHERE 
     USR.IMG_PERFIL = IMG.ID AND USR.ID =:id";
-$query2 = "SELECT * FROM IN_MENU_ITEM WHERE MENU = $idmenu ORDER BY ID";
+$query2 = "SELECT * FROM IN_VAGAS";
 
 //#1
 $stmt1 = $conn->prepare($query1);
@@ -34,7 +32,7 @@ $stmt1->bindValue(':id',$id);
 $stmt1->execute();
 $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
 
-//#2
+//#2 DADOS
 $stmt2 = $conn->prepare($query2);
 $stmt2->execute();
 $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
@@ -44,26 +42,26 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Aniger - Dados</title>
+    <title>Aniger - Dados - Vagas</title>
     <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <meta content="" name="description" />
     <meta content="" name="author" />
     <!-- BEGIN PLUGIN CSS -->
-    <link href="assets/plugins/pace/pace-theme-flash.css" rel="stylesheet" type="text/css" media="screen" />
-    <link href="assets/plugins/bootstrapv3/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <link href="assets/plugins/bootstrapv3/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css" />
-    <link href="assets/plugins/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css" />
-    <link href="assets/plugins/animate.min.css" rel="stylesheet" type="text/css" />
-    <!-- <link href="assets/plugins/jquery-scrollbar/jquery.scrollbar.css" rel="stylesheet" type="text/css" /> -->
+    <link href="../assets/plugins/pace/pace-theme-flash.css" rel="stylesheet" type="text/css" media="screen" />
+    <link href="../assets/plugins/bootstrapv3/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="../assets/plugins/bootstrapv3/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css" />
+    <link href="../assets/plugins/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css" />
+    <link href="../assets/plugins/animate.min.css" rel="stylesheet" type="text/css" />
+    <!-- <link href="../assets/plugins/jquery-scrollbar/jquery.scrollbar.css" rel="stylesheet" type="text/css" /> -->
     <!-- END PLUGIN CSS -->
     <!-- BEGIN CORE CSS FRAMEWORK -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="webarch/css/webarch.css" rel="stylesheet" type="text/css" />
+    <link href="../webarch/css/webarch.css" rel="stylesheet" type="text/css" />
     <!-- END CORE CSS FRAMEWORK -->
-    <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon">
-    <link rel="icon" href="assets/img/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="../assets/img/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../assets/img/favicon.ico" type="image/x-icon">
   </head>
   <body class="">
     <!-- BEGIN HEADER -->
@@ -79,18 +77,18 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
             </li>
           </ul>
           <!-- BEGIN LOGO -->
-          <a href="index.php">
-            <img src="assets/img/logo.png" class="logo" alt="" data-src="assets/img/logo.png" data-src-retina="assets/img/logo.png" width="106" height="21" />
+          <a href="../index.php">
+            <img src="../assets/img/logo.png" class="logo" alt="" width="106" height="21" />
           </a>
           <!-- END LOGO -->
           <ul class="nav pull-right notifcation-center">
             <li class="dropdown hidden-xs hidden-sm">
-              <a href="index.php" class="dropdown-toggle active" data-toggle="">
+              <a href="../index.php" class="dropdown-toggle active" data-toggle="">
                 <i class="material-icons">home</i>
               </a>
             </li>
             <li class="dropdown hidden-xs hidden-sm">
-              <a href="chamados.php" class="dropdown-toggle">
+              <a href="../chamados.php" class="dropdown-toggle">
                 <i class="material-icons">desktop_mac</i><!-- <span class="badge bubble-only"></span> -->
               </a>
             </li>
@@ -129,21 +127,21 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
                 if ($result1['TIPO_USUARIO'] == 'ADM') {
                   echo '
                   <li class="quicklinks">
-                    <a href="dados.php">
+                    <a href="../dados.php">
                       <i class="material-icons">apps</i>
                     </a>
                   </li>';
                 } elseif ($result1['MURAL'] == 'S') {
                   echo '
                   <li class="quicklinks">
-                    <a href="dados.php">
+                    <a href="../dados.php">
                       <i class="material-icons">apps</i>
                     </a>
                   </li>';
                 } elseif ($result1['GESTOR'] == 'S') {
                   echo '
                   <li class="quicklinks">
-                    <a href="dados.php">
+                    <a href="../dados.php">
                       <i class="material-icons">apps</i>
                     </a>
                   </li>';
@@ -157,10 +155,10 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
           </div>
           <div id="notification-list" style="display:none">
             <div style="width:220px">
-            <a href="changelog.php">
+            <a href="../changelog.php">
               <div class="notification-messages info">
                 <div class="user-profile">
-                  <img src="assets/img/profiles/Aa.jpg" width="35" height="35">
+                  <img src="../assets/img/profiles/Aa.jpg" width="35" height="35">
                 </div>
                 <div class="message-wrapper">
                   <div class="heading" style="text-align:center;">
@@ -182,7 +180,7 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
           <div class="pull-right">
             <!-- <div class="chat-toggler sm">
               <div class="profile-pic">
-                <img src="assets/img/profiles/Aa.jpg" alt="" data-src="assets/img/profiles/Aa.jpg" data-src-retina="assets/img/profiles/Aa.jpg" width="35" height="35" />
+                <img src="../assets/img/profiles/Aa.jpg" alt="" data-src="../assets/img/profiles/Aa.jpg" data-src-retina="../assets/img/profiles/Aa.jpg" width="35" height="35" />
                 <div class="availability-bubble online"></div>
               </div>
             </div> -->
@@ -193,19 +191,11 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
                 </a>
                 <ul class="dropdown-menu  pull-right" role="menu" aria-labelledby="user-options">
                   <li class="">
-                    <?php echo '<a href="perfil.php?id='.$id.'" title="Acesse seu perfil"><i class="fa fa-male fa-fw"></i>&nbsp;&nbsp;Meu perfil</a>';?>
-                  </li>
-                  <!-- <li class="disabled">
-                    <a href="calender.php" title="Recurso ainda n&atilde;o implementado.">Calend&aacute;rio</a>
-                  </li> -->
-                  <!-- <li>
-                    <a href="email.php"> My Inbox&nbsp;&nbsp;
-                      <span class="badge badge-important animated bounceIn">2</span>
-                    </a>
-                  </li> -->
+                    <?php echo '<a href="../perfil.php?id='.$id.'" title="Acesse seu perfil"><i class="fa fa-male fa-fw"></i>&nbsp;&nbsp;Meu perfil</a>';?>
+                  </li>                  
                   <li class="divider"></li>
                   <li>
-                    <a href="logout.php"><i class="material-icons">power_settings_new</i>&nbsp;&nbsp;Sair</a>
+                    <a href="../logout.php"><i class="material-icons">power_settings_new</i>&nbsp;&nbsp;Sair</a>
                   </li>
                 </ul>
               </li>
@@ -233,11 +223,11 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
       <!-- END TOP NAVIGATION BAR -->
     </div>
     <!-- END HEADER -->
-    <!-- BEGIN CONTENT -->
+    <!-- CONTENT -->
     <div class="page-container row-fluid">
-      <!-- BEGIN SIDEBAR -->
-      <div class="page-sidebar " id="main-menu">
-        <!-- BEGIN MINI-PROFILE -->
+      <!-- SIDEBAR -->
+      <div class="page-sidebar" id="main-menu">
+        <!-- MINI PERFIL -->
         <div class="page-sidebar-wrapper scrollbar-dynamic" id="main-menu-wrapper">
           <div class="user-info-wrapper sm">
             <div class="profile-wrapper sm">
@@ -251,28 +241,30 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
               <div class="status">Seja bem-vindo(a)</div>
             </div>
           </div>
-          <!-- END MINI-PROFILE -->
-          <!-- BEGIN SIDEBAR MENU -->
+          <!-- /MINI PERFIL -->
+
+          <!-- SIDEBAR MENU -->
           <p class="menu-title sm">MENU <span class="pull-right"><a href="javascript:;"><i class="material-icons">refresh</i></a></span></p>
           <ul>
             <li class=""> 
-              <a href="index.php"><i class="material-icons" title="Home">home</i> <span class="title">Home</span> <span class="title"></span> </a>
+              <a href="../index.php"><i class="material-icons" title="Home">home</i> <span class="title">Home</span> <span class="title"></span> </a>
             </li>
             <li class=""> 
-              <a href="chamados.php"><i class="material-icons" title="Chamados">desktop_mac</i> <span class="title">Chamados</span></a>
+              <a href="../chamados.php"><i class="material-icons" title="Chamados">desktop_mac</i> <span class="title">Chamados</span></a>
             </li>
             <li class=""> 
-              <a href="ramais.php"><i class="material-icons" title="Ramais">phone_forwarded</i> <span class="title">Ramais</span></a>
+              <a href="../ramais.php"><i class="material-icons" title="Ramais">phone_forwarded</i> <span class="title">Ramais</span></a>
             </li>
             <li class=""> 
-              <a href="cadastros.php"><i class="material-icons" title="Cadastros">library_add</i> <span class="title">Cadastros</span></a>
+              <a href="../cadastros.php"><i class="material-icons" title="Cadastros">library_add</i> <span class="title">Cadastros</span></a>
             </li>
             <li class=""> 
-              <a href="solicitacoes.php"><i class="material-icons" title="Solicita&ccedil;&otilde;es">assignment</i> <span class="title">Solicita&ccedil;&otilde;es</span></a>
-            </li>                        
-          </ul>          
+              <a href="../solicitacoes.php"><i class="material-icons" title="Solicita&ccedil;&otilde;es">assignment</i> <span class="title">Solicita&ccedil;&otilde;es</span></a>
+            </li>
+           </ul>            
           <div class="clearfix"></div>
-          <!-- END SIDEBAR MENU -->
+          <!-- /SIDEBAR MENU -->
+          
         </div>
       </div>
       <a href="#" class="scrollup">Scroll</a>
@@ -283,142 +275,120 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
         </div>
         <div class="pull-right">
           <!-- IMPLEMENTAR LOCKSCREEN -->
-          <a href="bloquear.php"><i class="material-icons">power_settings_new</i></a>
+          <a href="../bloquear.php"><i class="material-icons">power_settings_new</i></a>
         </div>
       </div>
-      <!-- END SIDEBAR -->
-      <!-- BEGIN PAGE CONTAINER-->
+      <!-- /SIDEBAR -->
+
+      <!-- CONTAINER-->
       <div class="page-content">
         <div class="content">
         <ul class="breadcrumb">
-            <li>
-              <p>VOC&Ecirc; EST&Aacute; EM </p>
-            </li>
-           <li>
-            <a href="index.php">Home</a>
-            </li>
-            <li><a href="#" class="active">Dados</a> </li>
-          </ul>
-          <!-- BEGIN PAGE TITLE -->
-          <div class="page-title"> <i class="material-icons">apps</i>
-            <h3>Dados </h3>
-          </div>
-          <!-- END PAGE TITLE -->
+          <li>
+            <p>VOC&Ecirc; EST&Aacute; EM </p>
+          </li>
+          <li>
+            <a href="../index.php">Home</a>
+          </li>
+          <li>
+            <a href="../dados.php">Dados</a> 
+          </li>
+          <li>
+            <a href="#" class="active">Vagas</a> 
+          </li>
+        </ul>
+
+        <!-- TITULO -->
+        <!--<div class="page-title"> <i class="fa fa-globe fa-5x"></i>
+          <h3>Locais</h3>
+        </div>-->
+        <br>
+        <br>
+          <!-- /TITULO -->
+
           <!-- CONTEUDO -->
-          <?php
-            if ($result1['TIPO_USUARIO'] == 'ADM') {
-              foreach ($result2 as $key => $value) {
-                echo
-                  '<a href="'.$result2[$key]['LINK'].'" style="color: #edeeef;">
-                    <div class="'.$result2[$key]['ATRIBUTOS_1'].'">          
-                      <div class="'.$result2[$key]['ATRIBUTOS_2'].'">
-                        <div class="tiles-body">              
-                          <div class="" style="text-align:center;">
-                            <i class="'.$result2[$key]['ICONE'].'"></i>
-                          </div>
-                          <div class="clearfix"></div>
-                          </div>               
-                        <div class="tile-footer">
-                          <div style="text-align:center;">
-                            <span class="semi-bold">'.$result2[$key]['TITULO'].'</span>
-                          </div>
-                          <div class="clearfix"></div>
-                          </a>
-                        </div>
-                      </div>
-                    </div>';                  
-              }              
-            } elseif ($result1['MURAL'] == 'S') {
-                echo
-                  '<a href="data/mural.php" style="color: #edeeef;">
-                    <div class="col-md-3 col-sm-3 m-b-10">          
-                      <div class="tiles black blend">
-                        <div class="tiles-body">              
-                          <div class="" style="text-align:center;">
-                            <i class="fa fa-newspaper-o fa-7x"></i>
-                          </div>
-                          <div class="clearfix"></div>
-                          </div>               
-                        <div class="tile-footer">
-                          <div style="text-align:center;">
-                            <span class="semi-bold">Mural</span>
-                          </div>
-                          <div class="clearfix"></div>
-                          </a>
-                        </div>
-                      </div>
-                    </div>';
-                if ($result1['GESTOR'] == 'S') {
-                  echo
-                  '<a href="data/autorizacoes.php" style="color: #edeeef;">
-                    <div class="col-md-3 col-sm-3 m-b-10">          
-                      <div class="tiles black blend">
-                        <div class="tiles-body">              
-                          <div class="" style="text-align:center;">
-                            <i class="fa fa-check-square-o fa-7x"></i>
-                          </div>
-                          <div class="clearfix"></div>
-                          </div>               
-                        <div class="tile-footer">
-                          <div style="text-align:center;">
-                            <span class="semi-bold">Autoriza&ccedil;&otilde;es</span>
-                          </div>
-                          <div class="clearfix"></div>
-                          </a>
-                        </div>
-                      </div>
-                    </div>';
-                }
-
-            } elseif ($result1['GESTOR'] == 'S') {
-              echo
-                  '<a href="data/autorizacoes.php" style="color: #edeeef;">
-                    <div class="col-md-3 col-sm-3 m-b-10">          
-                      <div class="tiles black blend">
-                        <div class="tiles-body">              
-                          <div class="" style="text-align:center;">
-                            <i class="fa fa-check-square-o fa-7x"></i>
-                          </div>
-                          <div class="clearfix"></div>
-                          </div>               
-                        <div class="tile-footer">
-                          <div style="text-align:center;">
-                            <span class="semi-bold">Autoriza&ccedil;&otilde;es</span>
-                          </div>
-                          <div class="clearfix"></div>
-                          </a>
-                        </div>
-                      </div>
-                    </div>';
-            }
-
-            if ($result1['SETOR'] == 'RH') {
-                  echo
-                  '<a href="data/vagas.php" style="color: #edeeef;">
-                    <div class="col-md-3 col-sm-3 m-b-10">          
-                      <div class="tiles black blend">
-                        <div class="tiles-body">              
-                          <div class="" style="text-align:center;">
-                            <i class="fa fa-bookmark fa-7x"></i>
-                          </div>
-                          <div class="clearfix"></div>
-                          </div>               
-                        <div class="tile-footer">
-                          <div style="text-align:center;">
-                            <span class="semi-bold">Vagas</span>
-                          </div>
-                          <div class="clearfix"></div>
-                          </a>
-                        </div>
-                      </div>
-                    </div>';
-                }               
-          ?>
           
-          <!-- FIM CONTEUDO -->
+          <div class="row">
+            <div class="col-md-12">
+              <div class="grid simple ">
+                <div class="grid-title no-border">
+                  <div class="tools">
+                    <a href="setores.C.php"><i class="fa fa-plus fa-lg"></i> </a>                   
+                  </div>
+                </div>
+                <div class="grid-body no-border">
+                  <h3><i class="fa fa-bookmark fa-1x"></i><span class="semi-bold">&nbsp; Vagas</span></h3>
+                  <table class="table table-hover">
+                    <thead>
+                      <tr>                        
+                        <th style="width:8%">ID</th>
+                        <th style="width:35%">Fun&ccedil;&atilde;o</th>                        
+                        <th style="width:20%">Cadastro</th>
+                        <th style="width:20%">Setor</th>
+                        <th style="width:20%">Ativo</th>
+                        <th style="width:10%">A&ccedil;&otilde;es</th>                     
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <?php
+                      $rr=1;
+                      foreach ($result2 as $key => $value) {
+                        echo '
+                          <tr>                            
+                            <td class="v-align-middle">'.$result2[$key]['ID'].'</td>
+                            <td class="v-align-middle"><span class="muted">'.$result2[$key]['FUNCAO'].'</span></td>                            
+                            <td class="v-align-middle"><span class="muted">'.$result2[$key]['DT_CADASTRO'].'</span></td>                            
+                            <td class="v-align-middle"><span class="muted"><span class="label label-'.strtolower($result2[$key]['SETOR']).'">'.$result2[$key]['SETOR'].'</span></span></td>
+                            <td class="v-align-middle"><span class="muted">'.$result2[$key]['ATIVO'].'</span></td>
+                            <td class="v-align-middle">
+                              <a href="setores.u.php?id='.$result2[$key]['SIGLA'].'"title="Editar"><i class="fa fa-pencil"></i></a>
+                               <span data-toggle="modal" data-target="#'.$result2[$key]['SIGLA'].'Modal"><a href="#" title="Excluir"><i class="fa fa-trash"></i></a></span>
+                              <a href="setores.r.php?id='.$result2[$key]['SIGLA'].'"title="Detalhes"><i class="fa fa-search"></i></a>
+                            </td>
+                          </tr>
+
+                          <!-- MODAL #1 -->
+                          <div class="modal fade" id="'.$result2[$key]['SIGLA'].'Modal" tabindex="-1" role="dialog" aria-labelledby="'.$result2[$key]['SIGLA'].'ModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                  <br>
+                                  <i class="fa fa-trash fa-6x"></i>
+                                  <h4 id="1ModalLabel" class="semi-bold">Excluir</h4>
+                                </div>
+                                <div class="modal-body">
+                                  <div class="alert alert-danger">
+                                    <i class="pull-left material-icons">feedback</i>
+                                    <div>
+                                      <span style="padding-left: 20px;">
+                                        Voc&ecirc; tem certeza que deseja excluir este registro?                                             
+                                      </span>
+                                      <div class="pull-right">
+                                      <a href="setores.D.php?id='.$result2[$key]['SIGLA'].'"><button class="btn btn-danger btn-small">Sim </button></a>
+                                      <button type="button" class="btn btn-default btn-small" data-dismiss="modal">N&atilde;o </button>    
+                                      </div>
+                                      </div>
+                                  </div>             
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          ';
+                        $rr++;
+                      }                        
+                      ?>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>        
+          <!-- /CONTEUDO -->
         </div>
       </div>
-      <!-- END PAGE CONTAINER -->
+      <!-- CONTAINER -->
+
       <!-- BEGIN CHAT -->
       <div class="chat-window-wrapper">
         <div id="main-chat-wrapper" class="inner-content">
@@ -459,10 +429,10 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
               <div class="side-widget-title">favorites</div>
               <div class="side-widget-content">
                 <!-- BEGIN SAMPLE CHAT -->
-                <div class="user-details-wrapper active" data-chat-status="online" data-chat-user-pic="assets/img/profiles/d.jpg" data-chat-user-pic-retina="assets/img/profiles/d2x.jpg" data-user-name="Jane Smith">
+                <div class="user-details-wrapper active" data-chat-status="online" data-chat-user-pic="../assets/img/profiles/d.jpg" data-chat-user-pic-retina="../assets/img/profiles/d2x.jpg" data-user-name="Jane Smith">
                   <!-- BEGIN PROFILE PIC -->
                   <div class="user-profile">
-                    <img src="assets/img/profiles/d.jpg" alt="" data-src="assets/img/profiles/d.jpg" data-src-retina="assets/img/profiles/d2x.jpg" width="35" height="35">
+                    <img src="../assets/img/profiles/d.jpg" alt="" data-src="../assets/img/profiles/d.jpg" data-src-retina="../assets/img/profiles/d2x.jpg" width="35" height="35">
                   </div>
                   <!-- END PROFILE PIC -->
                   <!-- BEGIN MESSAGE -->
@@ -492,10 +462,10 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
               <div class="side-widget-title">more friends</div>
               <div class="side-widget-content" id="friends-list">
                 <!-- BEGIN SAMPLE CHAT -->
-                <div class="user-details-wrapper" data-chat-status="online" data-chat-user-pic="assets/img/profiles/d.jpg" data-chat-user-pic-retina="assets/img/profiles/d2x.jpg" data-user-name="Jane Smith">
+                <div class="user-details-wrapper" data-chat-status="online" data-chat-user-pic="../assets/img/profiles/d.jpg" data-chat-user-pic-retina="../assets/img/profiles/d2x.jpg" data-user-name="Jane Smith">
                   <!-- BEGIN PROFILE PIC -->
                   <div class="user-profile">
-                    <img src="assets/img/profiles/d.jpg" alt="" data-src="assets/img/profiles/d.jpg" data-src-retina="assets/img/profiles/d2x.jpg" width="35" height="35">
+                    <img src="../assets/img/profiles/d.jpg" alt="" data-src="../assets/img/profiles/d.jpg" data-src-retina="../assets/img/profiles/d2x.jpg" width="35" height="35">
                   </div>
                   <!-- END PROFILE PIC -->
                   <!-- BEGIN MESSAGE -->
@@ -555,7 +525,7 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
               <div class="user-details-wrapper">
                 <!-- BEGIN MESSENGER PROFILE -->
                 <div class="user-profile">
-                  <img src="assets/img/profiles/d.jpg" alt="" data-src="assets/img/profiles/d.jpg" data-src-retina="assets/img/profiles/d2x.jpg" width="35" height="35">
+                  <img src="../assets/img/profiles/d.jpg" alt="" data-src="../assets/img/profiles/d.jpg" data-src-retina="../assets/img/profiles/d2x.jpg" width="35" height="35">
                 </div>
                 <!-- END MESSENGER PROFILE -->
                 <!-- BEGIN MESSENGER MESSAGE -->
@@ -599,20 +569,20 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
     </div>
     <!-- END CONTENT -->
     <!-- BEGIN CORE JS FRAMEWORK-->
-    <script src="assets/plugins/pace/pace.min.js" type="text/javascript"></script>
+    <script src="../assets/plugins/pace/pace.min.js" type="text/javascript"></script>
     <!-- BEGIN JS DEPENDECENCIES-->
-    <script src="assets/plugins/jquery/jquery-1.11.3.min.js" type="text/javascript"></script>
-    <script src="assets/plugins/bootstrapv3/js/bootstrap.min.js" type="text/javascript"></script>
-    <script src="assets/plugins/jquery-block-ui/jqueryblockui.min.js" type="text/javascript"></script>
-    <script src="assets/plugins/jquery-unveil/jquery.unveil.min.js" type="text/javascript"></script>
-    <script src="assets/plugins/jquery-scrollbar/jquery.scrollbar.min.js" type="text/javascript"></script>
-    <script src="assets/plugins/jquery-numberAnimate/jquery.animateNumbers.js" type="text/javascript"></script>
-    <script src="assets/plugins/jquery-validation/js/jquery.validate.min.js" type="text/javascript"></script>
-    <script src="assets/plugins/bootstrap-select2/select2.min.js" type="text/javascript"></script>
+    <script src="../assets/plugins/jquery/jquery-1.11.3.min.js" type="text/javascript"></script>
+    <script src="../assets/plugins/bootstrapv3/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="../assets/plugins/jquery-block-ui/jqueryblockui.min.js" type="text/javascript"></script>
+    <script src="../assets/plugins/jquery-unveil/jquery.unveil.min.js" type="text/javascript"></script>
+    <script src="../assets/plugins/jquery-scrollbar/jquery.scrollbar.min.js" type="text/javascript"></script>
+    <script src="../assets/plugins/jquery-numberAnimate/jquery.animateNumbers.js" type="text/javascript"></script>
+    <script src="../assets/plugins/jquery-validation/js/jquery.validate.min.js" type="text/javascript"></script>
+    <script src="../assets/plugins/bootstrap-select2/select2.min.js" type="text/javascript"></script>
     <!-- END CORE JS DEPENDECENCIES-->
     <!-- BEGIN CORE TEMPLATE JS -->
-    <script src="webarch/js/webarch.js" type="text/javascript"></script>
-    <script src="assets/js/chat.js" type="text/javascript"></script>
+    <script src="../webarch/js/webarch.js" type="text/javascript"></script>
+    <script src="../assets/js/chat.js" type="text/javascript"></script>
     <!-- END CORE TEMPLATE JS -->
   </body>
 </html>
