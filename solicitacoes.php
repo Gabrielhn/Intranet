@@ -336,7 +336,7 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
             <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
                   <br>
                   <i class="fa fa-info fa-6x"></i>
                   <h4 id="1ModalLabel" class="semi-bold">Informa&ccedil;&atilde;o.</h4>
@@ -345,7 +345,7 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
                   <div class="alert alert-info">
                     <i class="pull-left material-icons">feedback</i>
                     <div style="padding-left: 30px;">
-                      <p>Utilize este cadastro para solicitar cota&ccedil;&otilde;es de <span class="bold">viagens</span>.
+                      <p>Utilize esta opção para solicitar cota&ccedil;&otilde;es de <span class="bold">viagens</span>.
                       Ap&oacute;s enviar os dados, solicite autoriza&ccedil;&atilde;o de seu gestor e aguarde retorno por e-mail com a cota&ccedil;&atilde;o. <br>                      
                       <p>As solicita&ccedil;&otilde;es s&atilde;o encaminhados para: <span class="bold"> juliana.dias@aniger.com.br</span></p>
                       <p>Ramal: <span class="bold">166</span></p>   
@@ -394,7 +394,7 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
             <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
                   <br>
                   <i class="fa fa-info fa-6x"></i>
                   <h4 id="2ModalLabel" class="semi-bold">Informa&ccedil;&atilde;o.</h4>
@@ -450,7 +450,7 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
             <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
                   <br>
                   <i class="fa fa-info fa-6x"></i>
                   <h4 id="3ModalLabel" class="semi-bold">Informa&ccedil;&atilde;o.</h4>
@@ -505,7 +505,7 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
             <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
                   <br>
                   <i class="fa fa-info fa-6x"></i>
                   <h4 id="4ModalLabel" class="semi-bold">Informa&ccedil;&atilde;o.</h4>
@@ -560,7 +560,7 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
             <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
                   <br>
                   <i class="fa fa-info fa-6x"></i>
                   <h4 id="5ModalLabel" class="semi-bold">Informa&ccedil;&atilde;o.</h4>

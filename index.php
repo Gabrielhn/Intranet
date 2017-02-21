@@ -589,6 +589,14 @@ $result8=$stmt8->fetch(PDO::FETCH_ASSOC);
                                   '.$result5[$key5]['REQUISITOS'].' 
                                 <br>&nbsp;  
                                 </h6>    
+                              </div>
+                              <div style="text-align:center;">
+                                <span class="description" style="font-size:11px;">
+                                  <p>
+                                  Caso j&aacute; seja um funcion&aacute;rio ANIGER e tenha interesse nesta vaga, comunique ao seu gestor para ele entrar em contato com o RH.                                  
+                                  Caso queira indicar esta vaga a um amigo, pedimos que seja enviado um e-mail para <span class="bold">rh@aniger.com.br</span> mencionando o c&oacute;digo da vaga.
+                                  </p>
+                                </span>
                               </div>             
                             </div>
                           </div>
