@@ -25,8 +25,8 @@ FROM
     IN_IMAGENS IMG 
 WHERE 
     USR.IMG_PERFIL = IMG.ID AND USR.ID =:id";
-$query2 = "SELECT * FROM IN_SETORES ORDER BY 1";
-$query3 = "SELECT * FROM IN_VAGAS WHERE ID=:idv";
+
+$query3 = "SELECT VAG.*,SETO.NOME FROM IN_VAGAS VAG, IN_SETORES SETO WHERE VAG.SETOR = SETO.SIGLA AND ID=:idv";
 
 
 //#1
@@ -34,11 +34,6 @@ $stmt1 = $conn->prepare($query1);
 $stmt1->bindValue(':id',$id);
 $stmt1->execute();
 $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
-
-//#2
-$stmt2 = $conn->prepare($query2);
-$stmt2->execute();
-$result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
 
 //#3
 $stmt3 = $conn->prepare($query3);
@@ -283,8 +278,7 @@ $result3=$stmt3->fetch(PDO::FETCH_ASSOC);
           <iframe src="http://free.timeanddate.com/clock/i5hp9yxv/n595/tlbr5/fn17/fc555/tc22262e/pa0/th1" frameborder="0" width="66" height="14"></iframe>
         </div>
         <div class="pull-right">
-          <!-- IMPLEMENTAR LOCKSCREEN -->
-          <a href="../bloquear.php"><i class="material-icons">power_settings_new</i></a>
+          <a href="../bloquear.php"><i class="material-icons">lock_outline</i></a>
         </div>
       </div>
       <!-- /SIDEBAR -->
@@ -338,16 +332,9 @@ $result3=$stmt3->fetch(PDO::FETCH_ASSOC);
 
                     <div class="form-group col-md-4 col-sm-4 col-xs-4">
                       <div class="controls">
-                        <select id="source"  class="form-control input" name="setor" required>
-                          <?php
-                          foreach ($result2 as $key2 => $value) {
-                            echo 
-                              '<option value="'.$result2[$key2]['SIGLA'].'">'.$result2[$key2]['SIGLA'].' - '.$result2[$key2]['NOME'].'</option>';
-                          }                            
-                          ?>                     
-                        </select>                        
+                        <input type="text" value="<?php echo $result3[SETOR].' - '.$result3[NOME] ?>" class="form-control input" name="setor" readonly required>
                       </div>
-                    </div>
+                    </div> 
 
                     <div class="form-group col-md-2 col-sm-2 col-xs-2">
                       <div class="controls">

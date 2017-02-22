@@ -273,9 +273,8 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
           <i class="material-icons">alarm</i>
           <iframe src="http://free.timeanddate.com/clock/i5hp9yxv/n595/tlbr5/fn17/fc555/tc22262e/pa0/th1" frameborder="0" width="66" height="14"></iframe>
         </div>
-        <div class="pull-right">
-          <!-- IMPLEMENTAR LOCKSCREEN -->
-          <a href="bloquear.php"><i class="material-icons">power_settings_new</i></a>
+        <div class="pull-right">         
+          <a href="bloquear.php"><i class="material-icons">lock_outline</i></a>
         </div>
       </div>
       <!-- END SIDEBAR -->
