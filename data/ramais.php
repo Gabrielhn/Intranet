@@ -345,7 +345,7 @@ $result3=$stmt3->fetchAll(PDO::FETCH_ASSOC);
                             <td class="v-align-middle"><span class="muted">'.$result2[$key]['GESTOR'].'</span></td>                                                        
                             <td class="v-align-middle"><span class="muted">'.$result2[$key]['USUARIO'].'</span></td>
                             <td class="v-align-middle">
-                              <a href="vaga.F.U.php?id='.$result2[$key]['ID'].'"title="Editar"><i class="fa fa-pencil"></i></a>
+                              <a href="vaga.F.U.php?id='..str_replace(' ', '', $result2[$key]['NOME']).'"title="Editar"><i class="fa fa-pencil"></i></a>
                               <span data-toggle="modal" data-target="#'.str_replace(' ', '', $result2[$key]['NOME']).'Modal"><a href="#" title="Excluir"><i class="fa fa-trash"></i></a></span>  
                               <span class="disabled" style="color:#0d638f;"><i class="fa fa-search"></i>&nbsp;</span>                                                                                                                    
                             </td>

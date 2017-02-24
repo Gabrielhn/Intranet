@@ -5694,6 +5694,14 @@ form legend,
   background-color: #efaaff;
   color: #5E5E5E;
 }
+.label-nfs {
+  background-color: #a142f4;
+  color: #ffffff;
+}
+.label-man {
+  background-color: #ad8874;
+  color: #ffffff;
+}
 .popover {
   border-radius: 3px;
   border: none;

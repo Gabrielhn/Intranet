@@ -56,10 +56,25 @@ $stmt4->execute();
 $result4=$stmt4->fetch(PDO::FETCH_ASSOC);
 
 // #5 TEMPO
-$adm=date('m/d/y',strtotime($result1['ADMISSAO']));
+$adm=$result1['ADMISSAO'];
 $hj=date('d/m/y');
-$tempo=strtotime($hj)-strtotime($adm);
-$anos =floor(($tempo)/(60*60*24*365));
+
+$data_inicial = $adm;
+$data_final = $hj;                  
+function geraTimestamp($data) {
+$partes = explode('/', $data);
+return mktime(0, 0, 0, $partes[1], $partes[0], $partes[2]);
+}                  
+$time_inicial = geraTimestamp($data_inicial);
+$time_final = geraTimestamp($data_final);                  
+$diferenca = $time_final - $time_inicial;
+$anos = (int)floor( $diferenca / (60 * 60 * 24)/ 365);
+
+// #5 TEMPO
+// $adm=date('m/d/y',strtotime($result1['ADMISSAO']));
+// $hj=date('d/m/y');
+// $tempo=strtotime($hj)-strtotime($adm);
+// $anos =floor(($tempo)/(60*60*24*365));
 
 
 ?>
@@ -412,16 +427,7 @@ $anos =floor(($tempo)/(60*60*24*365));
                     </div>
                   </div>
                   <hr/>
-                  &nbsp;&nbsp;<br/>  
-                  <?php
-                  echo 'hj: '.$hj;    
-                    echo '<br/>';
-                    echo 'Adm: '.$adm;    
-                    echo '<br/>';  
-                    echo 'bd: '.$result1['ADMISSAO'];
-                    echo '<br/>';              
-                    echo 'Anos: '.$anos;
-                  ?>                
+                  &nbsp;&nbsp;<br/>                                    
                   &nbsp;&nbsp;<br/>                  
           <!-- FIM CONTEÚDO -->
         </div>
