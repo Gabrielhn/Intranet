@@ -403,7 +403,7 @@ $result17=$stmt17->fetchAll(PDO::FETCH_ASSOC);
                   <h4><span class="bold">Dire&ccedil;&atilde;o &nbsp;</span><span class="label label-adm">ADM</span></h4>
                   <div class="tools">
                     <a href="javascript:;" class="collapse"></a>
-                    <a href="#grid-config" data-toggle="modal" class="config"></a>
+                    <a href="#" class="config"></a>                    
                     <a href="javascript:;" class="reload"></a>
                   </div>
                 </div>
@@ -658,7 +658,7 @@ $result17=$stmt17->fetchAll(PDO::FETCH_ASSOC);
             <div class="span12">
               <div class="grid simple ">
                 <div class="grid-title">
-                  <h4><span class="bold">E-commerce &nbsp;</span><span class="label label-com">ECOM</span></h4>
+                  <h4><span class="bold">Auditoria &nbsp;</span><span class="label label-aud">AUD</span></h4>
                   <div class="tools">
                     <a href="javascript:;" class="collapse"></a>
                     <a href="#grid-config" data-toggle="modal" class="config"></a>
@@ -666,7 +666,7 @@ $result17=$stmt17->fetchAll(PDO::FETCH_ASSOC);
                   </div>
                 </div>
                 <div class="grid-body ">
-                  <table class="table table-hover table-bordered" id="ECOM">
+                  <table class="table table-hover table-bordered" id="REC">
                     <thead>
                       <tr>
                         <th>Nome</th>
@@ -675,18 +675,18 @@ $result17=$stmt17->fetchAll(PDO::FETCH_ASSOC);
                     </thead>
                     <tbody>
                       <?php
-                        foreach ($result14 as $key14 => $value) {
-                          if ($result14[$key14]['GESTOR'] == 'S') {
+                        foreach ($result17 as $key17 => $value) {
+                          if ($result17[$key17]['GESTOR'] == 'S') {
                             echo
                             '<tr class="even gradeX">
-                              <td>'.$result14[$key14]['NOME'].'<i class="material-icons pull-right" style="font-size: 18px;">stars</i></td>
-                              <td class="center">'.$result14[$key14]['RAMAL'].'</td>
+                              <td>'.$result17[$key17]['NOME'].'<i class="material-icons pull-right" style="font-size: 18px;">stars</i></td>
+                              <td class="center">'.$result17[$key17]['RAMAL'].'</td>
                             </tr>';
                           } else {
                             echo
                             '<tr class="even gradeX">
-                              <td>'.$result14[$key14]['NOME'].'</td>
-                              <td class="center">'.$result14[$key14]['RAMAL'].'</td>
+                              <td>'.$result17[$key17]['NOME'].'</td>
+                              <td class="center">'.$result17[$key17]['RAMAL'].'</td>
                             </tr>';
                           }                          
                         }
@@ -924,49 +924,7 @@ $result17=$stmt17->fetchAll(PDO::FETCH_ASSOC);
 
           
 
-          <div class="col-md-4 col-sm-6 m-b-10">
-            <div class="span12">
-              <div class="grid simple ">
-                <div class="grid-title">
-                  <h4><span class="bold">Auditoria &nbsp;</span><span class="label label-aud">AUD</span></h4>
-                  <div class="tools">
-                    <a href="javascript:;" class="collapse"></a>
-                    <a href="#grid-config" data-toggle="modal" class="config"></a>
-                    <a href="javascript:;" class="reload"></a>
-                  </div>
-                </div>
-                <div class="grid-body ">
-                  <table class="table table-hover table-bordered" id="REC">
-                    <thead>
-                      <tr>
-                        <th>Nome</th>
-                        <th>Ramal</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <?php
-                        foreach ($result17 as $key17 => $value) {
-                          if ($result17[$key17]['GESTOR'] == 'S') {
-                            echo
-                            '<tr class="even gradeX">
-                              <td>'.$result17[$key17]['NOME'].'<i class="material-icons pull-right" style="font-size: 18px;">stars</i></td>
-                              <td class="center">'.$result17[$key17]['RAMAL'].'</td>
-                            </tr>';
-                          } else {
-                            echo
-                            '<tr class="even gradeX">
-                              <td>'.$result17[$key17]['NOME'].'</td>
-                              <td class="center">'.$result17[$key17]['RAMAL'].'</td>
-                            </tr>';
-                          }                          
-                        }
-                      ?>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-          </div>
+          
 
           
 

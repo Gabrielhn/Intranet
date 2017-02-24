@@ -346,12 +346,12 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
                             </td>
                           </tr>
 
-                          <!-- MODAL #1 -->
+                          <!-- MODAL EXCLUIR -->
                           <div class="modal fade" id="'.$result2[$key]['SIGLA'].'Modal" tabindex="-1" role="dialog" aria-labelledby="'.$result2[$key]['SIGLA'].'ModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
                               <div class="modal-content">
                                 <div class="modal-header">
-                                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
                                   <br>
                                   <i class="fa fa-trash fa-6x"></i>
                                   <h4 id="1ModalLabel" class="semi-bold">Excluir</h4>

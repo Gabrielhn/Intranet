@@ -331,7 +331,7 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
                           <div class="modal-dialog">
                             <div class="modal-content">
                               <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
                                 <br>
                                 <i class="fa fa-pencil-square-o fa-6x"></i>
                                 <h4 id="pModalLabel" class="semi-bold">Termos e condi&ccedil;&otilde;es.</h4>

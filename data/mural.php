@@ -330,7 +330,7 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
                         <th style="width:25%">Assunto</th>
                         <th style="width:20%">Autor</th>                    
                         <th style="width:25%">Data</th>
-                        <th style="width:5%">Views</th>                        
+                        <th style="width:5%">Views</th>                      
                         <th style="width:8%">A&ccedil;&otilde;es</th>
                       </tr>
                     </thead>

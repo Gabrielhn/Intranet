@@ -328,8 +328,15 @@ $result2=$stmt2->fetch(PDO::FETCH_ASSOC);
                         '.stream_get_contents($result2['CONTEUDO']).'
                         <hr>
                         <div>
-                          <div class="col-md-6 col-sm-6 col-xs-6" style="text-align:left;"><i class="fa fa-eye fa-lg"></i>&nbsp;&nbsp;<span style="font-weight:500; font-size:13px;">'.$result2['VIEWS'].'</span></div>
-                          <div class="col-md-6 col-sm-6 col-xs-6" style="text-align:right;">'.strftime('%A, %d de %B de %Y', strtotime($result2['INCLUSAO'])).'</div>
+                          <div class="col-md-4 col-sm-4 col-xs-4" style="text-align:left;"><i class="fa fa-eye fa-lg"></i>&nbsp;&nbsp;<span style="font-weight:500; font-size:13px;">'.$result2['VIEWS'].'</span></div>
+                          <div class="col-md-4 col-sm-4 col-xs-4 rating" style="text-align:center;">
+                            <span><i class="fa fa-star-o fa-lg"></i></span>
+                            <span><i class="fa fa-star-o fa-lg"></i></span>
+                            <span><i class="fa fa-star-o fa-lg"></i></span>
+                            <span><i class="fa fa-star-o fa-lg"></i></span>
+                            <span><i class="fa fa-star-o fa-lg"></i></span>
+                          </div>
+                          <div class="col-md-4 col-sm-4 col-xs-4" style="text-align:right;">'.strftime('%A, %d de %B de %Y', strtotime($result2['INCLUSAO'])).'</div>
                         </div>
                       </div>                    
                     </div>                                                                                       
