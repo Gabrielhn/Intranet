@@ -384,7 +384,7 @@ $anos = (int)floor( $diferenca / (60 * 60 * 24)/ 365);
                       <p><i class="fa fa-briefcase"></i><?php echo $result1['CARGO']; ?> </p>
 
                       <!--LOCAL-->
-                      <p><i class="fa fa-globe"></i><?php echo $result1['LOCAL']; ?></p>
+                      <p><i class="fa fa-globe"></i><?php echo $result1['NOME_LOCAL']; ?></p>
 
                       <!--EMAIL-->
                       <p><i class="fa fa-envelope"></i><?php echo $result1['EMAIL']; ?></p>

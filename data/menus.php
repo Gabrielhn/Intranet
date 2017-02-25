@@ -320,13 +320,12 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
                   <table class="table table-hover">
                     <thead>
                       <tr>                                                
-                        <th style="width:8%">p&aacute;gina</th>                    
-                        <th style="width:8%">Título</th>
+                        <th style="width:8%">P&aacute;gina</th>                    
+                        <th style="width:8%">T&iacute;tulo</th>
                         <th style="width:15%">&iacute;cone</th>
                         <th style="width:17%">Atributos 1</th>
                         <th style="width:17%">Atributos 2</th>
                         <th style="width:10%">Link</th>
-                        <th style="width:4%">A&ccedil;&otilde;es</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -340,8 +339,7 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
                             <td class="v-align-middle"><span class="muted">'.$result2[$key]['ICONE'].'</span></td>
                             <td class="v-align-middle"><span class="muted">'.$result2[$key]['ATRIBUTOS_1'].'</span></td>
                             <td class="v-align-middle"><span class="muted">'.$result2[$key]['ATRIBUTOS_2'].'</span></td>
-                            <td class="v-align-middle"><span class="muted">'.$result2[$key]['LINK'].'</span></td>
-                            <td class="v-align-middle"><i class="fa fa-pencil"></i>&nbsp;<i class="fa fa-trash"></i><i>&nbsp;<i class="fa fa-search"></i></td>                                                                   
+                            <td class="v-align-middle"><span class="muted">'.$result2[$key]['LINK'].'</span></td>                                                                                               
                           </tr>
                           ';
                         $rr++;

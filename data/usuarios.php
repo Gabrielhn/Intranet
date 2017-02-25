@@ -26,7 +26,8 @@ FROM
     IN_IMAGENS IMG 
 WHERE 
     USR.IMG_PERFIL = IMG.ID AND USR.ID =:id";
-$query2 = "SELECT ID, NOME || ' ' || SOBRENOME AS NOME_COMPLETO, EMAIL, SETOR, CARGO, LOCAL, RAMAL, ATIVO FROM VW_PERFIL ORDER BY 8 DESC, 2 ASC";
+$query2 = "SELECT * FROM VW_PERFIL ORDER BY 11 DESC, 15 ASC";
+$query3 = "SELECT * FROM IN_SETORES ORDER BY 1";
 
 //#1
 $stmt1 = $conn->prepare($query1);
@@ -38,6 +39,11 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
 $stmt2 = $conn->prepare($query2);
 $stmt2->execute();
 $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
+
+//#3
+$stmt3 = $conn->prepare($query3);
+$stmt3->execute();
+$result3=$stmt3->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
 
@@ -323,7 +329,7 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
                     <thead>
                       <tr>                                              
                         <th style="width:20%">Nome completo</th>
-                        <th style="width:20%">Email</th>
+                        <th style="width:20%">E-mail</th>
                         <th style="width:6%">Setor</th>
                         <th style="width:20%">Cargo</th>
                         <th style="width:20%">Local</th>
@@ -346,11 +352,210 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
                             <td class="v-align-middle"><span class="muted">'.$result2[$key]['RAMAL'].'</span></td>
                             <td class="v-align-middle"><span class="muted">'.$result2[$key]['ATIVO'].'</span></td>
                             <td class="v-align-middle">
-                              <a href="usuarios.u.php?id='.$result2[$key]['ID'].'"title="Editar"><i class="fa fa-pencil"></i></a>
-                              <a href="usuarios.d.php?id='.$result2[$key]['ID'].'"title="Excluir"><i class="fa fa-trash"></i></a>
-                              <a href="usuarios.r.php?id='.$result2[$key]['ID'].'"title="Detalhes"><i class="fa fa-search"></i></a>
+                              <span data-toggle="modal" data-target="#'.$result2[$key]['ID'].'UPModal"><a href="#" title="Editar"><i class="fa fa-pencil"></i></a></span>
+                              <span data-toggle="modal" data-target="#'.$result2[$key]['ID'].'DLModal"><a href="#" title="Excluir"><i class="fa fa-trash"></i></a></span>
+                              <span data-toggle="modal" data-target="#'.$result2[$key]['ID'].'VWModal"><a href="#" title="Detalhes"><i class="fa fa-search"></i></a></span>
                             </td>
                           </tr>
+
+                          <!-- MODAL UPDATE -->
+                          <div class="modal fade" id="'.$result2[$key]['ID'].'UPModal" tabindex="-1" role="dialog" aria-labelledby="'.$result2[$key]['ID'].'UPModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                              <div class="modal-content">
+                                <div class="modal-header">                                  
+                                  <div>
+                                    <div class="col-md-6 col-sm-6 col-xs-6" style="text-align:left;">#'.$result2[$key]['ID'].'</div>
+                                    <div class="col-md-6 col-sm-6 col-xs-6" style="text-align:right;"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button></div>
+                                  </div>
+                                  <br>
+                                  <i class="fa fa-pencil-square-o fa-6x"></i>
+                                  <h4 id="1ModalLabel" class="semi-bold">Usu&aacute;rio: '.$result2[$key]['NOME_COMPLETO'].'</h4>
+                                </div>
+                                <div class="modal-body">
+                                  <div class="">
+                                    <div class="row" style="line-height:2;">
+                                      <form method="post" name="usuario" action="usuarios.U.php">                                      
+
+                                        <div class="form-group col-md-4 col-sm-4 col-xs-4">
+                                          <div class="controls">
+                                            <input type="text" placeholder="Nome" value="'.$result2[$key]['NOME'].'" class="form-control input" name="nome" required>
+                                          </div>
+                                        </div>
+
+                                        <div class="form-group col-md-4 col-sm-4 col-xs-4">
+                                          <div class="controls">
+                                            <input type="text" placeholder="Sobrenome" value="'.$result2[$key]['SOBRENOME'].'" class="form-control input" name="sobrenome" required>
+                                          </div>
+                                        </div>
+
+                                        <div class="form-group col-md-4 col-sm-4 col-xs-4">
+                                          <div class="controls">
+                                            <input type="text" placeholder="Admiss&atilde;o" value="'.$result2[$key]['ADMISSAO'].'" class="form-control input" name="admissao" required>
+                                          </div>
+                                        </div>
+
+                                        <div class="form-group col-md-6 col-sm-6 col-xs-6">
+                                          <div class="controls">
+                                            <input type="text" placeholder="E-mail" value="'.$result2[$key]['EMAIL'].'" class="form-control input" name="email" required>
+                                          </div>
+                                        </div>
+
+                                        <div class="form-group col-md-4 col-sm-4 col-xs-4">
+                                          <div class="controls">
+                                            <input type="text" placeholder="Senha" value="'.$result2[$key]['SENHA'].'" class="form-control input" name="senha" required>
+                                          </div>
+                                        </div>
+
+                                        <div class="form-group col-md-2 col-sm-2 col-xs-2">
+                                          <div class="controls">
+                                            <input type="text" placeholder="Ramal" value="'.$result2[$key]['RAMAL'].'" class="form-control input" name="ramal" maxlength="4" required>
+                                          </div>
+                                        </div>
+
+                                        <div class="form-group col-md-6 col-sm-6 col-xs-6">
+                                          <div class="controls">
+                                            <select id="source"  class="form-control input" name="setor" required>';                                              
+                                              foreach ($result3 as $key3 => $value) {
+                                                echo 
+                                                  '<option value="'.$result3[$key3]['SIGLA'].'">'.$result3[$key3]['SIGLA'].' - '.$result3[$key3]['NOME'].'</option>';
+                                              }
+                                            echo '
+                                            </select>                        
+                                          </div>
+                                        </div>
+
+                                        <div class="form-group col-md-6 col-sm-6 col-xs-6">
+                                          <div class="controls">
+                                            <input type="text" placeholder="Cargo" value="'.$result2[$key]['CARGO'].'" class="form-control input" name="cargo" required>
+                                          </div>
+                                        </div>
+
+                                        <div class="form-group col-md-4 col-sm-4 col-xs-4">
+                                          <div class="controls">
+                                            <input type="text" placeholder="IM/Skype" value="'.$result2[$key]['IM'].'" class="form-control input" name="im" required>
+                                          </div>
+                                        </div>
+
+                                        <div class="form-group col-md-2 col-sm-2 col-xs-2">
+                                          <div class="controls">
+                                            <input type="text" placeholder="Local" value="'.$result2[$key]['LOCAL'].'" class="form-control input" name="local" maxlength="3" required>
+                                          </div>
+                                        </div>
+
+                                        <div class="form-group col-md-4 col-sm-4 col-xs-4">
+                                          <div class="controls">
+                                            <input type="text" placeholder="Cadastro" value="Cadastro: '.$result2[$key]['CADASTRO'].'" class="form-control input" name="cadastro" readonly required>
+                                          </div>
+                                        </div>
+
+                                        <div class="form-group col-md-2 col-sm-2 col-xs-2">
+                                          <div class="controls">
+                                            <input type="text" placeholder="Ativo" value="'.$result2[$key]['ATIVO'].'" class="form-control input" name="ativo" required>
+                                          </div>
+                                        </div>                                        
+
+                                        <div class="form-group col-md-2 col-sm-2 col-xs-2">
+                                          <div class="controls">
+                                            <input type="text" placeholder="" value="'.$result2[$key]['TIPO_USUARIO'].'" class="form-control input" name="tipo" required>
+                                          </div>
+                                        </div>
+
+                                        <div class="form-group col-md-2 col-sm-2 col-xs-2">
+                                          <div class="controls">
+                                            <input type="text" id="" value="'.$result2[$key]['ID'].'" class="form-control input" name="id" readonly required>
+                                          </div>
+                                        </div>                                                
+                                        
+                                        <div class="form-group col-md-12 col-sm-12 col-xs-12 pull-right">
+                                          <button type="submit" class="btn btn-info btn-block" value="submit"> Atualizar</button>                                        
+                                        </div>                                                                                                                                           
+                                      
+                                      </form>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <!-- MODAL DELETE -->
+                          <div class="modal fade" id="'.$result2[$key]['ID'].'DLModal" tabindex="-1" role="dialog" aria-labelledby="'.$result2[$key]['ID'].'DLModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+                                  <br>
+                                  <i class="fa fa-trash fa-6x"></i>
+                                  <h4 id="1ModalLabel" class="semi-bold">Excluir</h4>
+                                </div>
+                                <div class="modal-body">
+                                  <div class="alert alert-danger">
+                                    <i class="pull-left material-icons">feedback</i>
+                                    <div>
+                                      <span style="padding-left: 20px;">
+                                        Voc&ecirc; tem certeza que deseja excluir <strong> '.$result2[$key]['NOME_COMPLETO'].' </strong>?                                             
+                                      </span>
+                                      <div class="pull-right">
+                                      <a href="usuarios.D.php?id='.$result2[$key]['ID'].'"><button class="btn btn-danger btn-small">Sim </button></a>
+                                      <button type="button" class="btn btn-default btn-small" data-dismiss="modal">N&atilde;o </button>    
+                                      </div>
+                                      </div>
+                                  </div>             
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <!-- MODAL VIEW -->
+                          <div class="modal fade" id="'.$result2[$key]['ID'].'VWModal" tabindex="-1" role="dialog" aria-labelledby="'.$result2[$key]['ID'].'VWModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+                                  <br>
+                                  <i class="fa fa-male fa-6x"></i>
+                                  <h4 id="1ModalLabel" class="semi-bold">Usu&aacute;rio: '.$result2[$key]['NOME_COMPLETO'].'</h4>
+                                </div>
+                                <div class="modal-body">
+                                  <div class="">
+                                    <div class="row" style="line-height:2;">
+                                      <div class="col-md-6">                                                                  
+                                        <strong>ID: </strong>'.$result2[$key]['ID'].'                                
+                                      </div>
+                                      <div class="col-md-6">                                                                  
+                                        <strong>ATIVO: </strong>'.$result2[$key]['ATIVO'].'                                
+                                      </div>                                       
+                                      <div class="col-md-6">                                                                  
+                                        <strong>E-MAIL: </strong>'.$result2[$key]['EMAIL'].'                                
+                                      </div>
+                                      <div class="col-md-6">                                                                  
+                                        <strong>SENHA: </strong>'.$result2[$key]['SENHA'].'                                
+                                      </div>
+                                      <div class="col-md-6">                                                                  
+                                        <strong>SETOR: </strong>'.$result2[$key]['SETOR'].' - '.$result2[$key]['NOME_SETOR'].'                                
+                                      </div>
+                                      <div class="col-md-6">                                                                  
+                                        <strong>CARGO: </strong>'.$result2[$key]['CARGO'].'                                
+                                      </div>                                      
+                                      <div class="col-md-6">                                                                  
+                                        <strong>RAMAL: </strong>'.$result2[$key]['RAMAL'].'                                
+                                      </div>
+                                      <div class="col-md-6">                                                                  
+                                        <strong>IM: </strong>'.$result2[$key]['IM'].'                                
+                                      </div>
+                                      <div class="col-md-6">                                                                  
+                                        <strong>LOCAL: </strong>'.$result2[$key]['LOCAL'].' - '.$result2[$key]['NOME_LOCAL'].'                                
+                                      </div>
+                                      <div class="col-md-6">                                                                  
+                                        <strong>ADMISS&Atilde;O: </strong>'.$result2[$key]['ADMISSAO'].'                                
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
                           ';
                         $rr++;
                       }                        
@@ -365,184 +570,7 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
         </div>
       </div>
       <!-- CONTAINER -->
-
-      <!-- BEGIN CHAT -->
-      <div class="chat-window-wrapper">
-        <div id="main-chat-wrapper" class="inner-content">
-          <div class="chat-window-wrapper scroller scrollbar-dynamic" id="chat-users">
-            <!-- BEGIN CHAT HEADER -->
-            <div class="chat-header">
-              <!-- BEGIN CHAT SEARCH BAR -->
-              <div class="pull-left">
-                <input type="text" placeholder="search">
-              </div>
-              <!-- END CHAT SEARCH BAR -->
-              <!-- BEGIN CHAT QUICKLINKS -->
-              <div class="pull-right">
-                <a href="#" class="">
-                  <div class="iconset top-settings-dark"></div>
-                </a>
-              </div>
-              <!-- END CHAT QUICKLINKS -->
-            </div>
-            <!-- END CHAT HEADER -->
-            <!-- BEGIN GROUP WIDGET -->
-            <div class="side-widget">
-              <div class="side-widget-title">group chats</div>
-              <div class="side-widget-content">
-                <div id="groups-list">
-                  <ul class="groups">
-                    <li>
-                      <a href="#">
-                        <div class="status-icon green"></div>Group Chat 1</a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <!-- END GROUP WIDGET -->
-            <!-- BEGIN FAVORITES WIDGET -->
-            <div class="side-widget">
-              <div class="side-widget-title">favorites</div>
-              <div class="side-widget-content">
-                <!-- BEGIN SAMPLE CHAT -->
-                <div class="user-details-wrapper active" data-chat-status="online" data-chat-user-pic="../assets/img/profiles/d.jpg" data-chat-user-pic-retina="../assets/img/profiles/d2x.jpg" data-user-name="Jane Smith">
-                  <!-- BEGIN PROFILE PIC -->
-                  <div class="user-profile">
-                    <img src="../assets/img/profiles/d.jpg" alt="" data-src="../assets/img/profiles/d.jpg" data-src-retina="../assets/img/profiles/d2x.jpg" width="35" height="35">
-                  </div>
-                  <!-- END PROFILE PIC -->
-                  <!-- BEGIN MESSAGE -->
-                  <div class="user-details">
-                    <div class="user-name">Jane Smith</div>
-                    <div class="user-more">Message...</div>
-                  </div>
-                  <!-- END MESSAGE -->
-                  <!-- BEGIN MESSAGES BADGE -->
-                  <div class="user-details-status-wrapper">
-                    <span class="badge badge-important">3</span>
-                  </div>
-                  <!-- END MESSAGES BADGE -->
-                  <!-- BEGIN STATUS -->
-                  <div class="user-details-count-wrapper">
-                    <div class="status-icon green"></div>
-                  </div>
-                  <!-- END STATUS -->
-                  <div class="clearfix"></div>
-                </div>
-                <!-- END SAMPLE CHAT -->
-              </div>
-            </div>
-            <!-- END FAVORITES WIDGET -->
-            <!-- BEGIN MORE FRIENDS WIDGET -->
-            <div class="side-widget">
-              <div class="side-widget-title">more friends</div>
-              <div class="side-widget-content" id="friends-list">
-                <!-- BEGIN SAMPLE CHAT -->
-                <div class="user-details-wrapper" data-chat-status="online" data-chat-user-pic="../assets/img/profiles/d.jpg" data-chat-user-pic-retina="../assets/img/profiles/d2x.jpg" data-user-name="Jane Smith">
-                  <!-- BEGIN PROFILE PIC -->
-                  <div class="user-profile">
-                    <img src="../assets/img/profiles/d.jpg" alt="" data-src="../assets/img/profiles/d.jpg" data-src-retina="../assets/img/profiles/d2x.jpg" width="35" height="35">
-                  </div>
-                  <!-- END PROFILE PIC -->
-                  <!-- BEGIN MESSAGE -->
-                  <div class="user-details">
-                    <div class="user-name">Jane Smith</div>
-                    <div class="user-more">Message...</div>
-                  </div>
-                  <!-- END MESSAGE -->
-                  <!-- BEGIN MESSAGES BADGE -->
-                  <div class="user-details-status-wrapper">
-                    <span class="badge badge-important">3</span>
-                  </div>
-                  <!-- END MESSAGES BADGE -->
-                  <!-- BEGIN STATUS -->
-                  <div class="user-details-count-wrapper">
-                    <div class="status-icon green"></div>
-                  </div>
-                  <!-- END STATUS -->
-                  <div class="clearfix"></div>
-                </div>
-                <!-- END SAMPLE CHAT -->
-              </div>
-            </div>
-            <!-- END MORE FRIENDS WIDGET -->
-          </div>
-          <!-- BEGIN DUMMY CHAT CONVERSATION -->
-          <div class="chat-window-wrapper" id="messages-wrapper" style="display:none">
-            <!-- BEGIN CHAT HEADER BAR -->
-            <div class="chat-header">
-              <!-- BEGIN SEARCH BAR -->
-              <div class="pull-left">
-                <input type="text" placeholder="search">
-              </div>
-              <!-- END SEARCH BAR -->
-              <!-- BEGIN CLOSE TOGGLE -->
-              <div class="pull-right">
-                <a href="#" class="">
-                  <div class="iconset top-settings-dark"></div>
-                </a>
-              </div>
-              <!-- END CLOSE TOGGLE -->
-            </div>
-            <div class="clearfix"></div>
-            <!-- END CHAT HEADER BAR -->
-            <!-- BEGIN CHAT BODY -->
-            <div class="chat-messages-header">
-              <div class="status online"></div>
-              <span class="semi-bold">Jane Smith(Typing..)</span>
-              <a href="#" class="chat-back"><i class="icon-custom-cross"></i></a>
-            </div>
-            <!-- BEGIN CHAT MESSAGES CONTAINER -->
-            <div class="chat-messages scrollbar-dynamic clearfix">
-              <!-- BEGIN TIME STAMP EXAMPLE -->
-              <div class="sent_time">Yesterday 11:25pm</div>
-              <!-- END TIME STAMP EXAMPLE -->
-              <!-- BEGIN EXAMPLE CHAT MESSAGE -->
-              <div class="user-details-wrapper">
-                <!-- BEGIN MESSENGER PROFILE -->
-                <div class="user-profile">
-                  <img src="../assets/img/profiles/d.jpg" alt="" data-src="../assets/img/profiles/d.jpg" data-src-retina="../assets/img/profiles/d2x.jpg" width="35" height="35">
-                </div>
-                <!-- END MESSENGER PROFILE -->
-                <!-- BEGIN MESSENGER MESSAGE -->
-                <div class="user-details">
-                  <div class="bubble">Hello, You there?</div>
-                </div>
-                <!-- END MESSENGER MESSAGE -->
-                <div class="clearfix"></div>
-                <!-- BEGIN TIMESTAMP ON CLICK TOGGLE -->
-                <div class="sent_time off">Yesterday 11:25pm</div>
-                <!-- END TIMESTAMP ON CLICK TOGGLE -->
-              </div>
-              <!-- END EXAMPLE CHAT MESSAGE -->
-              <!-- BEGIN TIME STAMP EXAMPLE -->
-              <div class="sent_time">Today 11:25pm</div>
-              <!-- BEGIN TIME STAMP EXAMPLE -->
-              <!-- BEGIN EXAMPLE CHAT MESSAGE (FROM SELF) -->
-              <div class="user-details-wrapper pull-right">
-                <!-- BEGIN MESSENGER MESSAGE -->
-                <div class="user-details">
-                  <div class="bubble sender">Let me know when you free</div>
-                </div>
-                <!-- END MESSENGER MESSAGE -->
-                <div class="clearfix"></div>
-                <!-- BEGIN TIMESTAMP ON CLICK TOGGLE -->
-                <div class="sent_time off">Sent On Tue, 2:45pm</div>
-                <!-- END TIMESTAMP ON CLICK TOGGLE -->
-              </div>
-              <!-- END EXAMPLE CHAT MESSAGE (FROM SELF) -->
-            </div>
-            <!-- END CHAT MESSAGES CONTAINER -->
-          </div>
-          <div class="chat-input-wrapper" style="display:none">
-            <textarea id="chat-message-input" rows="1" placeholder="Type your message"></textarea>
-          </div>
-          <div class="clearfix"></div>
-          <!-- END DUMMY CHAT CONVERSATION -->
-        </div>
-      </div>
-      <!-- END CHAT -->
+      
     </div>
     <!-- END CONTENT -->
     <!-- BEGIN CORE JS FRAMEWORK-->

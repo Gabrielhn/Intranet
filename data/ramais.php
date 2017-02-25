@@ -345,13 +345,13 @@ $result3=$stmt3->fetchAll(PDO::FETCH_ASSOC);
                             <td class="v-align-middle"><span class="muted">'.$result2[$key]['GESTOR'].'</span></td>                                                        
                             <td class="v-align-middle"><span class="muted">'.$result2[$key]['USUARIO'].'</span></td>
                             <td class="v-align-middle">
-                              <a href="vaga.F.U.php?id='..str_replace(' ', '', $result2[$key]['NOME']).'"title="Editar"><i class="fa fa-pencil"></i></a>
+                              <span class="disabled" style="color:#0d638f;"><i class="fa fa-pencil"></i></span>  
                               <span data-toggle="modal" data-target="#'.str_replace(' ', '', $result2[$key]['NOME']).'Modal"><a href="#" title="Excluir"><i class="fa fa-trash"></i></a></span>  
-                              <span class="disabled" style="color:#0d638f;"><i class="fa fa-search"></i>&nbsp;</span>                                                                                                                    
+                              <span class="disabled" style="color:#0d638f;"><i class="fa fa-search"></i></span>                                                                                                                    
                             </td>
                           </tr>
 
-                          <!-- MODAL EXCLUIR -->
+                          <!-- MODAL DELETE -->
                           <div class="modal fade" id="'.str_replace(' ', '', $result2[$key]['NOME']).'Modal" tabindex="-1" role="dialog" aria-labelledby="'.str_replace(' ', '', $result2[$key]['NOME']).'ModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
                               <div class="modal-content">
@@ -395,53 +395,55 @@ $result3=$stmt3->fetchAll(PDO::FETCH_ASSOC);
                         <h4 id="ADDModalLabel" class="semi-bold">Novo Ramal</h4>                  
                       </div>
                       <div class="modal-body"> 
+                        <div class="">
+                          <div class="row" style="line-height:2;">
+                            <form method="post" name="ramal" action="ramais.I.php">
 
-                        <form method="post" name="ramal" action="ramais.I.php">
+                              <div class="form-group col-md-5 col-sm-5 col-xs-5">
+                                <div class="controls">
+                                  <input type="text" placeholder="Nome" class="form-control input" name="nome" maxlength="40" required>
+                                </div>
+                              </div>
 
-                          <div class="form-group col-md-5 col-sm-5 col-xs-5">
-                            <div class="controls">
-                              <input type="text" placeholder="Nome" class="form-control input" name="nome" maxlength="40" required>
-                            </div>
+                              <div class="form-group col-md-2 col-sm-2 col-xs-2">
+                                <div class="controls">
+                                  <input type="text" placeholder="Ramal" class="form-control input" name="ramal" maxlength="4" required>
+                                </div>
+                              </div>
+
+                              <div class="form-group col-md-3 col-sm-3 col-xs-3">
+                                <div class="controls">
+                                  <select id="source"  class="form-control input" name="setor" required>
+                                    <?php
+                                    foreach ($result3 as $key3 => $value) {
+                                      echo 
+                                        '<option value="'.$result3[$key3]['SIGLA'].'">'.$result3[$key3]['SIGLA'].'</option>';
+                                    }                            
+                                    ?>                     
+                                  </select>
+                                </div>
+                              </div>
+
+                              <div class="form-group col-md-2 col-sm-2 col-xs-2">
+                                <div class="controls">
+                                  <select id="source"  class="form-control input" name="gestor" required>
+                                    <option value="S">S</option>
+                                    <option value="N" selected>N</option>                          
+                                  </select>
+                                </div>
+                              </div>
+
+                              </br>
+                              </br>
+                              </br>                    
+
+                              <div class="form-group col-md-12 col-sm-12 col-xs-12 pull-right">
+                                <button type="submit" class="btn btn-info btn-block" value="submit"> Atualizar</button>                                        
+                              </div>
+
+                            </form>
                           </div>
-
-                          <div class="form-group col-md-2 col-sm-2 col-xs-2">
-                            <div class="controls">
-                              <input type="text" placeholder="Ramal" class="form-control input" name="ramal" maxlength="4" required>
-                            </div>
-                          </div>
-
-                          <div class="form-group col-md-3 col-sm-3 col-xs-3">
-                            <div class="controls">
-                              <select id="source"  class="form-control input" name="setor" required>
-                                <?php
-                                foreach ($result3 as $key3 => $value) {
-                                  echo 
-                                    '<option value="'.$result3[$key3]['SIGLA'].'">'.$result3[$key3]['SIGLA'].'</option>';
-                                }                            
-                                ?>                     
-                              </select>
-                            </div>
-                          </div>
-
-                          <div class="form-group col-md-2 col-sm-2 col-xs-2">
-                            <div class="controls">
-                              <select id="source"  class="form-control input" name="gestor" required>
-                                <option value="S">S</option>
-                                <option value="N" selected>N</option>                          
-                              </select>
-                            </div>
-                          </div>
-
-                          </br>
-                          </br>
-                          </br>                    
-
-                          <div align="right" style="padding-top: 20px;">
-                            <button type="submit" id="btenv" class="btn btn-info btn-block" value="submit" >Cadastrar</button>
-                          </div>
-
-                        </form>
-                        
+                        </div>
 
                       </div>
                     </div>
