@@ -24,7 +24,8 @@ FROM
     IN_IMAGENS IMG 
 WHERE 
     USR.IMG_PERFIL = IMG.ID AND USR.ID =:id";
-$query2 = "SELECT SE.SIGLA, SE.NOME,'(' || SE.GESTOR || ') ' || USR.NOME AS GESTOR, SE.LABEL FROM IN_SETORES SE, IN_USUARIOS USR WHERE SE.GESTOR = USR.ID ORDER BY 2";
+$query2 = "SELECT SE.SIGLA, SE.NOME,'(' || SE.GESTOR || ') ' || USR.NOME || ' ' || USR.SOBRENOME AS GESTOR, SE.LABEL FROM IN_SETORES SE, IN_USUARIOS USR WHERE SE.GESTOR = USR.ID ORDER BY 2";
+$query3 = "SELECT ID, NOME || ' ' || SOBRENOME AS NOME_COMPLETO FROM IN_USUARIOS WHERE ATIVO = 'S' ORDER BY 2 ";
 
 //#1
 $stmt1 = $conn->prepare($query1);
@@ -36,6 +37,11 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
 $stmt2 = $conn->prepare($query2);
 $stmt2->execute();
 $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
+
+//#3 GESTOR
+$stmt3 = $conn->prepare($query3);
+$stmt3->execute();
+$result3=$stmt3->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
 
@@ -312,7 +318,7 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
               <div class="grid simple ">
                 <div class="grid-title no-border">
                   <div class="tools">
-                    <a href="setores.C.php"><i class="fa fa-plus fa-lg"></i> </a>                   
+                     <span data-toggle="modal" data-target="#INModal"><a href="#" title="Adicionar"><i class="fa fa-plus fa-lg"></i></a></span>                   
                   </div>
                 </div>
                 <div class="grid-body no-border">
@@ -340,14 +346,74 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
                             <td class="v-align-middle"><span class="muted">'.$result2[$key]['LABEL'].'</span></td>
                             <td class="v-align-middle"><span class="muted"><span class="'.$result2[$key]['LABEL'].'">'.$result2[$key]['SIGLA'].'</span></span></td>
                             <td class="v-align-middle">
-                              <a href="setores.u.php?id='.$result2[$key]['SIGLA'].'"title="Editar"><i class="fa fa-pencil"></i></a>
-                               <span data-toggle="modal" data-target="#'.$result2[$key]['SIGLA'].'Modal"><a href="#" title="Excluir"><i class="fa fa-trash"></i></a></span>
-                              <a href="setores.r.php?id='.$result2[$key]['SIGLA'].'"title="Detalhes"><i class="fa fa-search"></i></a>
+                              <span data-toggle="modal" data-target="#'.$result2[$key]['SIGLA'].'UPModal"><a href="#" title="Editar"><i class="fa fa-pencil"></i></a></span>
+                              <span data-toggle="modal" data-target="#'.$result2[$key]['SIGLA'].'DLModal"><a href="#" title="Excluir"><i class="fa fa-trash"></i></a></span>
+                              <span data-toggle="modal" data-target="#'.$result2[$key]['SIGLA'].'VWModal"><a href="#" title="Detalhes"><i class="fa fa-search"></i></a></span>
                             </td>
                           </tr>
 
-                          <!-- MODAL EXCLUIR -->
-                          <div class="modal fade" id="'.$result2[$key]['SIGLA'].'Modal" tabindex="-1" role="dialog" aria-labelledby="'.$result2[$key]['SIGLA'].'ModalLabel" aria-hidden="true">
+                          <!-- MODAL UPDATE -->
+                          <div class="modal fade" id="'.$result2[$key]['SIGLA'].'UPModal" tabindex="-1" role="dialog" aria-labelledby="'.$result2[$key]['SIGLA'].'UPModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                              <div class="modal-content">
+                                <div class="modal-header">                                  
+                                  <div>
+                                    <div class="col-md-6 col-sm-6 col-xs-6" style="text-align:left;"></div>
+                                    <div class="col-md-6 col-sm-6 col-xs-6" style="text-align:right;"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button></div>
+                                  </div>
+                                  <br>
+                                  <i class="fa fa-pencil-square-o fa-6x"></i>
+                                  <h4 id="1ModalLabel" class="semi-bold">Setor: '.$result2[$key]['NOME'].'</h4>
+                                </div>
+                                <div class="modal-body">
+                                  <div class="">
+                                    <div class="row" style="line-height:2;">
+                                      <form method="post" name="usuario" action="setores.U.php">                                      
+
+                                        <div class="form-group col-md-2 col-sm-2 col-xs-2">
+                                          <div class="controls">
+                                            <input type="text" placeholder="Sigla" value="'.$result2[$key]['SIGLA'].'" class="form-control input" name="sigla" maxlength="4" readonly required>
+                                          </div>
+                                        </div>
+
+                                        <div class="form-group col-md-10 col-sm-10 col-xs-10">
+                                          <div class="controls">
+                                            <input type="text" placeholder="Nome" value="'.$result2[$key]['NOME'].'" class="form-control input" name="nome" maxlength="35" required>
+                                          </div>
+                                        </div>
+
+                                        <div class="form-group col-md-6 col-sm-6 col-xs-6">
+                                          <div class="controls">
+                                            <select id="source"  class="form-control input" name="gestor" required>';                                              
+                                              foreach ($result3 as $key3 => $value) {
+                                                echo 
+                                                  '<option value="'.$result3[$key3]['ID'].'">'.$result3[$key3]['ID'].' - '.$result3[$key3]['NOME_COMPLETO'].'</option>';
+                                              }
+                                            echo '
+                                            </select>                        
+                                          </div>
+                                        </div>
+
+                                        <div class="form-group col-md-6 col-sm-6 col-xs-6">
+                                          <div class="controls">
+                                            <input type="text" placeholder="Label" value="'.$result2[$key]['LABEL'].'" class="form-control input" name="label" maxlength="25" required>
+                                          </div>
+                                        </div>
+                                        
+                                        <div class="form-group col-md-12 col-sm-12 col-xs-12 pull-right">
+                                          <button type="submit" class="btn btn-info btn-block" value="submit"> Atualizar</button>                                        
+                                        </div>                                                                                                                                           
+                                      
+                                      </form>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <!-- MODAL DELETE -->
+                          <div class="modal fade" id="'.$result2[$key]['SIGLA'].'DLModal" tabindex="-1" role="dialog" aria-labelledby="'.$result2[$key]['SIGLA'].'DLModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
                               <div class="modal-content">
                                 <div class="modal-header">
@@ -373,6 +439,44 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
                               </div>
                             </div>
                           </div>
+
+                          <!-- MODAL VIEW -->
+                          <div class="modal fade" id="'.$result2[$key]['SIGLA'].'VWModal" tabindex="-1" role="dialog" aria-labelledby="'.$result2[$key]['SIGLA'].'VWModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+                                  <br>
+                                  <i class="fa fa-sitemap fa-6x"></i>
+                                  <h4 id="1ModalLabel" class="semi-bold">Setor: '.$result2[$key]['NOME'].'</h4>
+                                </div>
+                                <div class="modal-body">
+                                  <div class="">
+                                    <div class="row" style="line-height:2;">
+
+                                      <div class="col-md-12">                                                                  
+                                        <strong>SIGLA: </strong>'.$result2[$key]['SIGLA'].'                                
+                                      </div>
+
+                                      <div class="col-md-12">                                                                  
+                                        <strong>NOME: </strong>'.$result2[$key]['NOME'].'                                
+                                      </div>                                     
+
+                                      <div class="col-md-6">                                                                  
+                                        <strong>GESTOR: </strong>'.$result2[$key]['GESTOR'].'                                
+                                      </div>
+
+                                       <div class="col-md-6">                                                                  
+                                        <strong>LABEL: </strong>'.$result2[$key]['LABEL'].'                                
+                                      </div>
+                                      
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
                           ';
                         $rr++;
                       }                        
@@ -380,6 +484,69 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
                     </tbody>
                   </table>
                 </div>
+
+                <!-- MODAL INSERT -->
+                <div class="modal fade" id="INModal" tabindex="-1" role="dialog" aria-labelledby="INModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">                                  
+                        <div>
+                          <div class="col-md-6 col-sm-6 col-xs-6" style="text-align:left;"></div>
+                          <div class="col-md-6 col-sm-6 col-xs-6" style="text-align:right;"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button></div>
+                        </div>
+                        <br>
+                        <i class="fa fa-sitemap fa-6x"></i>
+                        <h4 id="1ModalLabel" class="semi-bold">Novo Setor</h4>
+                      </div>
+                      <div class="modal-body">
+                        <div class="">
+                          <div class="row" style="line-height:2;">
+                            <form method="post" name="usuario" action="setores.I.php">                                      
+
+                              <div class="form-group col-md-2 col-sm-2 col-xs-2">
+                                <div class="controls">
+                                  <input type="text" placeholder="Sigla" value="" class="form-control input" name="sigla" maxlength="4" required>
+                                </div>
+                              </div>
+
+                              <div class="form-group col-md-10 col-sm-10 col-xs-10">
+                                <div class="controls">
+                                  <input type="text" placeholder="Nome" value="" class="form-control input" name="nome" maxlength="35" required>
+                                </div>
+                              </div>
+
+                              <?php echo '
+                              <div class="form-group col-md-6 col-sm-6 col-xs-6">
+                                <div class="controls">
+                                  <select id="source"  class="form-control input" name="gestor" required>';                                              
+                                    foreach ($result3 as $key3 => $value) {
+                                      echo 
+                                        '<option value="'.$result3[$key3]['ID'].'">'.$result3[$key3]['ID'].' - '.$result3[$key3]['NOME_COMPLETO'].'</option>';
+                                    }
+                                  echo '
+                                  </select>                        
+                                </div>
+                              </div>'
+                              ?>
+
+                              <div class="form-group col-md-6 col-sm-6 col-xs-6">
+                                <div class="controls">
+                                  <input type="text" placeholder="Label" value="label" class="form-control input" name="label" maxlength="25" required>
+                                </div>
+                              </div>
+                              
+                              <div class="form-group col-md-12 col-sm-12 col-xs-12 pull-right">
+                                <button type="submit" class="btn btn-info btn-block" value="submit"> Cadastrar</button>                                        
+                              </div>                                                                                                                                           
+                            
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
               </div>
             </div>
           </div>        
@@ -387,184 +554,7 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
         </div>
       </div>
       <!-- CONTAINER -->
-
-      <!-- BEGIN CHAT -->
-      <div class="chat-window-wrapper">
-        <div id="main-chat-wrapper" class="inner-content">
-          <div class="chat-window-wrapper scroller scrollbar-dynamic" id="chat-users">
-            <!-- BEGIN CHAT HEADER -->
-            <div class="chat-header">
-              <!-- BEGIN CHAT SEARCH BAR -->
-              <div class="pull-left">
-                <input type="text" placeholder="search">
-              </div>
-              <!-- END CHAT SEARCH BAR -->
-              <!-- BEGIN CHAT QUICKLINKS -->
-              <div class="pull-right">
-                <a href="#" class="">
-                  <div class="iconset top-settings-dark"></div>
-                </a>
-              </div>
-              <!-- END CHAT QUICKLINKS -->
-            </div>
-            <!-- END CHAT HEADER -->
-            <!-- BEGIN GROUP WIDGET -->
-            <div class="side-widget">
-              <div class="side-widget-title">group chats</div>
-              <div class="side-widget-content">
-                <div id="groups-list">
-                  <ul class="groups">
-                    <li>
-                      <a href="#">
-                        <div class="status-icon green"></div>Group Chat 1</a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <!-- END GROUP WIDGET -->
-            <!-- BEGIN FAVORITES WIDGET -->
-            <div class="side-widget">
-              <div class="side-widget-title">favorites</div>
-              <div class="side-widget-content">
-                <!-- BEGIN SAMPLE CHAT -->
-                <div class="user-details-wrapper active" data-chat-status="online" data-chat-user-pic="../assets/img/profiles/d.jpg" data-chat-user-pic-retina="../assets/img/profiles/d2x.jpg" data-user-name="Jane Smith">
-                  <!-- BEGIN PROFILE PIC -->
-                  <div class="user-profile">
-                    <img src="../assets/img/profiles/d.jpg" alt="" data-src="../assets/img/profiles/d.jpg" data-src-retina="../assets/img/profiles/d2x.jpg" width="35" height="35">
-                  </div>
-                  <!-- END PROFILE PIC -->
-                  <!-- BEGIN MESSAGE -->
-                  <div class="user-details">
-                    <div class="user-name">Jane Smith</div>
-                    <div class="user-more">Message...</div>
-                  </div>
-                  <!-- END MESSAGE -->
-                  <!-- BEGIN MESSAGES BADGE -->
-                  <div class="user-details-status-wrapper">
-                    <span class="badge badge-important">3</span>
-                  </div>
-                  <!-- END MESSAGES BADGE -->
-                  <!-- BEGIN STATUS -->
-                  <div class="user-details-count-wrapper">
-                    <div class="status-icon green"></div>
-                  </div>
-                  <!-- END STATUS -->
-                  <div class="clearfix"></div>
-                </div>
-                <!-- END SAMPLE CHAT -->
-              </div>
-            </div>
-            <!-- END FAVORITES WIDGET -->
-            <!-- BEGIN MORE FRIENDS WIDGET -->
-            <div class="side-widget">
-              <div class="side-widget-title">more friends</div>
-              <div class="side-widget-content" id="friends-list">
-                <!-- BEGIN SAMPLE CHAT -->
-                <div class="user-details-wrapper" data-chat-status="online" data-chat-user-pic="../assets/img/profiles/d.jpg" data-chat-user-pic-retina="../assets/img/profiles/d2x.jpg" data-user-name="Jane Smith">
-                  <!-- BEGIN PROFILE PIC -->
-                  <div class="user-profile">
-                    <img src="../assets/img/profiles/d.jpg" alt="" data-src="../assets/img/profiles/d.jpg" data-src-retina="../assets/img/profiles/d2x.jpg" width="35" height="35">
-                  </div>
-                  <!-- END PROFILE PIC -->
-                  <!-- BEGIN MESSAGE -->
-                  <div class="user-details">
-                    <div class="user-name">Jane Smith</div>
-                    <div class="user-more">Message...</div>
-                  </div>
-                  <!-- END MESSAGE -->
-                  <!-- BEGIN MESSAGES BADGE -->
-                  <div class="user-details-status-wrapper">
-                    <span class="badge badge-important">3</span>
-                  </div>
-                  <!-- END MESSAGES BADGE -->
-                  <!-- BEGIN STATUS -->
-                  <div class="user-details-count-wrapper">
-                    <div class="status-icon green"></div>
-                  </div>
-                  <!-- END STATUS -->
-                  <div class="clearfix"></div>
-                </div>
-                <!-- END SAMPLE CHAT -->
-              </div>
-            </div>
-            <!-- END MORE FRIENDS WIDGET -->
-          </div>
-          <!-- BEGIN DUMMY CHAT CONVERSATION -->
-          <div class="chat-window-wrapper" id="messages-wrapper" style="display:none">
-            <!-- BEGIN CHAT HEADER BAR -->
-            <div class="chat-header">
-              <!-- BEGIN SEARCH BAR -->
-              <div class="pull-left">
-                <input type="text" placeholder="search">
-              </div>
-              <!-- END SEARCH BAR -->
-              <!-- BEGIN CLOSE TOGGLE -->
-              <div class="pull-right">
-                <a href="#" class="">
-                  <div class="iconset top-settings-dark"></div>
-                </a>
-              </div>
-              <!-- END CLOSE TOGGLE -->
-            </div>
-            <div class="clearfix"></div>
-            <!-- END CHAT HEADER BAR -->
-            <!-- BEGIN CHAT BODY -->
-            <div class="chat-messages-header">
-              <div class="status online"></div>
-              <span class="semi-bold">Jane Smith(Typing..)</span>
-              <a href="#" class="chat-back"><i class="icon-custom-cross"></i></a>
-            </div>
-            <!-- BEGIN CHAT MESSAGES CONTAINER -->
-            <div class="chat-messages scrollbar-dynamic clearfix">
-              <!-- BEGIN TIME STAMP EXAMPLE -->
-              <div class="sent_time">Yesterday 11:25pm</div>
-              <!-- END TIME STAMP EXAMPLE -->
-              <!-- BEGIN EXAMPLE CHAT MESSAGE -->
-              <div class="user-details-wrapper">
-                <!-- BEGIN MESSENGER PROFILE -->
-                <div class="user-profile">
-                  <img src="../assets/img/profiles/d.jpg" alt="" data-src="../assets/img/profiles/d.jpg" data-src-retina="../assets/img/profiles/d2x.jpg" width="35" height="35">
-                </div>
-                <!-- END MESSENGER PROFILE -->
-                <!-- BEGIN MESSENGER MESSAGE -->
-                <div class="user-details">
-                  <div class="bubble">Hello, You there?</div>
-                </div>
-                <!-- END MESSENGER MESSAGE -->
-                <div class="clearfix"></div>
-                <!-- BEGIN TIMESTAMP ON CLICK TOGGLE -->
-                <div class="sent_time off">Yesterday 11:25pm</div>
-                <!-- END TIMESTAMP ON CLICK TOGGLE -->
-              </div>
-              <!-- END EXAMPLE CHAT MESSAGE -->
-              <!-- BEGIN TIME STAMP EXAMPLE -->
-              <div class="sent_time">Today 11:25pm</div>
-              <!-- BEGIN TIME STAMP EXAMPLE -->
-              <!-- BEGIN EXAMPLE CHAT MESSAGE (FROM SELF) -->
-              <div class="user-details-wrapper pull-right">
-                <!-- BEGIN MESSENGER MESSAGE -->
-                <div class="user-details">
-                  <div class="bubble sender">Let me know when you free</div>
-                </div>
-                <!-- END MESSENGER MESSAGE -->
-                <div class="clearfix"></div>
-                <!-- BEGIN TIMESTAMP ON CLICK TOGGLE -->
-                <div class="sent_time off">Sent On Tue, 2:45pm</div>
-                <!-- END TIMESTAMP ON CLICK TOGGLE -->
-              </div>
-              <!-- END EXAMPLE CHAT MESSAGE (FROM SELF) -->
-            </div>
-            <!-- END CHAT MESSAGES CONTAINER -->
-          </div>
-          <div class="chat-input-wrapper" style="display:none">
-            <textarea id="chat-message-input" rows="1" placeholder="Type your message"></textarea>
-          </div>
-          <div class="clearfix"></div>
-          <!-- END DUMMY CHAT CONVERSATION -->
-        </div>
-      </div>
-      <!-- END CHAT -->
+      
     </div>
     <!-- END CONTENT -->
     <!-- BEGIN CORE JS FRAMEWORK-->

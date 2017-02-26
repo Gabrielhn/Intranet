@@ -24,7 +24,8 @@ FROM
     IN_IMAGENS IMG 
 WHERE 
     USR.IMG_PERFIL = IMG.ID AND USR.ID =:id";
-$query2 = "SELECT * FROM IN_VAGAS ORDER BY ATIVO DESC, DT_CADASTRO";
+$query2 = "SELECT VAG.*,SETO.NOME AS NOME_SETOR FROM IN_VAGAS VAG, IN_SETORES SETO WHERE VAG.SETOR = SETO.SIGLA ORDER BY ATIVO DESC, DT_CADASTRO";
+$query3 = "SELECT * FROM IN_SETORES ORDER BY 1";
 
 //#1
 $stmt1 = $conn->prepare($query1);
@@ -36,6 +37,11 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
 $stmt2 = $conn->prepare($query2);
 $stmt2->execute();
 $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
+
+//#2 SETORES
+$stmt3 = $conn->prepare($query3);
+$stmt3->execute();
+$result3=$stmt3->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
 
@@ -312,7 +318,7 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
               <div class="grid simple ">
                 <div class="grid-title no-border">
                   <div class="tools">
-                    <a href="vaga.C.php"><i class="fa fa-plus fa-lg"></i> </a>                   
+                    <span data-toggle="modal" data-target="#INModal"><a href="#" title="Adicionar"><i class="fa fa-plus fa-lg"></i></a></span>                   
                   </div>
                 </div>
                 <div class="grid-body no-border">
@@ -339,18 +345,90 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
                             <td class="v-align-middle"><span class="muted"><span class="label label-'.strtolower($result2[$key]['SETOR']).'">'.$result2[$key]['SETOR'].'</span></span></td>
                             <td class="v-align-middle"><span class="muted">'.$result2[$key]['ATIVO'].'</span></td>
                             <td class="v-align-middle">
-                            <a href="vaga.F.U.php?id='.$result2[$key]['ID'].'"title="Editar"><i class="fa fa-pencil"></i></a>
-                            <span style="cursor: pointer; color:#0d638f;" data-toggle="modal" data-target="#'.$result2[$key]['ID'].'Modal"><i class="fa fa-search"></i>&nbsp;</span>'
-                            .($result2[$key]['ATIVO'] == 'N'
-                            ? 
-                            '<a href="vaga.A.php?id='.$result2[$key]['ID'].'"title="Ativar"><i class="fa fa-check fa-lg"></i></a>'
-                            : 
-                            '<a href="vaga.D.php?id='.$result2[$key]['ID'].'"title="Desativar"><i class="fa fa-close fa-lg"></i></a>'
-                            ).'                                                                                                                                                    
+                              <span data-toggle="modal" data-target="#'.$result2[$key]['ID'].'UPModal"><a href="#" title="Editar"><i class="fa fa-pencil"></i></a></span>
+                              <span style="cursor: pointer; color:#0d638f;" data-toggle="modal" data-target="#'.$result2[$key]['ID'].'VWModal"><i class="fa fa-search"></i>&nbsp;</span>'
+                              .($result2[$key]['ATIVO'] == 'N'
+                              ? 
+                              '<a href="vaga.A.php?id='.$result2[$key]['ID'].'"title="Ativar"><i class="fa fa-check fa-lg"></i></a>'
+                              : 
+                              '<a href="vaga.D.php?id='.$result2[$key]['ID'].'"title="Desativar"><i class="fa fa-close fa-lg"></i></a>'
+                              ).'                                                                                                                                                    
                             </td>
                           </tr>
 
-                          <div class="modal fade" id="'.$result2[$key]['ID'].'Modal" tabindex="-1" role="dialog" aria-labelledby="'.$result2[$key]['ID'].'ModalLabel" aria-hidden="true">
+                          <!-- MODAL UPDATE -->
+                          <div class="modal fade" id="'.$result2[$key]['ID'].'UPModal" tabindex="-1" role="dialog" aria-labelledby="'.$result2[$key]['ID'].'UPModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                              <div class="modal-content">
+                                <div class="modal-header">                                  
+                                  <div>
+                                    <div class="col-md-6 col-sm-6 col-xs-6" style="text-align:left;">#'.$result2[$key]['ID'].'</div>
+                                    <div class="col-md-6 col-sm-6 col-xs-6" style="text-align:right;"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button></div>
+                                  </div>
+                                  <br>
+                                  <i class="fa fa-bookmark fa-6x"></i>
+                                  <h4 id="1ModalLabel" class="semi-bold">Vaga: '.$result2[$key]['FUNCAO'].'</h4>
+                                </div>
+                                <div class="modal-body">
+                                  <div class="">
+                                    <div class="row" style="line-height:2;">
+                                      <form method="post" name="usuario" action="vaga.U.php">                                      
+
+                                       <div class="form-group col-md-6 col-sm-6 col-xs-6">
+                                          <div class="controls">
+                                            <input type="text" placeholder="Fun&ccedil;&atilde;o" value="'.$result2[$key]['FUNCAO'].'" class="form-control input" name="funcao" maxlength="60" required>
+                                          </div>
+                                        </div>                    
+
+                                        <div class="form-group col-md-6 col-sm-6 col-xs-6">
+                                          <div class="controls">
+                                            <input type="text" placeholder="Setor" value="'.$result2[$key]['SETOR'].' - '.$result2[$key]['NOME_SETOR'].'" class="form-control input" name="setor" readonly required>
+                                          </div>
+                                        </div>                              
+
+                                        <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                                          <div class="controls">
+                                            <textarea id="descricao" placeholder="Descri&ccedil;&atilde;o" class="form-control input" rows="5" name="descricao" maxlength="600">'.$result2[$key]['DESCRICAO'].'</textarea>
+                                          </div>
+                                        </div>
+
+                                        <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                                          <div class="controls">
+                                            <textarea id="requisitos" placeholder="Requisitos" class="form-control input" rows="5" name="requisitos" maxlength="600">'.$result2[$key]['REQUISITOS'].'</textarea>
+                                          </div>
+                                        </div>
+
+                                        <div class="form-group col-md-2 col-sm-2 col-xs-2">
+                                          <div class="controls">
+                                            C&oacute;digo: <input type="text" placeholder="Id" value="'.$result2[$key]['ID'].'" class="form-control input" name="id" readonly required>
+                                          </div>
+                                        </div>
+
+                                        <div class="form-group col-md-3 col-sm-3 col-xs-3">
+                                          <div class="controls">
+                                            Ativo: <input type="text" placeholder="Ativo" value="'.($result2[$key]['ATIVO'] == 'S'
+                                            ? 
+                                            'Sim'
+                                            : 
+                                            'Nao'
+                                            ).'" class="form-control input" name="ativo" readonly required>
+                                          </div>
+                                        </div>                                           
+                                        
+                                        <div class="form-group col-md-12 col-sm-12 col-xs-12 pull-right">
+                                          <button type="submit" class="btn btn-info btn-block" value="submit"> Atualizar</button>                                        
+                                        </div>                                                                                                                                           
+                                      
+                                      </form>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <!-- MODAL VIEW -->
+                          <div class="modal fade" id="'.$result2[$key]['ID'].'VWModal" tabindex="-1" role="dialog" aria-labelledby="'.$result2[$key]['ID'].'VWModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
                               <div class="modal-content">
                                 <div class="modal-header">
@@ -390,6 +468,78 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
                     </tbody>
                   </table>
                 </div>
+
+                <!-- MODAL INSERT -->
+                <div class="modal fade" id="INModal" tabindex="-1" role="dialog" aria-labelledby="INModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">                                  
+                        <div>
+                          <div class="col-md-6 col-sm-6 col-xs-6" style="text-align:left;"></div>
+                          <div class="col-md-6 col-sm-6 col-xs-6" style="text-align:right;"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button></div>
+                        </div>
+                        <br>
+                        <i class="fa fa-bookmark fa-6x"></i>
+                        <h4 id="1ModalLabel" class="semi-bold">Nova Vaga</h4>
+                      </div>
+                      <div class="modal-body">
+                        <div class="">
+                          <div class="row" style="line-height:2;">
+                            <form method="post" name="vaga" action="vaga.I.php">                                      
+
+                              <div class="form-group col-md-6 col-sm-6 col-xs-6">
+                                <div class="controls">
+                                  <input type="text" placeholder="Fun&ccedil;&atilde;o" class="form-control input" name="funcao" maxlength="60" required>
+                                </div>
+                              </div>                    
+
+                              <div class="form-group col-md-6 col-sm-6 col-xs-6">
+                                <div class="controls">
+                                  <select id="source"  class="form-control input" name="setor" required>
+                                    <?php
+                                    foreach ($result3 as $key3 => $value) {
+                                      echo 
+                                        '<option value="'.$result3[$key3]['SIGLA'].'">'.$result3[$key3]['SIGLA'].' - '.$result3[$key3]['NOME'].'</option>';
+                                    }                            
+                                    ?>                     
+                                  </select>                        
+                                </div>
+                              </div>                              
+
+                              <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                                <div class="controls">
+                                  <textarea id="descricao" placeholder="Descri&ccedil;&atilde;o" class="form-control input" rows="5" name="descricao" maxlength="600"></textarea>
+                                </div>
+                              </div>
+
+                              <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                                <div class="controls">
+                                  <textarea id="requisitos" placeholder="Requisitos" class="form-control input" rows="5" name="requisitos" maxlength="600"></textarea>
+                                </div>
+                              </div>
+
+                              <div class="form-group col-md-3 col-sm-3 col-xs-3">
+                                <div class="controls">
+                                  <select id="source"  class="form-control input" name="ativo" required>
+                                    <option value="S">Ativo: SIM</option>
+                                    <option value="N">Ativo: N&Atilde;O</option>                          
+                                  </select>
+                                </div>
+                              </div>
+                              
+                              
+                              <div class="form-group col-md-12 col-sm-12 col-xs-12 pull-right">
+                                <button type="submit" class="btn btn-info btn-block" value="submit"> Cadastrar</button>                                        
+                              </div>                                                                                                                                           
+                            
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
               </div>
             </div>
           </div>        

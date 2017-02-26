@@ -402,13 +402,13 @@ $result4=$stmt4->fetchAll(PDO::FETCH_ASSOC);
 
                                         <div class="form-group col-md-6 col-sm-6 col-xs-6">
                                           <div class="controls">
-                                            <input type="text" placeholder="E-mail" value="'.$result2[$key]['EMAIL'].'" class="form-control input" name="email" maxlength="40" required>
+                                            <input type="email" placeholder="E-mail" value="'.$result2[$key]['EMAIL'].'" class="form-control input" name="email" maxlength="40" required>
                                           </div>
                                         </div>
 
                                         <div class="form-group col-md-4 col-sm-4 col-xs-4">
                                           <div class="controls">
-                                            <input type="text" placeholder="Senha" value="'.$result2[$key]['SENHA'].'" class="form-control input" name="senha" maxlength="20" required>
+                                            <input type="password" placeholder="Senha" value="'.$result2[$key]['SENHA'].'" class="form-control input" name="senha" maxlength="20" required>
                                           </div>
                                         </div>
 
@@ -611,13 +611,13 @@ $result4=$stmt4->fetchAll(PDO::FETCH_ASSOC);
 
                               <div class="form-group col-md-6 col-sm-6 col-xs-6">
                                 <div class="controls">
-                                  <input type="text" placeholder="E-mail" value="" class="form-control input" name="email" maxlength="40" required>
+                                  <input type="email" placeholder="E-mail" value="" class="form-control input" name="email" maxlength="40" required>
                                 </div>
                               </div>
 
                               <div class="form-group col-md-4 col-sm-4 col-xs-4">
                                 <div class="controls">
-                                  <input type="text" placeholder="Senha" value="" class="form-control input" name="senha" maxlength="20" required>
+                                  <input type="password" placeholder="Senha" value="" class="form-control input" name="senha" maxlength="20" required>
                                 </div>
                               </div>
 

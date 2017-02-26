@@ -15,18 +15,15 @@ $idv=$_POST['id'];
 $funcao=$_POST['funcao'];
 $descricao=$_POST['descricao'];
 $requisitos=$_POST['requisitos'];
-$setor=$_POST['setor'];
 $ativo=$_POST['ativo'];
 
-$query3="UPDATE IN_VAGAS SET FUNCAO = :funcao, DESCRICAO = :descricao, REQUISITOS = :requisitos, SETOR = :setor, ATIVO = :ativo WHERE ID = :idv";
+$query3="UPDATE IN_VAGAS SET FUNCAO = :funcao, DESCRICAO = :descricao, REQUISITOS = :requisitos WHERE ID = :idv";
 
 $stmt3 = $conn->prepare($query3);
 $stmt3->bindValue(':funcao',$funcao);
 $stmt3->bindValue(':descricao',$descricao);
-$stmt3->bindValue(':requisitos',$requisitos); 
-$stmt3->bindValue(':setor',$setor);
-$stmt3->bindValue(':ativo',$ativo);
-$stmt3->bindValue(':idv',$idv);   
+$stmt3->bindValue(':requisitos',$requisitos);
+$stmt3->bindValue(':idv',$idv);
 $stmt3->execute();
 header("Location: vagas.php");
 
