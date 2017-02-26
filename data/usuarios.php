@@ -26,8 +26,9 @@ FROM
     IN_IMAGENS IMG 
 WHERE 
     USR.IMG_PERFIL = IMG.ID AND USR.ID =:id";
-$query2 = "SELECT * FROM VW_PERFIL ORDER BY 11 DESC, 15 ASC";
+$query2 = "SELECT * FROM VW_PERFIL ORDER BY 11 DESC, 16 ASC";
 $query3 = "SELECT * FROM IN_SETORES ORDER BY 1";
+$query4 = "SELECT * FROM IN_LOCAIS ORDER BY 2";
 
 //#1
 $stmt1 = $conn->prepare($query1);
@@ -44,6 +45,11 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
 $stmt3 = $conn->prepare($query3);
 $stmt3->execute();
 $result3=$stmt3->fetchAll(PDO::FETCH_ASSOC);
+
+//#4
+$stmt4 = $conn->prepare($query4);
+$stmt4->execute();
+$result4=$stmt4->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
 
@@ -320,7 +326,7 @@ $result3=$stmt3->fetchAll(PDO::FETCH_ASSOC);
               <div class="grid simple ">
                 <div class="grid-title no-border">
                   <div class="tools">
-                    <a href=""><i class="fa fa-plus fa-lg"></i> </a>                   
+                    <span data-toggle="modal" data-target="#INModal"><a href="#" title="Adicionar"><i class="fa fa-plus fa-lg"></i></a></span>                   
                   </div>
                 </div>
                 <div class="grid-body no-border">
@@ -378,31 +384,31 @@ $result3=$stmt3->fetchAll(PDO::FETCH_ASSOC);
 
                                         <div class="form-group col-md-4 col-sm-4 col-xs-4">
                                           <div class="controls">
-                                            <input type="text" placeholder="Nome" value="'.$result2[$key]['NOME'].'" class="form-control input" name="nome" required>
+                                            <input type="text" placeholder="Nome" value="'.$result2[$key]['NOME'].'" class="form-control input" name="nome" maxlength="50" required>
                                           </div>
                                         </div>
 
                                         <div class="form-group col-md-4 col-sm-4 col-xs-4">
                                           <div class="controls">
-                                            <input type="text" placeholder="Sobrenome" value="'.$result2[$key]['SOBRENOME'].'" class="form-control input" name="sobrenome" required>
+                                            <input type="text" placeholder="Sobrenome" value="'.$result2[$key]['SOBRENOME'].'" class="form-control input" name="sobrenome" maxlength="40" required>
                                           </div>
                                         </div>
 
                                         <div class="form-group col-md-4 col-sm-4 col-xs-4">
                                           <div class="controls">
-                                            <input type="text" placeholder="Admiss&atilde;o" value="'.$result2[$key]['ADMISSAO'].'" class="form-control input" name="admissao" required>
+                                            <input type="text" placeholder="Admiss&atilde;o" value="'.$result2[$key]['ADMISSAO'].'" class="form-control input" name="admissao" maxlength="8" required>
                                           </div>
                                         </div>
 
                                         <div class="form-group col-md-6 col-sm-6 col-xs-6">
                                           <div class="controls">
-                                            <input type="text" placeholder="E-mail" value="'.$result2[$key]['EMAIL'].'" class="form-control input" name="email" required>
+                                            <input type="text" placeholder="E-mail" value="'.$result2[$key]['EMAIL'].'" class="form-control input" name="email" maxlength="40" required>
                                           </div>
                                         </div>
 
                                         <div class="form-group col-md-4 col-sm-4 col-xs-4">
                                           <div class="controls">
-                                            <input type="text" placeholder="Senha" value="'.$result2[$key]['SENHA'].'" class="form-control input" name="senha" required>
+                                            <input type="text" placeholder="Senha" value="'.$result2[$key]['SENHA'].'" class="form-control input" name="senha" maxlength="20" required>
                                           </div>
                                         </div>
 
@@ -426,13 +432,13 @@ $result3=$stmt3->fetchAll(PDO::FETCH_ASSOC);
 
                                         <div class="form-group col-md-6 col-sm-6 col-xs-6">
                                           <div class="controls">
-                                            <input type="text" placeholder="Cargo" value="'.$result2[$key]['CARGO'].'" class="form-control input" name="cargo" required>
+                                            <input type="text" placeholder="Cargo" value="'.$result2[$key]['CARGO'].'" class="form-control input" name="cargo" maxlength="30" required>
                                           </div>
                                         </div>
 
                                         <div class="form-group col-md-4 col-sm-4 col-xs-4">
                                           <div class="controls">
-                                            <input type="text" placeholder="IM/Skype" value="'.$result2[$key]['IM'].'" class="form-control input" name="im" required>
+                                            <input type="text" placeholder="IM/Skype" value="'.$result2[$key]['IM'].'" class="form-control input" name="im" maxlength="25" required>
                                           </div>
                                         </div>
 
@@ -450,13 +456,13 @@ $result3=$stmt3->fetchAll(PDO::FETCH_ASSOC);
 
                                         <div class="form-group col-md-2 col-sm-2 col-xs-2">
                                           <div class="controls">
-                                            <input type="text" placeholder="Ativo" value="'.$result2[$key]['ATIVO'].'" class="form-control input" name="ativo" required>
+                                            <input type="text" placeholder="Ativo" value="'.$result2[$key]['ATIVO'].'" class="form-control input" name="ativo" maxlength="1" required>
                                           </div>
                                         </div>                                        
 
                                         <div class="form-group col-md-2 col-sm-2 col-xs-2">
                                           <div class="controls">
-                                            <input type="text" placeholder="" value="'.$result2[$key]['TIPO_USUARIO'].'" class="form-control input" name="tipo" required>
+                                            <input type="text" placeholder="" value="'.$result2[$key]['TIPO_USUARIO'].'" class="form-control input" name="tipo" maxlength="3" required>
                                           </div>
                                         </div>
 
@@ -549,6 +555,9 @@ $result3=$stmt3->fetchAll(PDO::FETCH_ASSOC);
                                       <div class="col-md-6">                                                                  
                                         <strong>ADMISS&Atilde;O: </strong>'.$result2[$key]['ADMISSAO'].'                                
                                       </div>
+                                      <div class="col-md-6">                                                                  
+                                        <strong>CADASTRO: </strong>'.$result2[$key]['CADASTRO'].'                                
+                                      </div>
                                     </div>
                                   </div>
                                 </div>
@@ -563,6 +572,131 @@ $result3=$stmt3->fetchAll(PDO::FETCH_ASSOC);
                     </tbody>
                   </table>
                 </div>
+
+                <!-- MODAL UPDATE -->
+                <div class="modal fade" id="INModal" tabindex="-1" role="dialog" aria-labelledby="INModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">                                  
+                        <div>
+                          <div class="col-md-6 col-sm-6 col-xs-6" style="text-align:left;"></div>
+                          <div class="col-md-6 col-sm-6 col-xs-6" style="text-align:right;"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button></div>
+                        </div>
+                        <br>
+                        <i class="fa fa-male fa-6x"></i>
+                        <h4 id="INModalLabel" class="semi-bold">Novo Usu&aacute;rio</h4>
+                      </div>
+                      <div class="modal-body">
+                        <div class="">
+                          <div class="row" style="line-height:2;">
+                            <form method="post" name="usuario" action="usuarios.I.php">                                      
+
+                              <div class="form-group col-md-4 col-sm-4 col-xs-4">
+                                <div class="controls">
+                                  <input type="text" placeholder="Nome" value="" class="form-control input" name="nome" maxlength="50" required>
+                                </div>
+                              </div>
+
+                              <div class="form-group col-md-4 col-sm-4 col-xs-4">
+                                <div class="controls">
+                                  <input type="text" placeholder="Sobrenome" value="" class="form-control input" name="sobrenome" maxlength="40" required>
+                                </div>
+                              </div>
+
+                              <div class="form-group col-md-4 col-sm-4 col-xs-4">
+                                <div class="controls">
+                                  <input type="text" placeholder="Admiss&atilde;o" value="" class="form-control input" name="admissao" maxlength="8" required>
+                                </div>
+                              </div>
+
+                              <div class="form-group col-md-6 col-sm-6 col-xs-6">
+                                <div class="controls">
+                                  <input type="text" placeholder="E-mail" value="" class="form-control input" name="email" maxlength="40" required>
+                                </div>
+                              </div>
+
+                              <div class="form-group col-md-4 col-sm-4 col-xs-4">
+                                <div class="controls">
+                                  <input type="text" placeholder="Senha" value="" class="form-control input" name="senha" maxlength="20" required>
+                                </div>
+                              </div>
+
+                              <div class="form-group col-md-2 col-sm-2 col-xs-2">
+                                <div class="controls">
+                                  <input type="text" placeholder="Ramal" value="" class="form-control input" name="ramal" maxlength="4" required>
+                                </div>
+                              </div>
+
+                              <?php echo '
+                              <div class="form-group col-md-6 col-sm-6 col-xs-6">
+                                <div class="controls">
+                                  <select id="source"  class="form-control input" name="setor" required>';                                              
+                                    foreach ($result3 as $key3 => $value) {
+                                      echo 
+                                        '<option value="'.$result3[$key3]['SIGLA'].'">'.$result3[$key3]['SIGLA'].' - '.$result3[$key3]['NOME'].'</option>';
+                                    }
+                                  echo '
+                                  </select>                        
+                                </div>
+                              </div>'
+                              ?>
+
+                              <div class="form-group col-md-6 col-sm-6 col-xs-6">
+                                <div class="controls">
+                                  <input type="text" placeholder="Cargo" value="" class="form-control input" name="cargo" maxlength="30" required>
+                                </div>
+                              </div>
+
+                              <div class="form-group col-md-4 col-sm-4 col-xs-4">
+                                <div class="controls">
+                                  <input type="text" placeholder="IM/Skype" value="" class="form-control input" name="im" maxlength="25" required>
+                                </div>
+                              </div>
+
+                              <?php echo '
+                              <div class="form-group col-md-8 col-sm-8 col-xs-8">
+                                <div class="controls">
+                                  <select id="source"  class="form-control input" name="local" required>';                                              
+                                    foreach ($result4 as $key4 => $value) {
+                                      echo 
+                                        '<option value="'.$result4[$key4]['LOCAL'].'">'.$result4[$key4]['LOCAL'].' - '.$result4[$key4]['NOME'].'</option>';
+                                    }
+                                  echo '
+                                  </select>                        
+                                </div>
+                              </div>'
+                              ?>
+
+                              <div class="form-group col-md-4 col-sm-4 col-xs-4">
+                                <div class="controls">
+                                  <select id="source"  class="form-control input" name="tipo" required>
+                                    <option selected value="USU">USU - Usu&aacute;rio</option>
+                                    <option value="ADM">ADM - Administrador</option>
+                                  </select>
+                                </div>
+                              </div>                             
+
+                              <div class="form-group col-md-4 col-sm-4 col-xs-4">
+                                <div class="controls">
+                                  <select id="source"  class="form-control input" name="ativo" required>
+                                    <option value="S">Ativo: Sim</option>
+                                    <option value="N">Ativo: N&atilde;o</option>
+                                  </select>
+                                </div>
+                              </div>                                                                                                                                                  
+                              
+                              <div class="form-group col-md-12 col-sm-12 col-xs-12 pull-right">
+                                <button type="submit" class="btn btn-info btn-block" value="submit">Cadastrar</button>                                        
+                              </div>                                                                                                                                           
+                            
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
               </div>
             </div>
           </div>        

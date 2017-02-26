@@ -11,7 +11,6 @@ $service="//10.0.0.2:1521/orcl";
 $email=$_SESSION['usuarioEmail'];
 $conn= new \PDO("oci:host=$host;dbname=$service","INTRANET","ifnefy6b9");
 
-$idu=$_POST['id'];
 $email=$_POST['email'];
 $senha=$_POST['senha'];
 $nome=$_POST['nome'];
@@ -25,25 +24,23 @@ $sobrenome=$_POST['sobrenome'];
 $tipo=$_POST['tipo'];
 $ativo=$_POST['ativo'];
 
-$query3="UPDATE 
-            IN_USUARIOS 
-        SET 
-            EMAIL = :email, 
-            SENHA = :senha, 
-            NOME = :nome, 
-            SETOR = :setor, 
-            CARGO = :cargo, 
-            RAMAL = :ramal, 
-            IM = :im, 
-            LOCAL = :local, 
-            ADMISSAO = :admissao, 
-            SOBRENOME = :sobrenome, 
-            TIPO_USUARIO = :tipo, 
-            ATIVO = :ativo 
-        WHERE ID = :idu";
+$query3="INSERT INTO IN_USUARIOS (     
+    EMAIL, 
+    SENHA, 
+    NOME, 
+    SETOR, 
+    CARGO, 
+    RAMAL, 
+    IM, 
+    LOCAL, 
+    ADMISSAO, 
+    SOBRENOME,
+    TIPO_USUARIO, 
+    ATIVO)
+ VALUES
+   (:email, :senha, :nome, :setor, :cargo, :ramal, :im, :local, :admissao, :sobrenome, :tipo, :ativo)";
 
 $stmt3 = $conn->prepare($query3);
-$stmt3->bindValue(':idu',$idu);
 $stmt3->bindValue(':email',$email);
 $stmt3->bindValue(':senha',$senha);
 $stmt3->bindValue(':nome',$nome);

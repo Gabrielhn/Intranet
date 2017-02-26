@@ -238,6 +238,9 @@ $result8=$stmt8->fetch(PDO::FETCH_ASSOC);
                   <li class="">
                     <?php echo '<a href="perfil.php?id='.$id.'" title="Acesse seu perfil"><i class="fa fa-male fa-fw"></i>&nbsp;&nbsp;Meu perfil</a>';?>
                   </li>
+                  <li class="">
+                    <?php echo '<a href="perfil.php?id='.$id.'" title="Alterar sua senha"><i class="fa fa-unlock-alt fa-fw"></i>&nbsp;&nbsp;Alterar senha</a>';?>
+                  </li>
                    <!--<li class="disabled">
                     <a href="calender.php" title="Recurso ainda n&atilde;o implementado.">Calend&aacute;rio</a>
                   </li>
