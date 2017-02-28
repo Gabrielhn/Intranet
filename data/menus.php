@@ -311,9 +311,9 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
             <div class="col-md-12">
               <div class="grid simple ">
                 <div class="grid-title no-border">
-                  <div class="tools">
-                    <a href="#"><i class="fa fa-plus fa-lg"></i> </a>                   
-                  </div>
+                  <!--<div class="tools">
+                    <a href="#"><i class="fa fa-plus fa-lg"></i> </a>
+                  </div>-->
                 </div>
                 <div class="grid-body no-border">
                   <h3><i class="fa fa-bars fa-1x"></i><span class="semi-bold">&nbsp; Menus</span></h3>

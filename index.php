@@ -239,7 +239,7 @@ $result8=$stmt8->fetch(PDO::FETCH_ASSOC);
                     <?php echo '<a href="perfil.php?id='.$id.'" title="Acesse seu perfil"><i class="fa fa-male fa-fw"></i>&nbsp;&nbsp;Meu perfil</a>';?>
                   </li>
                   <li class="">
-                    <?php echo '<a href="perfil.php?id='.$id.'" title="Alterar sua senha"><i class="fa fa-unlock-alt fa-fw"></i>&nbsp;&nbsp;Alterar senha</a>';?>
+                    <?php echo '<a title="Alterar sua senha"><span style="cursor:pointer;" data-toggle="modal" data-target="#SEModal">&nbsp;<i class="fa fa-unlock-alt"></i>&nbsp;&nbsp; Alterar senha</span></a>';?>
                   </li>
                    <!--<li class="disabled">
                     <a href="calender.php" title="Recurso ainda n&atilde;o implementado.">Calend&aacute;rio</a>
@@ -612,6 +612,34 @@ $result8=$stmt8->fetch(PDO::FETCH_ASSOC);
                 </div>
               </div>
             </div>
+
+            <div class="modal fade" id="SEModal" tabindex="-1" role="dialog" aria-labelledby="SEModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>                                                
+                    <br>
+                    <i class="fa fa-unlock-alt fa-6x"></i>
+                    <h4 id="SEModalLabel" class="semi-bold">Alterar senha</h4>                  
+                  </div>
+                  <div class="modal-body"> 
+                    <div class="">
+                      <div class="row" style="line-height:2;">
+                        <form method="post" name="ramal" action="data\senha.A.php">                          
+
+                          <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                            <div class="controls">
+                              <input type="password" placeholder="Nova senha" class="form-control input input-lg" style="text-align: center" name="senha" maxlength="20" required>
+                            </div>
+                          </div>                                             
+
+                          <div class="form-group col-md-12 col-sm-12 col-xs-12 pull-right">
+                            <button type="submit" class="btn btn-info btn-block btn-large" value="submit"> Alterar</button>                                        
+                          </div>
+
+                        </form>
+                      </div>
+                    </div>
            
                                 
         </div>             

@@ -438,7 +438,7 @@ $result3=$stmt3->fetchAll(PDO::FETCH_ASSOC);
                               </br>                    
 
                               <div class="form-group col-md-12 col-sm-12 col-xs-12 pull-right">
-                                <button type="submit" class="btn btn-info btn-block" value="submit"> Atualizar</button>                                        
+                                <button type="submit" class="btn btn-info btn-block" value="submit"> Cadastrar</button>                                        
                               </div>
 
                             </form>
