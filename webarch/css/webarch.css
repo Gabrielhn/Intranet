@@ -5666,25 +5666,69 @@ form legend,
   background-color: #f35958;
   color: #ffffff;
 }
-.label-rh {
-  background-color: #d1dade;
+.label-cto {
+  background-color: #CAA911;
+  color: #ffffff;
+}
+.label-aud {
+  background-color: #5B926E;
+  color: #ffffff;
+}
+.label-cexp {
+  background-color: #7F4CB1;
+  color: #ffffff;
+}
+.label-cmx {
+  background-color: #ED7A42;
+  color: #ffffff;
+}
+.label-cri {
+  background-color: #FF0054;
+  color: #ffffff;
+}
+.label-mtz {
+  background-color: #D1F14E;
   color: #5E5E5E;
 }
+.label-rh {
+  background-color: #ff5d1e;
+  color: #ffffff;
+}
 .label-fin {
-  background-color: #fdd01c;
+  background-color: #FCB711;
   color: #5E5E5E;
 }
 .label-pcp {
-  background-color: #0aa699;
+  background-color: #898DF4;
   color: #ffffff;
 }
 .label-ctb {
-  background-color: #1f3853;
+  background-color: #00D5FF;
+  color: #5E5E5E;
+}
+.label-ftc {
+  background-color: #0aa699;
+  color: #ffffff;
+}
+.label-lab {
+  background-color: #50E764;
+  color: #5E5E5E;
+}
+.label-log {
+  background-color: #181E9D;
+  color: #ffffff;
+}
+.label-tra {
+  background-color: #D04563;
   color: #ffffff;
 }
 .label-com {
-  background-color: #88e0dd;
-  color: #5E5E5E;
+  background-color: #258DA5;
+  color: #ffffff;
+}
+.label-est {
+  background-color: #CA947C;
+  color: #ffffff;
 }
 .label-cmp {
   background-color: #a5ff60;
@@ -5696,6 +5740,14 @@ form legend,
 }
 .label-nfs {
   background-color: #a142f4;
+  color: #ffffff;
+}
+.label-rec {
+  background-color: #134E84;
+  color: #ffffff;
+}
+.label-mod {
+  background-color: #A52566;
   color: #ffffff;
 }
 .label-man {

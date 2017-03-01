@@ -25,7 +25,7 @@ FROM
 WHERE 
     USR.IMG_PERFIL = IMG.ID AND USR.ID =:id";
 
-$query2 = "SELECT * FROM IN_RAMAIS WHERE SETOR = :setor ORDER BY GESTOR DESC, NOME ASC";
+$query2 = "SELECT R.*, S.NOME AS NOME_SETOR, S.LABEL FROM IN_RAMAIS R, IN_SETORES S WHERE R.SETOR = S.SIGLA AND R.SETOR = :setor ORDER BY R.GESTOR DESC, R.NOME ASC";
 
 //#1
 $stmt1 = $conn->prepare($query1);
@@ -412,7 +412,7 @@ $result19=$stmt19->fetchAll(PDO::FETCH_ASSOC);
             <div class="span12">
               <div class="grid simple ">
                 <div class="grid-title">
-                  <h4><span class="bold">Dire&ccedil;&atilde;o &nbsp;</span><span class="label label-adm">ADM</span></h4>
+                  <?php echo '<h4><span class="bold">Dire&ccedil;&atilde;o &nbsp;</span><span class="'.$result2[0]['LABEL'].'">'.$result2[0]['SETOR']; ?> </span></h4>
                   <div class="tools">
                     <a href="javascript:;" class="collapse"></a>
                     <a href="#" class="config"></a>                    
@@ -448,7 +448,7 @@ $result19=$stmt19->fetchAll(PDO::FETCH_ASSOC);
             <div class="span12">
               <div class="grid simple ">
                 <div class="grid-title">
-                  <h4><span class="bold">Rec. Humanos &nbsp;</span><span class="label label-rh">RH</span></h4>
+                  <?php echo '<h4><span class="bold">Rec. Humanos &nbsp;</span><span class="'.$result3[0]['LABEL'].'">'.$result3[0]['SETOR']; ?> </span></h4>                  
                   <div class="tools">
                     <a href="javascript:;" class="collapse"></a>
                     <a href="#grid-config" data-toggle="modal" class="config"></a>
@@ -492,7 +492,7 @@ $result19=$stmt19->fetchAll(PDO::FETCH_ASSOC);
             <div class="span12">
               <div class="grid simple ">
                 <div class="grid-title">
-                  <h4><span class="bold">Inform&aacute;tica &nbsp;</span><span class="label label-ti">TI</span></h4>
+                  <?php echo '<h4><span class="bold">Inform&aacute;tica &nbsp;</span><span class="'.$result4[0]['LABEL'].'">'.$result4[0]['SETOR']; ?> </span></h4>                                                      
                   <div class="tools">
                     <a href="javascript:;" class="collapse"></a>
                     <a href="#grid-config" data-toggle="modal" class="config"></a>
@@ -536,7 +536,7 @@ $result19=$stmt19->fetchAll(PDO::FETCH_ASSOC);
             <div class="span12">
               <div class="grid simple ">
                 <div class="grid-title">
-                  <h4><span class="bold">Financeiro &nbsp;</span><span class="label label-fin">FIN</span></h4>
+                  <?php echo '<h4><span class="bold">Financeiro &nbsp;</span><span class="'.$result7[0]['LABEL'].'">'.$result7[0]['SETOR']; ?> </span></h4>
                   <div class="tools">
                     <a href="javascript:;" class="collapse"></a>
                     <a href="#grid-config" data-toggle="modal" class="config"></a>
@@ -582,7 +582,7 @@ $result19=$stmt19->fetchAll(PDO::FETCH_ASSOC);
             <div class="span12">
               <div class="grid simple ">
                 <div class="grid-title">
-                  <h4><span class="bold">Marketing &nbsp;</span><span class="label label-mkt">MKT</span></h4>
+                  <?php echo '<h4><span class="bold">Marketing &nbsp;</span><span class="'.$result6[0]['LABEL'].'">'.$result6[0]['SETOR']; ?> </span></h4>
                   <div class="tools">
                     <a href="javascript:;" class="collapse"></a>
                     <a href="#grid-config" data-toggle="modal" class="config"></a>
@@ -626,7 +626,7 @@ $result19=$stmt19->fetchAll(PDO::FETCH_ASSOC);
             <div class="span12">
               <div class="grid simple ">
                 <div class="grid-title">
-                  <h4><span class="bold">Comercial &nbsp;</span><span class="label label-com">COM</span></h4>
+                  <?php echo '<h4><span class="bold">Comercial &nbsp;</span><span class="'.$result10[0]['LABEL'].'">'.$result10[0]['SETOR']; ?> </span></h4>
                   <div class="tools">
                     <a href="javascript:;" class="collapse"></a>
                     <a href="#grid-config" data-toggle="modal" class="config"></a>
@@ -670,7 +670,7 @@ $result19=$stmt19->fetchAll(PDO::FETCH_ASSOC);
             <div class="span12">
               <div class="grid simple ">
                 <div class="grid-title">
-                  <h4><span class="bold">Auditoria &nbsp;</span><span class="label label-aud">AUD</span></h4>
+                  <?php echo '<h4><span class="bold">Auditoria &nbsp;</span><span class="'.$result17[0]['LABEL'].'">'.$result17[0]['SETOR']; ?> </span></h4>                  
                   <div class="tools">
                     <a href="javascript:;" class="collapse"></a>
                     <a href="#grid-config" data-toggle="modal" class="config"></a>
@@ -678,7 +678,7 @@ $result19=$stmt19->fetchAll(PDO::FETCH_ASSOC);
                   </div>
                 </div>
                 <div class="grid-body ">
-                  <table class="table table-hover table-bordered" id="REC">
+                  <table class="table table-hover table-bordered" id="AUD">
                     <thead>
                       <tr>
                         <th>Nome</th>
@@ -714,7 +714,7 @@ $result19=$stmt19->fetchAll(PDO::FETCH_ASSOC);
             <div class="span12">
               <div class="grid simple ">
                 <div class="grid-title">
-                  <h4><span class="bold">Compras &nbsp;</span><span class="label label-cmp">CMP</span></h4>
+                  <?php echo '<h4><span class="bold">Compras &nbsp;</span><span class="'.$result16[0]['LABEL'].'">'.$result16[0]['SETOR']; ?> </span></h4>                                    
                   <div class="tools">
                     <a href="javascript:;" class="collapse"></a>
                     <a href="#grid-config" data-toggle="modal" class="config"></a>
@@ -760,7 +760,7 @@ $result19=$stmt19->fetchAll(PDO::FETCH_ASSOC);
             <div class="span12">
               <div class="grid simple ">
                 <div class="grid-title">
-                  <h4><span class="bold">Notas &nbsp;</span><span class="label label-nfs">NFS</span></h4>
+                  <?php echo '<h4><span class="bold">Notas &nbsp;</span><span class="'.$result11[0]['LABEL'].'">'.$result11[0]['SETOR']; ?> </span></h4>                                                      
                   <div class="tools">
                     <a href="javascript:;" class="collapse"></a>
                     <a href="#grid-config" data-toggle="modal" class="config"></a>
@@ -804,7 +804,7 @@ $result19=$stmt19->fetchAll(PDO::FETCH_ASSOC);
             <div class="span12">
               <div class="grid simple ">
                 <div class="grid-title">
-                  <h4><span class="bold">Manuten&ccedil;&atilde;o &nbsp;</span><span class="label label-man">MAN</span></h4>
+                  <?php echo '<h4><span class="bold">Manuten&ccedil;&atilde;o &nbsp;</span><span class="'.$result9[0]['LABEL'].'">'.$result9[0]['SETOR']; ?> </span></h4>                                                      
                   <div class="tools">
                     <a href="javascript:;" class="collapse"></a>
                     <a href="#grid-config" data-toggle="modal" class="config"></a>
@@ -850,7 +850,7 @@ $result19=$stmt19->fetchAll(PDO::FETCH_ASSOC);
             <div class="span12">
               <div class="grid simple ">
                 <div class="grid-title">
-                  <h4><span class="bold">Recep&ccedil;&atilde;o &nbsp;</span><span class="label label-ti">REC</span></h4>
+                  <?php echo '<h4><span class="bold">Recep&ccedil;&atilde;o &nbsp;</span><span class="'.$result8[0]['LABEL'].'">'.$result8[0]['SETOR']; ?> </span></h4>                                                                                          
                   <div class="tools">
                     <a href="javascript:;" class="collapse"></a>
                     <a href="#grid-config" data-toggle="modal" class="config"></a>
@@ -894,7 +894,7 @@ $result19=$stmt19->fetchAll(PDO::FETCH_ASSOC);
             <div class="span12">
               <div class="grid simple ">
                 <div class="grid-title">
-                  <h4><span class="bold">Contabilidade &nbsp;</span><span class="label label-ctb">CTB</span></h4>
+                  <?php echo '<h4><span class="bold">Contabilidade &nbsp;</span><span class="'.$result5[0]['LABEL'].'">'.$result5[0]['SETOR']; ?> </span></h4>                                                                                                                              
                   <div class="tools">
                     <a href="javascript:;" class="collapse"></a>
                     <a href="#grid-config" data-toggle="modal" class="config"></a>
@@ -938,7 +938,7 @@ $result19=$stmt19->fetchAll(PDO::FETCH_ASSOC);
             <div class="span12">
               <div class="grid simple ">
                 <div class="grid-title">
-                  <h4><span class="bold">Plan. Produ&ccedil;&atilde;o &nbsp;</span><span class="label label-success">PCP</span></h4>
+                  <?php echo '<h4><span class="bold">Plan. Produ&ccedil;&atilde;o &nbsp;</span><span class="'.$result12[0]['LABEL'].'">'.$result12[0]['SETOR']; ?> </span></h4>                                                                                                         
                   <div class="tools">
                     <a href="javascript:;" class="collapse"></a>
                     <a href="#grid-config" data-toggle="modal" class="config"></a>
@@ -982,7 +982,7 @@ $result19=$stmt19->fetchAll(PDO::FETCH_ASSOC);
             <div class="span12">
               <div class="grid simple ">
                 <div class="grid-title">
-                  <h4><span class="bold">Co. Exporta&ccedil;&atilde;o &nbsp;</span><span class="label label-com">CEXP</span></h4>
+                  <?php echo '<h4><span class="bold">Co. Exporta&ccedil;&atilde;o &nbsp;</span><span class="'.$result13[0]['LABEL'].'">'.$result13[0]['SETOR']; ?> </span></h4>                                                                                                        
                   <div class="tools">
                     <a href="javascript:;" class="collapse"></a>
                     <a href="#grid-config" data-toggle="modal" class="config"></a>
@@ -1026,7 +1026,7 @@ $result19=$stmt19->fetchAll(PDO::FETCH_ASSOC);
             <div class="span12">
               <div class="grid simple ">
                 <div class="grid-title">
-                  <h4><span class="bold">Modelagem &nbsp;</span><span class="label label-ctb">MOD</span></h4>
+                  <?php echo '<h4><span class="bold">Modelagem &nbsp;</span><span class="'.$result18[0]['LABEL'].'">'.$result18[0]['SETOR']; ?> </span></h4>                                                                                                                                     
                   <div class="tools">
                     <a href="javascript:;" class="collapse"></a>
                     <a href="#grid-config" data-toggle="modal" class="config"></a>
@@ -1070,7 +1070,7 @@ $result19=$stmt19->fetchAll(PDO::FETCH_ASSOC);
             <div class="span12">
               <div class="grid simple ">
                 <div class="grid-title">
-                  <h4><span class="bold">Com&eacute;rcio Ext. &nbsp;</span><span class="label label-mkt">CMX</span></h4>
+                  <?php echo '<h4><span class="bold">Com&eacute;rcio Ext. &nbsp;</span><span class="'.$result15[0]['LABEL'].'">'.$result15[0]['SETOR']; ?> </span></h4>                                                                                                                                  
                   <div class="tools">
                     <a href="javascript:;" class="collapse"></a>
                     <a href="#grid-config" data-toggle="modal" class="config"></a>
@@ -1114,7 +1114,7 @@ $result19=$stmt19->fetchAll(PDO::FETCH_ASSOC);
             <div class="span12">
               <div class="grid simple ">
                 <div class="grid-title">
-                  <h4><span class="bold">Cria&ccedil;&atilde;o &nbsp;</span><span class="label label-cri">CRI</span></h4>
+                  <?php echo '<h4><span class="bold">Cria&ccedil;&atilde;o &nbsp;</span><span class="'.$result19[0]['LABEL'].'">'.$result19[0]['SETOR']; ?> </span></h4>                                                                                                                                   
                   <div class="tools">
                     <a href="javascript:;" class="collapse"></a>
                     <a href="#grid-config" data-toggle="modal" class="config"></a>
