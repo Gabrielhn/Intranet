@@ -135,6 +135,12 @@ $stmt18->bindValue(':setor','MOD');
 $stmt18->execute();
 $result18=$stmt18->fetchAll(PDO::FETCH_ASSOC);
 
+//#19
+$stmt19 = $conn->prepare($query2);
+$stmt19->bindValue(':setor','CRI');
+$stmt19->execute();
+$result19=$stmt19->fetchAll(PDO::FETCH_ASSOC);
+
 
 ?>
 
@@ -884,25 +890,6 @@ $result18=$stmt18->fetchAll(PDO::FETCH_ASSOC);
             </div>
           </div>
 
-                   
-
-          
-
-          
-
-          
-
-          
-
-          
-
-          
-          
-          
-          
-          
-          
-
           <div class="col-md-4 col-sm-6 m-b-10">
             <div class="span12">
               <div class="grid simple ">
@@ -995,7 +982,7 @@ $result18=$stmt18->fetchAll(PDO::FETCH_ASSOC);
             <div class="span12">
               <div class="grid simple ">
                 <div class="grid-title">
-                  <h4><span class="bold">Com. Exporta&ccedil;&atilde;o &nbsp;</span><span class="label label-com">CEXP</span></h4>
+                  <h4><span class="bold">Co. Exporta&ccedil;&atilde;o &nbsp;</span><span class="label label-com">CEXP</span></h4>
                   <div class="tools">
                     <a href="javascript:;" class="collapse"></a>
                     <a href="#grid-config" data-toggle="modal" class="config"></a>
@@ -1112,6 +1099,50 @@ $result18=$stmt18->fetchAll(PDO::FETCH_ASSOC);
                             '<tr class="even gradeX">
                               <td>'.$result15[$key15]['NOME'].'</td>
                               <td class="center">'.$result15[$key15]['RAMAL'].'</td>
+                            </tr>';
+                          }                          
+                        }
+                      ?>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4 col-sm-6 m-b-10">
+            <div class="span12">
+              <div class="grid simple ">
+                <div class="grid-title">
+                  <h4><span class="bold">Cria&ccedil;&atilde;o &nbsp;</span><span class="label label-cri">CRI</span></h4>
+                  <div class="tools">
+                    <a href="javascript:;" class="collapse"></a>
+                    <a href="#grid-config" data-toggle="modal" class="config"></a>
+                    <a href="javascript:;" class="reload"></a>
+                  </div>
+                </div>
+                <div class="grid-body ">
+                  <table class="table table-hover table-bordered" id="CMX">
+                    <thead>
+                      <tr>
+                        <th>Nome</th>
+                        <th>Ramal</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <?php
+                        foreach ($result19 as $key19 => $value) {
+                          if ($result19[$key19]['GESTOR'] == 'S') {
+                            echo
+                            '<tr class="even gradeX">
+                              <td>'.$result19[$key19]['NOME'].'<i class="material-icons pull-right" style="font-size: 18px;">stars</i></td>
+                              <td class="center">'.$result19[$key19]['RAMAL'].'</td>
+                            </tr>';
+                          } else {
+                            echo
+                            '<tr class="even gradeX">
+                              <td>'.$result19[$key19]['NOME'].'</td>
+                              <td class="center">'.$result19[$key19]['RAMAL'].'</td>
                             </tr>';
                           }                          
                         }

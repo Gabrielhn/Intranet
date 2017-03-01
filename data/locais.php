@@ -314,7 +314,7 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
               <div class="grid simple ">
                 <div class="grid-title no-border">
                   <div class="tools">
-                    <a href="locais.C.php"><i class="fa fa-plus fa-lg"></i> </a>                   
+                    <span data-toggle="modal" data-target="#INModal"><a href="#" title="Adicionar"><i class="fa fa-plus fa-lg"></i></a></span>                   
                   </div>
                 </div>
                 <div class="grid-body no-border">
@@ -335,18 +335,60 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
                             <td class="v-align-middle">'.$result2[$key]['LOCAL'].'</td>
                             <td class="v-align-middle"><span class="muted">'.$result2[$key]['NOME'].'</span></td>
                             <td class="v-align-middle">
-                              <a href="locais.u.php?id='.$result2[$key]['LOCAL'].'"title="Editar"><i class="fa fa-pencil"></i></a>
-                               <span data-toggle="modal" data-target="#'.$result2[$key]['LOCAL'].'Modal"><a href="#" title="Excluir"><i class="fa fa-trash"></i></a></span>
-                              <a href="locais.R.php?id='.$result2[$key]['LOCAL'].'"title="Detalhes"><i class="fa fa-search"></i></a>
+                              <span data-toggle="modal" data-target="#'.$result2[$key]['LOCAL'].'UPModal"><a href="#" title="Editar"><i class="fa fa-pencil"></i></a></span>
+                              <span data-toggle="modal" data-target="#'.$result2[$key]['LOCAL'].'DLModal"><a href="#" title="Excluir"><i class="fa fa-trash"></i></a></span>
+                              <span data-toggle="modal" data-target="#'.$result2[$key]['LOCAL'].'VWModal"><a href="#" title="Detalhes"><i class="fa fa-search"></i></a></span>
                             </td>
                           </tr>
 
-                          <!-- MODAL #1 -->
-                          <div class="modal fade" id="'.$result2[$key]['LOCAL'].'Modal" tabindex="-1" role="dialog" aria-labelledby="'.$result2[$key]['LOCAL'].'ModalLabel" aria-hidden="true">
+                          <!-- MODAL UPDATE -->
+                          <div class="modal fade" id="'.$result2[$key]['LOCAL'].'UPModal" tabindex="-1" role="dialog" aria-labelledby="'.$result2[$key]['LOCAL'].'UPModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                              <div class="modal-content">
+                                <div class="modal-header">                                  
+                                  <div>
+                                    <div class="col-md-6 col-sm-6 col-xs-6" style="text-align:left;"></div>
+                                    <div class="col-md-6 col-sm-6 col-xs-6" style="text-align:right;"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button></div>
+                                  </div>
+                                  <br>
+                                  <i class="fa fa-pencil-square-o fa-6x"></i>
+                                  <h4 id="1ModalLabel" class="semi-bold">Local: '.$result2[$key]['NOME'].'</h4>
+                                </div>
+                                <div class="modal-body">
+                                  <div class="">
+                                    <div class="row" style="line-height:2;">
+                                      <form method="post" name="local" action="locais.U.php">                                      
+
+                                        <div class="form-group col-md-6 col-sm-6 col-xs-6">
+                                          <div class="controls">
+                                            <input type="text" placeholder="Local" value="'.$result2[$key]['LOCAL'].'" class="form-control input" name="local" maxlength="5" readonly required>
+                                          </div>
+                                        </div>
+
+                                        <div class="form-group col-md-6 col-sm-6 col-xs-6">
+                                          <div class="controls">
+                                            <input type="text" placeholder="Nome" value="'.$result2[$key]['NOME'].'" class="form-control input" name="nome" maxlength="40" required>
+                                          </div>
+                                        </div>                                        
+                                        
+                                        <div class="form-group col-md-12 col-sm-12 col-xs-12 pull-right">
+                                          <button type="submit" class="btn btn-info btn-block" value="submit"> Atualizar</button>                                        
+                                        </div>                                                                                                                                           
+                                      
+                                      </form>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <!-- MODAL DELETE -->
+                          <div class="modal fade" id="'.$result2[$key]['LOCAL'].'DLModal" tabindex="-1" role="dialog" aria-labelledby="'.$result2[$key]['LOCAL'].'DLModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
                               <div class="modal-content">
                                 <div class="modal-header">
-                                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
                                   <br>
                                   <i class="fa fa-trash fa-6x"></i>
                                   <h4 id="1ModalLabel" class="semi-bold">Excluir</h4>
@@ -356,7 +398,7 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
                                     <i class="pull-left material-icons">feedback</i>
                                     <div>
                                       <span style="padding-left: 20px;">
-                                        Voc&ecirc; tem certeza que deseja excluir este registro?                                             
+                                        Voc&ecirc; tem certeza que deseja excluir <strong> '.$result2[$key]['LOCAL'].' </strong> ?                                             
                                       </span>
                                       <div class="pull-right">
                                       <a href="locais.D.php?id='.$result2[$key]['LOCAL'].'"><button class="btn btn-danger btn-small">Sim </button></a>
@@ -369,12 +411,84 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
                             </div>
                           </div>
 
+                          <!-- MODAL VIEW -->
+                          <div class="modal fade" id="'.$result2[$key]['LOCAL'].'VWModal" tabindex="-1" role="dialog" aria-labelledby="'.$result2[$key]['LOCAL'].'VWModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+                                  <br>
+                                  <i class="fa fa-globe fa-6x"></i>
+                                  <h4 id="1ModalLabel" class="semi-bold">Local: '.$result2[$key]['NOME'].'</h4>
+                                </div>
+                                <div class="modal-body">
+                                  <div class="">
+                                    <div class="row" style="line-height:2;">
+
+                                      <div class="col-md-12">                                                                  
+                                        <strong>LOCAL: </strong>'.$result2[$key]['LOCAL'].'                                
+                                      </div>
+
+                                      <div class="col-md-12">                                                                  
+                                        <strong>NOME: </strong>'.$result2[$key]['NOME'].'                                
+                                      </div>                                      
+                                      
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
                           ';                      
                       }                        
                       ?>
                     </tbody>
                   </table>
                 </div>
+
+                 <!-- MODAL INSERT -->
+                <div class="modal fade" id="INModal" tabindex="-1" role="dialog" aria-labelledby="INModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">                                  
+                        <div>
+                          <div class="col-md-6 col-sm-6 col-xs-6" style="text-align:left;"></div>
+                          <div class="col-md-6 col-sm-6 col-xs-6" style="text-align:right;"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button></div>
+                        </div>
+                        <br>
+                        <i class="fa fa-globe fa-6x"></i>
+                        <h4 id="1ModalLabel" class="semi-bold">Novo Local</h4>
+                      </div>
+                      <div class="modal-body">
+                        <div class="">
+                          <div class="row" style="line-height:2;">
+                            <form method="post" name="local" action="locais.I.php">                                                                                             
+
+                              <div class="form-group col-md-6 col-sm-6 col-xs-6">
+                                <div class="controls">
+                                  <input type="text" placeholder="Local" value="" class="form-control input" name="local" maxlength="5" required>
+                                </div>
+                              </div>
+
+                              <div class="form-group col-md-6 col-sm-6 col-xs-6">
+                                <div class="controls">
+                                  <input type="text" placeholder="Nome" value="" class="form-control input" name="nome" maxlength="40" required>
+                                </div>
+                              </div>
+                              
+                              <div class="form-group col-md-12 col-sm-12 col-xs-12 pull-right">
+                                <button type="submit" class="btn btn-info btn-block" value="submit"> Cadastrar</button>                                        
+                              </div>                                                                                                                                           
+                            
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
               </div>
             </div>
           </div>       

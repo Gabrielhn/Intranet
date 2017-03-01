@@ -330,11 +330,7 @@ $result2=$stmt2->fetch(PDO::FETCH_ASSOC);
                         <div>
                           <div class="col-md-4 col-sm-4 col-xs-4" style="text-align:left;"><i class="fa fa-eye fa-lg"></i>&nbsp;&nbsp;<span style="font-weight:500; font-size:13px;">'.$result2['VIEWS'].'</span></div>
                           <div class="col-md-4 col-sm-4 col-xs-4 rating" style="text-align:center;">
-                            <span><i class="fa fa-star-o fa-lg"></i></span>
-                            <span><i class="fa fa-star-o fa-lg"></i></span>
-                            <span><i class="fa fa-star-o fa-lg"></i></span>
-                            <span><i class="fa fa-star-o fa-lg"></i></span>
-                            <span><i class="fa fa-star-o fa-lg"></i></span>
+                            
                           </div>
                           <div class="col-md-4 col-sm-4 col-xs-4" style="text-align:right;">'.strftime('%A, %d de %B de %Y', strtotime($result2['INCLUSAO'])).'</div>
                         </div>
@@ -344,7 +340,14 @@ $result2=$stmt2->fetch(PDO::FETCH_ASSOC);
                 </div>
               </div>'        
             ?>                                                   
-          </div>             
+          </div>
+
+          <!--<span><i class="fa fa-star-o fa-lg"></i></span>
+          <span><i class="fa fa-star-o fa-lg"></i></span>
+          <span><i class="fa fa-star-o fa-lg"></i></span>
+          <span><i class="fa fa-star-o fa-lg"></i></span>
+          <span><i class="fa fa-star-o fa-lg"></i></span>-->
+
 
           <!-- FIM CONTEUDO -->
         </div>

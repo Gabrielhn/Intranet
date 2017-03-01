@@ -368,7 +368,7 @@ $result3=$stmt3->fetchAll(PDO::FETCH_ASSOC);
                                 <div class="modal-body">
                                   <div class="">
                                     <div class="row" style="line-height:2;">
-                                      <form method="post" name="usuario" action="setores.U.php">                                      
+                                      <form method="post" name="local" action="setores.U.php">                                      
 
                                         <div class="form-group col-md-2 col-sm-2 col-xs-2">
                                           <div class="controls">
@@ -427,7 +427,7 @@ $result3=$stmt3->fetchAll(PDO::FETCH_ASSOC);
                                     <i class="pull-left material-icons">feedback</i>
                                     <div>
                                       <span style="padding-left: 20px;">
-                                        Voc&ecirc; tem certeza que deseja excluir este registro?                                             
+                                        Voc&ecirc; tem certeza que deseja excluir <strong>'.$result2[$key]['SIGLA'].'</strong> ?                                             
                                       </span>
                                       <div class="pull-right">
                                       <a href="setores.D.php?id='.$result2[$key]['SIGLA'].'"><button class="btn btn-danger btn-small">Sim </button></a>
@@ -501,7 +501,7 @@ $result3=$stmt3->fetchAll(PDO::FETCH_ASSOC);
                       <div class="modal-body">
                         <div class="">
                           <div class="row" style="line-height:2;">
-                            <form method="post" name="usuario" action="setores.I.php">                                      
+                            <form method="post" name="setor" action="setores.I.php">                                      
 
                               <div class="form-group col-md-2 col-sm-2 col-xs-2">
                                 <div class="controls">

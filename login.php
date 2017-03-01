@@ -1,6 +1,6 @@
 <?php
   session_start();
-  define("versao", "1.3");
+  define("versao", "1.4");
   $_SESSION['versao'] = versao;
 ?>
 
@@ -81,10 +81,10 @@
               <div>
               <div class="alert alert-info" style=" margin-right: 30px;">
                 <i class="pull-left material-icons">feedback</i>
-                  <h6 style="padding-left: 30px;">
-                    Este &eacute; um espa&ccedil;o que est&aacute; sendo desenvolvido, para reunir v&aacute;rias informa&ccedil;&otilde;es uteis para os colaboradores do grupo Aniger. 
+                  <h6 style="padding-left: 30px; line-height:150%;">
+                    Este &eacute; um espa&ccedil;o desenvolvido para voc&ecirc; usar durante a sua rotina de trabalho. Atrav&eacute;s deste canal, voc&ecirc; poder&aacute; ficar por dentro de todas as novidades e avisos que envolvem o Grupo Aniger, mas tamb&eacute;m fazer v&aacute;rios tipos de solicita&ccedil;&otilde;es para v&aacute;rios setores da empresa. 
                     <br>&nbsp;  
-                    <p>Aguarde novidades =)</p>
+                    <p>Sinta-se em casa e bom trabalho!</p>
                   </h6>
                   <div class="pull-right">
                 <span class="label label-info"> <?= versao ?> </span>
