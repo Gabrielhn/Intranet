@@ -9,17 +9,15 @@ proteger();
 $host="10.0.0.2";
 $service="//10.0.0.2:1521/orcl";
 $id=$_SESSION['usuarioId'];
-$email=$_SESSION['usuarioEmail'];
+$idp=$_POST['id'];
 $conn= new \PDO("oci:host=$host;dbname=$service","INTRANET","ifnefy6b9");
 
 $assunto=$_POST['assunto'];
-$mural=$_POST['mural']{1};
 $conteudo=$_POST['conteudo'];
 
-$query3=" ";
+$query3="UPDATE IN_MURAL_POST SET ASSUNTO = :assunto, CONTEUDO = :conteudo WHERE ID = :idp ";
 $stmt3 = $conn->prepare($query3);
-$stmt3->bindValue(':mural',$mural);
-$stmt3->bindValue(':email',$email);
+$stmt3->bindValue(':idp',$idp);
 $stmt3->bindValue(':assunto',$assunto);
 $stmt3->bindValue(':conteudo',$conteudo);  
 $stmt3->execute();

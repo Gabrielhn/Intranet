@@ -28,7 +28,7 @@ FROM
     IN_IMAGENS IMG 
 WHERE 
     USR.IMG_PERFIL = IMG.ID AND USR.ID =:id";
-$query2 = "SELECT USR.NOME || ' ' || USR.SOBRENOME AS AUTOR, MUR.ID AS ID_MURAL, MUR.DESCRICAO AS DESC_MURAL FROM IN_USUARIOS USR, IN_MURAL MUR WHERE USR.SETOR=MUR.SETOR AND USR.ID=:id";
+$query2 = "SELECT USR.NOME || ' ' || USR.SOBRENOME AS AUTOR, MUR.ID AS ID_MURAL, MUR.DESCRICAO AS DESC_MURAL, USR.ID AS ID_AUTOR FROM IN_USUARIOS USR, IN_MURAL MUR WHERE USR.SETOR=MUR.SETOR AND USR.ID=:id";
 
 $query3 = "SELECT POST.*, IMG.IMAGEM AS IMG_MURAL , MUR.DESCRICAO AS TIT_MURAL, SETO.LABEL, USU.NOME || ' ' || USU.SOBRENOME AS AUTOR FROM IN_MURAL_POST POST, IN_USUARIOS USU, IN_IMAGENS IMG, IN_MURAL MUR, IN_SETORES SETO WHERE POST.USUARIO = USU.EMAIL AND POST.IMG_POST = IMG.ID AND POST.MURAL = MUR.ID AND MUR.SETOR = SETO.SIGLA AND POST.ID =:post";
 
@@ -73,6 +73,7 @@ $result3=$stmt3->fetch(PDO::FETCH_ASSOC);
     <link href="../assets/plugins/jquery-datatable/css/jquery.dataTables.css" rel="stylesheet" type="text/css" />
     <link href="../assets/plugins/datatables-responsive/css/datatables.responsive.css" rel="stylesheet" type="text/css" media="screen" />
     <link href="../assets/plugins/bootstrap-wysihtml5/bootstrap-wysihtml5.css" rel="stylesheet" type="text/css" />
+    <link href="../assets/plugins/bootstrap-wysihtml5/wysiwyg-color.css" rel="stylesheet" type="text/css" />
     <!-- <link href="../assets/plugins/jquery-scrollbar/jquery.scrollbar.css" rel="stylesheet" type="text/css" /> -->
     <!-- END PLUGIN CSS -->
     <!-- BEGIN CORE CSS FRAMEWORK -->
@@ -312,7 +313,7 @@ $result3=$stmt3->fetch(PDO::FETCH_ASSOC);
             <a href="../dados.php">Dados</a> 
           </li>
           <li>
-            <a href="../murais" class="">Mural</a> 
+            <a href="mural.php" class="">Mural</a> 
           </li>
           <li>
             <a href="#" class="active">Editar Postagem</a> 
@@ -346,8 +347,15 @@ $result3=$stmt3->fetch(PDO::FETCH_ASSOC);
                     </div>
 
                     <div class="form-group col-md-12 col-sm-12 col-xs-12 m-b-5">
-                      <textarea id="conteudo" placeholder="Digite o texto ..." value="'.stream_get_contents($result3['CONTEUDO']).'" class="form-control" rows="10" name="conteudo"></textarea>
+                      <textarea id="conteudo" placeholder="Digite o texto ..." class="form-control" rows="10" name="conteudo">'.stream_get_contents($result3['CONTEUDO']).'</textarea>
                       <hr>
+                    </div>
+
+                    <div class="form-group col-md-1 col-sm-1 col-xs-1">
+                      <div class="controls">
+                        <label class="bold">Post</label>
+                        <input type="text" value="'.$result3['ID'].'" class="form-control input" name="id" readonly>
+                      </div>
                     </div>
 
                     <div class="form-group col-md-3 col-sm-3 col-xs-3">
@@ -360,7 +368,7 @@ $result3=$stmt3->fetch(PDO::FETCH_ASSOC);
                     <div class="form-group col-md-3 col-sm-3 col-xs-3">
                       <div class="controls">
                         <label class="bold">Autor</label>
-                        <input type="text" value="'.$result2['AUTOR'].'" class="form-control input" name="autor" readonly>
+                        <input type="text" value="('.$result2['ID_AUTOR'].') '.$result2['AUTOR'].'" class="form-control input" name="autor" readonly>
                       </div>
                     </div>
                     
@@ -369,7 +377,7 @@ $result3=$stmt3->fetch(PDO::FETCH_ASSOC);
                     <div class="form-actions">
                       <div class="pull-right">
                         <!---->
-                        <button type="submit" class="btn btn-info btn-cons-md" value="submit"> Enviar</button>
+                        <button type="submit" class="btn btn-info btn-cons-md" value="submit">Atualizar</button>
                         <button type="reset" class="btn btn-white btn-cons-md" value="reset">Limpar</button>
                       </div>                      
                     </div>

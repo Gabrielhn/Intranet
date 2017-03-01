@@ -360,7 +360,7 @@ $result2=$stmt2->fetch(PDO::FETCH_ASSOC);
                     <div class="form-actions">
                       <div class="pull-right">
                         <!---->
-                        <button type="submit" class="btn btn-info btn-cons-md" value="submit"> Enviar</button>
+                        <button type="submit" class="btn btn-info btn-cons-md" value="submit">Cadastrar</button>
                         <button type="reset" class="btn btn-white btn-cons-md" value="reset">Limpar</button>
                       </div>                      
                     </div>
