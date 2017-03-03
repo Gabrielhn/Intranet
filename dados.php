@@ -147,6 +147,13 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
                       <i class="material-icons">apps</i>
                     </a>
                   </li>';
+                } elseif ($result1['SETOR'] == 'RH' || $result1['SETOR'] == 'REC') {
+                  echo '
+                  <li class="quicklinks">
+                    <a href="dados.php">
+                      <i class="material-icons">apps</i>
+                    </a>
+                  </li>';
                 }                 
               ?>
               <!--<li class="m-r-10 input-prepend inside search-form no-boarder">
@@ -411,7 +418,29 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
                         </div>
                       </div>
                     </div>';
-                }               
+                }
+
+            if ($result1['SETOR'] == 'REC') {
+                  echo
+                  '<a href="data/ramais.php" style="color: #edeeef;">
+                    <div class="col-md-3 col-sm-3 m-b-10">          
+                      <div class="tiles black blend">
+                        <div class="tiles-body">              
+                          <div class="" style="text-align:center;">
+                            <i class="fa fa-phone fa-7x"></i>
+                          </div>
+                          <div class="clearfix"></div>
+                          </div>               
+                        <div class="tile-footer">
+                          <div style="text-align:center;">
+                            <span class="semi-bold">Ramais</span>
+                          </div>
+                          <div class="clearfix"></div>
+                          </a>
+                        </div>
+                      </div>
+                    </div>';
+                }
           ?>
           
           <!-- FIM CONTEUDO -->

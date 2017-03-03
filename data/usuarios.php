@@ -159,7 +159,14 @@ $result4=$stmt4->fetchAll(PDO::FETCH_ASSOC);
                       <i class="material-icons">apps</i>
                     </a>
                   </li>';
-                }                 
+                } elseif ($result1['SETOR'] == 'RH' || $result1['SETOR'] == 'REC') {
+                  echo '
+                  <li class="quicklinks">
+                    <a href="../dados.php">
+                      <i class="material-icons">apps</i>
+                    </a>
+                  </li>';
+                }                  
               ?>
               <!--<li class="m-r-10 input-prepend inside search-form no-boarder">
                 <span class="add-on"> <i class="material-icons">search</i></span>
@@ -557,6 +564,9 @@ $result4=$stmt4->fetchAll(PDO::FETCH_ASSOC);
                                       </div>
                                       <div class="col-md-6">                                                                  
                                         <strong>CADASTRO: </strong>'.$result2[$key]['CADASTRO'].'                                
+                                      </div>
+                                      <div class="col-md-6">                                                                  
+                                        <strong>TIPO: </strong>'.$result2[$key]['TIPO_USUARIO'].'                                
                                       </div>
                                     </div>
                                   </div>

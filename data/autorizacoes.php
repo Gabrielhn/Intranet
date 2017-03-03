@@ -150,7 +150,14 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
                       <i class="material-icons">apps</i>
                     </a>
                   </li>';
-                }                 
+                } elseif ($result1['SETOR'] == 'RH' || $result1['SETOR'] == 'REC') {
+                  echo '
+                  <li class="quicklinks">
+                    <a href="../dados.php">
+                      <i class="material-icons">apps</i>
+                    </a>
+                  </li>';
+                }                
               ?>
               <!--<li class="m-r-10 input-prepend inside search-form no-boarder">
                 <span class="add-on"> <i class="material-icons">search</i></span>
@@ -340,8 +347,9 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
                               <td class="v-align-middle"><span class="muted">'.$result2[$key]['SOLICITANTE'].'</span></td>
                               <td class="v-align-middle"><span class="muted">'.$result2[$key]['DATA'].'</span></td>
                               <td class="v-align-middle">
-                                <a href="autorizacoes.A.php?id='.$result2[$key]['ID'].'"title="Autorizar"><i class="fa fa-check fa-lg"></i>&nbsp;</a>                                
-                                &nbsp;<a href="autorizacoes.C.php?id='.$result2[$key]['ID'].'"title="Cancelar"><i class="fa fa-close fa-lg"></i></a>
+                                <a href="autorizacoes.A.php?id='.$result2[$key]['ID'].'"title="Autorizar"><i class="fa fa-check fa-lg"></i>&nbsp;</a>
+                                &nbsp;
+                                <a href="autorizacoes.C.php?id='.$result2[$key]['ID'].'"title="Cancelar"><i class="fa fa-close fa-lg"></i></a>
                               </td>
                             </tr>                          
                             ';                      
