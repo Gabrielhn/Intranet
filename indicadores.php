@@ -1,6 +1,4 @@
 <?php
-setlocale(LC_ALL, 'pt_BR', 'pt_BR.utf-8', 'pt_BR.utf-8', 'portuguese');
-date_default_timezone_set('America/Sao_Paulo');
 require_once("assets/php/class/class.seg.php");
 session_start();
 proteger();
@@ -38,7 +36,7 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Aniger - Chamados</title>
+    <title>Aniger - Indicadores</title>
     <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
@@ -53,13 +51,13 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
     <!-- <link href="assets/plugins/jquery-scrollbar/jquery.scrollbar.css" rel="stylesheet" type="text/css" /> -->
     <!-- END PLUGIN CSS -->
     <!-- BEGIN CORE CSS FRAMEWORK -->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="assets/css/material.css" rel="stylesheet">
     <link href="webarch/css/webarch.css" rel="stylesheet" type="text/css" />
     <!-- END CORE CSS FRAMEWORK -->
     <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon">
     <link rel="icon" href="assets/img/favicon.ico" type="image/x-icon">
   </head>
-  <body >
+  <body class="">
     <!-- BEGIN HEADER -->
     <div class="header navbar navbar-inverse ">
       <!-- BEGIN TOP NAVIGATION BAR -->
@@ -79,7 +77,7 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
           <!-- END LOGO -->
           <ul class="nav pull-right notifcation-center">
             <li class="dropdown hidden-xs hidden-sm">
-              <a href="index.php" class="dropdown-toggle active">
+              <a href="index.php" class="dropdown-toggle active" data-toggle="">
                 <i class="material-icons">home</i>
               </a>
             </li>
@@ -259,7 +257,7 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
             <li class=""> 
               <a href="index.php"><i class="material-icons" title="Home">home</i> <span class="title">Home</span> <span class="title"></span> </a>
             </li>
-            <li class="start active"> 
+            <li class=""> 
               <a href="chamados.php"><i class="material-icons" title="Chamados">desktop_mac</i> <span class="title">Chamados</span></a>
             </li>
             <li class=""> 
@@ -270,6 +268,9 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
             </li>
             <li class=""> 
               <a href="solicitacoes.php"><i class="material-icons" title="Solicita&ccedil;&otilde;es">assignment</i> <span class="title">Solicita&ccedil;&otilde;es</span></a>
+            </li>
+            <li class="start active">
+              <a href="indicadores.php"><i class="fa fa-bar-chart" title="Indicadores"></i> <span class="title">Indicadores</span></a>               
             </li>
           </ul>
           <div class="clearfix"></div>
@@ -291,39 +292,29 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
       <!-- BEGIN PAGE CONTAINER-->
       <div class="page-content">
         <div class="content">
-        <!--<ul class="breadcrumb">
+        <ul class="breadcrumb">
             <li>
               <p>VOC&Ecirc; EST&Aacute; EM </p>
             </li>
             <li>
-              <a href="index.php" class="">Home</a> 
+            <a href="index.php">Home</a>
             </li>
-            <li>
-              <a href="#" class="active">Chamados</a> 
-            </li>
-          </ul>-->
+            <li><a href="#" class="active">Indicadores</a> </li>
+          </ul>
           <!-- BEGIN PAGE TITLE -->
-          <!--<div class="page-title"> <i class="material-icons">home</i>
-            <h3>Chamados </h3>
-          </div>-->
+          <div class="page-title"> <i class="fa fa-bar-chart" title="Indicadores"></i>
+            <h3>Indicadores </h3>
+          </div>
           <!-- END PAGE TITLE -->
-          <!-- CONTEUDO -->
-                    
-          <div class="row">
-            
+          <!-- BEGIN PlACE PAGE CONTENT HERE -->
 
-            <iframe src="https://aniger.tomticket.com" style="border:none;width:100%;height:900px;"></iframe>
-                                
+          
 
-
-          </div>             
-
-
-
-          <!-- FIM CONTEUDO -->
+          <!-- END PLACE PAGE CONTENT HERE -->
         </div>
       </div>
-      <!-- END PAGE CONTAINER -->     
+      <!-- END PAGE CONTAINER -->
+     
     </div>
     <!-- END CONTENT -->
     <!-- BEGIN CORE JS FRAMEWORK-->
@@ -337,11 +328,6 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
     <script src="assets/plugins/jquery-numberAnimate/jquery.animateNumbers.js" type="text/javascript"></script>
     <script src="assets/plugins/jquery-validation/js/jquery.validate.min.js" type="text/javascript"></script>
     <script src="assets/plugins/bootstrap-select2/select2.min.js" type="text/javascript"></script>
-    <script type="text/javascript">
-     $(document).ready(function() {
-    $("#layout-condensed-toggle").trigger('click');
-});
-    </script>
     <!-- END CORE JS DEPENDECENCIES-->
     <!-- BEGIN CORE TEMPLATE JS -->
     <script src="webarch/js/webarch.js" type="text/javascript"></script>

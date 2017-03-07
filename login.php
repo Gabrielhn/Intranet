@@ -75,7 +75,7 @@
             </div>
             </div>
             <div role="tablist" align="center" style=" margin-right: 30px;">
-              <br>&nbsp;
+              <!--<br>&nbsp;-->
               <hr>
               </div>
               <div>
@@ -89,7 +89,13 @@
                   <div class="pull-right">
                 <span class="label label-info"> <?= versao ?> </span>
               </div>    
-              </div>              
+              </div>
+              <div role="tablist" align="center" style=" margin-right: 30px;">
+                <hr>                
+                <div>
+                  <a href="news.php"><button class="btn btn-primary btn-block"><i class="fa fa-newspaper-o"></i> Novidades e vagas.</button></a>
+                </div>                            
+            </div>
             </div>
           </div>
           </div>

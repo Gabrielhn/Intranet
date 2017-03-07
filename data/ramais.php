@@ -373,7 +373,7 @@ $result3=$stmt3->fetchAll(PDO::FETCH_ASSOC);
                                     <i class="pull-left material-icons">feedback</i>
                                     <div>
                                       <span style="padding-left: 20px;">
-                                        Voc&ecirc; tem certeza que deseja excluir este registro?                                             
+                                        Voc&ecirc; tem certeza que deseja excluir <strong>'.$result2[$key]['NOME'].'</strong> ?                                             
                                       </span>
                                       <div class="pull-right">
                                       <a href="ramais.D.php?id='.$result2[$key]['NOME'].'"><button class="btn btn-danger btn-small">Sim </button></a>

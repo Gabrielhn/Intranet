@@ -324,8 +324,7 @@ $result8=$stmt8->fetch(PDO::FETCH_ASSOC);
               <a href="solicitacoes.php"><i class="material-icons" title="Solicita&ccedil;&otilde;es">assignment</i> <span class="title">Solicita&ccedil;&otilde;es</span></a>
             </li>
             <li class="">
-            <a href="#"><i class="fa fa-bar-chart" title="Indicadores"></i> <span class="title">Indicadores</span></a> 
-              <!--<a href="#"><i class="material-icons" title="Indicadores">insert_chart</i> <span class="title">Indicadores</span></a>-->
+              <a href="indicadores.php"><i class="fa fa-bar-chart" title="Indicadores"></i> <span class="title">Indicadores</span></a>               
             </li>
           </ul>
           <div class="clearfix"></div>
@@ -529,26 +528,9 @@ $result8=$stmt8->fetch(PDO::FETCH_ASSOC);
                    </div>                                   
                  </div>
                </div>
-             </div>
+             </div>          
 
-          <!--#3 ANIVERSARIANTES-->
-          <div class="col-md-3 col-sm-6">
-              <div class="grid simple ">
-                <div class="grid-title no-border">
-                  <div class="tools">                                      
-                  </div>
-                </div>
-                <div class="grid-body no-border">
-                  <h4><i class="fa fa-birthday-cake fa-1x"></i><span class="semi-bold">&nbsp; Anivers&aacute;rios</span></h4>
-                  <br/>
-                  <a href="assets/img/janeiro-sul.png" target="blank">
-                    <img src="assets/img/janeiro-sul.png" class="image-responsive-width xs-image-responsive-width lazy"></img>                                  
-                  </a>
-                </div>
-              </div>
-            </div>
-
-          <!--#4 VAGAS-->
+          <!--#3 VAGAS-->
             <div class="col-md-3 col-sm-6">
               <div class="grid simple ">
                 <div class="grid-title no-border">
@@ -617,6 +599,23 @@ $result8=$stmt8->fetch(PDO::FETCH_ASSOC);
                       ;
                     }                                            
                     ?>
+                </div>
+              </div>
+            </div>
+
+            <!--#4 ANIVERSARIANTES-->
+          <div class="col-md-3 col-sm-6">
+              <div class="grid simple ">
+                <div class="grid-title no-border">
+                  <div class="tools">                                      
+                  </div>
+                </div>
+                <div class="grid-body no-border">
+                  <h4><i class="fa fa-birthday-cake fa-1x"></i><span class="semi-bold">&nbsp; Anivers&aacute;rios</span></h4>
+                  <br/>
+                  <a href="assets/img/janeiro-sul.png" target="blank">
+                    <img src="assets/img/janeiro-sul.png" class="image-responsive-width xs-image-responsive-width lazy"></img>                                  
+                  </a>
                 </div>
               </div>
             </div>

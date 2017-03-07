@@ -403,7 +403,7 @@ $result4=$stmt4->fetchAll(PDO::FETCH_ASSOC);
 
                                         <div class="form-group col-md-4 col-sm-4 col-xs-4">
                                           <div class="controls">
-                                            <input type="text" placeholder="Admiss&atilde;o" value="'.$result2[$key]['ADMISSAO'].'" class="form-control input" name="admissao" maxlength="8" required>
+                                            <input type="text" placeholder="Admiss&atilde;o" value="'.$result2[$key]['ADMISSAO'].'" class="form-control input" name="admissao" maxlength="10" required>
                                           </div>
                                         </div>
 
@@ -445,7 +445,7 @@ $result4=$stmt4->fetchAll(PDO::FETCH_ASSOC);
 
                                         <div class="form-group col-md-4 col-sm-4 col-xs-4">
                                           <div class="controls">
-                                            <input type="text" placeholder="IM/Skype" value="'.$result2[$key]['IM'].'" class="form-control input" name="im" maxlength="25" required>
+                                            <input type="text" placeholder="IM/Skype" value="'.$result2[$key]['IM'].'" class="form-control input" name="im" maxlength="25">
                                           </div>
                                         </div>
 
@@ -615,7 +615,7 @@ $result4=$stmt4->fetchAll(PDO::FETCH_ASSOC);
 
                               <div class="form-group col-md-4 col-sm-4 col-xs-4">
                                 <div class="controls">
-                                  <input type="text" placeholder="Admiss&atilde;o" value="" class="form-control input" name="admissao" maxlength="8" required>
+                                  <input type="text" placeholder="Admiss&atilde;o" value="" class="form-control input" name="admissao" maxlength="10" required>
                                 </div>
                               </div>
 
@@ -627,7 +627,7 @@ $result4=$stmt4->fetchAll(PDO::FETCH_ASSOC);
 
                               <div class="form-group col-md-4 col-sm-4 col-xs-4">
                                 <div class="controls">
-                                  <input type="password" placeholder="Senha" value="" class="form-control input" name="senha" maxlength="20" required>
+                                  <input type="password" placeholder="Senha" title="Padr&atilde;o: Aniger.2017" value="Aniger.2017" class="form-control input" name="senha" maxlength="20" required>
                                 </div>
                               </div>
 
@@ -659,7 +659,7 @@ $result4=$stmt4->fetchAll(PDO::FETCH_ASSOC);
 
                               <div class="form-group col-md-4 col-sm-4 col-xs-4">
                                 <div class="controls">
-                                  <input type="text" placeholder="IM/Skype" value="" class="form-control input" name="im" maxlength="25" required>
+                                  <input type="text" placeholder="IM/Skype" value="" class="form-control input" name="im" maxlength="25">
                                 </div>
                               </div>
 
