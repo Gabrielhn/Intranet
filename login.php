@@ -31,7 +31,8 @@
   <!-- FIM HEAD -->
 
   <!-- CONTAINER -->
-  <body class="error-body no-top lazy" data-original="assets/img/work3.jpg" style="background-image: url('assets/img/work3.jpg')">
+  <body class="error-body no-top lazy" style="">
+   <!--data-original="assets/img/work3.jpg" style="background-image: url('assets/img/work3.jpg')"-->
     <div class="container">
       <div class="row login-container animated fadeIn" style="margin-top:5%;">
         <div class="col-md-6 col-md-offset-3 tiles white no-padding">

@@ -25,7 +25,7 @@ FROM
 WHERE 
     USR.IMG_PERFIL = IMG.ID AND USR.ID =:id";
 
-$query2 = "SELECT R.*, S.NOME AS NOME_SETOR, S.LABEL FROM IN_RAMAIS R, IN_SETORES S WHERE R.SETOR = S.SIGLA AND R.SETOR = :setor ORDER BY R.GESTOR DESC, R.NOME ASC";
+$query2 = "SELECT R.*, S.NOME AS NOME_SETOR, S.LABEL, U.EMAIL, R.ID FROM IN_RAMAIS R, IN_SETORES S, IN_USUARIOS U WHERE R.SETOR = S.SIGLA AND R.USUARIO = U.ID(+) AND R.SETOR = :setor ORDER BY R.GESTOR DESC, R.NOME ASC";
 
 //#1
 $stmt1 = $conn->prepare($query1);
@@ -498,9 +498,12 @@ $result29=$stmt29->fetchAll(PDO::FETCH_ASSOC);
                       <?php
                         foreach ($result2 as $key2 => $value) {
                           echo
-                            '<tr class="even gradeX">
+                            '<tr class="clickable" data-toggle="collapse" id="row'.$result2[$key2]['ID'].'" data-target=".row'.$result2[$key2]['ID'].'">
                               <td>'.$result2[$key2]['NOME'].'<i class="material-icons pull-right" style="font-size: 18px;">stars</i></td>
                               <td class="center">'.$result2[$key2]['RAMAL'].'</td>
+                            </tr>
+                            <tr class="collapse row'.$result2[$key2]['ID'].'">                              
+                              <td colspan="2"><i class="fa fa-envelope"></i> &nbsp;'.$result2[$key2]['EMAIL'].'</td>                                
                             </tr>';
                         }
                       ?>                                            
@@ -534,15 +537,20 @@ $result29=$stmt29->fetchAll(PDO::FETCH_ASSOC);
                         foreach ($result13 as $key13 => $value) {
                           if ($result13[$key13]['GESTOR'] == 'S') {
                             echo
-                            '<tr class="even gradeX">
+                            '<tr class="clickable" data-toggle="collapse" id="row'.$result13[$key13]['ID'].'" data-target=".row'.$result13[$key13]['ID'].'">
                               <td>'.$result13[$key13]['NOME'].'<i class="material-icons pull-right" style="font-size: 18px;">stars</i></td>
                               <td class="center">'.$result13[$key13]['RAMAL'].'</td>
+                            </tr>
+                            <tr class="collapse row'.$result13[$key13]['ID'].'">                              
+                              <td colspan="2"><i class="fa fa-envelope"></i> &nbsp;'.$result13[$key13]['EMAIL'].'</td>                                
                             </tr>';
                           } else {
                             echo
-                            '<tr class="even gradeX">
+                            '<tr class="clickable" data-toggle="collapse" id="row'.$result13[$key13]['ID'].'" data-target=".row'.$result13[$key13]['ID'].'">
                               <td>'.$result13[$key13]['NOME'].'</td>
                               <td class="center">'.$result13[$key13]['RAMAL'].'</td>
+                            </tr><tr class="collapse row'.$result13[$key13]['ID'].'">                              
+                              <td colspan="2"><i class="fa fa-envelope"></i> &nbsp;'.$result13[$key13]['EMAIL'].'</td>                                
                             </tr>';
                           }                          
                         }
@@ -577,16 +585,23 @@ $result29=$stmt29->fetchAll(PDO::FETCH_ASSOC);
                         foreach ($result4 as $key4 => $value) {
                           if ($result4[$key4]['GESTOR'] == 'S') {
                             echo
-                            '<tr class="even gradeX">
+                            '<tr class="clickable" data-toggle="collapse" id="row'.$result4[$key4]['ID'].'" data-target=".row'.$result4[$key4]['ID'].'">
                               <td>'.$result4[$key4]['NOME'].'<i class="material-icons pull-right" style="font-size: 18px;">stars</i></td>
                               <td class="center">'.$result4[$key4]['RAMAL'].'</td>
+                            </tr>
+                            <tr class="collapse row'.$result4[$key4]['ID'].'">                              
+                              <td colspan="2"><i class="fa fa-envelope"></i> &nbsp;'.$result4[$key4]['EMAIL'].'</td>                                
                             </tr>';
                           } else {
                             echo
-                            '<tr class="even gradeX">
+                            '<tr class="clickable" data-toggle="collapse" id="row'.$result4[$key4]['ID'].'" data-target=".row'.$result4[$key4]['ID'].'">
                               <td>'.$result4[$key4]['NOME'].'</td>
                               <td class="center">'.$result4[$key4]['RAMAL'].'</td>
-                            </tr>';
+                            </tr>
+                            <tr class="collapse row'.$result4[$key4]['ID'].'">                              
+                              <td colspan="2"><i class="fa fa-envelope"></i> &nbsp;'.$result4[$key4]['EMAIL'].'</td>                                
+                            </tr>
+                            ';
                           }                          
                         }
                       ?>
@@ -620,15 +635,21 @@ $result29=$stmt29->fetchAll(PDO::FETCH_ASSOC);
                         foreach ($result7 as $key7 => $value) {
                           if ($result7[$key7]['GESTOR'] == 'S') {
                             echo
-                            '<tr class="even gradeX">
+                            '<tr class="clickable" data-toggle="collapse" id="row'.$result7[$key7]['ID'].'" data-target=".row'.$result7[$key7]['ID'].'">
                               <td>'.$result7[$key7]['NOME'].'<i class="material-icons pull-right" style="font-size: 18px;">stars</i></td>
                               <td class="center">'.$result7[$key7]['RAMAL'].'</td>
+                            </tr>
+                            <tr class="collapse row'.$result7[$key7]['ID'].'">                              
+                              <td colspan="2"><i class="fa fa-envelope"></i> &nbsp;'.$result7[$key7]['EMAIL'].'</td>                                
                             </tr>';
                           } else {
                             echo
-                            '<tr class="even gradeX">
+                            '<tr class="clickable" data-toggle="collapse" id="row'.$result7[$key7]['ID'].'" data-target=".row'.$result7[$key7]['ID'].'">
                               <td>'.$result7[$key7]['NOME'].'</td>
                               <td class="center">'.$result7[$key7]['RAMAL'].'</td>
+                            </tr>
+                            <tr class="collapse row'.$result7[$key7]['ID'].'">                              
+                              <td colspan="2"><i class="fa fa-envelope"></i> &nbsp;'.$result7[$key7]['EMAIL'].'</td>                                
                             </tr>';
                           }                          
                         }
@@ -663,15 +684,21 @@ $result29=$stmt29->fetchAll(PDO::FETCH_ASSOC);
                         foreach ($result6 as $key6 => $value) {
                           if ($result6[$key6]['GESTOR'] == 'S') {
                             echo
-                            '<tr class="even gradeX">
+                            '<tr class="clickable" data-toggle="collapse" id="row'.$result6[$key6]['ID'].'" data-target=".row'.$result6[$key6]['ID'].'">
                               <td>'.$result6[$key6]['NOME'].'<i class="material-icons pull-right" style="font-size: 18px;">stars</i></td>
                               <td class="center">'.$result6[$key6]['RAMAL'].'</td>
+                            </tr>
+                            <tr class="collapse row'.$result6[$key6]['ID'].'">                              
+                              <td colspan="2"><i class="fa fa-envelope"></i> &nbsp;'.$result6[$key6]['EMAIL'].'</td>                                
                             </tr>';
                           } else {
                             echo
-                            '<tr class="even gradeX">
+                            '<tr class="clickable" data-toggle="collapse" id="row'.$result6[$key6]['ID'].'" data-target=".row'.$result6[$key6]['ID'].'">
                               <td>'.$result6[$key6]['NOME'].'</td>
                               <td class="center">'.$result6[$key6]['RAMAL'].'</td>
+                            </tr>
+                            <tr class="collapse row'.$result6[$key6]['ID'].'">                              
+                              <td colspan="2"><i class="fa fa-envelope"></i> &nbsp;'.$result6[$key6]['EMAIL'].'</td>                                
                             </tr>';
                           }                          
                         }
@@ -706,15 +733,21 @@ $result29=$stmt29->fetchAll(PDO::FETCH_ASSOC);
                         foreach ($result10 as $key10 => $value) {
                           if ($result10[$key10]['GESTOR'] == 'S') {
                             echo
-                            '<tr class="even gradeX">
+                            '<tr class="clickable" data-toggle="collapse" id="row'.$result10[$key10]['ID'].'" data-target=".row'.$result10[$key10]['ID'].'">
                               <td>'.$result10[$key10]['NOME'].'<i class="material-icons pull-right" style="font-size: 18px;">stars</i></td>
                               <td class="center">'.$result10[$key10]['RAMAL'].'</td>
+                            </tr>
+                            <tr class="collapse row'.$result10[$key10]['ID'].'">                              
+                              <td colspan="2"><i class="fa fa-envelope"></i> &nbsp;'.$result10[$key10]['EMAIL'].'</td>                                
                             </tr>';
                           } else {
                             echo
-                            '<tr class="even gradeX">
+                            '<tr class="clickable" data-toggle="collapse" id="row'.$result10[$key10]['ID'].'" data-target=".row'.$result10[$key10]['ID'].'">
                               <td>'.$result10[$key10]['NOME'].'</td>
                               <td class="center">'.$result10[$key10]['RAMAL'].'</td>
+                            </tr>
+                            <tr class="collapse row'.$result10[$key10]['ID'].'">                              
+                              <td colspan="2"><i class="fa fa-envelope"></i> &nbsp;'.$result10[$key10]['EMAIL'].'</td>                                
                             </tr>';
                           }                          
                         }
@@ -749,15 +782,21 @@ $result29=$stmt29->fetchAll(PDO::FETCH_ASSOC);
                         foreach ($result17 as $key17 => $value) {
                           if ($result17[$key17]['GESTOR'] == 'S') {
                             echo
-                            '<tr class="even gradeX">
+                            '<tr class="clickable" data-toggle="collapse" id="row'.$result17[$key17]['ID'].'" data-target=".row'.$result17[$key17]['ID'].'">
                               <td>'.$result17[$key17]['NOME'].'<i class="material-icons pull-right" style="font-size: 18px;">stars</i></td>
                               <td class="center">'.$result17[$key17]['RAMAL'].'</td>
+                            </tr>
+                            <tr class="collapse row'.$result4[$key4]['ID'].'">                              
+                              <td colspan="2"><i class="fa fa-envelope"></i> &nbsp;'.$result17[$key17]['EMAIL'].'</td>                                
                             </tr>';
                           } else {
                             echo
-                            '<tr class="even gradeX">
+                            '<tr class="clickable" data-toggle="collapse" id="row'.$result17[$key17]['ID'].'" data-target=".row'.$result17[$key17]['ID'].'">
                               <td>'.$result17[$key17]['NOME'].'</td>
                               <td class="center">'.$result17[$key17]['RAMAL'].'</td>
+                            </tr>
+                            <tr class="collapse row'.$result17[$key17]['ID'].'">                              
+                              <td colspan="2"><i class="fa fa-envelope"></i> &nbsp;'.$result17[$key17]['EMAIL'].'</td>                                
                             </tr>';
                           }                          
                         }
@@ -792,15 +831,21 @@ $result29=$stmt29->fetchAll(PDO::FETCH_ASSOC);
                         foreach ($result16 as $key16 => $value) {
                           if ($result16[$key16]['GESTOR'] == 'S') {
                             echo
-                            '<tr class="even gradeX">
+                            '<tr class="clickable" data-toggle="collapse" id="row'.$result16[$key16]['ID'].'" data-target=".row'.$result16[$key16]['ID'].'">
                               <td>'.$result16[$key16]['NOME'].'<i class="material-icons pull-right" style="font-size: 18px;">stars</i></td>
                               <td class="center">'.$result16[$key16]['RAMAL'].'</td>
+                            </tr>
+                            <tr class="collapse row'.$result16[$key16]['ID'].'">                              
+                              <td colspan="2"><i class="fa fa-envelope"></i> &nbsp;'.$result16[$key16]['EMAIL'].'</td>                                
                             </tr>';
                           } else {
                             echo
-                            '<tr class="even gradeX">
+                            '<tr class="clickable" data-toggle="collapse" id="row'.$result16[$key16]['ID'].'" data-target=".row'.$result16[$key16]['ID'].'">
                               <td>'.$result16[$key16]['NOME'].'</td>
                               <td class="center">'.$result16[$key16]['RAMAL'].'</td>
+                            </tr>
+                            <tr class="collapse row'.$result16[$key16]['ID'].'">                              
+                              <td colspan="2"><i class="fa fa-envelope"></i> &nbsp;'.$result16[$key16]['EMAIL'].'</td>                                
                             </tr>';
                           }                          
                         }
@@ -835,15 +880,21 @@ $result29=$stmt29->fetchAll(PDO::FETCH_ASSOC);
                         foreach ($result11 as $key11 => $value) {
                           if ($result11[$key11]['GESTOR'] == 'S') {
                             echo
-                            '<tr class="even gradeX">
+                            '<tr class="clickable" data-toggle="collapse" id="row'.$result11[$key11]['ID'].'" data-target=".row'.$result11[$key11]['ID'].'">
                               <td>'.$result11[$key11]['NOME'].'<i class="material-icons pull-right" style="font-size: 18px;">stars</i></td>
                               <td class="center">'.$result11[$key11]['RAMAL'].'</td>
+                            </tr>
+                            <tr class="collapse row'.$result11[$key11]['ID'].'">                              
+                              <td colspan="2"><i class="fa fa-envelope"></i> &nbsp;'.$result11[$key11]['EMAIL'].'</td>                                
                             </tr>';
                           } else {
                             echo
-                            '<tr class="even gradeX">
+                            '<tr class="clickable" data-toggle="collapse" id="row'.$result11[$key11]['ID'].'" data-target=".row'.$result11[$key11]['ID'].'">
                               <td>'.$result11[$key11]['NOME'].'</td>
                               <td class="center">'.$result11[$key11]['RAMAL'].'</td>
+                            </tr>
+                            <tr class="collapse row'.$result11[$key11]['ID'].'">                              
+                              <td colspan="2"><i class="fa fa-envelope"></i> &nbsp;'.$result11[$key11]['EMAIL'].'</td>                                
                             </tr>';
                           }                          
                         }
@@ -878,15 +929,21 @@ $result29=$stmt29->fetchAll(PDO::FETCH_ASSOC);
                         foreach ($result9 as $key9 => $value) {
                           if ($result9[$key9]['GESTOR'] == 'S') {
                             echo
-                            '<tr class="even gradeX">
+                            '<tr class="clickable" data-toggle="collapse" id="row'.$result9[$key9]['ID'].'" data-target=".row'.$result9[$key9]['ID'].'">
                               <td>'.$result9[$key9]['NOME'].'<i class="material-icons pull-right" style="font-size: 18px;">stars</i></td>
                               <td class="center">'.$result9[$key9]['RAMAL'].'</td>
+                            </tr>
+                            <tr class="collapse row'.$result9[$key9]['ID'].'">                              
+                              <td colspan="2"><i class="fa fa-envelope"></i> &nbsp;'.$result9[$key9]['EMAIL'].'</td>                                
                             </tr>';
                           } else {
                             echo
-                            '<tr class="even gradeX">
+                            '<tr class="clickable" data-toggle="collapse" id="row'.$result9[$key9]['ID'].'" data-target=".row'.$result9[$key9]['ID'].'">
                               <td>'.$result9[$key9]['NOME'].'</td>
                               <td class="center">'.$result9[$key9]['RAMAL'].'</td>
+                            </tr>
+                            <tr class="collapse row'.$result9[$key9]['ID'].'">                              
+                              <td colspan="2"><i class="fa fa-envelope"></i> &nbsp;'.$result9[$key9]['EMAIL'].'</td>                                
                             </tr>';
                           }                          
                         }
@@ -921,15 +978,21 @@ $result29=$stmt29->fetchAll(PDO::FETCH_ASSOC);
                         foreach ($result24 as $key24 => $value) {
                           if ($result24[$key24]['GESTOR'] == 'S') {
                             echo
-                            '<tr class="even gradeX">
+                            '<tr class="clickable" data-toggle="collapse" id="row'.$result24[$key24]['ID'].'" data-target=".row'.$result24[$key24]['ID'].'">
                               <td>'.$result24[$key24]['NOME'].'<i class="material-icons pull-right" style="font-size: 18px;">stars</i></td>
                               <td class="center">'.$result24[$key24]['RAMAL'].'</td>
+                            </tr>
+                            <tr class="collapse row'.$result24[$key24]['ID'].'">                              
+                              <td colspan="2"><i class="fa fa-envelope"></i> &nbsp;'.$result24[$key24]['EMAIL'].'</td>                                
                             </tr>';
                           } else {
                             echo
-                            '<tr class="even gradeX">
+                            '<tr class="clickable" data-toggle="collapse" id="row'.$result24[$key24]['ID'].'" data-target=".row'.$result24[$key24]['ID'].'">
                               <td>'.$result24[$key24]['NOME'].'</td>
                               <td class="center">'.$result24[$key24]['RAMAL'].'</td>
+                            </tr>
+                            <tr class="collapse row'.$result24[$key24]['ID'].'">                              
+                              <td colspan="2"><i class="fa fa-envelope"></i> &nbsp;'.$result24[$key24]['EMAIL'].'</td>                                
                             </tr>';
                           }                          
                         }
@@ -964,15 +1027,21 @@ $result29=$stmt29->fetchAll(PDO::FETCH_ASSOC);
                         foreach ($result5 as $key5 => $value) {
                           if ($result5[$key5]['GESTOR'] == 'S') {
                             echo
-                            '<tr class="even gradeX">
+                            '<tr class="clickable" data-toggle="collapse" id="row'.$result5[$key5]['ID'].'" data-target=".row'.$result5[$key5]['ID'].'">
                               <td>'.$result5[$key5]['NOME'].'<i class="material-icons pull-right" style="font-size: 18px;">stars</i></td>
                               <td class="center">'.$result5[$key5]['RAMAL'].'</td>
+                            </tr>
+                            <tr class="collapse row'.$result5[$key5]['ID'].'">                              
+                              <td colspan="2"><i class="fa fa-envelope"></i> &nbsp;'.$result5[$key5]['EMAIL'].'</td>                                
                             </tr>';
                           } else {
                             echo
-                            '<tr class="even gradeX">
+                            '<tr class="clickable" data-toggle="collapse" id="row'.$result5[$key5]['ID'].'" data-target=".row'.$result5[$key5]['ID'].'">
                               <td>'.$result5[$key5]['NOME'].'</td>
                               <td class="center">'.$result5[$key5]['RAMAL'].'</td>
+                            </tr>
+                            <tr class="collapse row'.$result5[$key5]['ID'].'">                              
+                              <td colspan="2"><i class="fa fa-envelope"></i> &nbsp;'.$result5[$key5]['EMAIL'].'</td>                                
                             </tr>';
                           }                          
                         }
@@ -1007,15 +1076,21 @@ $result29=$stmt29->fetchAll(PDO::FETCH_ASSOC);
                         foreach ($result8 as $key8 => $value) {
                           if ($result8[$key8]['GESTOR'] == 'S') {
                             echo
-                            '<tr class="even gradeX">
+                            '<tr class="clickable" data-toggle="collapse" id="row'.$result8[$key8]['ID'].'" data-target=".row'.$result8[$key8]['ID'].'">
                               <td>'.$result8[$key8]['NOME'].'<i class="material-icons pull-right" style="font-size: 18px;">stars</i></td>
                               <td class="center">'.$result8[$key8]['RAMAL'].'</td>
+                            </tr>
+                            <tr class="collapse row'.$result8[$key8]['ID'].'">                              
+                              <td colspan="2"><i class="fa fa-envelope"></i> &nbsp;'.$result8[$key8]['EMAIL'].'</td>                                
                             </tr>';
                           } else {
                             echo
-                            '<tr class="even gradeX">
+                            '<tr class="clickable" data-toggle="collapse" id="row'.$result8[$key8]['ID'].'" data-target=".row'.$result8[$key8]['ID'].'">
                               <td>'.$result8[$key8]['NOME'].'</td>
                               <td class="center">'.$result8[$key8]['RAMAL'].'</td>
+                            </tr>
+                            <tr class="collapse row'.$result8[$key8]['ID'].'">                              
+                              <td colspan="2"><i class="fa fa-envelope"></i> &nbsp;'.$result8[$key8]['EMAIL'].'</td>                                
                             </tr>';
                           }                          
                         }
@@ -1050,15 +1125,21 @@ $result29=$stmt29->fetchAll(PDO::FETCH_ASSOC);
                         foreach ($result27 as $key27 => $value) {
                           if ($result27[$key27]['GESTOR'] == 'S') {
                             echo
-                            '<tr class="even gradeX">
+                            '<tr class="clickable" data-toggle="collapse" id="row'.$result27[$key27]['ID'].'" data-target=".row'.$result27[$key27]['ID'].'">
                               <td>'.$result27[$key27]['NOME'].'<i class="material-icons pull-right" style="font-size: 18px;">stars</i></td>
                               <td class="center">'.$result27[$key27]['RAMAL'].'</td>
+                            </tr>
+                            <tr class="collapse row'.$result27[$key27]['ID'].'">                              
+                              <td colspan="2"><i class="fa fa-envelope"></i> &nbsp;'.$result27[$key27]['EMAIL'].'</td>                                
                             </tr>';
                           } else {
                             echo
-                            '<tr class="even gradeX">
+                            '<tr class="clickable" data-toggle="collapse" id="row'.$result27[$key27]['ID'].'" data-target=".row'.$result27[$key27]['ID'].'">
                               <td>'.$result27[$key27]['NOME'].'</td>
                               <td class="center">'.$result27[$key27]['RAMAL'].'</td>
+                            </tr>
+                            <tr class="collapse row'.$result27[$key27]['ID'].'">                              
+                              <td colspan="2"><i class="fa fa-envelope"></i> &nbsp;'.$result27[$key27]['EMAIL'].'</td>                                
                             </tr>';
                           }                          
                         }
@@ -1093,15 +1174,21 @@ $result29=$stmt29->fetchAll(PDO::FETCH_ASSOC);
                         foreach ($result18 as $key18 => $value) {
                           if ($result18[$key18]['GESTOR'] == 'S') {
                             echo
-                            '<tr class="even gradeX">
+                            '<tr class="clickable" data-toggle="collapse" id="row'.$result18[$key18]['ID'].'" data-target=".row'.$result18[$key18]['ID'].'">
                               <td>'.$result18[$key18]['NOME'].'<i class="material-icons pull-right" style="font-size: 18px;">stars</i></td>
                               <td class="center">'.$result5[$key18]['RAMAL'].'</td>
+                            </tr>
+                            <tr class="collapse row'.$result18[$key18]['ID'].'">                              
+                              <td colspan="2"><i class="fa fa-envelope"></i> &nbsp;'.$result18[$key18]['EMAIL'].'</td>                                
                             </tr>';
                           } else {
                             echo
-                            '<tr class="even gradeX">
+                            '<tr class="clickable" data-toggle="collapse" id="row'.$result18[$key18]['ID'].'" data-target=".row'.$result18[$key18]['ID'].'">
                               <td>'.$result18[$key18]['NOME'].'</td>
                               <td class="center">'.$result18[$key18]['RAMAL'].'</td>
+                            </tr>
+                            <tr class="collapse row'.$result18[$key18]['ID'].'">                              
+                              <td colspan="2"><i class="fa fa-envelope"></i> &nbsp;'.$result18[$key18]['EMAIL'].'</td>                                
                             </tr>';
                           }                          
                         }
@@ -1136,15 +1223,21 @@ $result29=$stmt29->fetchAll(PDO::FETCH_ASSOC);
                         foreach ($result12 as $key12 => $value) {
                           if ($result12[$key12]['GESTOR'] == 'S') {
                             echo
-                            '<tr class="even gradeX">
+                            '<tr class="clickable" data-toggle="collapse" id="row'.$result12[$key12]['ID'].'" data-target=".row'.$result12[$key12]['ID'].'">
                               <td>'.$result12[$key12]['NOME'].'<i class="material-icons pull-right" style="font-size: 18px;">stars</i></td>
                               <td class="center">'.$result12[$key12]['RAMAL'].'</td>
+                            </tr>
+                            <tr class="collapse row'.$result12[$key12]['ID'].'">                              
+                              <td colspan="2"><i class="fa fa-envelope"></i> &nbsp;'.$result12[$key12]['EMAIL'].'</td>                                
                             </tr>';
                           } else {
                             echo
-                            '<tr class="even gradeX">
+                            '<tr class="clickable" data-toggle="collapse" id="row'.$result12[$key12]['ID'].'" data-target=".row'.$result12[$key12]['ID'].'">
                               <td>'.$result12[$key12]['NOME'].'</td>
                               <td class="center">'.$result12[$key12]['RAMAL'].'</td>
+                            </tr>
+                            <tr class="collapse row'.$result12[$key12]['ID'].'">                              
+                              <td colspan="2"><i class="fa fa-envelope"></i> &nbsp;'.$result12[$key12]['EMAIL'].'</td>                                
                             </tr>';
                           }                          
                         }
@@ -1179,15 +1272,21 @@ $result29=$stmt29->fetchAll(PDO::FETCH_ASSOC);
                         foreach ($result15 as $key15 => $value) {
                           if ($result15[$key15]['GESTOR'] == 'S') {
                             echo
-                            '<tr class="even gradeX">
+                            '<tr class="clickable" data-toggle="collapse" id="row'.$result15[$key15]['ID'].'" data-target=".row'.$result15[$key15]['ID'].'">
                               <td>'.$result15[$key15]['NOME'].'<i class="material-icons pull-right" style="font-size: 18px;">stars</i></td>
                               <td class="center">'.$result15[$key15]['RAMAL'].'</td>
+                            </tr>
+                            <tr class="collapse row'.$result15[$key15]['ID'].'">                              
+                              <td colspan="2"><i class="fa fa-envelope"></i> &nbsp;'.$result15[$key15]['EMAIL'].'</td>                                
                             </tr>';
                           } else {
                             echo
-                            '<tr class="even gradeX">
+                            '<tr class="clickable" data-toggle="collapse" id="row'.$result15[$key15]['ID'].'" data-target=".row'.$result15[$key15]['ID'].'">
                               <td>'.$result15[$key15]['NOME'].'</td>
                               <td class="center">'.$result15[$key15]['RAMAL'].'</td>
+                            </tr>
+                            <tr class="collapse row'.$result15[$key15]['ID'].'">                              
+                              <td colspan="2"><i class="fa fa-envelope"></i> &nbsp;'.$result15[$key15]['EMAIL'].'</td>                                
                             </tr>';
                           }                          
                         }
@@ -1222,15 +1321,21 @@ $result29=$stmt29->fetchAll(PDO::FETCH_ASSOC);
                         foreach ($result25 as $key25 => $value) {
                           if ($result25[$key25]['GESTOR'] == 'S') {
                             echo
-                            '<tr class="even gradeX">
+                            '<tr class="clickable" data-toggle="collapse" id="row'.$result25[$key25]['ID'].'" data-target=".row'.$result25[$key25]['ID'].'">
                               <td>'.$result25[$key25]['NOME'].'<i class="material-icons pull-right" style="font-size: 18px;">stars</i></td>
                               <td class="center">'.$result25[$key25]['RAMAL'].'</td>
+                            </tr>
+                            <tr class="collapse row'.$result25[$key25]['ID'].'">                              
+                              <td colspan="2"><i class="fa fa-envelope"></i> &nbsp;'.$result25[$key25]['EMAIL'].'</td>                                
                             </tr>';
                           } else {
                             echo
-                            '<tr class="even gradeX">
+                            '<tr class="clickable" data-toggle="collapse" id="row'.$result25[$key25]['ID'].'" data-target=".row'.$result25[$key25]['ID'].'">
                               <td>'.$result25[$key25]['NOME'].'</td>
                               <td class="center">'.$result25[$key25]['RAMAL'].'</td>
+                            </tr>
+                            <tr class="collapse row'.$result25[$key25]['ID'].'">                              
+                              <td colspan="2"><i class="fa fa-envelope"></i> &nbsp;'.$result25[$key25]['EMAIL'].'</td>                                
                             </tr>';
                           }                          
                         }
@@ -1265,15 +1370,21 @@ $result29=$stmt29->fetchAll(PDO::FETCH_ASSOC);
                         foreach ($result3 as $key3 => $value) {
                           if ($result3[$key3]['GESTOR'] == 'S') {
                             echo
-                            '<tr class="even gradeX">
+                            '<tr class="clickable" data-toggle="collapse" id="row'.$result3[$key3]['ID'].'" data-target=".row'.$result3[$key3]['ID'].'">
                               <td>'.$result3[$key3]['NOME'].'<i class="material-icons pull-right" style="font-size: 18px;">stars</i></td>
                               <td class="center">'.$result3[$key3]['RAMAL'].'</td>
+                            </tr>
+                            <tr class="collapse row'.$result3[$key3]['ID'].'">                              
+                              <td colspan="2"><i class="fa fa-envelope"></i> &nbsp;'.$result3[$key3]['EMAIL'].'</td>                                
                             </tr>';
                           } else {
                             echo
-                            '<tr class="even gradeX">
+                            '<tr class="clickable" data-toggle="collapse" id="row'.$result3[$key3]['ID'].'" data-target=".row'.$result3[$key3]['ID'].'">
                               <td>'.$result3[$key3]['NOME'].'</td>
                               <td class="center">'.$result3[$key3]['RAMAL'].'</td>
+                            </tr>
+                            <tr class="collapse row'.$result3[$key3]['ID'].'">                              
+                              <td colspan="2"><i class="fa fa-envelope"></i> &nbsp;'.$result3[$key3]['EMAIL'].'</td>                                
                             </tr>';
                           }                          
                         }
@@ -1309,15 +1420,21 @@ $result29=$stmt29->fetchAll(PDO::FETCH_ASSOC);
                         foreach ($result19 as $key19 => $value) {
                           if ($result19[$key19]['GESTOR'] == 'S') {
                             echo
-                            '<tr class="even gradeX">
+                            '<tr class="clickable" data-toggle="collapse" id="row'.$result19[$key19]['ID'].'" data-target=".row'.$result19[$key19]['ID'].'">
                               <td>'.$result19[$key19]['NOME'].'<i class="material-icons pull-right" style="font-size: 18px;">stars</i></td>
                               <td class="center">'.$result19[$key19]['RAMAL'].'</td>
+                            </tr>
+                            <tr class="collapse row'.$result19[$key19]['ID'].'">                              
+                              <td colspan="2"><i class="fa fa-envelope"></i> &nbsp;'.$result19[$key19]['EMAIL'].'</td>                                
                             </tr>';
                           } else {
                             echo
-                            '<tr class="even gradeX">
+                            '<tr class="clickable" data-toggle="collapse" id="row'.$result19[$key19]['ID'].'" data-target=".row'.$result19[$key19]['ID'].'">
                               <td>'.$result19[$key19]['NOME'].'</td>
                               <td class="center">'.$result19[$key19]['RAMAL'].'</td>
+                            </tr>
+                            <tr class="collapse row'.$result19[$key19]['ID'].'">                              
+                              <td colspan="2"><i class="fa fa-envelope"></i> &nbsp;'.$result19[$key19]['EMAIL'].'</td>                                
                             </tr>';
                           }                          
                         }
@@ -1352,15 +1469,21 @@ $result29=$stmt29->fetchAll(PDO::FETCH_ASSOC);
                         foreach ($result22 as $key22 => $value) {
                           if ($result22[$key22]['GESTOR'] == 'S') {
                             echo
-                            '<tr class="even gradeX">
+                            '<tr class="clickable" data-toggle="collapse" id="row'.$result22[$key22]['ID'].'" data-target=".row'.$result22[$key22]['ID'].'">
                               <td>'.$result22[$key22]['NOME'].'<i class="material-icons pull-right" style="font-size: 18px;">stars</i></td>
                               <td class="center">'.$result22[$key22]['RAMAL'].'</td>
+                            </tr>
+                            <tr class="collapse row'.$result22[$key22]['ID'].'">                              
+                              <td colspan="2"><i class="fa fa-envelope"></i> &nbsp;'.$result22[$key22]['EMAIL'].'</td>                                
                             </tr>';
                           } else {
                             echo
-                            '<tr class="even gradeX">
+                            '<tr class="clickable" data-toggle="collapse" id="row'.$result22[$key22]['ID'].'" data-target=".row'.$result22[$key22]['ID'].'">
                               <td>'.$result22[$key22]['NOME'].'</td>
                               <td class="center">'.$result22[$key22]['RAMAL'].'</td>
+                            </tr>
+                            <tr class="collapse row'.$result22[$key22]['ID'].'">                              
+                              <td colspan="2"><i class="fa fa-envelope"></i> &nbsp;'.$result22[$key22]['EMAIL'].'</td>                                
                             </tr>';
                           }                          
                         }
@@ -1395,15 +1518,21 @@ $result29=$stmt29->fetchAll(PDO::FETCH_ASSOC);
                         foreach ($result23 as $key23 => $value) {
                           if ($result23[$key23]['GESTOR'] == 'S') {
                             echo
-                            '<tr class="even gradeX">
+                            '<tr class="clickable" data-toggle="collapse" id="row'.$result23[$key23]['ID'].'" data-target=".row'.$result23[$key23]['ID'].'">
                               <td>'.$result23[$key23]['NOME'].'<i class="material-icons pull-right" style="font-size: 18px;">stars</i></td>
                               <td class="center">'.$result23[$key23]['RAMAL'].'</td>
+                            </tr>
+                            <tr class="collapse row'.$result23[$key23]['ID'].'">                              
+                              <td colspan="2"><i class="fa fa-envelope"></i> &nbsp;'.$result23[$key23]['EMAIL'].'</td>                                
                             </tr>';
                           } else {
                             echo
-                            '<tr class="even gradeX">
+                            '<tr class="clickable" data-toggle="collapse" id="row'.$result23[$key23]['ID'].'" data-target=".row'.$result23[$key23]['ID'].'">
                               <td>'.$result23[$key23]['NOME'].'</td>
                               <td class="center">'.$result23[$key23]['RAMAL'].'</td>
+                            </tr>
+                            <tr class="collapse row'.$result23[$key23]['ID'].'">                              
+                              <td colspan="2"><i class="fa fa-envelope"></i> &nbsp;'.$result23[$key23]['EMAIL'].'</td>                                
                             </tr>';
                           }                          
                         }
@@ -1438,15 +1567,21 @@ $result29=$stmt29->fetchAll(PDO::FETCH_ASSOC);
                         foreach ($result20 as $key20 => $value) {
                           if ($result20[$key20]['GESTOR'] == 'S') {
                             echo
-                            '<tr class="even gradeX">
+                            '<tr class="clickable" data-toggle="collapse" id="row'.$result20[$key20]['ID'].'" data-target=".row'.$result20[$key20]['ID'].'">
                               <td>'.$result20[$key20]['NOME'].'<i class="material-icons pull-right" style="font-size: 18px;">stars</i></td>
                               <td class="center">'.$result20[$key20]['RAMAL'].'</td>
+                            </tr>
+                            <tr class="collapse row'.$result20[$key20]['ID'].'">                              
+                              <td colspan="2"><i class="fa fa-envelope"></i> &nbsp;'.$result20[$key20]['EMAIL'].'</td>                                
                             </tr>';
                           } else {
                             echo
-                            '<tr class="even gradeX">
+                            '<tr class="clickable" data-toggle="collapse" id="row'.$result20[$key20]['ID'].'" data-target=".row'.$result20[$key20]['ID'].'">
                               <td>'.$result20[$key20]['NOME'].'</td>
                               <td class="center">'.$result20[$key20]['RAMAL'].'</td>
+                            </tr>
+                            <tr class="collapse row'.$result20[$key20]['ID'].'">                              
+                              <td colspan="2"><i class="fa fa-envelope"></i> &nbsp;'.$result20[$key20]['EMAIL'].'</td>                                
                             </tr>';
                           }                          
                         }
@@ -1481,15 +1616,21 @@ $result29=$stmt29->fetchAll(PDO::FETCH_ASSOC);
                         foreach ($result21 as $key21 => $value) {
                           if ($result21[$key21]['GESTOR'] == 'S') {
                             echo
-                            '<tr class="even gradeX">
+                            '<tr class="clickable" data-toggle="collapse" id="row'.$result21[$key21]['ID'].'" data-target=".row'.$result21[$key21]['ID'].'">
                               <td>'.$result21[$key21]['NOME'].'<i class="material-icons pull-right" style="font-size: 18px;">stars</i></td>
                               <td class="center">'.$result21[$key21]['RAMAL'].'</td>
+                            </tr>
+                            <tr class="collapse row'.$result21[$key21]['ID'].'">                              
+                              <td colspan="2"><i class="fa fa-envelope"></i> &nbsp;'.$result21[$key21]['EMAIL'].'</td>                                
                             </tr>';
                           } else {
                             echo
-                            '<tr class="even gradeX">
+                            '<tr class="clickable" data-toggle="collapse" id="row'.$result21[$key21]['ID'].'" data-target=".row'.$result21[$key21]['ID'].'">
                               <td>'.$result21[$key21]['NOME'].'</td>
                               <td class="center">'.$result21[$key21]['RAMAL'].'</td>
+                            </tr>
+                            <tr class="collapse row'.$result21[$key21]['ID'].'">                              
+                              <td colspan="2"><i class="fa fa-envelope"></i> &nbsp;'.$result21[$key21]['EMAIL'].'</td>                                
                             </tr>';
                           }                          
                         }
@@ -1524,15 +1665,21 @@ $result29=$stmt29->fetchAll(PDO::FETCH_ASSOC);
                         foreach ($result28 as $key28 => $value) {
                           if ($result28[$key28]['GESTOR'] == 'S') {
                             echo
-                            '<tr class="even gradeX">
+                            '<tr class="clickable" data-toggle="collapse" id="row'.$result28[$key28]['ID'].'" data-target=".row'.$result28[$key28]['ID'].'">
                               <td>'.$result28[$key28]['NOME'].'<i class="material-icons pull-right" style="font-size: 18px;">stars</i></td>
                               <td class="center">'.$result28[$key28]['RAMAL'].'</td>
+                            </tr>
+                            <tr class="collapse row'.$result28[$key28]['ID'].'">                              
+                              <td colspan="2"><i class="fa fa-envelope"></i> &nbsp;'.$result28[$key28]['EMAIL'].'</td>                                
                             </tr>';
                           } else {
                             echo
-                            '<tr class="even gradeX">
+                            '<tr class="clickable" data-toggle="collapse" id="row'.$result28[$key28]['ID'].'" data-target=".row'.$result28[$key28]['ID'].'">
                               <td>'.$result28[$key28]['NOME'].'</td>
                               <td class="center">'.$result28[$key28]['RAMAL'].'</td>
+                            </tr>
+                            <tr class="collapse row'.$result28[$key28]['ID'].'">                              
+                              <td colspan="2"><i class="fa fa-envelope"></i> &nbsp;'.$result28[$key28]['EMAIL'].'</td>                                
                             </tr>';
                           }                          
                         }
@@ -1567,15 +1714,21 @@ $result29=$stmt29->fetchAll(PDO::FETCH_ASSOC);
                         foreach ($result26 as $key26 => $value) {
                           if ($result26[$key26]['GESTOR'] == 'S') {
                             echo
-                            '<tr class="even gradeX">
+                            '<tr class="clickable" data-toggle="collapse" id="row'.$result26[$key26]['ID'].'" data-target=".row'.$result26[$key26]['ID'].'">
                               <td>'.$result26[$key26]['NOME'].'<i class="material-icons pull-right" style="font-size: 18px;">stars</i></td>
                               <td class="center">'.$result26[$key26]['RAMAL'].'</td>
+                            </tr>
+                            <tr class="collapse row'.$result26[$key26]['ID'].'">                              
+                              <td colspan="2"><i class="fa fa-envelope"></i> &nbsp;'.$result26[$key26]['EMAIL'].'</td>                                
                             </tr>';
                           } else {
                             echo
-                            '<tr class="even gradeX">
+                            '<tr class="clickable" data-toggle="collapse" id="row'.$result26[$key26]['ID'].'" data-target=".row'.$result26[$key26]['ID'].'">
                               <td>'.$result26[$key26]['NOME'].'</td>
                               <td class="center">'.$result26[$key26]['RAMAL'].'</td>
+                            </tr>
+                            <tr class="collapse row'.$result26[$key26]['ID'].'">                              
+                              <td colspan="2"><i class="fa fa-envelope"></i> &nbsp;'.$result26[$key26]['EMAIL'].'</td>                                
                             </tr>';
                           }                          
                         }
@@ -1610,15 +1763,21 @@ $result29=$stmt29->fetchAll(PDO::FETCH_ASSOC);
                         foreach ($result29 as $key29 => $value) {
                           if ($result29[$key29]['GESTOR'] == 'S') {
                             echo
-                            '<tr class="even gradeX">
+                            '<tr class="clickable" data-toggle="collapse" id="row'.$result29[$key29]['ID'].'" data-target=".row'.$result29[$key29]['ID'].'">
                               <td>'.$result29[$key29]['NOME'].'<i class="material-icons pull-right" style="font-size: 18px;">stars</i></td>
                               <td class="center">'.$result29[$key29]['RAMAL'].'</td>
+                            </tr>
+                            <tr class="collapse row'.$result29[$key29]['ID'].'">                              
+                              <td colspan="2"><i class="fa fa-envelope"></i> &nbsp;'.$result29[$key29]['EMAIL'].'</td>                                
                             </tr>';
                           } else {
                             echo
-                            '<tr class="even gradeX">
+                            '<tr class="clickable" data-toggle="collapse" id="row'.$result29[$key29]['ID'].'" data-target=".row'.$result29[$key29]['ID'].'">
                               <td>'.$result29[$key29]['NOME'].'</td>
                               <td class="center">'.$result29[$key29]['RAMAL'].'</td>
+                            </tr>
+                            <tr class="collapse row'.$result29[$key29]['ID'].'">                              
+                              <td colspan="2"><i class="fa fa-envelope"></i> &nbsp;'.$result29[$key29]['EMAIL'].'</td>                                
                             </tr>';
                           }                          
                         }

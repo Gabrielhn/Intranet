@@ -26,6 +26,7 @@ WHERE
     USR.IMG_PERFIL = IMG.ID AND USR.ID =:id";
 $query2 = "SELECT * FROM IN_RAMAIS ORDER BY SETOR, NOME";
 $query3 = "SELECT * FROM IN_SETORES ORDER BY 1";
+$query4 = "SELECT ID, NOME || ' ' || SOBRENOME AS NOME_COMPLETO FROM IN_USUARIOS WHERE ATIVO = 'S' AND ID != 84 ORDER BY 2 ";
 
 //#1
 $stmt1 = $conn->prepare($query1);
@@ -42,6 +43,11 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
 $stmt3 = $conn->prepare($query3);
 $stmt3->execute();
 $result3=$stmt3->fetchAll(PDO::FETCH_ASSOC);
+
+//#4 USUARIOS
+$stmt4 = $conn->prepare($query4);
+$stmt4->execute();
+$result4=$stmt4->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
 
@@ -436,6 +442,19 @@ $result3=$stmt3->fetchAll(PDO::FETCH_ASSOC);
                                   <select id="source"  class="form-control input" name="gestor" required>
                                     <option value="S">S</option>
                                     <option value="N" selected>N</option>                          
+                                  </select>
+                                </div>
+                              </div>
+
+                              <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                                <div class="controls">
+                                  <select id="source"  class="form-control input" name="usuario" required>
+                                  <?php                                              
+                                    foreach ($result4 as $key4 => $value) {
+                                      echo 
+                                        '<option value="'.$result4[$key4]['ID'].'">'.$result4[$key4]['ID'].' - '.$result4[$key4]['NOME_COMPLETO'].'</option>';
+                                    };
+                                  ?>
                                   </select>
                                 </div>
                               </div>

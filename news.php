@@ -6,7 +6,6 @@ session_start();
 
 $host="10.0.0.2";
 $service="//10.0.0.2:1521/orcl";
-$id=$_SESSION['usuarioId'];
 $conn= new \PDO("oci:host=$host;dbname=$service","INTRANET","ifnefy6b9");
 
 $query2 = "SELECT * FROM VW_POST_2 WHERE POSICAO = 1";
