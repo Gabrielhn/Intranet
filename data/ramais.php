@@ -26,7 +26,7 @@ WHERE
     USR.IMG_PERFIL = IMG.ID AND USR.ID =:id";
 $query2 = "SELECT * FROM IN_RAMAIS ORDER BY SETOR, NOME";
 $query3 = "SELECT * FROM IN_SETORES ORDER BY 1";
-$query4 = "SELECT ID, NOME || ' ' || SOBRENOME AS NOME_COMPLETO FROM IN_USUARIOS WHERE ATIVO = 'S' AND ID != 84 ORDER BY 2 ";
+$query4 = "SELECT ID, NOME || ' ' || SOBRENOME AS NOME_COMPLETO FROM IN_USUARIOS WHERE ATIVO = 'S' ORDER BY 2 ";
 
 //#1
 $stmt1 = $conn->prepare($query1);
@@ -280,6 +280,14 @@ $result4=$stmt4->fetchAll(PDO::FETCH_ASSOC);
             <li class=""> 
               <a href="../solicitacoes.php"><i class="material-icons" title="Solicita&ccedil;&otilde;es">assignment</i> <span class="title">Solicita&ccedil;&otilde;es</span></a>
             </li>
+            <?php
+              if ($result1['GESTOR'] == 'S' || $result1['TIPO_USUARIO'] == 'ADM') {
+                echo 
+                '<li class="">
+                  <a href="../indicadores.php"><i class="fa fa-bar-chart" title="Indicadores"></i> <span class="title">Indicadores</span></a>               
+                </li>';
+              }                
+            ?>
            </ul>            
           <div class="clearfix"></div>
           <!-- /SIDEBAR MENU -->

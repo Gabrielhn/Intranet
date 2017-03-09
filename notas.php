@@ -96,7 +96,7 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
         <!-- END RESPONSIVE MENU TOGGLER -->
         <div class="header-quick-nav">
           <!-- BEGIN TOP NAVIGATION MENU -->
-          <<div class="pull-left">
+          <div class="pull-left">
             <ul class="nav quick-section">
               <li class="quicklinks">
                 <a href="#" class="" id="layout-condensed-toggle">
@@ -269,6 +269,14 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
             <li class="start active"> 
               <a href="solicitacoes.php"><i class="material-icons" title="Solicita&ccedil;&otilde;es">assignment</i> <span class="title">Solicita&ccedil;&otilde;es</span></a>
             </li>
+            <?php
+              if ($result1['GESTOR'] == 'S' || $result1['TIPO_USUARIO'] == 'ADM') {
+                echo 
+                '<li class="">
+                  <a href="indicadores.php"><i class="fa fa-bar-chart" title="Indicadores"></i> <span class="title">Indicadores</span></a>               
+                </li>';
+              }                
+            ?>
           </ul>          
           <div class="clearfix"></div>
           <!-- END SIDEBAR MENU -->

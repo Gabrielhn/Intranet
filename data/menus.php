@@ -268,6 +268,14 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
             <li class=""> 
               <a href="../solicitacoes.php"><i class="material-icons" title="Solicita&ccedil;&otilde;es">assignment</i> <span class="title">Solicita&ccedil;&otilde;es</span></a>
             </li>
+            <?php
+              if ($result1['GESTOR'] == 'S' || $result1['TIPO_USUARIO'] == 'ADM') {
+                echo 
+                '<li class="">
+                  <a href="../indicadores.php"><i class="fa fa-bar-chart" title="Indicadores"></i> <span class="title">Indicadores</span></a>               
+                </li>';
+              }                
+            ?>
            </ul>            
           <div class="clearfix"></div>
           <!-- /SIDEBAR MENU -->
