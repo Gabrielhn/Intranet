@@ -1,15 +1,12 @@
 <?php
-setlocale(LC_ALL, 'pt_BR', 'pt_BR.utf-8', 'pt_BR.utf-8', 'portuguese');
-require_once("../assets/php/class/class.seg.php");
+require_once("assets/php/class/class.seg.php");
 session_start();
 proteger();
 
 $host="10.0.0.2";
 $service="//10.0.0.2:1521/orcl";
 $id=$_SESSION['usuarioId'];
-$postid=$_GET['id'];
 $conn= new \PDO("oci:host=$host;dbname=$service","INTRANET","ifnefy6b9");
-
 
 $query1 = "SELECT USR.EMAIL, USR.TIPO_USUARIO, USR.SETOR, USR.IMG_PERFIL, IMG.IMAGEM,
     CASE
@@ -27,11 +24,7 @@ FROM
     IN_IMAGENS IMG 
 WHERE 
     USR.IMG_PERFIL = IMG.ID AND USR.ID =:id";
-
-$query2 = "SELECT POST.*, IMG.IMAGEM AS IMG_MURAL , MUR.DESCRICAO AS TIT_MURAL, SETO.LABEL, USU.NOME || ' ' || USU.SOBRENOME AS AUTOR FROM IN_MURAL_POST POST, IN_USUARIOS USU, IN_IMAGENS IMG, IN_MURAL MUR, IN_SETORES SETO WHERE POST.USUARIO = USU.EMAIL AND POST.IMG_POST = IMG.ID AND POST.MURAL = MUR.ID AND MUR.SETOR = SETO.SIGLA AND POST.ID =:post";
-
-$queryview = "UPDATE IN_MURAL_POST SET VIEWS = VIEWS+1 WHERE ID =:post";
-
+$query2 = "SELECT * FROM IN_LINKS ORDER BY 1";
 
 //#1
 $stmt1 = $conn->prepare($query1);
@@ -39,43 +32,36 @@ $stmt1->bindValue(':id',$id);
 $stmt1->execute();
 $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
 
-//#views
-$stmtview = $conn->prepare($queryview);
-$stmtview->bindValue(':post',$postid);
-$stmtview->execute();
-
 //#2
 $stmt2 = $conn->prepare($query2);
-$stmt2->bindValue(':post',$postid);
 $stmt2->execute();
-$result2=$stmt2->fetch(PDO::FETCH_ASSOC);
-
+$result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
 
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Aniger - Avisos</title>
+    <title>Aniger - Links &uacute;teis</title>
     <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <meta content="" name="description" />
     <meta content="" name="author" />
     <!-- BEGIN PLUGIN CSS -->
-    <link href="../assets/plugins/pace/pace-theme-flash.css" rel="stylesheet" type="text/css" media="screen" />
-    <link href="../assets/plugins/bootstrapv3/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <link href="../assets/plugins/bootstrapv3/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css" />
-    <link href="../assets/plugins/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css" />
-    <link href="../assets/plugins/animate.min.css" rel="stylesheet" type="text/css" />
-    <!-- <link href="../assets/plugins/jquery-scrollbar/jquery.scrollbar.css" rel="stylesheet" type="text/css" /> -->
+    <link href="assets/plugins/pace/pace-theme-flash.css" rel="stylesheet" type="text/css" media="screen" />
+    <link href="assets/plugins/bootstrapv3/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="assets/plugins/bootstrapv3/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css" />
+    <link href="assets/plugins/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css" />
+    <link href="assets/plugins/animate.min.css" rel="stylesheet" type="text/css" />
+    <!-- <link href="assets/plugins/jquery-scrollbar/jquery.scrollbar.css" rel="stylesheet" type="text/css" /> -->
     <!-- END PLUGIN CSS -->
     <!-- BEGIN CORE CSS FRAMEWORK -->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="../webarch/css/webarch.css" rel="stylesheet" type="text/css" />
+    <link href="assets/css/material.css" rel="stylesheet">
+    <link href="webarch/css/webarch.css" rel="stylesheet" type="text/css" />
     <!-- END CORE CSS FRAMEWORK -->
-    <link rel="shortcut icon" href="../assets/img/favicon.ico" type="image/x-icon">
-    <link rel="icon" href="../assets/img/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="assets/img/favicon.ico" type="image/x-icon">
   </head>
   <body class="">
     <!-- BEGIN HEADER -->
@@ -91,18 +77,18 @@ $result2=$stmt2->fetch(PDO::FETCH_ASSOC);
             </li>
           </ul>
           <!-- BEGIN LOGO -->
-          <a href="../index.php">
-            <img src="../assets/img/logo.png" class="logo" alt="" data-src="../assets/img/logo.png" data-src-retina="../assets/img/logo.png" width="106" height="21" />
+          <a href="index.php">
+            <img src="assets/img/logo.png" class="logo" alt="" data-src="assets/img/logo.png" data-src-retina="assets/img/logo.png" width="106" height="21" />
           </a>
           <!-- END LOGO -->
           <ul class="nav pull-right notifcation-center">
             <li class="dropdown hidden-xs hidden-sm">
-              <a href="../index.php" class="dropdown-toggle active" data-toggle="">
+              <a href="index.php" class="dropdown-toggle active" data-toggle="">
                 <i class="material-icons">home</i>
               </a>
             </li>
             <li class="dropdown hidden-xs hidden-sm">
-              <a href="../chamados.php" class="dropdown-toggle">
+              <a href="chamados.php" class="dropdown-toggle">
                 <i class="material-icons">desktop_mac</i><!-- <span class="badge bubble-only"></span> -->
               </a>
             </li>
@@ -141,32 +127,32 @@ $result2=$stmt2->fetch(PDO::FETCH_ASSOC);
                 if ($result1['TIPO_USUARIO'] == 'ADM') {
                   echo '
                   <li class="quicklinks">
-                    <a href="../dados.php">
+                    <a href="dados.php">
                       <i class="material-icons">apps</i>
                     </a>
                   </li>';
                 } elseif ($result1['MURAL'] == 'S') {
                   echo '
                   <li class="quicklinks">
-                    <a href="../dados.php">
+                    <a href="dados.php">
                       <i class="material-icons">apps</i>
                     </a>
                   </li>';
                 } elseif ($result1['GESTOR'] == 'S') {
                   echo '
                   <li class="quicklinks">
-                    <a href="../dados.php">
+                    <a href="dados.php">
                       <i class="material-icons">apps</i>
                     </a>
                   </li>';
                 } elseif ($result1['SETOR'] == 'RH' || $result1['SETOR'] == 'REC') {
                   echo '
                   <li class="quicklinks">
-                    <a href="../dados.php">
+                    <a href="dados.php">
                       <i class="material-icons">apps</i>
                     </a>
                   </li>';
-                }                  
+                }                 
               ?>
               <!--<li class="m-r-10 input-prepend inside search-form no-boarder">
                 <span class="add-on"> <i class="material-icons">search</i></span>
@@ -176,10 +162,10 @@ $result2=$stmt2->fetch(PDO::FETCH_ASSOC);
           </div>
           <div id="notification-list" style="display:none">
             <div style="width:220px">
-            <a href="../changelog.php">
+            <a href="changelog.php">
               <div class="notification-messages info">
                 <div class="user-profile">
-                  <img src="../assets/img/profiles/Aa.jpg" width="35" height="35">
+                  <img src="assets/img/profiles/Aa.jpg" width="35" height="35">
                 </div>
                 <div class="message-wrapper">
                   <div class="heading" style="text-align:center;">
@@ -201,7 +187,7 @@ $result2=$stmt2->fetch(PDO::FETCH_ASSOC);
           <div class="pull-right">
             <!-- <div class="chat-toggler sm">
               <div class="profile-pic">
-                <img src="../assets/img/profiles/Aa.jpg" alt="" data-src="assets/img/profiles/Aa.jpg" data-src-retina="assets/img/profiles/Aa.jpg" width="35" height="35" />
+                <img src="assets/img/profiles/Aa.jpg" alt="" data-src="assets/img/profiles/Aa.jpg" data-src-retina="assets/img/profiles/Aa.jpg" width="35" height="35" />
                 <div class="availability-bubble online"></div>
               </div>
             </div> -->
@@ -212,19 +198,19 @@ $result2=$stmt2->fetch(PDO::FETCH_ASSOC);
                 </a>
                 <ul class="dropdown-menu  pull-right" role="menu" aria-labelledby="user-options">
                   <li class="">
-                    <?php echo '<a href="../perfil.php?id='.$id.'" title="Acesse seu perfil"><i class="fa fa-male fa-fw"></i>&nbsp;&nbsp;Meu perfil</a>';?>
+                    <?php echo '<a href="perfil.php?id='.$id.'" title="Acesse seu perfil"><i class="fa fa-male fa-fw"></i>&nbsp;&nbsp;Meu perfil</a>';?>
                   </li>
                   <!-- <li class="disabled">
-                    <a href="../calender.php" title="Recurso ainda n&atilde;o implementado.">Calend&aacute;rio</a>
+                    <a href="calender.php" title="Recurso ainda n&atilde;o implementado.">Calend&aacute;rio</a>
                   </li> -->
                   <!-- <li>
-                    <a href="../email.php"> My Inbox&nbsp;&nbsp;
+                    <a href="email.php"> My Inbox&nbsp;&nbsp;
                       <span class="badge badge-important animated bounceIn">2</span>
                     </a>
                   </li> -->
                   <li class="divider"></li>
                   <li>
-                    <a href="../logout.php"><i class="material-icons">power_settings_new</i>&nbsp;&nbsp;Sair</a>
+                    <a href="logout.php"><i class="material-icons">power_settings_new</i>&nbsp;&nbsp;Sair</a>
                   </li>
                 </ul>
               </li>
@@ -275,32 +261,32 @@ $result2=$stmt2->fetch(PDO::FETCH_ASSOC);
           <p class="menu-title sm">MENU <span class="pull-right"><a href="javascript:;"><i class="material-icons">refresh</i></a></span></p>
           <ul>
             <li class=""> 
-              <a href="../index.php"><i class="material-icons" title="Home">home</i> <span class="title">Home</span> <span class="title"></span> </a>
+              <a href="index.php"><i class="material-icons" title="Home">home</i> <span class="title">Home</span> <span class="title"></span> </a>
             </li>
             <li class=""> 
-              <a href="../chamados.php"><i class="material-icons" title="Chamados">desktop_mac</i> <span class="title">Chamados</span></a>
+              <a href="chamados.php"><i class="material-icons" title="Chamados">desktop_mac</i> <span class="title">Chamados</span></a>
             </li>
             <li class=""> 
-              <a href="../ramais.php"><i class="material-icons" title="Ramais">phone_forwarded</i> <span class="title">Ramais</span></a>
+              <a href="ramais.php"><i class="material-icons" title="Ramais">phone_forwarded</i> <span class="title">Ramais</span></a>
             </li>
             <li class=""> 
-              <a href="../cadastros.php"><i class="material-icons" title="Cadastros">library_add</i> <span class="title">Cadastros</span></a>
+              <a href="cadastros.php"><i class="material-icons" title="Cadastros">library_add</i> <span class="title">Cadastros</span></a>
             </li>
             <li class=""> 
-              <a href="../solicitacoes.php"><i class="material-icons" title="Solicita&ccedil;&otilde;es">assignment</i> <span class="title">Solicita&ccedil;&otilde;es</span></a>
+              <a href="solicitacoes.php"><i class="material-icons" title="Solicita&ccedil;&otilde;es">assignment</i> <span class="title">Solicita&ccedil;&otilde;es</span></a>
             </li>
-            <li class=""> 
-              <a href="../uteis.php"><i class="fa fa-external-link" title="&uacute;teis"></i> <span class="title">Links &uacute;teis</span></a>
+            <li class="start active"> 
+              <a href="uteis.php"><i class="fa fa-external-link" title="&uacute;teis"></i> <span class="title">Links &uacute;teis</span></a>
             </li>
             <?php
               if ($result1['GESTOR'] == 'S' || $result1['TIPO_USUARIO'] == 'ADM') {
                 echo 
                 '<li class="">
-                  <a href="../indicadores.php"><i class="fa fa-bar-chart" title="Indicadores"></i> <span class="title">Indicadores</span></a>               
+                  <a href="indicadores.php"><i class="fa fa-bar-chart" title="Indicadores"></i> <span class="title">Indicadores</span></a>               
                 </li>';
               }                
-            ?>            
-          </ul>          
+            ?>
+          </ul>
           <div class="clearfix"></div>
           <!-- END SIDEBAR MENU -->
         </div>
@@ -312,7 +298,8 @@ $result2=$stmt2->fetch(PDO::FETCH_ASSOC);
           <iframe src="http://free.timeanddate.com/clock/i5hp9yxv/n595/tlbr5/fn17/fc555/tc22262e/pa0/th1" frameborder="0" width="66" height="14"></iframe>
         </div>
         <div class="pull-right">
-          <a href="../bloquear.php"><i class="material-icons">lock_outline</i></a>
+          <!-- IMPLEMENTAR LOCKSCREEN -->
+          <a href="bloquear.php"><i class="material-icons">lock_outline</i></a>
         </div>
       </div>
       <!-- END SIDEBAR -->
@@ -323,71 +310,75 @@ $result2=$stmt2->fetch(PDO::FETCH_ASSOC);
             <li>
               <p>VOC&Ecirc; EST&Aacute; EM </p>
             </li>
-            <li><a href="#" class="active">Aviso</a></li>
+            <li>
+            <a href="index.php">Home</a>
+            </li>
+            <li><a href="#" class="active">Links &uacute;teis</a> </li>
           </ul>
           <!-- BEGIN PAGE TITLE -->
-          <div class="page-title"><i class="fa fa-newspaper-o fa-1x"></i>
-            <h3><?php echo $result2['TIT_MURAL']  ?></h3>
-          </div>
+          <!--<div class="page-title"> <i class="fa fa-external-link" title="Links &uacute;teis"></i>
+            <h3>Links &uacute;teis </h3>
+          </div>-->
+          <br>
+          <br>
           <!-- END PAGE TITLE -->
-          <!-- CONTEUDO -->
-                    
-          <div class="row">
-            <?php
-              echo'
-                <div class="col-md-12 col-sm-12">
-                  <div class="grid simple ">
-                    <div class="grid-title">
-                      <h3><span class="bold">&nbsp;'.$result2['ASSUNTO'].'</span></h3>
-                      <span class="muted">&nbsp;&nbsp;&nbsp;'.$result2['AUTOR'].'</span>
-                    </div>
-                    <div class="grid-body">
-                      <div class="col-md-12">
-                        '.stream_get_contents($result2['CONTEUDO']).'
-                        <hr>
-                        <div>
-                          <div class="col-md-4 col-sm-4 col-xs-4" style="text-align:left;"><i class="fa fa-eye fa-lg"></i>&nbsp;&nbsp;<span style="font-weight:500; font-size:13px;">'.$result2['VIEWS'].'</span></div>
-                          <div class="col-md-4 col-sm-4 col-xs-4 rating" style="text-align:center;">
-                            
-                          </div>
-                          <div class="col-md-4 col-sm-4 col-xs-4" style="text-align:right;">'.strftime('%A, %d de %B de %Y', strtotime($result2['INCLUSAO'])).'</div>
-                        </div>
-                      </div>                    
-                    </div>                                                                                       
+          <!-- BEGIN PlACE PAGE CONTENT HERE -->
+
+          <div class="col-md-12 col-sm-12 col-xs-12">
+              <div class="grid simple ">
+                <div class="grid-title no-border">
+                  <div class="tools">                                      
                   </div>
                 </div>
-              </div>'        
-            ?>                                                   
-          </div>
+                <div class="grid-body no-border">
+                  <h3><i class="fa fa-external-link fa-1x"></i><span class="semi-bold">&nbsp; Links &uacute;teis</span></h3>
+                  <br/>              
+                  <?php                    
+                    foreach ($result2 as $key2 => $value) {
+                      echo 
+                      '<a target="blank" href="'.$result2[$key2]['LINK'].'">
+                        <div class="col-md-2">                                              
+                          <div class="notification-messages info">                          
+                            <div class="" style="font-weight: 450; font-size:13px;">
+                              <div class="heading" style="overflow:visible; text-align: center;">
+                                <div></div>
+                                <p> </p>
+                                '.$result2[$key2]['NOME'].'
+                              </div>                                                        
+                            </div>
+                            <div class="clearfix"></div>
+                          </div>
+                        </div>
+                      </a>'
+                      ;
+                    }                                            
+                    ?>
+                </div>
+              </div>
+            </div>          
 
-          <!--<span><i class="fa fa-star-o fa-lg"></i></span>
-          <span><i class="fa fa-star-o fa-lg"></i></span>
-          <span><i class="fa fa-star-o fa-lg"></i></span>
-          <span><i class="fa fa-star-o fa-lg"></i></span>
-          <span><i class="fa fa-star-o fa-lg"></i></span>-->
-
-
-          <!-- FIM CONTEUDO -->
+          <!-- END PLACE PAGE CONTENT HERE -->
         </div>
       </div>
       <!-- END PAGE CONTAINER -->
+     
     </div>
     <!-- END CONTENT -->
     <!-- BEGIN CORE JS FRAMEWORK-->
-    <script src="../assets/plugins/pace/pace.min.js" type="text/javascript"></script>
+    <script src="assets/plugins/pace/pace.min.js" type="text/javascript"></script>
     <!-- BEGIN JS DEPENDECENCIES-->
-    <script src="../assets/plugins/jquery/jquery-1.11.3.min.js" type="text/javascript"></script>
-    <script src="../assets/plugins/bootstrapv3/js/bootstrap.min.js" type="text/javascript"></script>
-    <script src="../assets/plugins/jquery-block-ui/jqueryblockui.min.js" type="text/javascript"></script>
-    <script src="../assets/plugins/jquery-unveil/jquery.unveil.min.js" type="text/javascript"></script>
-    <script src="../assets/plugins/jquery-scrollbar/jquery.scrollbar.min.js" type="text/javascript"></script>
-    <script src="../assets/plugins/jquery-numberAnimate/jquery.animateNumbers.js" type="text/javascript"></script>
-    <script src="../assets/plugins/jquery-validation/js/jquery.validate.min.js" type="text/javascript"></script>
-    <script src="../assets/plugins/bootstrap-select2/select2.min.js" type="text/javascript"></script>
+    <script src="assets/plugins/jquery/jquery-1.11.3.min.js" type="text/javascript"></script>
+    <script src="assets/plugins/bootstrapv3/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="assets/plugins/jquery-block-ui/jqueryblockui.min.js" type="text/javascript"></script>
+    <script src="assets/plugins/jquery-unveil/jquery.unveil.min.js" type="text/javascript"></script>
+    <script src="assets/plugins/jquery-scrollbar/jquery.scrollbar.min.js" type="text/javascript"></script>
+    <script src="assets/plugins/jquery-numberAnimate/jquery.animateNumbers.js" type="text/javascript"></script>
+    <script src="assets/plugins/jquery-validation/js/jquery.validate.min.js" type="text/javascript"></script>
+    <script src="assets/plugins/bootstrap-select2/select2.min.js" type="text/javascript"></script>
     <!-- END CORE JS DEPENDECENCIES-->
     <!-- BEGIN CORE TEMPLATE JS -->
-    <script src="../webarch/js/webarch.js" type="text/javascript"></script>
-    <script src="../assets/js/chat.js" type="text/javascript"></script>
+    <script src="webarch/js/webarch.js" type="text/javascript"></script>
+    <script src="assets/js/chat.js" type="text/javascript"></script>
     <!-- END CORE TEMPLATE JS -->
   </body>
 </html>

@@ -314,6 +314,9 @@ $anos = (int)floor( $diferenca / (60 * 60 * 24)/ 365);
             <li class=""> 
               <a href="solicitacoes.php"><i class="material-icons" title="Solicita&ccedil;&otilde;es">assignment</i> <span class="title">Solicita&ccedil;&otilde;es</span></a>
             </li>
+            <li class=""> 
+              <a href="uteis.php"><i class="fa fa-external-link" title="&uacute;teis"></i> <span class="title">Links &uacute;teis</span></a>
+            </li>
             <?php
               if ($result1['GESTOR'] == 'S' || $result1['TIPO_USUARIO'] == 'ADM') {
                 echo 
