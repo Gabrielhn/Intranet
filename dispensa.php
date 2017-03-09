@@ -36,7 +36,7 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Aniger - Cadastros</title>
+    <title>Aniger - Dispensa</title>
     <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
@@ -51,7 +51,7 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
     <!-- <link href="assets/plugins/jquery-scrollbar/jquery.scrollbar.css" rel="stylesheet" type="text/css" /> -->
     <!-- END PLUGIN CSS -->
     <!-- BEGIN CORE CSS FRAMEWORK -->
-    <link href="assets/css/material.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="webarch/css/webarch.css" rel="stylesheet" type="text/css" />
     <!-- END CORE CSS FRAMEWORK -->
     <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon">
@@ -146,7 +146,7 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
                       <i class="material-icons">apps</i>
                     </a>
                   </li>';
-                }                 
+                }                
               ?>
               <!--<li class="m-r-10 input-prepend inside search-form no-boarder">
                 <span class="add-on"> <i class="material-icons">search</i></span>
@@ -263,10 +263,10 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
             <li class=""> 
               <a href="ramais.php"><i class="material-icons" title="Ramais">phone_forwarded</i> <span class="title">Ramais</span></a>
             </li>
-            <li class="start active"> 
+            <li class=""> 
               <a href="cadastros.php"><i class="material-icons" title="Cadastros">library_add</i> <span class="title">Cadastros</span></a>
             </li>
-            <li class=""> 
+            <li class="start active"> 
               <a href="solicitacoes.php"><i class="material-icons" title="Solicita&ccedil;&otilde;es">assignment</i> <span class="title">Solicita&ccedil;&otilde;es</span></a>
             </li>
             <li class=""> 
@@ -280,7 +280,7 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
                 </li>';
               }                
             ?>
-          </ul>
+          </ul>          
           <div class="clearfix"></div>
           <!-- END SIDEBAR MENU -->
         </div>
@@ -288,11 +288,10 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
       <a href="#" class="scrollup">Scroll</a>
       <div class="footer-widget">
         <div class="pull-left">
-          <i class="material-icons">alarm</i>
+          <i class="material-icons">alarm</i> 
           <iframe src="http://free.timeanddate.com/clock/i5hp9yxv/n595/tlbr5/fn17/fc555/tc22262e/pa0/th1" frameborder="0" width="66" height="14"></iframe>
         </div>
         <div class="pull-right">
-          <!-- IMPLEMENTAR LOCKSCREEN -->
           <a href="bloquear.php"><i class="material-icons">lock_outline</i></a>
         </div>
       </div>
@@ -304,194 +303,200 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
             <li>
               <p>VOC&Ecirc; EST&Aacute; EM </p>
             </li>
-            <li>
-            <a href="index.php">Home</a>
-            </li>
-            <li><a href="#" class="active">Cadastros</a> </li>
+            <li><a href="index.php">Home</a></li>
+            <li><a href="solicitacoes.php">Solicita&ccedil;&otilde;es</a></li>
+            <li><a href="#.php" class="active"> Dispensa</a></li>
           </ul>
           <!-- BEGIN PAGE TITLE -->
-          <div class="page-title"> <i class="material-icons">library_add</i>
-            <h3>Cadastros </h3>
+          <div class="page-title"> <i class="fa fa-clock-o fa-lg fa-fw" aria-hidden="true"></i>
+            <h3> Dispensa </h3>
           </div>
           <!-- END PAGE TITLE -->
-          <!-- BEGIN PlACE PAGE CONTENT HERE -->
+          <!-- CONTEÚDO -->
+          
 
-          <!-- TILE #1 -->
-          <div class="col-md-3 col-sm-4 m-b-10">
-            <div class="tiles dark-blue blend weather-widget ">
-              <div class="tiles-body">
-                <a href="clientes.php" style="color: #edeeef;">
-                  <div class="heading">
-                    <div class="pull-left">Clientes </div>
-                    <div class="clearfix"></div>
-                  </div>
-                  <div class="big-icon">
-                    <i class="fa fa-user fa-7x fa-fw"></i>
-                  </div>
-                  <div class="clearfix"></div>
-              </div>
-                </a>
-              <div class="tile-footer">
-                <div class="pull-left">
-                  <canvas id="" width="1" height="30"></canvas>
-                  <span class=" small-text-description">&nbsp;&nbsp;<span class="label">CTB</span>&nbsp;</span>
-                </div>
-                <div class="pull-right">
-                  <canvas id="" width="1" height="28"></canvas>
-                  <span style="cursor: pointer;" data-toggle="modal" data-target="#1Modal"><i class="fa fa-info fa-2x"></i> </span>
-                </div>
-                <div class="pull-right">
-                  <canvas id="" width="32" height="32"></canvas>
-                  <span class="text-white small-text-description"></span> 
-                </div>
-                <div class="clearfix"></div>
-              </div>
-            </div>
-          </div>
-
-          <!-- MODAL #1 -->
-          <div class="modal fade" id="1Modal" tabindex="-1" role="dialog" aria-labelledby="1ModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-                  <br>
-                  <i class="fa fa-info fa-6x"></i>
-                  <h4 id="1ModalLabel" class="semi-bold">Informa&ccedil;&atilde;o.</h4>
-                </div>
-                <div class="modal-body">
-                  <div class="alert alert-info">
-                    <i class="pull-left material-icons">feedback</i>
-                    <div style="padding-left: 30px;">
-                      <p>Utilize este cadastro para solicitar a inclus&atilde;o de novos <span class="bold">clientes</span> no sistema.
-                      Ap&oacute;s informar os dados solicitados, solicite autoriza&ccedil;&atilde;o do seu gestor e aguarde o retorno do setor respons&aacute;vel pelo cadastramento, em seu email. <br>                      
-                      <p>Os cadastros autorizados s&atilde;o encaminhados para: <span class="bold"> iraci.kraemer@aniger.com.br</span></p>
-                      <p>Ramal: <span class="bold">105</span></p>
-                    </div>    
-                  </div>             
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- TILE #2 -->
-          <div class="col-md-3 col-sm-4 m-b-10">
-            <div class="tiles dark-blue blend weather-widget ">
-              <div class="tiles-body">
-                <a href="fornecedores.php" style="color: #edeeef;">
-                  <div class="heading">
-                    <div class="pull-left">Fornecedores </div>  
-                    <div class="clearfix"></div>
-                  </div>
-                  <div class="big-icon">
-                    <i class="fa fa-users fa-7x fa-fw"></i>
-                  </div>
-                  <div class="clearfix"></div>
-              </div>
-                </a>
-              <div class="tile-footer">
-                <div class="pull-left">
-                  <canvas id="" width="1" height="30"></canvas>
-                  <span class=" small-text-description">&nbsp;&nbsp;<span class="label">CTB</span>&nbsp;</span>
-                </div>
-                <div class="pull-right">
-                  <canvas id="" width="1" height="28"></canvas>
-                  <span style="cursor: pointer;" data-toggle="modal" data-target="#2Modal"><i class="fa fa-info fa-2x"></i> </span>
-                </div>
-                <div class="pull-right">
-                  <canvas id="" width="32" height="32"></canvas>
-                  <span class="text-white small-text-description"></span> 
-                </div>
-                <div class="clearfix"></div>
-              </div>
-            </div>
-          </div>
-          <!-- MODAL #2 -->
-          <div class="modal fade" id="2Modal" tabindex="-1" role="dialog" aria-labelledby="2ModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-                  <br>
-                  <i class="fa fa-info fa-6x"></i>
-                  <h4 id="2ModalLabel" class="semi-bold">Informa&ccedil;&atilde;o.</h4>
-                </div>
-                <div class="modal-body">
-                  <div class="alert alert-info">
-                    <i class="pull-left material-icons">feedback</i>
-                    <div style="padding-left: 30px;">
-                      <p>Utilize este cadastro para solicitar a inclus&atilde;o de novos <span class="bold">fornecedores</span> no sistema.
-                      Ap&oacute;s informar os dados solicitados, solicite autoriza&ccedil;&atilde;o do seu gestor e aguarde o retorno do setor respons&aacute;vel pelo cadastramento, em seu email. <br>                      
-                      <p>Os cadastros autorizados s&atilde;o encaminhados para: <span class="bold"> iraci.kraemer@aniger.com.br</span></p> 
-                      <p>Ramal: <span class="bold">105</span></p>
-                    </div>    
-                  </div>             
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- TILE #3 -->
-          <div class="col-md-3 col-sm-4 m-b-10">
-            <div class="tiles dark-blue weather-widget ">
-              <div class="tiles-body">
-                <a href="http://10.0.6.242/" style="color: #edeeef;">
-                  <div class="heading">
-                    <div class="pull-left">Materiais </div>
-                    <div class="clearfix"></div>
-                  </div>
-                  <div class="big-icon">
-                    <i class="fa fa-map-o fa-7x fa-fw"></i>
-                  </div>
-                  <div class="clearfix"></div>
-              </div>
-                </a>
-              <div class="tile-footer">
-                <div class="pull-left">
-                  <canvas id="" width="1" height="30"></canvas>
-                  <span class=" small-text-description">&nbsp;&nbsp;<span class="label">CMP</span>&nbsp;</span>
-                </div>
-                <div class="pull-right">
-                  <canvas id="" width="1" height="28"></canvas>
-                  <span style="cursor: pointer;" data-toggle="modal" data-target="#3Modal"><i class="fa fa-info fa-2x"></i> </span>
-                </div>
-                <div class="pull-right">
-                  <canvas id="" width="32" height="32"></canvas>
-                  <span class="text-white small-text-description"></span> 
-                </div>
-                <div class="clearfix"></div>
-              </div>
-            </div>
-          </div>
-          <!-- MODAL #3 -->
-          <div class="modal fade" id="3Modal" tabindex="-1" role="dialog" aria-labelledby="3ModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-                  <br>
-                  <i class="fa fa-info fa-6x"></i>
-                  <h4 id="3ModalLabel" class="semi-bold">Informa&ccedil;&atilde;o.</h4>
-                </div>
-                <div class="modal-body">
-                  <div class="alert alert-info">
-                    <i class="pull-left material-icons">feedback</i>
-                    <div style="padding-left: 30px;">
-                      Utilize este link para acessar a plataforma de solicita&ccedil;&atilde;o de cadastro de materiais.
-                      <p>Os cadastros s&atilde;o encaminhados para: <span class="bold">lisangela.hermes@aniger.com.br</span> ou <span class="bold">joseane.oliveira@aniger.com.br</span></p> 
-                      <p>Ramal: <span class="bold">333</span></p>  
-                    </div>    
-                  </div>             
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- END PLACE PAGE CONTENT HERE -->
+          
+          <!-- FIM CONTEÚDO -->
         </div>
       </div>
       <!-- END PAGE CONTAINER -->
-     
+      <!-- BEGIN CHAT -->
+      <div class="chat-window-wrapper">
+        <div id="main-chat-wrapper" class="inner-content">
+          <div class="chat-window-wrapper scroller scrollbar-dynamic" id="chat-users">
+            <!-- BEGIN CHAT HEADER -->
+            <div class="chat-header">
+              <!-- BEGIN CHAT SEARCH BAR -->
+              <div class="pull-left">
+                <input type="text" placeholder="search">
+              </div>
+              <!-- END CHAT SEARCH BAR -->
+              <!-- BEGIN CHAT QUICKLINKS -->
+              <div class="pull-right">
+                <a href="#" class="">
+                  <div class="iconset top-settings-dark"></div>
+                </a>
+              </div>
+              <!-- END CHAT QUICKLINKS -->
+            </div>
+            <!-- END CHAT HEADER -->
+            <!-- BEGIN GROUP WIDGET -->
+            <div class="side-widget">
+              <div class="side-widget-title">group chats</div>
+              <div class="side-widget-content">
+                <div id="groups-list">
+                  <ul class="groups">
+                    <li>
+                      <a href="#">
+                        <div class="status-icon green"></div>Group Chat 1</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <!-- END GROUP WIDGET -->
+            <!-- BEGIN FAVORITES WIDGET -->
+            <div class="side-widget">
+              <div class="side-widget-title">favorites</div>
+              <div class="side-widget-content">
+                <!-- BEGIN SAMPLE CHAT -->
+                <div class="user-details-wrapper active" data-chat-status="online" data-chat-user-pic="assets/img/profiles/d.jpg" data-chat-user-pic-retina="assets/img/profiles/d2x.jpg" data-user-name="Jane Smith">
+                  <!-- BEGIN PROFILE PIC -->
+                  <div class="user-profile">
+                    <img src="assets/img/profiles/d.jpg" alt="" data-src="assets/img/profiles/d.jpg" data-src-retina="assets/img/profiles/d2x.jpg" width="35" height="35">
+                  </div>
+                  <!-- END PROFILE PIC -->
+                  <!-- BEGIN MESSAGE -->
+                  <div class="user-details">
+                    <div class="user-name">Jane Smith</div>
+                    <div class="user-more">Message...</div>
+                  </div>
+                  <!-- END MESSAGE -->
+                  <!-- BEGIN MESSAGES BADGE -->
+                  <div class="user-details-status-wrapper">
+                    <span class="badge badge-important">3</span>
+                  </div>
+                  <!-- END MESSAGES BADGE -->
+                  <!-- BEGIN STATUS -->
+                  <div class="user-details-count-wrapper">
+                    <div class="status-icon green"></div>
+                  </div>
+                  <!-- END STATUS -->
+                  <div class="clearfix"></div>
+                </div>
+                <!-- END SAMPLE CHAT -->
+              </div>
+            </div>
+            <!-- END FAVORITES WIDGET -->
+            <!-- BEGIN MORE FRIENDS WIDGET -->
+            <div class="side-widget">
+              <div class="side-widget-title">more friends</div>
+              <div class="side-widget-content" id="friends-list">
+                <!-- BEGIN SAMPLE CHAT -->
+                <div class="user-details-wrapper" data-chat-status="online" data-chat-user-pic="assets/img/profiles/d.jpg" data-chat-user-pic-retina="assets/img/profiles/d2x.jpg" data-user-name="Jane Smith">
+                  <!-- BEGIN PROFILE PIC -->
+                  <div class="user-profile">
+                    <img src="assets/img/profiles/d.jpg" alt="" data-src="assets/img/profiles/d.jpg" data-src-retina="assets/img/profiles/d2x.jpg" width="35" height="35">
+                  </div>
+                  <!-- END PROFILE PIC -->
+                  <!-- BEGIN MESSAGE -->
+                  <div class="user-details">
+                    <div class="user-name">Jane Smith</div>
+                    <div class="user-more">Message...</div>
+                  </div>
+                  <!-- END MESSAGE -->
+                  <!-- BEGIN MESSAGES BADGE -->
+                  <div class="user-details-status-wrapper">
+                    <span class="badge badge-important">3</span>
+                  </div>
+                  <!-- END MESSAGES BADGE -->
+                  <!-- BEGIN STATUS -->
+                  <div class="user-details-count-wrapper">
+                    <div class="status-icon green"></div>
+                  </div>
+                  <!-- END STATUS -->
+                  <div class="clearfix"></div>
+                </div>
+                <!-- END SAMPLE CHAT -->
+              </div>
+            </div>
+            <!-- END MORE FRIENDS WIDGET -->
+          </div>
+          <!-- BEGIN DUMMY CHAT CONVERSATION -->
+          <div class="chat-window-wrapper" id="messages-wrapper" style="display:none">
+            <!-- BEGIN CHAT HEADER BAR -->
+            <div class="chat-header">
+              <!-- BEGIN SEARCH BAR -->
+              <div class="pull-left">
+                <input type="text" placeholder="search">
+              </div>
+              <!-- END SEARCH BAR -->
+              <!-- BEGIN CLOSE TOGGLE -->
+              <div class="pull-right">
+                <a href="#" class="">
+                  <div class="iconset top-settings-dark"></div>
+                </a>
+              </div>
+              <!-- END CLOSE TOGGLE -->
+            </div>
+            <div class="clearfix"></div>
+            <!-- END CHAT HEADER BAR -->
+            <!-- BEGIN CHAT BODY -->
+            <div class="chat-messages-header">
+              <div class="status online"></div>
+              <span class="semi-bold">Jane Smith(Typing..)</span>
+              <a href="#" class="chat-back"><i class="icon-custom-cross"></i></a>
+            </div>
+            <!-- BEGIN CHAT MESSAGES CONTAINER -->
+            <div class="chat-messages scrollbar-dynamic clearfix">
+              <!-- BEGIN TIME STAMP EXAMPLE -->
+              <div class="sent_time">Yesterday 11:25pm</div>
+              <!-- END TIME STAMP EXAMPLE -->
+              <!-- BEGIN EXAMPLE CHAT MESSAGE -->
+              <div class="user-details-wrapper">
+                <!-- BEGIN MESSENGER PROFILE -->
+                <div class="user-profile">
+                  <img src="assets/img/profiles/d.jpg" alt="" data-src="assets/img/profiles/d.jpg" data-src-retina="assets/img/profiles/d2x.jpg" width="35" height="35">
+                </div>
+                <!-- END MESSENGER PROFILE -->
+                <!-- BEGIN MESSENGER MESSAGE -->
+                <div class="user-details">
+                  <div class="bubble">Hello, You there?</div>
+                </div>
+                <!-- END MESSENGER MESSAGE -->
+                <div class="clearfix"></div>
+                <!-- BEGIN TIMESTAMP ON CLICK TOGGLE -->
+                <div class="sent_time off">Yesterday 11:25pm</div>
+                <!-- END TIMESTAMP ON CLICK TOGGLE -->
+              </div>
+              <!-- END EXAMPLE CHAT MESSAGE -->
+              <!-- BEGIN TIME STAMP EXAMPLE -->
+              <div class="sent_time">Today 11:25pm</div>
+              <!-- BEGIN TIME STAMP EXAMPLE -->
+              <!-- BEGIN EXAMPLE CHAT MESSAGE (FROM SELF) -->
+              <div class="user-details-wrapper pull-right">
+                <!-- BEGIN MESSENGER MESSAGE -->
+                <div class="user-details">
+                  <div class="bubble sender">Let me know when you free</div>
+                </div>
+                <!-- END MESSENGER MESSAGE -->
+                <div class="clearfix"></div>
+                <!-- BEGIN TIMESTAMP ON CLICK TOGGLE -->
+                <div class="sent_time off">Sent On Tue, 2:45pm</div>
+                <!-- END TIMESTAMP ON CLICK TOGGLE -->
+              </div>
+              <!-- END EXAMPLE CHAT MESSAGE (FROM SELF) -->
+            </div>
+            <!-- END CHAT MESSAGES CONTAINER -->
+          </div>
+          <div class="chat-input-wrapper" style="display:none">
+            <textarea id="chat-message-input" rows="1" placeholder="Type your message"></textarea>
+          </div>
+          <div class="clearfix"></div>
+          <!-- END DUMMY CHAT CONVERSATION -->
+        </div>
+      </div>
+      <!-- END CHAT -->
     </div>
     <!-- END CONTENT -->
     <!-- BEGIN CORE JS FRAMEWORK-->

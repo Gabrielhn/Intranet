@@ -334,7 +334,7 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
               <div class="tile-footer">
                 <div class="pull-left">
                   <canvas id="" width="1" height="30"></canvas>
-                  <i class="material-icons">label_outline</i><span class=" small-text-description">&nbsp;&nbsp;<span class="label">REC</span>
+                   <span class=" small-text-description">&nbsp;&nbsp;<span class="label">REC</span>
                 </div>
                 <div class="pull-right">
                   <canvas id="" width="1" height="28"></canvas>
@@ -392,7 +392,7 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
               <div class="tile-footer">
                 <div class="pull-left">
                   <canvas id="" width="1" height="30"></canvas>
-                  <i class="material-icons">label_outline</i><span class=" small-text-description">&nbsp;&nbsp;<span class="label">NFS</span>&nbsp;</span>
+                   <span class=" small-text-description">&nbsp;&nbsp;<span class="label">NFS</span>&nbsp;</span>
                 </div>
                 <div class="pull-right">
                   <canvas id="" width="1" height="28"></canvas>
@@ -448,7 +448,7 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
               <div class="tile-footer">
                 <div class="pull-left">
                   <canvas id="" width="1" height="30"></canvas>
-                  <i class="material-icons">label_outline</i><span class=" small-text-description">&nbsp;&nbsp;<span class="label">NFS</span>&nbsp;</span>
+                   <span class=" small-text-description">&nbsp;&nbsp;<span class="label">NFS</span>&nbsp;</span>
                 </div>
                 <div class="pull-right">
                   <canvas id="" width="1" height="28"></canvas>
@@ -503,7 +503,7 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
               <div class="tile-footer">
                 <div class="pull-left">
                   <canvas id="" width="1" height="30"></canvas>
-                  <i class="material-icons">label_outline</i><span class=" small-text-description">&nbsp;&nbsp;<span class="label">MAN</span>&nbsp;</span>
+                   <span class=" small-text-description">&nbsp;&nbsp;<span class="label">MAN</span>&nbsp;</span>
                 </div>
                 <div class="pull-right">
                   <canvas id="" width="1" height="28"></canvas>
@@ -552,7 +552,7 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
           <div class="col-md-3 col-sm-4 m-b-20">
             <div class="tiles blue weather-widget ">
               <div class="tiles-body">
-                <a href="#" style="color: #edeeef;">
+                <a href="dispensa.php" style="color: #edeeef;">
                   <div class="heading">
                     <div class="pull-left">Dispensa </div>
                     <div class="clearfix"></div>
@@ -566,7 +566,7 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
               <div class="tile-footer">
                 <div class="pull-left">
                   <canvas id="" width="1" height="30"></canvas>
-                  <i class="material-icons">label_outline</i><span class=" small-text-description">&nbsp;&nbsp;<span class="label">RH</span>&nbsp;</span>
+                   <span class=" small-text-description">&nbsp;&nbsp;<span class="label">RH</span>&nbsp;</span>
                 </div>
                 <div class="pull-right">
                   <canvas id="" width="1" height="28"></canvas>
@@ -607,7 +607,7 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
           <div class="col-md-3 col-sm-4 m-b-20">
             <div class="tiles blue weather-widget ">
               <div class="tiles-body">
-                <a href="#" style="color: #edeeef;">
+                <a href="banco.php" style="color: #edeeef;">
                   <div class="heading">
                     <div class="pull-left">Banco de horas </div>
                     <div class="clearfix"></div>
@@ -621,7 +621,7 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
               <div class="tile-footer">
                 <div class="pull-left">
                   <canvas id="" width="1" height="30"></canvas>
-                  <i class="material-icons">label_outline</i><span class=" small-text-description">&nbsp;&nbsp;<span class="label">RH</span>&nbsp;</span>
+                   <span class=" small-text-description">&nbsp;&nbsp;<span class="label">RH</span>&nbsp;</span>
                 </div>
                 <div class="pull-right">
                   <canvas id="" width="1" height="28"></canvas>
@@ -662,7 +662,7 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
           <div class="col-md-3 col-sm-4 m-b-20">
             <div class="tiles blue weather-widget ">
               <div class="tiles-body">
-                <a href="#" style="color: #edeeef;">
+                <a href="extra.php" style="color: #edeeef;">
                   <div class="heading">
                     <div class="pull-left">Hora Extra </div>
                     <div class="clearfix"></div>
@@ -676,7 +676,7 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
               <div class="tile-footer">
                 <div class="pull-left">
                   <canvas id="" width="1" height="30"></canvas>
-                  <i class="material-icons">label_outline</i><span class=" small-text-description">&nbsp;&nbsp;<span class="label">RH</span>&nbsp;</span>
+                   <span class=" small-text-description">&nbsp;&nbsp;<span class="label">RH</span>&nbsp;</span>
                 </div>
                 <div class="pull-right">
                   <canvas id="" width="1" height="28"></canvas>

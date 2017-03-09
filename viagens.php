@@ -8,7 +8,7 @@ $service="//10.0.0.2:1521/orcl";
 $id=$_SESSION['usuarioId'];
 $conn= new \PDO("oci:host=$host;dbname=$service","INTRANET","ifnefy6b9");
 
-$query1 = "SELECT USR.EMAIL, USR.TIPO_USUARIO, USR.SETOR, USR.IMG_PERFIL, IMG.IMAGEM,
+$query1 = "SELECT USR.EMAIL, USR.TIPO_USUARIO, USR.SETOR, SETO.NOME AS NOME_SETOR, USR.IMG_PERFIL, IMG.IMAGEM,
     CASE
       WHEN USR.SETOR IN (SELECT SIGLA FROM IN_SETORES SETO, IN_MURAL MUR WHERE MUR.SETOR = SETO.SIGLA)
       THEN 'S'
@@ -21,9 +21,12 @@ $query1 = "SELECT USR.EMAIL, USR.TIPO_USUARIO, USR.SETOR, USR.IMG_PERFIL, IMG.IM
       END AS GESTOR
 FROM 
     IN_USUARIOS USR, 
-    IN_IMAGENS IMG 
+    IN_IMAGENS IMG,
+    IN_SETORES SETO 
 WHERE 
-    USR.IMG_PERFIL = IMG.ID AND USR.ID =:id";
+    USR.IMG_PERFIL = IMG.ID
+    AND USR.SETOR = SETO.SIGLA 
+    AND USR.ID =:id";
 
 $query2 = "SELECT * FROM IN_SETORES ORDER BY 1";
 
@@ -617,12 +620,10 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
 
                         <div class="form-group col-md-4 col-sm-4 col-xs-4">
                           <div class="controls">
-                            <select id="source"  class="form-control input" name="setor" required>
-                              <?php
-                                foreach ($result2 as $key2 => $value) {
+                            <select id="source"  class="form-control input" name="setor" readonly required>
+                              <?php                                
                                   echo 
-                                  '<option value="'.$result2[$key2]['SIGLA'].'">'.$result2[$key2]['SIGLA'].' - '.$result2[$key2]['NOME'].'</option>';
-                                }                                                                  
+                                  '<option value="'.$result1['SETOR'].'">'.$result1['SETOR'].' - '.$result1['NOME_SETOR'].'</option>';                                                                                                  
                               ?>
                             </select>
                           </div>
@@ -641,7 +642,7 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
                           <div class="controls">
                             <input style="text-align: center ;" type="text" placeholder="" class="form-control input" readonly>
                           </div>
-                        </div>
+                        </div>                        
 
                         <div class="form-group col-md-4 col-sm-4 col-xs-4">
                           <div class="controls">
@@ -675,7 +676,8 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
                                         <option value="Alimenta&ccedil;&atilde;o">Alimenta&ccedil;&atilde;o</option>
                                         <option value="Transporte">Transporte</option>
                                         <option value="Aluguel de ve&iacute;culo">Aluguel de ve&iacute;culo</option>
-                                        <option value="Hospedagem">Hospedagem</option>                                        
+                                        <option value="Hospedagem">Hospedagem</option>
+                                        <option value="Outros">Outros</option>                                        
                                       </select>
                                     </td>
                                     <td class="v-align-middle"><input type="text" class="form-control input" placeholder="" class="form-control input" name="obs" required></td>                            
@@ -692,8 +694,10 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
                           <div class="pull-right">
 
                             <!---->
+                            <button type="button" class="btn btn-default " onclick="addLinha()">+</button>
+                            <button type="button" class="btn btn-default " onclick="delLinha()">-</button>
                             <button type="button" class="btn btn-info btn-cons-md" data-toggle="modal" data-target="#pModal" value="submit">Registrar</button>
-                            <button type="reset" class="btn btn-white btn-cons-md" value="reset">Limpar</button>
+                            <button type="reset" class="btn btn-white btn-cons-md" value="reset">Limpar</button>                            
                           </div>
                           <div class="form-group col-md-12 col-sm-12 col-xs-12"></div>
                         </div>
@@ -710,183 +714,7 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
         </div>
       </div>
       <!-- END PAGE CONTAINER -->
-      <!-- BEGIN CHAT -->
-      <div class="chat-window-wrapper">
-        <div id="main-chat-wrapper" class="inner-content">
-          <div class="chat-window-wrapper scroller scrollbar-dynamic" id="chat-users">
-            <!-- BEGIN CHAT HEADER -->
-            <div class="chat-header">
-              <!-- BEGIN CHAT SEARCH BAR -->
-              <div class="pull-left">
-                <input type="text" placeholder="search">
-              </div>
-              <!-- END CHAT SEARCH BAR -->
-              <!-- BEGIN CHAT QUICKLINKS -->
-              <div class="pull-right">
-                <a href="#" class="">
-                  <div class="iconset top-settings-dark"></div>
-                </a>
-              </div>
-              <!-- END CHAT QUICKLINKS -->
-            </div>
-            <!-- END CHAT HEADER -->
-            <!-- BEGIN GROUP WIDGET -->
-            <div class="side-widget">
-              <div class="side-widget-title">group chats</div>
-              <div class="side-widget-content">
-                <div id="groups-list">
-                  <ul class="groups">
-                    <li>
-                      <a href="#">
-                        <div class="status-icon green"></div>Group Chat 1</a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <!-- END GROUP WIDGET -->
-            <!-- BEGIN FAVORITES WIDGET -->
-            <div class="side-widget">
-              <div class="side-widget-title">favorites</div>
-              <div class="side-widget-content">
-                <!-- BEGIN SAMPLE CHAT -->
-                <div class="user-details-wrapper active" data-chat-status="online" data-chat-user-pic="assets/img/profiles/d.jpg" data-chat-user-pic-retina="assets/img/profiles/d2x.jpg" data-user-name="Jane Smith">
-                  <!-- BEGIN PROFILE PIC -->
-                  <div class="user-profile">
-                    <img src="assets/img/profiles/d.jpg" alt="" data-src="assets/img/profiles/d.jpg" data-src-retina="assets/img/profiles/d2x.jpg" width="35" height="35">
-                  </div>
-                  <!-- END PROFILE PIC -->
-                  <!-- BEGIN MESSAGE -->
-                  <div class="user-details">
-                    <div class="user-name">Jane Smith</div>
-                    <div class="user-more">Message...</div>
-                  </div>
-                  <!-- END MESSAGE -->
-                  <!-- BEGIN MESSAGES BADGE -->
-                  <div class="user-details-status-wrapper">
-                    <span class="badge badge-important">3</span>
-                  </div>
-                  <!-- END MESSAGES BADGE -->
-                  <!-- BEGIN STATUS -->
-                  <div class="user-details-count-wrapper">
-                    <div class="status-icon green"></div>
-                  </div>
-                  <!-- END STATUS -->
-                  <div class="clearfix"></div>
-                </div>
-                <!-- END SAMPLE CHAT -->
-              </div>
-            </div>
-            <!-- END FAVORITES WIDGET -->
-            <!-- BEGIN MORE FRIENDS WIDGET -->
-            <div class="side-widget">
-              <div class="side-widget-title">more friends</div>
-              <div class="side-widget-content" id="friends-list">
-                <!-- BEGIN SAMPLE CHAT -->
-                <div class="user-details-wrapper" data-chat-status="online" data-chat-user-pic="assets/img/profiles/d.jpg" data-chat-user-pic-retina="assets/img/profiles/d2x.jpg" data-user-name="Jane Smith">
-                  <!-- BEGIN PROFILE PIC -->
-                  <div class="user-profile">
-                    <img src="assets/img/profiles/d.jpg" alt="" data-src="assets/img/profiles/d.jpg" data-src-retina="assets/img/profiles/d2x.jpg" width="35" height="35">
-                  </div>
-                  <!-- END PROFILE PIC -->
-                  <!-- BEGIN MESSAGE -->
-                  <div class="user-details">
-                    <div class="user-name">Jane Smith</div>
-                    <div class="user-more">Message...</div>
-                  </div>
-                  <!-- END MESSAGE -->
-                  <!-- BEGIN MESSAGES BADGE -->
-                  <div class="user-details-status-wrapper">
-                    <span class="badge badge-important">3</span>
-                  </div>
-                  <!-- END MESSAGES BADGE -->
-                  <!-- BEGIN STATUS -->
-                  <div class="user-details-count-wrapper">
-                    <div class="status-icon green"></div>
-                  </div>
-                  <!-- END STATUS -->
-                  <div class="clearfix"></div>
-                </div>
-                <!-- END SAMPLE CHAT -->
-              </div>
-            </div>
-            <!-- END MORE FRIENDS WIDGET -->
-          </div>
-          <!-- BEGIN DUMMY CHAT CONVERSATION -->
-          <div class="chat-window-wrapper" id="messages-wrapper" style="display:none">
-            <!-- BEGIN CHAT HEADER BAR -->
-            <div class="chat-header">
-              <!-- BEGIN SEARCH BAR -->
-              <div class="pull-left">
-                <input type="text" placeholder="search">
-              </div>
-              <!-- END SEARCH BAR -->
-              <!-- BEGIN CLOSE TOGGLE -->
-              <div class="pull-right">
-                <a href="#" class="">
-                  <div class="iconset top-settings-dark"></div>
-                </a>
-              </div>
-              <!-- END CLOSE TOGGLE -->
-            </div>
-            <div class="clearfix"></div>
-            <!-- END CHAT HEADER BAR -->
-            <!-- BEGIN CHAT BODY -->
-            <div class="chat-messages-header">
-              <div class="status online"></div>
-              <span class="semi-bold">Jane Smith(Typing..)</span>
-              <a href="#" class="chat-back"><i class="icon-custom-cross"></i></a>
-            </div>
-            <!-- BEGIN CHAT MESSAGES CONTAINER -->
-            <div class="chat-messages scrollbar-dynamic clearfix">
-              <!-- BEGIN TIME STAMP EXAMPLE -->
-              <div class="sent_time">Yesterday 11:25pm</div>
-              <!-- END TIME STAMP EXAMPLE -->
-              <!-- BEGIN EXAMPLE CHAT MESSAGE -->
-              <div class="user-details-wrapper">
-                <!-- BEGIN MESSENGER PROFILE -->
-                <div class="user-profile">
-                  <img src="assets/img/profiles/d.jpg" alt="" data-src="assets/img/profiles/d.jpg" data-src-retina="assets/img/profiles/d2x.jpg" width="35" height="35">
-                </div>
-                <!-- END MESSENGER PROFILE -->
-                <!-- BEGIN MESSENGER MESSAGE -->
-                <div class="user-details">
-                  <div class="bubble">Hello, You there?</div>
-                </div>
-                <!-- END MESSENGER MESSAGE -->
-                <div class="clearfix"></div>
-                <!-- BEGIN TIMESTAMP ON CLICK TOGGLE -->
-                <div class="sent_time off">Yesterday 11:25pm</div>
-                <!-- END TIMESTAMP ON CLICK TOGGLE -->
-              </div>
-              <!-- END EXAMPLE CHAT MESSAGE -->
-              <!-- BEGIN TIME STAMP EXAMPLE -->
-              <div class="sent_time">Today 11:25pm</div>
-              <!-- BEGIN TIME STAMP EXAMPLE -->
-              <!-- BEGIN EXAMPLE CHAT MESSAGE (FROM SELF) -->
-              <div class="user-details-wrapper pull-right">
-                <!-- BEGIN MESSENGER MESSAGE -->
-                <div class="user-details">
-                  <div class="bubble sender">Let me know when you free</div>
-                </div>
-                <!-- END MESSENGER MESSAGE -->
-                <div class="clearfix"></div>
-                <!-- BEGIN TIMESTAMP ON CLICK TOGGLE -->
-                <div class="sent_time off">Sent On Tue, 2:45pm</div>
-                <!-- END TIMESTAMP ON CLICK TOGGLE -->
-              </div>
-              <!-- END EXAMPLE CHAT MESSAGE (FROM SELF) -->
-            </div>
-            <!-- END CHAT MESSAGES CONTAINER -->
-          </div>
-          <div class="chat-input-wrapper" style="display:none">
-            <textarea id="chat-message-input" rows="1" placeholder="Type your message"></textarea>
-          </div>
-          <div class="clearfix"></div>
-          <!-- END DUMMY CHAT CONVERSATION -->
-        </div>
-      </div>
-      <!-- END CHAT -->
+      
     </div>
     <!-- END CONTENT -->
     <!-- BEGIN CORE JS FRAMEWORK-->
@@ -913,6 +741,39 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
         $('#tDespesa').DataTable()
 } );
     </script>
+    <script>
+      function addLinha() {
+          var table = document.getElementById("tDespesa");
+          var row = table.insertRow(1);
+          var cell1 = row.insertCell(0);
+          var cell2 = row.insertCell(1);
+          var cell3 = row.insertCell(2);
+          var cell4 = row.insertCell(3);
+          var cell5 = row.insertCell(4);
+          cell1.innerHTML = '<input type="date" class="form-control input" maxlength="10" name="data" required>';
+          cell2.innerHTML = '<input type="text" class="form-control input" placeholder="" class="form-control input" name="valor" required>';
+          cell3.innerHTML = '<td class="v-align-middle"><input type="text" class="form-control input" placeholder="" class="form-control input" name="quem" required>';
+          cell4.innerHTML = '<select  class="form-control input input-sm" name="oque" required><option value="Alimenta&ccedil;&atilde;o">Alimenta&ccedil;&atilde;o</option><option value="Transporte">Transporte</option><option value="Aluguel de ve&iacute;culo">Aluguel de ve&iacute;culo</option><option value="Hospedagem">Hospedagem</option><option value="Outros">Outros</option></select>';
+          cell5.innerHTML = '<input type="text" class="form-control input" placeholder="" class="form-control input" name="obs" required>';
+      }
+      function delLinha() {
+          document.getElementById("tDespesa").deleteRow(1);
+      }
+    </script>
+    <script>
+      var data_diff = function(date1, date2) {
+
+      dt1 = new Date(date1);
+      dt2 = new Date(date2);
+
+      return Math.floor((Date.UTC(dt2.getFullYear(), dt2.getMonth(), dt2.getDate()) - Date.UTC(dt1.getFullYear(), dt1.getMonth(), dt1.getDate()) ) /(1000 * 60 * 60 * 24));
+
+      }
+      console.log(data_diff('01/03/2014', '01/10/2014'));      
+      var dias2 = data_diff('01/02/2014', '01/10/2014');
+      console.log(dias2);      
+    </script>    
+
     <!-- END CORE JS DEPENDECENCIES-->
     <!-- BEGIN CORE TEMPLATE JS -->
     <script src="webarch/js/webarch.js" type="text/javascript"></script>
