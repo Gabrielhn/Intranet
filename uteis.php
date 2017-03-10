@@ -341,7 +341,7 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
                           <div class="notification-messages info">                          
                             <div class="" style="font-weight: 450; font-size:13px;">
                               <div class="heading" style="overflow:visible; text-align: center;">
-                                <div></div>
+                                <div><i class="fa fa-link"></i></div>
                                 <p> </p>
                                 '.$result2[$key2]['NOME'].'
                               </div>                                                        

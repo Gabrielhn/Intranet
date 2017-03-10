@@ -554,7 +554,7 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
           </div>
 
           <div class="row">
-            <div class="col-md-10">
+            <div class="col-md-12">
               <div class="grid simple">
                 <div class="grid-title no-border">
                   <img src="assets\img\logo3.png">
