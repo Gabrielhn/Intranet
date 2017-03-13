@@ -336,7 +336,7 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
                   <?php                    
                     foreach ($result2 as $key2 => $value) {
                       echo 
-                      '<a target="blank" href="'.$result2[$key2]['LINK'].'">
+                      '<a target="blank" href="'.$result2[$key2]['LINK'].'" title="'.$result2[$key2]['DESCRICAO'].'">
                         <div class="col-md-2">                                              
                           <div class="notification-messages info">                          
                             <div class="" style="font-weight: 450; font-size:13px;">
