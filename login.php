@@ -83,7 +83,7 @@
               <div class="alert alert-info" style=" margin-right: 30px;">
                 <i class="pull-left material-icons">feedback</i>
                   <h6 style="padding-left: 30px; line-height:130%;">
-                    Este &eacute; um espa&ccedil;o desenvolvido para voc&ecirc; usar durante a sua rotina de trabalho. Atrav&eacute;s deste canal, voc&ecirc; poder&aacute; ficar por dentro de todas as novidades e avisos que envolvem o Grupo Aniger, mas tamb&eacute;m fazer v&aacute;rios tipos de solicita&ccedil;&otilde;es para v&aacute;rios setores da empresa. 
+                    Este &eacute; um espa&ccedil;o desenvolvido para voc&ecirc; usar durante a sua rotina de trabalho. Atrav&eacute;s deste canal, voc&ecirc; poder&aacute; ficar por dentro de todas as novidades e avisos que envolvem o grupo Aniger, mas tamb&eacute;m fazer solicita&ccedil;&otilde;es para v&aacute;rios setores da empresa. 
                     <br>&nbsp;  
                     <p>Sinta-se em casa e bom trabalho!</p>
                   </h6>

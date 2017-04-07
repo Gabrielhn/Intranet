@@ -376,9 +376,10 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
 
           <!-- TILE #2 -->
           <div class="col-md-3 col-sm-4 m-b-20">
-            <div class="tiles blue weather-widget ">
+            <div class="tiles gray weather-widget ">
               <div class="tiles-body">
-                <a href="veiculos.php" style="color: #edeeef;">
+                <!--<a href="veiculos.php" style="color: #edeeef;">-->
+                <a href="#" style="color: #edeeef;">
                   <div class="heading">
                     <div class="pull-left">Ve&iacute;culos </div>
                     <div class="clearfix"></div>
@@ -432,9 +433,10 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
 
           <!-- TILE #3 -->
           <div class="col-md-3 col-sm-4 m-b-20">
-            <div class="tiles blue weather-widget ">
+            <div class="tiles gray weather-widget ">
               <div class="tiles-body">
-                <a href="notas.php" style="color: #edeeef;">
+                <!--<a href="notas.php" style="color: #edeeef;">-->
+                <a href="#" style="color: #edeeef;">
                   <div class="heading">
                     <div class="pull-left">Notas </div>
                     <div class="clearfix"></div>
@@ -487,9 +489,10 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
 
           <!-- TILE #4 -->
           <div class="col-md-3 col-sm-4 m-b-20">
-            <div class="tiles blue weather-widget ">
+            <div class="tiles gray weather-widget ">
               <div class="tiles-body">
-                <a href="manutencao.php" style="color: #edeeef;">
+                <!--<a href="manutencao.php" style="color: #edeeef;">-->
+                <a href="#" style="color: #edeeef;">
                   <div class="heading">
                     <div class="pull-left">Manuten&ccedil;&atilde;o </div>
                     <div class="clearfix"></div>
