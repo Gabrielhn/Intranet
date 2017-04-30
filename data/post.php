@@ -284,6 +284,9 @@ $result2=$stmt2->fetch(PDO::FETCH_ASSOC);
               <a href="../ramais.php"><i class="material-icons" title="Ramais">phone_forwarded</i> <span class="title">Ramais</span></a>
             </li>
             <li class=""> 
+              <a href="../agenda.php"><i class="fa fa-calendar" title="&uacute;teis"></i> <span class="title">Agenda</span></a>
+            </li>
+            <li class=""> 
               <a href="../cadastros.php"><i class="material-icons" title="Cadastros">library_add</i> <span class="title">Cadastros</span></a>
             </li>
             <li class=""> 
@@ -350,7 +353,7 @@ $result2=$stmt2->fetch(PDO::FETCH_ASSOC);
                           <div class="col-md-4 col-sm-4 col-xs-4 rating" style="text-align:center;">
                             
                           </div>
-                          <div class="col-md-4 col-sm-4 col-xs-4" style="text-align:right;">'.strftime('%A, %d de %B de %Y', strtotime($result2['INCLUSAO'])).'</div>
+                          <div class="col-md-4 col-sm-4 col-xs-4" style="text-align:right;">'.date_format(date_create_from_format('d/m/y', $result2['INCLUSAO']), 'd/m/Y').'</div>
                         </div>
                       </div>                    
                     </div>                                                                                       

@@ -435,6 +435,9 @@ $result29=$stmt29->fetchAll(PDO::FETCH_ASSOC);
               <a href="ramais.php"><i class="material-icons" title="Ramais">phone_forwarded</i> <span class="title">Ramais</span></a>
             </li>
             <li class=""> 
+              <a href="agenda.php"><i class="fa fa-calendar" title="&uacute;teis"></i> <span class="title">Agenda</span></a>
+            </li>
+            <li class=""> 
               <a href="cadastros.php"><i class="material-icons" title="Cadastros">library_add</i> <span class="title">Cadastros</span></a>
             </li>
             <li class=""> 
@@ -480,8 +483,11 @@ $result29=$stmt29->fetchAll(PDO::FETCH_ASSOC);
             <li><a href="#" class="active">Ramais</a> </li>
           </ul>
           <!-- BEGIN PAGE TITLE -->
-          <div class="page-title"> <i class="material-icons">phone_forwarded</i>
+          <div class="page-title" style="margin-bottom:0px;"> <i class="material-icons">phone_forwarded</i>
             <h3>Lista de ramais </h3>
+          </div>
+          <div class="col-md-12 m-b-10">
+            <span class="help">* Clique no nome para ver o e-mail.</span>
           </div>
           <!-- END PAGE TITLE -->
           <!-- CONTEUDO -->

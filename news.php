@@ -11,8 +11,9 @@ $conn= new \PDO("oci:host=$host;dbname=$service","INTRANET","ifnefy6b9");
 $query2 = "SELECT * FROM VW_POST_2 WHERE POSICAO = 1";
 $query3 = "SELECT * FROM VW_POST_2 WHERE POSICAO = 2";
 $query4 = "SELECT * FROM VW_POST_2 WHERE POSICAO = 3";
+$query9 = "SELECT * FROM VW_POST_2 WHERE POSICAO = 4";
 
-$query5 = "SELECT * FROM IN_VAGAS WHERE ATIVO = 'S' AND ROWNUM < 4 ORDER BY DT_CADASTRO";
+$query5 = "SELECT * FROM IN_VAGAS WHERE ATIVO = 'S' AND ROWNUM < 5 ORDER BY DT_CADASTRO";
 
 $query6 = "SELECT * FROM VW_POST_3 WHERE POSICAO = 1";
 $query7 = "SELECT * FROM VW_POST_3 WHERE POSICAO = 2";
@@ -53,6 +54,11 @@ $result7=$stmt7->fetch(PDO::FETCH_ASSOC);
 $stmt8 = $conn->prepare($query8);
 $stmt8->execute();
 $result8=$stmt8->fetch(PDO::FETCH_ASSOC);
+
+//#9
+$stmt9 = $conn->prepare($query9);
+$stmt9->execute();
+$result9=$stmt9->fetch(PDO::FETCH_ASSOC);
 
 
 ?>
@@ -166,6 +172,27 @@ $result8=$stmt8->fetch(PDO::FETCH_ASSOC);
                           </div>
                         </div>
                         <img src="data:image/jpeg;base64,'.base64_encode(stream_get_contents($result4['IMG_MURAL'])).'" alt="" class="image-responsive-width xs-image-responsive-width lazy"> </div>
+                      <div class="slide-back ha tiles white">                                                  
+                      </div>
+                    </div>
+                  </div>
+                </a>';
+
+                echo '                      
+                <div class="col-md-3  col-sm-3 m-b-10" data-aspect-ratio="true">
+                  <a href="data/post.off.php?id='.$result9['ID'].'">
+                    <div class="live-tile slide ha">
+                      <div class="slide-front ha tiles green ">
+                        <div class="overlayer bottom-left fullwidth">
+                          <div class="overlayer-wrapper">
+                            <div class="tiles gradient-black p-l-20 p-r-10 p-b-20 p-t-20">
+                              <h4 class="text-white semi-bold no-margin">'.$result9['ASSUNTO'].'</h4>
+                              <div class="muted">'.$result9['AUTOR'].'</div>
+                              <div class="preview-wrapper pull-right"><i class="icon-custom-up "></i> Leia mais...</p></div>                            
+                            </div>
+                          </div>
+                        </div>
+                        <img src="data:image/jpeg;base64,'.base64_encode(stream_get_contents($result9['IMG_MURAL'])).'" alt="" class="image-responsive-width xs-image-responsive-width lazy"> </div>
                       <div class="slide-back ha tiles white">                                                  
                       </div>
                     </div>

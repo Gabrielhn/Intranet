@@ -265,6 +265,9 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
               <a href="ramais.php"><i class="material-icons" title="Ramais">phone_forwarded</i> <span class="title">Ramais</span></a>
             </li>
             <li class=""> 
+              <a href="agenda.php"><i class="fa fa-calendar" title="&uacute;teis"></i> <span class="title">Agenda</span></a>
+            </li>
+            <li class=""> 
               <a href="cadastros.php"><i class="material-icons" title="Cadastros">library_add</i> <span class="title">Cadastros</span></a>
             </li>
             <li class="start active"> 
@@ -531,12 +534,12 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
                   <h4 id="4ModalLabel" class="semi-bold">Informa&ccedil;&atilde;o.</h4>
                 </div>
                 <div class="modal-body">
-                  <div class="alert alert-info" >
+                  <div class="alert alert-info">
                     <i class="pull-left material-icons">feedback</i>
-                    <h6 style="padding-left: 30px;">
-                      4444 
-                    <br>&nbsp;  
-                    </h6>    
+                    <div style="padding-left: 30px;">
+                      <p>Preencha abaixo as informa&ccedil;&otilde;es solicitadas para usar seu saldo de banco de horas.</p> 
+                      <p>Ap&oacute;s enviar os dados, solicite autoriza&ccedil;&atilde;o de seu gestor.</p>   
+                    </div>    
                   </div>             
                 </div>
               </div>
@@ -594,12 +597,12 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
                   <h4 id="5ModalLabel" class="semi-bold">Informa&ccedil;&atilde;o.</h4>
                 </div>
                 <div class="modal-body">
-                  <div class="alert alert-info" >
+                  <div class="alert alert-info">
                     <i class="pull-left material-icons">feedback</i>
-                    <h6 style="padding-left: 30px;">
-                      5555
-                    <br>&nbsp;  
-                    </h6>    
+                    <div style="padding-left: 30px;">
+                      <p>Preencha abaixo as informa&ccedil;&otilde;es solicitadas para justificar dispensa.</p> 
+                      <p>Ap&oacute;s enviar os dados, solicite autoriza&ccedil;&atilde;o de seu gestor.</p>   
+                    </div>    
                   </div>             
                 </div>
               </div>
@@ -649,12 +652,12 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
                   <h4 id="6ModalLabel" class="semi-bold">Informa&ccedil;&atilde;o.</h4>
                 </div>
                 <div class="modal-body">
-                  <div class="alert alert-info" >
+                  <div class="alert alert-info">
                     <i class="pull-left material-icons">feedback</i>
-                    <h6 style="padding-left: 30px;">
-                      66666 
-                    <br>&nbsp;  
-                    </h6>    
+                    <div style="padding-left: 30px;">
+                      <p>Preencha abaixo as informa&ccedil;&otilde;es solicitadas para usar seu saldo de banco de horas.</p> 
+                      <p>Ap&oacute;s enviar os dados, solicite autoriza&ccedil;&atilde;o de seu gestor.</p>   
+                    </div>    
                   </div>             
                 </div>
               </div>

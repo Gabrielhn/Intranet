@@ -26,18 +26,26 @@ FROM
 WHERE 
     USR.IMG_PERFIL = IMG.ID AND USR.ID =:id";
 
+$query2 = "SELECT ID, TITULO, INICIO, FIM, COR FROM IN_AGENDA WHERE SALA = 2";
+
 //#1
 $stmt1 = $conn->prepare($query1);
 $stmt1->bindValue(':id',$id);
 $stmt1->execute();
 $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
 
+
+//#2
+$stmt2 = $conn->prepare($query2);
+$stmt2->execute();
+$result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
+
 ?>
 
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Aniger - Indicadores</title>
+    <title>Aniger - Agenda</title>
     <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
@@ -59,7 +67,7 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
     <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon">
     <link rel="icon" href="assets/img/favicon.ico" type="image/x-icon">
   </head>
-  <body class="">
+  <body class="hide-top-content-header">
     <!-- BEGIN HEADER -->
     <div class="header navbar navbar-inverse ">
       <!-- BEGIN TOP NAVIGATION BAR -->
@@ -265,7 +273,7 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
             <li class=""> 
               <a href="ramais.php"><i class="material-icons" title="Ramais">phone_forwarded</i> <span class="title">Ramais</span></a>
             </li>
-            <li class=""> 
+            <li class="start active"> 
               <a href="agenda.php"><i class="fa fa-calendar" title="&uacute;teis"></i> <span class="title">Agenda</span></a>
             </li>
             <li class=""> 
@@ -280,7 +288,7 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
             <?php
               if ($result1['GESTOR'] == 'S' || $result1['TIPO_USUARIO'] == 'ADM') {
                 echo 
-                '<li class="start active">
+                '<li class="">
                   <a href="indicadores.php"><i class="fa fa-bar-chart" title="Indicadores"></i> <span class="title">Indicadores</span></a>               
                 </li>';
               }                
@@ -310,52 +318,141 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
               <p>VOC&Ecirc; EST&Aacute; EM </p>
             </li>
             <li>
-            <a href="index.php">Home</a>
+              <a href="index.php">Home</a>
             </li>
-            <li><a href="#" class="active">Indicadores</a> </li>
+            <li>
+              <a href="agenda.php" class="">Agenda</a> 
+            </li>            
+            <li>
+              <a href="#" class="active">Sala Skype</a> 
+            </li>
           </ul>
           <!-- BEGIN PAGE TITLE -->
           <div class="page-title"> 
-            <i class="fa fa-bar-chart" title="Indicadores"></i>
-            <h3>Indicadores</h3>
+            <!--<i class="fa fa-calendar" title="Agenda"></i>
+            <h3>Agenda </h3>-->
           </div>
           <!-- END PAGE TITLE -->
-          <!-- CONTEUDO -->
+          <!-- BEGIN PlACE PAGE CONTENT HERE -->
 
-          <!-- TILE #1 -->
-          <div class="col-md-3 col-sm-4 m-b-10">
-            <div class="tiles blue blend weather-widget ">
-              <div class="tiles-body">
-                <a href="indicadores-pcp.php" style="color: #edeeef;">
-                  <div class="heading">
-                    <div class="pull-left">Produ&ccedil;&atilde;o </div>
-                    <div class="clearfix"></div>
-                  </div>
-                  <div class="big-icon">
-                    <i class="fa fa-industry fa-7x fa-fw"></i>
-                  </div>
-                  <div class="clearfix"></div>
+          <div id='calendario' style="color:black;"></div>
+
+          <!-- MODAL ADD -->
+          <div class="modal fade" id="ModalAdda" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <form class="form-horizontal" method="POST" action="evento.I.php">
+            
+              <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="myModalLabel">Novo Evento</h4>
               </div>
-                </a>
-              <div class="tile-footer">
-                <div class="pull-left">
-                  <canvas id="" width="1" height="30"></canvas>
-                   <span class=" small-text-description">&nbsp;&nbsp;<span class="label">PCP</span>&nbsp;</span>
+              <div class="modal-body">
+              
+                <div class="form-group">
+                <label for="title" class="col-sm-2 control-label">T&iacute;tulo</label>
+                <div class="col-sm-10">
+                  <input type="text" name="titulo" class="form-control" id="title" placeholder="Ex: Reuni&atilde;o interna" required>
                 </div>
-                <div class="pull-right">
-                  <canvas id="" width="1" height="28"></canvas>
-                  <span style="cursor: pointer;" data-toggle="modal" data-target="#5Modal"><i class="fa fa-info fa-2x"></i> </span>
                 </div>
-                <div class="pull-right">
-                  <canvas id="" width="32" height="32"></canvas>
-                  <span class="text-white small-text-description"></span> 
+                <div class="form-group">
+                <label for="color" class="col-sm-2 control-label">Cor</label>
+                <div class="col-sm-10">
+                  <select name="cor" class="form-control" id="color">
+                    <option value="">Selecione</option>
+                    <option style="color:#0071c5;" value="#0071c5">&#9724; Azul</option>
+                    <option style="color:#40E0D0;" value="#40E0D0">&#9724; Turquesa</option>
+                    <option style="color:#008000;" value="#008000">&#9724; Verde</option>						  
+                    <option style="color:#FFD700;" value="#FFD700">&#9724; Amarelo</option>
+                    <option style="color:#FF8C00;" value="#FF8C00">&#9724; laranja</option>
+                    <option style="color:#FF0000;" value="#FF0000">&#9724; Vermelho</option>
+                    <option style="color:#000;" value="#000">&#9724; Preto</option>						  
+                  </select>
                 </div>
-                <div class="clearfix"></div>
+                </div>
+                <div class="form-group">
+                <label for="start" class="col-sm-2 control-label">In&iacute;cio</label>
+                <div class="col-sm-10">
+                  <input type="text" name="inicio" class="form-control" id="start" required>
+                </div>
+                </div>
+                <div class="form-group">
+                <label for="end" class="col-sm-2 control-label">Fim</label>
+                <div class="col-sm-10">
+                  <input type="text" name="fim" class="form-control" id="end" >
+                </div>
+                </div>
+              
+              </div>
+              <div class="modal-footer">				
+              <button type="submit" class="btn btn-primary">Salvar</button>
+              </div>
+            </form>
+            </div>
+            </div>
+          </div>
+
+          <div class="modal fade" id="ModalAdd" tabindex="-1" role="dialog" aria-labelledby="ADDModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>                                                
+                  <br>
+                  <i class="fa fa-calendar fa-6x"></i>
+                  <h4 id="ADDModalLabel" class="semi-bold">Novo Evento</h4>                  
+                </div>
+                <div class="modal-body"> 
+                  <div class="">
+                    <div class="row" style="line-height:2;">
+                      <form method="post" name="Evento" action="evento.I.php">                        
+
+                        <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                          <div class="controls">
+                            <input type="text" name="titulo" class="form-control input-lg" style="text-align: center" id="title" placeholder="Ex: Reuni&atilde;o interna" maxlength="40" required>                            
+                          </div>
+                        </div>
+
+                        <div class="form-group col-md-2 col-sm-2 col-xs-2">
+                          <div class="controls">
+                            <div class='form-group'>
+                              <input type="text" name="sala" style="text-align: center" value="2" class="form-control" readonly>                              
+                            </div>
+                          </div>
+                        </div>                        
+
+                        <div class="form-group col-md-4 col-sm-4 col-xs-4">
+                          <div class="controls">
+                            <div class='form-group'>
+                              <input type="text" name="inicio" class="form-control" id="start" required>                              
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="form-group col-md-4 col-sm-4 col-xs-4">
+                          <div class="controls">
+                            <div class='form-group'>
+                              <input type="text" name="fim" class="form-control" id="end" required>                              
+                            </div>
+                          </div>
+                        </div>                         
+
+                        </br>
+                        </br>
+                        </br>                    
+
+                        <div class="form-group col-md-12 col-sm-12 col-xs-12 pull-right">
+                          <button type="submit" class="btn btn-info btn-block" value="submit"> Adicionar</button>                                        
+                        </div>
+
+                      </form>
+                    </div>
+                  </div>
+
+                </div>
               </div>
             </div>
           </div>
 
-          
           <!-- END PLACE PAGE CONTENT HERE -->
         </div>
       </div>
@@ -381,6 +478,75 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
     <!-- BEGIN CORE TEMPLATE JS -->
     <script src="webarch/js/webarch.js" type="text/javascript"></script>
     <script src="assets/js/chat.js" type="text/javascript"></script>
+    <script>
+    $(document).ready(function() {
+      $('#calendario').fullCalendar({          
+          weekends: false,
+          weekNumbers: true,
+          height: 700,          
+          header: {
+            left:   'title',
+            center: 'listWeek',
+            right:  'month,agendaWeek,agendaDay prev,today,next'
+          },          			
+          editable: true,
+          eventLimit: true, 
+          selectable: true,
+          selectHelper: true,
+          select: function(start, end) {
+            
+            $('#ModalAdd #start').val(moment(start).format('DD/MM/YYYY HH:mm:ss'));
+            $('#ModalAdd #end').val(moment(end).format('DD/MM/YYYY HH:mm:ss'));
+            $('#ModalAdd').modal('show');
+          },
+          eventRender: function(event, element) {
+            element.bind('dblclick', function() {
+              $('#ModalEdit #id').val(event.id);
+              $('#ModalEdit #title').val(event.title);
+              $('#ModalEdit #color').val(event.color);
+              $('#ModalEdit').modal('show');
+            });
+          },
+          eventDrop: function(event, delta, revertFunc) { 
+
+            edit(event);
+
+          },
+          eventResize: function(event,dayDelta,minuteDelta,revertFunc) { 
+
+            edit(event);
+
+          },
+          events:[
+							<?php foreach ($result2 as $key => $value) { ?>						
+							{
+								id: '<?php echo $result2[$key]['ID']; ?>',
+								title: '<?php echo $result2[$key]['TITULO']; ?>',
+								start: '<?php echo date_format(date_create_from_format('d/m/y', $result2[$key]['INICIO']), 'Y-m-d'); ?>',
+								end: '<?php echo date_format(date_create_from_format('d/m/y', $result2[$key]['FIM']), 'Y-m-d'); ?>',
+								color: '<?php echo $result2[$key]['COR']; ?>'
+							},
+		                    <?php } ?>			
+						]
+      })
+    });
+    </script>
+
+    <!--<script type="text/javascript">
+    $(function () {
+        $('#eventoIni').datetimepicker();
+        $('#eventoFim').datetimepicker({
+            useCurrent: false //Important! See issue #1075
+        });
+        $("#eventoIni").on("dp.change", function (e) {
+            $('#eventoFim').data("DateTimePicker").minDate(e.date);
+        });
+        $("#eventoFim").on("dp.change", function (e) {
+            $('#datetimepicker6').data("DateTimePicker").maxDate(e.date);
+        });
+    });
+</script>-->
     
+    <!-- END CORE TEMPLATE JS -->
   </body>
 </html>

@@ -313,9 +313,12 @@ $result8=$stmt8->fetch(PDO::FETCH_ASSOC);
             </li>
             <li class=""> 
               <a href="chamados.php"><i class="material-icons" title="Chamados">desktop_mac</i> <span class="title">Chamados</span></a>
-            </li>
+            </li>            
             <li class=""> 
               <a href="ramais.php"><i class="material-icons" title="Ramais">phone_forwarded</i> <span class="title">Ramais</span></a>
+            </li>
+            <li class=""> 
+              <a href="agenda.php"><i class="fa fa-calendar" title="&uacute;teis"></i> <span class="title">Agenda</span></a>
             </li>
             <li class=""> 
               <a href="cadastros.php"><i class="material-icons" title="Cadastros">library_add</i> <span class="title">Cadastros</span></a>
@@ -398,7 +401,7 @@ $result8=$stmt8->fetch(PDO::FETCH_ASSOC);
                                   <div class="tiles gradient-black p-l-20 p-r-10 p-b-20 p-t-20">
                                     <h4 class="text-white semi-bold no-margin">'.$result2['ASSUNTO'].'</h4>
                                     <div class="muted">'.$result2['AUTOR'].'</div>
-                                    <div class="preview-wrapper pull-right"><i class="icon-custom-up "></i> Leia mais...</p></div>                            
+                                    <!--<div class="preview-wrapper pull-right"><i class="icon-custom-up "></i> Leia mais...</p></div>-->                            
                                   </div>
                                 </div>
                               </div>
@@ -419,7 +422,7 @@ $result8=$stmt8->fetch(PDO::FETCH_ASSOC);
                                   <div class="tiles gradient-black p-l-20 p-r-10 p-b-20 p-t-20">
                                     <h4 class="text-white semi-bold no-margin">'.$result3['ASSUNTO'].'</h4>
                                     <div class="muted">'.$result3['AUTOR'].'</div>
-                                    <div class="preview-wrapper pull-right"><i class="icon-custom-up "></i> Leia mais...</p></div>                            
+                                    <!--<div class="preview-wrapper pull-right"><i class="icon-custom-up "></i> Leia mais...</p></div>-->                                                                                            
                                   </div>
                                 </div>
                               </div>
@@ -440,7 +443,7 @@ $result8=$stmt8->fetch(PDO::FETCH_ASSOC);
                                   <div class="tiles gradient-black p-l-20 p-r-10 p-b-20 p-t-20">
                                     <h4 class="text-white semi-bold no-margin">'.$result4['ASSUNTO'].'</h4>
                                     <div class="muted">'.$result4['AUTOR'].'</div>
-                                    <div class="preview-wrapper pull-right"><i class="icon-custom-up "></i> Leia mais...</p></div>                            
+                                    <!--<div class="preview-wrapper pull-right"><i class="icon-custom-up "></i> Leia mais...</p></div>-->                                                                                            
                                   </div>
                                 </div>
                               </div>
@@ -483,7 +486,7 @@ $result8=$stmt8->fetch(PDO::FETCH_ASSOC);
                               Clique para visualizar.
                             </div>
                             <div class="date pull-right">
-                              '.strftime('%A, %d de %B de %Y', strtotime($result6['INCLUSAO'])).'
+                              '.date_format(date_create_from_format('d/m/y', $result6['INCLUSAO']), 'd/m/Y').'
                             </div>
                           </div>
                           <div class="clearfix"></div>
@@ -504,7 +507,7 @@ $result8=$stmt8->fetch(PDO::FETCH_ASSOC);
                               Clique para visualizar.
                             </div>
                             <div class="date pull-right">
-                              '.strftime('%A, %d de %B de %Y', strtotime($result7['INCLUSAO'])).'
+                              '.date_format(date_create_from_format('d/m/y', $result7['INCLUSAO']), 'd/m/Y').'
                             </div>
                           </div>
                           <div class="clearfix"></div>
@@ -525,7 +528,7 @@ $result8=$stmt8->fetch(PDO::FETCH_ASSOC);
                               Clique para visualizar.
                             </div>
                             <div class="date pull-right">
-                              '.strftime('%A, %d de %B de %Y', strtotime($result8['INCLUSAO'])).'
+                              '.date_format(date_create_from_format('d/m/y', $result8['INCLUSAO']), 'd/m/Y').'
                             </div>
                           </div>
                           <div class="clearfix"></div>
@@ -580,17 +583,17 @@ $result8=$stmt8->fetch(PDO::FETCH_ASSOC);
                             <div class="modal-body">
                               <div class="alert alert-info" >
                                 Descri&ccedil;&atilde;o:
-                                <h6 style="padding-left: 30px;">
+                                <h5 style="padding-left: 30px; line-height:20px;">
                                   '.$result5[$key5]['DESCRICAO'].' 
                                 <br>&nbsp;  
-                                </h6>    
+                                </h5>    
                               </div>
                               <div class="alert alert-info" >
                                 Requisitos:
-                                <h6 style="padding-left: 30px;">
+                                <h5 style="padding-left: 30px; line-height:20px;">
                                   '.$result5[$key5]['REQUISITOS'].' 
                                 <br>&nbsp;  
-                                </h6>    
+                                </h5>    
                               </div>
                               <div style="text-align:center;">
                                 <span class="description" style="font-size:11px;">
@@ -607,12 +610,17 @@ $result8=$stmt8->fetch(PDO::FETCH_ASSOC);
                       ;
                     }                                            
                     ?>
+                    <div style="text-align:center; padding-top:10px;"> 
+                      <a title="Ver todas as vagas.">
+                        <span class="label label" style="cursor:pointer;" data-toggle="modal" data-target="#VAModal">Ver todos</span>                        
+                      </a>
+                    </div>
                 </div>
               </div>
             </div>
 
             <!--#4 ANIVERSARIANTES-->
-          <div class="col-md-3 col-sm-6">
+            <div class="col-md-3 col-sm-6">
               <div class="grid simple ">
                 <div class="grid-title no-border">
                   <div class="tools">                                      
@@ -621,12 +629,12 @@ $result8=$stmt8->fetch(PDO::FETCH_ASSOC);
                 <div class="grid-body no-border">
                   <h4><i class="fa fa-birthday-cake fa-1x"></i><span class="semi-bold">&nbsp; Anivers&aacute;rios</span></h4>
                   <br/>
-                  <a href="assets/img/janeiro-sul.png" target="blank">
-                    <img src="assets/img/janeiro-sul.png" class="image-responsive-width xs-image-responsive-width lazy"></img>                                  
+                  <a href="assets/img/abril-sul.png" target="blank">
+                    <img src="assets/img/abril-sul.png" class="image-responsive-width xs-image-responsive-width lazy"></img>                                  
                   </a>
                 </div>
               </div>
-            </div>
+            </div>            
 
             <div class="modal fade" id="SEModal" tabindex="-1" role="dialog" aria-labelledby="SEModalLabel" aria-hidden="true">
               <div class="modal-dialog">
@@ -654,11 +662,10 @@ $result8=$stmt8->fetch(PDO::FETCH_ASSOC);
 
                         </form>
                       </div>
-                    </div>
-           
-                                
-        </div>             
+                    </div>                                                                                           
+                  </div>
 
+                    
           <!-- FIM CONTEUDO -->
         </div>
       </div>

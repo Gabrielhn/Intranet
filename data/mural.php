@@ -269,6 +269,9 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
               <a href="../ramais.php"><i class="material-icons" title="Ramais">phone_forwarded</i> <span class="title">Ramais</span></a>
             </li>
             <li class=""> 
+              <a href="../agenda.php"><i class="fa fa-calendar" title="&uacute;teis"></i> <span class="title">Agenda</span></a>
+            </li>
+            <li class=""> 
               <a href="../cadastros.php"><i class="material-icons" title="Cadastros">library_add</i> <span class="title">Cadastros</span></a>
             </li>
             <li class=""> 
@@ -360,7 +363,7 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
                             <td class="v-align-middle"><span class="muted">'.$result2[$key]['MURAL'].'</span></td>
                             <td class="v-align-middle">'.$result2[$key]['ASSUNTO'].'</td>
                             <td class="v-align-middle"><span class="muted">'.$result2[$key]['AUTOR'].'</span></td>
-                            <td class="v-align-middle"><span class="muted">'.strftime('%A, %d de %B de %Y', strtotime($result2[$key]['INCLUSAO'])).'</span></td>
+                            <td class="v-align-middle"><span class="muted">'.date_format(date_create_from_format('d/m/y', $result2[$key]['INCLUSAO']), 'd/m/Y').'</span></td>
                             <td class="v-align-middle" align=center ><span class="muted">'.$result2[$key]['VIEWS'].'</span></td>
                             <td class="v-align-middle">
                               <a href="post.F.U.php?id='.$result2[$key]['ID'].'"title="Editar"><i class="fa fa-pencil"></i></a>

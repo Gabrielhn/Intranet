@@ -21,8 +21,6 @@ $im=$_POST['im'];
 $local=$_POST['local'];
 $admissao=$_POST['admissao'];
 $sobrenome=$_POST['sobrenome'];
-$tipo=$_POST['tipo'];
-$ativo=$_POST['ativo'];
 
 $query3="UPDATE 
             IN_USUARIOS 
@@ -35,9 +33,7 @@ $query3="UPDATE
             IM = :im, 
             LOCAL = :local, 
             ADMISSAO = :admissao, 
-            SOBRENOME = :sobrenome, 
-            TIPO_USUARIO = :tipo, 
-            ATIVO = :ativo 
+            SOBRENOME = :sobrenome
         WHERE ID = :idu";
 
 $stmt3 = $conn->prepare($query3);
@@ -52,8 +48,6 @@ $stmt3->bindValue(':im',$im);
 $stmt3->bindValue(':local',$local);
 $stmt3->bindValue(':admissao',$admissao);
 $stmt3->bindValue(':sobrenome',$sobrenome);
-$stmt3->bindValue(':tipo',$tipo);  
-$stmt3->bindValue(':ativo',$ativo);
 
 $stmt3->execute();
 header('Location: ' . $_SERVER['HTTP_REFERER']);

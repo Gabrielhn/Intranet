@@ -8,18 +8,22 @@ proteger();
 
 $host="10.0.0.2";
 $service="//10.0.0.2:1521/orcl";
+$id=$_SESSION['usuarioId'];
+$email=$_SESSION['usuarioEmail'];
 $conn= new \PDO("oci:host=$host;dbname=$service","INTRANET","ifnefy6b9");
 
-$id=$_SESSION['usuarioId'];
-$senha=$_POST['senha'];
+$ramal=$_POST['ramal'];
+$nome=$_POST['nome'];
+$id=$_POST['id'];
 
-$query3="UPDATE IN_USUARIOS SET SENHA = :senha WHERE ID=:id";
+$query3="UPDATE IN_RAMAIS SET nome = :nome, ramal = :ramal WHERE id = :id";
 $stmt3 = $conn->prepare($query3);
-$stmt3->bindValue(':senha',$senha);
-$stmt3->bindValue(':id',$id); 
+$stmt3->bindValue(':ramal',$ramal);
+$stmt3->bindValue(':nome',$nome);
+$stmt3->bindValue(':id',$id);
+   
 $stmt3->execute();
-
-header('Location: ' . $_SERVER['HTTP_REFERER']);
+header("Location: ramais.php");
 
 
 ?>

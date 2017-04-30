@@ -59,7 +59,7 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
     <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon">
     <link rel="icon" href="assets/img/favicon.ico" type="image/x-icon">
   </head>
-  <body >
+  <body class="hide-top-content-header">
     <!-- BEGIN HEADER -->
     <div class="header navbar navbar-inverse ">
       <!-- BEGIN TOP NAVIGATION BAR -->
@@ -266,6 +266,9 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
               <a href="ramais.php"><i class="material-icons" title="Ramais">phone_forwarded</i> <span class="title">Ramais</span></a>
             </li>
             <li class=""> 
+              <a href="agenda.php"><i class="fa fa-calendar" title="&uacute;teis"></i> <span class="title">Agenda</span></a>
+            </li>
+            <li class=""> 
               <a href="cadastros.php"><i class="material-icons" title="Cadastros">library_add</i> <span class="title">Cadastros</span></a>
             </li>
             <li class=""> 
@@ -301,7 +304,7 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
       <!-- END SIDEBAR -->
       <!-- BEGIN PAGE CONTAINER-->
       <div class="page-content">
-        <div class="content">
+        <div class="content" style="padding-top:10px;">
         <!--<ul class="breadcrumb">
             <li>
               <p>VOC&Ecirc; EST&Aacute; EM </p>

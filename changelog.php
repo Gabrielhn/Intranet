@@ -264,6 +264,9 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
               <a href="ramais.php"><i class="material-icons" title="Ramais">phone_forwarded</i> <span class="title">Ramais</span></a>
             </li>
             <li class=""> 
+              <a href="agenda.php"><i class="fa fa-calendar" title="&uacute;teis"></i> <span class="title">Agenda</span></a>
+            </li>
+            <li class=""> 
               <a href="cadastros.php"><i class="material-icons" title="Cadastros">library_add</i> <span class="title">Cadastros</span></a>
             </li>
             <li class=""> 
@@ -326,8 +329,59 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
 
               <li>
                 <time class="cbp_tmtime">
+                  <span class="time text-success">1.4</span>
+                  <span class="description">Segunda, 01 de Maio de 2017 </span>
+                </time>
+                <div class="cbp_tmicon primary animated bounceIn"> <i class="fa fa-cubes"></i> </div>
+                <div class="cbp_tmlabel">
+                  <div class="p-t-10 p-l-30 p-r-20 p-b-20 xs-p-r-10 xs-p-l-10 xs-p-t-5">
+                    <!--INICIO 1.3-->
+                    <h4></h4>
+                    <ul class="fa-ul">
+                      <li><i class="fa-li fa fa-user"></i>Login</li>
+                      <ul class="fa-ul">
+                        <li><i class="fa-li fa fa-check-square-o"></i><span style="font-style: italic; font-size: 11px;">Novo plano de fundo.</span></li>
+                        <li><i class="fa-li fa fa-check-square-o"></i><span style="font-style: italic; font-size: 11px;">Link para visualizar not&iacute;cias e vagas sem login.</span></li>
+                      </ul> 
+
+                      <li><i class="fa-li fa fa-male"></i>Perfil</li>
+                          <ul class="fa-ul">
+                            <li><i class="fa-li fa fa-check-square-o"></i><span style="font-style: italic; font-size: 11px;">Editar perfil do usu&aacute;rio (somente na tela de Perfil).</span></li>
+                            <li><i class="fa-li fa fa-check-square-o"></i><span style="font-style: italic; font-size: 11px;">Alterar senha do usu&aacute;rio (somente na Home ou tela do Perfil).</span></li>                             
+                          </ul>
+
+                      <li><i class="fa-li fa fa-calendar"></i>Agenda</li>
+                          <ul class="fa-ul">
+                            <li><i class="fa-li fa fa-check-square-o"></i><span style="font-style: italic; font-size: 11px;">Agora &eacute; poss&iacute;vel realizar agendamento de salas para reuni&otilde;es.</span></li>
+                            <li><i class="fa-li fa fa-check-square-o"></i><span style="font-style: italic; font-size: 11px;">Adicionada p&aacute;gina para selecionar a sala da reuni&atilde;o/evento (cada sala possui a sua agenda).</span></li>                            
+                          </ul>
+
+                      <li><i class="fa-li fa fa-phone"></i>Ramais</li>
+                          <ul class="fa-ul">
+                            <li><i class="fa-li fa fa-check-square-o"></i><span style="font-style: italic; font-size: 11px;">Ao clicar no nome, &eacute; poss&iacute;vel visualizar o e-mail caso esteja cadastrado.</span></li>                            
+                          </ul>
+
+                      <li><i class="fa-li fa fa-external-link"></i>Links &uacute;teis</li>
+                          <ul class="fa-ul">
+                            <li><i class="fa-li fa fa-check-square-o"></i><span style="font-style: italic; font-size: 11px;">Adicionada p&aacute;gina com links &uacute;teis gerais.</span></li>                            
+                          </ul>
+
+                      <li><i class="fa-li fa fa-book"></i>Solicita&ccedil;&otilde;es</li>
+                          <ul class="fa-ul">
+                            <li><i class="fa-li fa fa-check-square-o"></i><span style="font-style: italic; font-size: 11px;">Novas Solicita&ccedil;&otilde;es: Dispensa, Banco de horas e Horas extras.</span></li>
+                          </ul>
+
+                        </ul> 
+                        <!--FIM 1.4-->
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                  </li>
+
+              <li>
+                <time class="cbp_tmtime">
                   <span class="time text-success">1.3</span>
-                  <span class="description">Sexta, 20 de janeiro de 2016 </span>
+                  <span class="description">Sexta, 20 de janeiro de 2017 </span>
                 </time>
                 <div class="cbp_tmicon primary animated bounceIn"> <i class="fa fa-cubes"></i> </div>
                 <div class="cbp_tmlabel">

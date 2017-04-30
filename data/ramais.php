@@ -275,6 +275,9 @@ $result4=$stmt4->fetchAll(PDO::FETCH_ASSOC);
               <a href="../ramais.php"><i class="material-icons" title="Ramais">phone_forwarded</i> <span class="title">Ramais</span></a>
             </li>
             <li class=""> 
+              <a href="../agenda.php"><i class="fa fa-calendar" title="&uacute;teis"></i> <span class="title">Agenda</span></a>
+            </li>
+            <li class=""> 
               <a href="../cadastros.php"><i class="material-icons" title="Cadastros">library_add</i> <span class="title">Cadastros</span></a>
             </li>
             <li class=""> 
@@ -369,14 +372,80 @@ $result4=$stmt4->fetchAll(PDO::FETCH_ASSOC);
                             <td class="v-align-middle"><span class="muted">'.$result2[$key]['GESTOR'].'</span></td>                                                        
                             <td class="v-align-middle"><span class="muted">'.$result2[$key]['USUARIO'].'</span></td>
                             <td class="v-align-middle">
-                              <span class="disabled" style="color:#0d638f;"><i class="fa fa-pencil"></i></span>  
-                              <span data-toggle="modal" data-target="#'.str_replace(' ', '', $result2[$key]['NOME']).'Modal"><a href="#" title="Excluir"><i class="fa fa-trash"></i></a></span>  
+                              <span data-toggle="modal" data-target="#'.str_replace(' ', '', $result2[$key]['NOME']).'UPModal"><a href="#" title="Editar"><i class="fa fa-pencil"></i></a></span>  
+                              <span data-toggle="modal" data-target="#'.str_replace(' ', '', $result2[$key]['NOME']).'DLModal"><a href="#" title="Excluir"><i class="fa fa-trash"></i></a></span>  
                               <span class="disabled" style="color:#0d638f;"><i class="fa fa-search"></i></span>                                                                                                                    
                             </td>
                           </tr>
 
+                          <!-- MODAL UPDATE -->
+                          <div class="modal fade" id="'.str_replace(' ', '', $result2[$key]['NOME']).'UPModal" tabindex="-1" role="dialog" aria-labelledby="'.str_replace(' ', '', $result2[$key]['NOME']).'UPModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                              <div class="modal-content">
+                                <div class="modal-header">                                  
+                                  <div>
+                                    <div class="col-md-6 col-sm-6 col-xs-6" style="text-align:left;"></div>
+                                    <div class="col-md-6 col-sm-6 col-xs-6" style="text-align:right;"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button></div>
+                                  </div>
+                                  <br>
+                                  <i class="fa fa-phone fa-6x"></i>
+                                  <h4 id="1ModalLabel" class="semi-bold">'.$result2[$key]['NOME'].'</h4>
+                                </div>
+                                <div class="modal-body">
+                                  <div class="">
+                                    <div class="row" style="line-height:2;">
+                                      <form method="post" name="ramal" action="ramais.U.php">                                      
+
+                                        <div class="form-group col-md-5 col-sm-5 col-xs-5">
+                                          <div class="controls">
+                                            <input type="text" placeholder="Nome" value="'.$result2[$key]['NOME'].'" class="form-control input" name="nome" maxlength="40" required>
+                                          </div>
+                                        </div>
+
+                                        <div class="form-group col-md-2 col-sm-2 col-xs-2">
+                                          <div class="controls">
+                                            <input type="text" placeholder="Ramal" value="'.$result2[$key]['RAMAL'].'" class="form-control input" name="ramal" maxlength="4" required>
+                                          </div>
+                                        </div>
+
+                                        <div class="form-group col-md-3 col-sm-3 col-xs-3">
+                                          <div class="controls">
+                                            <input type="text" placeholder="Setor" value="'.$result2[$key]['SETOR'].'" class="form-control input" required readonly>
+                                          </div>
+                                        </div>                                        
+
+                                        <div class="form-group col-md-2 col-sm-2 col-xs-2">
+                                          <div class="controls">
+                                            <input type="text" placeholder="Gestor" value="'.$result2[$key]['GESTOR'].'" class="form-control input" required readonly>
+                                          </div>
+                                        </div>
+
+                                        <div class="form-group col-md-2 col-sm-2 col-xs-2">
+                                          <div class="controls">
+                                            <input type="text" placeholder="Id" value="'.$result2[$key]['ID'].'" class="form-control input" name="id" required readonly>
+                                          </div>
+                                        </div>
+
+                                        <div class="form-group col-md-10 col-sm-10 col-xs-10">
+                                          <div class="controls">                                            
+                                            <input type="text" placeholder="usuario" value="'.$result2[$key]['USUARIO']." - ".$result2[$key]['NOME'].'" class="form-control input" required readonly>                                                                   
+                                          </div>
+                                        </div>                                                                                      
+                                        
+                                        <div class="form-group col-md-12 col-sm-12 col-xs-12 pull-right">
+                                          <button type="submit" class="btn btn-info btn-block" value="submit"> Atualizar</button>                                        
+                                        </div>                                                                                                                                           
+                                      
+                                      </form>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
                           <!-- MODAL DELETE -->
-                          <div class="modal fade" id="'.str_replace(' ', '', $result2[$key]['NOME']).'Modal" tabindex="-1" role="dialog" aria-labelledby="'.str_replace(' ', '', $result2[$key]['NOME']).'ModalLabel" aria-hidden="true">
+                          <div class="modal fade" id="'.str_replace(' ', '', $result2[$key]['NOME']).'DLModal" tabindex="-1" role="dialog" aria-labelledby="'.str_replace(' ', '', $result2[$key]['NOME']).'ModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
                               <div class="modal-content">
                                 <div class="modal-header">

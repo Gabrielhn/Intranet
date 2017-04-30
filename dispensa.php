@@ -264,6 +264,9 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
               <a href="ramais.php"><i class="material-icons" title="Ramais">phone_forwarded</i> <span class="title">Ramais</span></a>
             </li>
             <li class=""> 
+              <a href="agenda.php"><i class="fa fa-calendar" title="&uacute;teis"></i> <span class="title">Agenda</span></a>
+            </li>
+            <li class=""> 
               <a href="cadastros.php"><i class="material-icons" title="Cadastros">library_add</i> <span class="title">Cadastros</span></a>
             </li>
             <li class="start active"> 
@@ -313,7 +316,86 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
           </div>
           <!-- END PAGE TITLE -->
           <!-- CONTEÚDO -->
-          
+
+          <div class="row">
+            <div class="col-md-10">
+              <div class="grid simple">
+                <div class="grid-title no-border">
+                  <img src="assets\img\logo3.png">
+                  <p></p>
+                  <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                    <span class="help">Preencha abaixo as informa&ccedil;&otilde;es solicitadas para usar seu saldo de banco de horas.
+                    <p>Ap&oacute;s enviar os dados, solicite autoriza&ccedil;&atilde;o de seu gestor.</p>
+                    </span>
+                  </div>
+                  <div class="tools">
+                    <!-- Controles -->
+                  </div>
+                </div>
+                <div class="grid-body no-border">
+                  <br>                  
+
+                  <div class="row">
+                    <form method="POST" name="dispensa" action="data\clientes.S.php"> 
+                      <div class="col-md-12 col-sm-12 col-xs-12">
+
+                        <div class="form-group col-md-12 col-sm-12 col-xs-12"></div>
+
+                        <div class="form-group col-md-12 col-sm-12 col-xs-12"></div>
+
+                        <div class="form-group col-md-4 col-sm-4 col-xs-4">
+                          <div class="controls">
+                            <input type="text" placeholder="Solicitante" value="<?php echo $_SESSION['usuarioNome'] . " " . $_SESSION['usuarioSobreNome'] ;?>" class="form-control input" name="solicitante" required>
+                          </div>
+                        </div>
+
+                        <div class="form-group col-md-3 col-sm-3 col-xs-3">
+                          <div class="controls">
+                            <input type="date" class="form-control input" name="data" required>
+                          </div>
+                        </div>
+
+                        <div class="form-group col-md-2 col-sm-2 col-xs-2">
+                          <div class="controls">
+                            <input type="text" placeholder="Crach&aacute;" class="form-control input" name="cracha" required maxlength="5">
+                          </div>
+                        </div>
+
+                        <div class="form-group col-md-2 col-sm-2 col-xs-2">
+                          <div class="controls">
+                            <input type="text" placeholder="Dias" class="form-control input" name="dias" required maxlength="2">
+                          </div>
+                        </div>
+
+                        <div class="form-group col-md-1 col-sm-1 col-xs-1">
+                          <div class="controls">
+                            <input type="text" placeholder="Hr" class="form-control input" name="horas" required maxlength="5">
+                          </div>
+                        </div>                        
+
+                        <div class="form-group col-md-12 col-sm-12 col-xs-12"></div>
+
+                        <iframe name="place" style="display:none;"></iframe>
+ 
+                        <div class="form-actions">
+                          <div class="pull-right">
+
+                            <!--data-toggle="modal" data-target="#pModal"-->
+                            <button type="submit" class="btn btn-info btn-cons-md" value="submit">Enviar</button>
+                            <button type="reset" class="btn btn-white btn-cons-md" value="reset">Limpar</button>
+                          </div>
+                          <div class="form-group col-md-12 col-sm-12 col-xs-12"></div>
+                        </div>
+
+
+
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
 
           
           <!-- FIM CONTEÚDO -->

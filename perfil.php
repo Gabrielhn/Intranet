@@ -28,6 +28,7 @@ FROM
     IN_IMAGENS IMG 
 WHERE 
     USR.IMG_PERFIL = IMG.ID AND USR.ID =:id";
+$query5 = "SELECT * FROM VW_PERFIL WHERE ID=:id";
 
 // #1 INFO PERFIL
 $stmt1 = $conn->prepare($query1);
@@ -55,7 +56,13 @@ $stmt4->bindValue(':id',$idl);
 $stmt4->execute();
 $result4=$stmt4->fetch(PDO::FETCH_ASSOC);
 
-// #5 TEMPO
+// #5 EDITAR PERFIL
+$stmt5 = $conn->prepare($query5);
+$stmt5->bindValue(':id',$idl);
+$stmt5->execute();
+$result5=$stmt5->fetch(PDO::FETCH_ASSOC);
+
+// TEMPO
 $adm=$result1['ADMISSAO'];
 $hj=date('d/m/y');
 
@@ -240,6 +247,12 @@ $anos = (int)floor( $diferenca / (60 * 60 * 24)/ 365);
                   <li class="">
                     <?php echo '<a href="perfil.php?id='.$id.'" title="Acesse seu perfil"><i class="fa fa-male fa-fw"></i>&nbsp;&nbsp;Meu perfil</a>';?>
                   </li>
+                  <li class="">
+                    <?php echo '<a title="Editar seu perfil"><span style="cursor:pointer;" data-toggle="modal" data-target="#EDModal"><i class="fa fa-edit fa-fw"></i>&nbsp;&nbsp;Editar perfil</span></a>';?>
+                  </li>
+                  <li class="">
+                    <?php echo '<a title="Alterar sua senha"><span style="cursor:pointer;" data-toggle="modal" data-target="#SEModal"><i class="fa fa-unlock-alt fa-fw"></i>&nbsp;&nbsp;Alterar senha</span></a>';?>
+                  </li>
                   <!-- <li class="disabled">
                     <a href="calender.php" title="Recurso ainda n&atilde;o implementado.">Calend&aacute;rio</a>
                   </li> -->
@@ -307,6 +320,9 @@ $anos = (int)floor( $diferenca / (60 * 60 * 24)/ 365);
             </li>
             <li class=""> 
               <a href="ramais.php"><i class="material-icons" title="Ramais">phone_forwarded</i> <span class="title">Ramais</span></a>
+            </li>
+            <li class=""> 
+              <a href="agenda.php"><i class="fa fa-calendar" title="&uacute;teis"></i> <span class="title">Agenda</span></a>
             </li>
             <li class=""> 
               <a href="cadastros.php"><i class="material-icons" title="Cadastros">library_add</i> <span class="title">Cadastros</span></a>
@@ -446,11 +462,147 @@ $anos = (int)floor( $diferenca / (60 * 60 * 24)/ 365);
                   </div>
                   <hr/>
                   &nbsp;&nbsp;<br/>                                    
-                  &nbsp;&nbsp;<br/>                  
+                  &nbsp;&nbsp;<br/>
+
+                  <?php echo ' 
+                  <!-- MODAL EDITAR -->
+                  <div class="modal fade" id="EDModal" tabindex="-1" role="dialog" aria-labelledby="EDModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">                                  
+                          <div>
+                            <div class="col-md-6 col-sm-6 col-xs-6" style="text-align:left;">#'.$result5['ID'].'</div>
+                            <div class="col-md-6 col-sm-6 col-xs-6" style="text-align:right;"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button></div>
+                          </div>
+                          <br>
+                          <i class="fa fa-pencil-square-o fa-6x"></i>
+                          <h4 id="1ModalLabel" class="semi-bold">Usu&aacute;rio: '.$result5['NOME_COMPLETO'].'</h4>
+                        </div>
+                        <div class="modal-body">
+                          <div class="">
+                            <div class="row" style="line-height:2;">
+                              <form method="post" name="usuario" action="data/usuarios.U.P.php">                                      
+
+                                <div class="form-group col-md-4 col-sm-4 col-xs-4">
+                                  <div class="controls">
+                                    <input type="text" placeholder="Nome" value="'.$result5['NOME'].'" class="form-control input" name="nome" maxlength="50" required>
+                                  </div>
+                                </div>
+
+                                <div class="form-group col-md-4 col-sm-4 col-xs-4">
+                                  <div class="controls">
+                                    <input type="text" placeholder="Sobrenome" value="'.$result5['SOBRENOME'].'" class="form-control input" name="sobrenome" maxlength="40" required>
+                                  </div>
+                                </div>
+
+                                <div class="form-group col-md-4 col-sm-4 col-xs-4">
+                                  <div class="controls">
+                                    <input type="text" placeholder="Admiss&atilde;o" value="'.$result5['ADMISSAO'].'" class="form-control input" name="admissao" maxlength="8" required>
+                                  </div>
+                                </div>
+
+                                <div class="form-group col-md-6 col-sm-6 col-xs-6">
+                                  <div class="controls">
+                                    <input type="email" placeholder="E-mail" value="'.$result5['EMAIL'].'" class="form-control input" name="email" maxlength="40" readonly>
+                                  </div>
+                                </div>
+
+                                <div class="form-group col-md-4 col-sm-4 col-xs-4">
+                                  <div class="controls">
+                                    <input type="password" placeholder="Senha" value="'.$result5['SENHA'].'" class="form-control input" name="senha" maxlength="20" required>
+                                  </div>
+                                </div>
+
+                                <div class="form-group col-md-2 col-sm-2 col-xs-2">
+                                  <div class="controls">
+                                    <input type="text" placeholder="Ramal" value="'.$result5['RAMAL'].'" class="form-control input" name="ramal" maxlength="4" required>
+                                  </div>
+                                </div>
+
+                                <div class="form-group col-md-6 col-sm-6 col-xs-6">
+                                  <div class="controls">
+                                    <input type="text" placeholder="Setor" value="'.$result5['SETOR'].' - '.$result1['NOME_SETOR'].'" class="form-control input" name="setor" required readonly>                        
+                                  </div>
+                                </div>
+
+                                <div class="form-group col-md-6 col-sm-6 col-xs-6">
+                                  <div class="controls">
+                                    <input type="text" placeholder="Cargo" value="'.$result5['CARGO'].'" class="form-control input" name="cargo" maxlength="30" required>
+                                  </div>
+                                </div>
+
+                                <div class="form-group col-md-4 col-sm-4 col-xs-4">
+                                  <div class="controls">
+                                    <input type="text" placeholder="IM/Skype" value="'.$result5['IM'].'" class="form-control input" name="im" maxlength="25">
+                                  </div>
+                                </div>
+
+                                <div class="form-group col-md-2 col-sm-2 col-xs-2">
+                                  <div class="controls">
+                                    <input type="text" placeholder="Local" value="'.$result5['LOCAL'].'" class="form-control input" name="local" maxlength="3" readonly>
+                                  </div>
+                                </div>
+
+                                <div class="form-group col-md-4 col-sm-4 col-xs-4">
+                                  <div class="controls">
+                                    <input type="text" placeholder="Cadastro" value="Cadastro: '.$result5['CADASTRO'].'" class="form-control input" name="cadastro" readonly required>
+                                  </div>
+                                </div>                                       
+
+                                <div class="form-group col-md-2 col-sm-2 col-xs-2">
+                                  <div class="controls">
+                                    <input type="text" id="" value="'.$result5['ID'].'" class="form-control input" name="id" readonly required>
+                                  </div>
+                                </div>                                                
+                                
+                                <div class="form-group col-md-12 col-sm-12 col-xs-12 pull-right">
+                                  <button type="submit" class="btn btn-info btn-block" value="submit"> Atualizar</button>                                        
+                                </div>                                                                                                                                           
+                              
+                              </form>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>';
+                  ?>  
+
+                  <div class="modal fade" id="SEModal" tabindex="-1" role="dialog" aria-labelledby="SEModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>                                                
+                          <br>
+                          <i class="fa fa-unlock-alt fa-6x"></i>
+                          <h4 id="SEModalLabel" class="semi-bold">Alterar senha</h4>                  
+                        </div>
+                        <div class="modal-body"> 
+                          <div class="">
+                            <div class="row" style="line-height:2;">
+                              <form method="post" name="ramal" action="data\senha.A.php">                          
+
+                                <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                                  <div class="controls">
+                                    <input type="password" placeholder="Nova senha" class="form-control input input-lg" style="text-align: center" name="senha" maxlength="20" required>
+                                  </div>
+                                </div>                                             
+
+                                <div class="form-group col-md-12 col-sm-12 col-xs-12 pull-right">
+                                  <button type="submit" class="btn btn-info btn-block btn-large" value="submit"> Alterar</button>                                        
+                                </div>
+
+                              </form>
+                            </div>
+                          </div>                                                                                           
+                        </div>
+
+
           <!-- FIM CONTEÚDO -->
+
         </div>
       </div>
-      <!-- END PAGE CONTAINER -->
+      <!-- END CONTAINER -->
       &nbsp;&nbsp;<br/>
       &nbsp;&nbsp;<br/>
     </div>

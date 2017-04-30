@@ -277,6 +277,9 @@ $result4=$stmt4->fetchAll(PDO::FETCH_ASSOC);
               <a href="../ramais.php"><i class="material-icons" title="Ramais">phone_forwarded</i> <span class="title">Ramais</span></a>
             </li>
             <li class=""> 
+              <a href="../agenda.php"><i class="fa fa-calendar" title="&uacute;teis"></i> <span class="title">Agenda</span></a>
+            </li>
+            <li class=""> 
               <a href="../cadastros.php"><i class="material-icons" title="Cadastros">library_add</i> <span class="title">Cadastros</span></a>
             </li>
             <li class=""> 
@@ -354,9 +357,9 @@ $result4=$stmt4->fetchAll(PDO::FETCH_ASSOC);
                       <tr>                                              
                         <th style="width:20%">Nome completo</th>
                         <th style="width:20%">E-mail</th>
-                        <th style="width:6%">Setor</th>
-                        <th style="width:20%">Cargo</th>
-                        <th style="width:20%">Local</th>
+                        <th style="width:19%">Setor</th>
+                        <th style="width:16%">Cargo</th>
+                        <th style="width:6%">Local</th>
                         <th style="width:8%">Ramal</th>
                         <th style="width:5%">Ativo</th>
                         <th style="width:5%">A&ccedil;&otilde;es</th>                     
@@ -370,7 +373,7 @@ $result4=$stmt4->fetchAll(PDO::FETCH_ASSOC);
                           <tr>                                                        
                             <td class="v-align-middle"><span class="muted">'.$result2[$key]['NOME_COMPLETO'].'</span></td>
                             <td class="v-align-middle"><span class="muted">'.$result2[$key]['EMAIL'].'</span></td>
-                            <td class="v-align-middle"><span class="muted">'.$result2[$key]['SETOR'].'</span></td>
+                            <td class="v-align-middle"><span class="muted">'.$result2[$key]['SETOR']." - ".$result2[$key]['NOME_SETOR'].'</span></td>
                             <td class="v-align-middle"><span class="muted">'.$result2[$key]['CARGO'].'</span></td>
                             <td class="v-align-middle"><span class="muted">'.$result2[$key]['LOCAL'].'</span></td>
                             <td class="v-align-middle"><span class="muted">'.$result2[$key]['RAMAL'].'</span></td>
@@ -438,13 +441,7 @@ $result4=$stmt4->fetchAll(PDO::FETCH_ASSOC);
 
                                         <div class="form-group col-md-6 col-sm-6 col-xs-6">
                                           <div class="controls">
-                                            <select id="source"  class="form-control input" name="setor" required>';                                              
-                                              foreach ($result3 as $key3 => $value) {
-                                                echo 
-                                                  '<option value="'.$result3[$key3]['SIGLA'].'">'.$result3[$key3]['SIGLA'].' - '.$result3[$key3]['NOME'].'</option>';
-                                              }
-                                            echo '
-                                            </select>                        
+                                            <input type="text" placeholder="Setor" value="'.$result2[$key]['SETOR'].' - '.$result2[$key]['NOME_SETOR'].'" class="form-control input" name="setor" required readonly>                        
                                           </div>
                                         </div>
 
@@ -474,13 +471,13 @@ $result4=$stmt4->fetchAll(PDO::FETCH_ASSOC);
 
                                         <div class="form-group col-md-2 col-sm-2 col-xs-2">
                                           <div class="controls">
-                                            <input type="text" placeholder="Ativo" value="'.$result2[$key]['ATIVO'].'" class="form-control input" name="ativo" maxlength="1" required>
+                                            <input type="text" title="Ativo" placeholder="Ativo" value="'.$result2[$key]['ATIVO'].'" class="form-control input" name="ativo" maxlength="1" required>
                                           </div>
                                         </div>                                        
 
                                         <div class="form-group col-md-2 col-sm-2 col-xs-2">
                                           <div class="controls">
-                                            <input type="text" placeholder="" value="'.$result2[$key]['TIPO_USUARIO'].'" class="form-control input" name="tipo" maxlength="3" required>
+                                            <input type="text" title="ADM = Administrador, USU = Usuario" value="'.$result2[$key]['TIPO_USUARIO'].'" class="form-control input" name="tipo" maxlength="3" required readonly>
                                           </div>
                                         </div>
 
