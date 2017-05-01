@@ -26,7 +26,7 @@ FROM
 WHERE 
     USR.IMG_PERFIL = IMG.ID AND USR.ID =:id";
 
-$query2 = "SELECT ID, TITULO, INICIO, FIM, COR FROM IN_AGENDA WHERE SALA = 2";
+$query2 = "SELECT EV.ID, EV.TITULO, EV.INICIO, EV.HORA_INI, EV.FIM, EV.HORA_FIM, EV.COR, EV.USUARIO, USU.NOME || ' ' || USU.SOBRENOME AS NOME_USUARIO FROM IN_AGENDA EV, IN_USUARIOS USU WHERE EV.USUARIO = USU.ID AND SALA = 2";
 
 //#1
 $stmt1 = $conn->prepare($query1);
@@ -337,60 +337,6 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
 
           <div id='calendario' style="color:black;"></div>
 
-          <!-- MODAL ADD -->
-          <div class="modal fade" id="ModalAdda" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-            <div class="modal-dialog" role="document">
-            <div class="modal-content">
-            <form class="form-horizontal" method="POST" action="evento.I.php">
-            
-              <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              <h4 class="modal-title" id="myModalLabel">Novo Evento</h4>
-              </div>
-              <div class="modal-body">
-              
-                <div class="form-group">
-                <label for="title" class="col-sm-2 control-label">T&iacute;tulo</label>
-                <div class="col-sm-10">
-                  <input type="text" name="titulo" class="form-control" id="title" placeholder="Ex: Reuni&atilde;o interna" required>
-                </div>
-                </div>
-                <div class="form-group">
-                <label for="color" class="col-sm-2 control-label">Cor</label>
-                <div class="col-sm-10">
-                  <select name="cor" class="form-control" id="color">
-                    <option value="">Selecione</option>
-                    <option style="color:#0071c5;" value="#0071c5">&#9724; Azul</option>
-                    <option style="color:#40E0D0;" value="#40E0D0">&#9724; Turquesa</option>
-                    <option style="color:#008000;" value="#008000">&#9724; Verde</option>						  
-                    <option style="color:#FFD700;" value="#FFD700">&#9724; Amarelo</option>
-                    <option style="color:#FF8C00;" value="#FF8C00">&#9724; laranja</option>
-                    <option style="color:#FF0000;" value="#FF0000">&#9724; Vermelho</option>
-                    <option style="color:#000;" value="#000">&#9724; Preto</option>						  
-                  </select>
-                </div>
-                </div>
-                <div class="form-group">
-                <label for="start" class="col-sm-2 control-label">In&iacute;cio</label>
-                <div class="col-sm-10">
-                  <input type="text" name="inicio" class="form-control" id="start" required>
-                </div>
-                </div>
-                <div class="form-group">
-                <label for="end" class="col-sm-2 control-label">Fim</label>
-                <div class="col-sm-10">
-                  <input type="text" name="fim" class="form-control" id="end" >
-                </div>
-                </div>
-              
-              </div>
-              <div class="modal-footer">				
-              <button type="submit" class="btn btn-primary">Salvar</button>
-              </div>
-            </form>
-            </div>
-            </div>
-          </div>
 
           <div class="modal fade" id="ModalAdd" tabindex="-1" role="dialog" aria-labelledby="ADDModalLabel" aria-hidden="true">
             <div class="modal-dialog">
@@ -410,17 +356,9 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
                           <div class="controls">
                             <input type="text" name="titulo" class="form-control input-lg" style="text-align: center" id="title" placeholder="Ex: Reuni&atilde;o interna" maxlength="40" required>                            
                           </div>
-                        </div>
-
-                        <div class="form-group col-md-2 col-sm-2 col-xs-2">
-                          <div class="controls">
-                            <div class='form-group'>
-                              <input type="text" name="sala" style="text-align: center" value="2" class="form-control" readonly>                              
-                            </div>
-                          </div>
                         </div>                        
 
-                        <div class="form-group col-md-4 col-sm-4 col-xs-4">
+                        <div class="form-group col-md-3 col-sm-3 col-xs-3">
                           <div class="controls">
                             <div class='form-group'>
                               <input type="text" name="inicio" class="form-control" id="start" required>                              
@@ -428,10 +366,34 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
                           </div>
                         </div>
 
-                        <div class="form-group col-md-4 col-sm-4 col-xs-4">
+                        <div class="form-group col-md-3 col-sm-3 col-xs-3">
+                          <div class="controls">
+                            <div class='form-group'>
+                              <input type="text" name="hora_ini" class="form-control" id="hora_ini" required>                              
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="form-group col-md-3 col-sm-3 col-xs-3">                        
                           <div class="controls">
                             <div class='form-group'>
                               <input type="text" name="fim" class="form-control" id="end" required>                              
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="form-group col-md-3 col-sm-3 col-xs-3">                        
+                          <div class="controls">
+                            <div class='form-group'>
+                              <input type="text" name="hora_fim" class="form-control" id="hora_fim" required>                              
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="form-group col-md-2 col-sm-2 col-xs-2">
+                          <div class="controls">
+                            <div class='form-group'>
+                              <input type="text" name="sala" style="text-align: center" value="2" class="form-control" readonly>                              
                             </div>
                           </div>
                         </div>                         
@@ -493,10 +455,12 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
           eventLimit: true, 
           selectable: true,
           selectHelper: true,
-          select: function(start, end) {
+          select: function(start, end, hora_ini, hora_fim) {
             
-            $('#ModalAdd #start').val(moment(start).format('DD/MM/YYYY HH:mm:ss'));
-            $('#ModalAdd #end').val(moment(end).format('DD/MM/YYYY HH:mm:ss'));
+            $('#ModalAdd #start').val(moment(start).format('DD/MM/YYYY'));
+            $('#ModalAdd #end').val(moment(end).format('DD/MM/YYYY'));
+            $('#ModalAdd #hora_ini').val(moment(start).format('HH:mm:ss'));
+            $('#ModalAdd #hora_fim').val(moment(end).format('HH:mm:ss'));            
             $('#ModalAdd').modal('show');
           },
           eventRender: function(event, element) {
@@ -521,9 +485,9 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
 							<?php foreach ($result2 as $key => $value) { ?>						
 							{
 								id: '<?php echo $result2[$key]['ID']; ?>',
-								title: '<?php echo $result2[$key]['TITULO']; ?>',
-								start: '<?php echo date_format(date_create_from_format('d/m/y', $result2[$key]['INICIO']), 'Y-m-d'); ?>',
-								end: '<?php echo date_format(date_create_from_format('d/m/y', $result2[$key]['FIM']), 'Y-m-d'); ?>',
+								title: '<?php echo $result2[$key]['TITULO'].'('.$result2[$key]['NOME_USUARIO'].')'; ?>',
+								start: '<?php echo date_format(date_create_from_format('d/m/y', $result2[$key]['INICIO']), 'Y-m-d').'T'.$result2[$key]['HORA_INI']; ?>',
+								end: '<?php echo date_format(date_create_from_format('d/m/y', $result2[$key]['FIM']), 'Y-m-d').'T'.$result2[$key]['HORA_FIM']; ?>',
 								color: '<?php echo $result2[$key]['COR']; ?>'
 							},
 		                    <?php } ?>			
@@ -531,21 +495,6 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
       })
     });
     </script>
-
-    <!--<script type="text/javascript">
-    $(function () {
-        $('#eventoIni').datetimepicker();
-        $('#eventoFim').datetimepicker({
-            useCurrent: false //Important! See issue #1075
-        });
-        $("#eventoIni").on("dp.change", function (e) {
-            $('#eventoFim').data("DateTimePicker").minDate(e.date);
-        });
-        $("#eventoFim").on("dp.change", function (e) {
-            $('#datetimepicker6').data("DateTimePicker").maxDate(e.date);
-        });
-    });
-</script>-->
     
     <!-- END CORE TEMPLATE JS -->
   </body>
