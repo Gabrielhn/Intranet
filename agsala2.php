@@ -337,7 +337,53 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
 
           <div id='calendario' style="color:black;"></div>
 
+          <!--MODAL EDITAR-->
+          <div class="modal fade" id="ModalEdit" tabindex="-1" role="dialog" aria-labelledby="EditModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>                                                
+                  <br>
+                  <i class="fa fa-edit fa-6x"></i>
+                  <h4 id="EditModalLabel" class="semi-bold">Editar Evento</h4>                  
+                </div>
+                <div class="modal-body"> 
+                  <div class="">
+                    <div class="row" style="line-height:2;">
+                      <form method="post" name="Evento" action="evento.I.php">                        
 
+                        <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                          <div class="controls">
+                            <input type="text" name="titulo" class="form-control input-lg" style="text-align: center" id="title" placeholder="Ex: Reuni&atilde;o interna" maxlength="40" required>                            
+                          </div>
+                        </div>                        
+
+                        <div class="form-group col-md-2 col-sm-2 col-xs-2">
+                          <div class="controls">
+                            <div class='form-group'>
+                              <input type="text" name="sala" style="text-align: center" value="2" class="form-control" readonly>                              
+                            </div>
+                          </div>
+                        </div>                         
+
+                        </br>
+                        </br>
+                        </br>                    
+
+                        <div class="form-group col-md-12 col-sm-12 col-xs-12 pull-right">
+                          <button type="submit" class="btn btn-info btn-block" value="submit"> Atualizar</button>                                        
+                        </div>
+
+                      </form>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!--MODAL ADD-->
           <div class="modal fade" id="ModalAdd" tabindex="-1" role="dialog" aria-labelledby="ADDModalLabel" aria-hidden="true">
             <div class="modal-dialog">
               <div class="modal-content">
@@ -345,7 +391,7 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
                   <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>                                                
                   <br>
                   <i class="fa fa-calendar fa-6x"></i>
-                  <h4 id="ADDModalLabel" class="semi-bold">Novo Evento</h4>                  
+                  <h4 id="ADDModalLabel" class="semi-bold">Adicionar Evento</h4>                  
                 </div>
                 <div class="modal-body"> 
                   <div class="">

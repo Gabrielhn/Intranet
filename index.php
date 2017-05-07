@@ -629,8 +629,8 @@ $result8=$stmt8->fetch(PDO::FETCH_ASSOC);
                 <div class="grid-body no-border">
                   <h4><i class="fa fa-birthday-cake fa-1x"></i><span class="semi-bold">&nbsp; Anivers&aacute;rios</span></h4>
                   <br/>
-                  <a href="assets/img/abril-sul.png" target="blank">
-                    <img src="assets/img/abril-sul.png" class="image-responsive-width xs-image-responsive-width lazy"></img>                                  
+                  <a href="assets/img/aniver/maio-sul.png" target="blank">
+                    <img src="assets/img/aniver/maio-sul.png" class="image-responsive-width xs-image-responsive-width lazy"></img>                                  
                   </a>
                 </div>
               </div>

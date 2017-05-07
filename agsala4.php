@@ -26,11 +26,19 @@ FROM
 WHERE 
     USR.IMG_PERFIL = IMG.ID AND USR.ID =:id";
 
+$query2 = "SELECT EV.ID, EV.TITULO, EV.INICIO, EV.HORA_INI, EV.FIM, EV.HORA_FIM, EV.COR, EV.USUARIO, USU.NOME || ' ' || USU.SOBRENOME AS NOME_USUARIO FROM IN_AGENDA EV, IN_USUARIOS USU WHERE EV.USUARIO = USU.ID AND SALA = 4";
+
 //#1
 $stmt1 = $conn->prepare($query1);
 $stmt1->bindValue(':id',$id);
 $stmt1->execute();
 $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
+
+
+//#2
+$stmt2 = $conn->prepare($query2);
+$stmt2->execute();
+$result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
 
@@ -59,7 +67,7 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
     <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon">
     <link rel="icon" href="assets/img/favicon.ico" type="image/x-icon">
   </head>
-  <body>
+  <body class="hide-top-content-header">
     <!-- BEGIN HEADER -->
     <div class="header navbar navbar-inverse ">
       <!-- BEGIN TOP NAVIGATION BAR -->
@@ -310,309 +318,144 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
               <p>VOC&Ecirc; EST&Aacute; EM </p>
             </li>
             <li>
-            <a href="index.php">Home</a>
+              <a href="index.php">Home</a>
             </li>
-            <li><a href="#" class="active">Agenda</a> </li>
+            <li>
+              <a href="agenda.php" class="">Agenda</a> 
+            </li>            
+            <li>
+              <a href="#" class="active">Audit&oacute;rio</a> 
+            </li>
           </ul>
           <!-- BEGIN PAGE TITLE -->
           <div class="page-title"> 
-            <i class="fa fa-calendar" title="Agenda - Salas"></i>
-            <h3>Agenda - Salas</h3>
+            <!--<i class="fa fa-calendar" title="Agenda"></i>
+            <h3>Agenda </h3>-->
           </div>
           <!-- END PAGE TITLE -->
           <!-- BEGIN PlACE PAGE CONTENT HERE -->
 
-          <!-- TILE #1 -->
-          <div class="col-md-3 col-sm-4 m-b-20">
-            <div class="tiles blue blend weather-widget ">
-              <div class="tiles-body">
-                <a href="agsala1.php" style="color: #edeeef;">
-                  <div class="heading">
-                    <div class="pull-left">Sala de v&iacute;deo </div>
-                    <div class="clearfix"></div>
-                  </div>
-                  <div class="big-icon">
-                    <i class="fa fa-video-camera fa-7x fa-fw"></i>
-                  </div>
-                  <div class="clearfix"></div>
-              </div>
-                </a>
-              <div class="tile-footer">
-                <div class="pull-left">
-                  <canvas id="" width="1" height="30"></canvas>
-                  <span class=" small-text-description">&nbsp;&nbsp;
-                  <!--<span class="label">PN</span>&nbsp;</span>-->
-                </div>
-                <div class="pull-right">
-                  <canvas id="" width="1" height="28"></canvas>
-                  <span style="cursor: pointer;" data-toggle="modal" data-target="#1Modal"><i class="fa fa-info fa-2x"></i> </span>
-                </div>
-                <div class="pull-right">
-                  <canvas id="" width="32" height="32"></canvas>
-                  <span class="text-white small-text-description"></span> 
-                </div>
-                <div class="clearfix"></div>
-              </div>
-            </div>
-          </div>
+          <div id='calendario' style="color:black;"></div>
 
-          <!-- MODAL #1 -->
-          <div class="modal fade" id="1Modal" tabindex="-1" role="dialog" aria-labelledby="1ModalLabel" aria-hidden="true">
+          <!--MODAL EDITAR-->
+          <div class="modal fade" id="ModalEdit" tabindex="-1" role="dialog" aria-labelledby="EditModalLabel" aria-hidden="true">
             <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>                                                
                   <br>
-                  <i class="fa fa-info fa-6x"></i>
-                  <h4 id="1ModalLabel" class="semi-bold">Informa&ccedil;&atilde;o.</h4>
+                  <i class="fa fa-edit fa-6x"></i>
+                  <h4 id="EditModalLabel" class="semi-bold">Editar Evento</h4>                  
                 </div>
-                <div class="modal-body">
-                  <div class="alert alert-info">
-                    <i class="pull-left material-icons">feedback</i>
-                    <div style="padding-left: 30px;">
-                      <p><span class="bold">Equipamentos dispon&iacute;veis:</span></p>
-                      <!--<br/>-->
-                      <p>- Televis&atilde;o 60 pol. (HDMI)</p>
-                      <p>- Equipamento para videoconfer&ecirc;ncias (Polycom)</p>
-                      <p>- Computador para chamadas via Skype.</p> 
-                      <br/>
-                      <p><span class="bold">Localiza&ccedil;&atilde;o:</span> Pr&eacute;dio novo - frente a Contabilidade</p>
-                      <span class="bold">Lugares:</span> 12                                                                   
-                    </div>    
-                  </div>             
+                <div class="modal-body"> 
+                  <div class="">
+                    <div class="row" style="line-height:2;">
+                      <form method="post" name="Evento" action="evento.I.php">                        
+
+                        <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                          <div class="controls">
+                            <input type="text" name="titulo" class="form-control input-lg" style="text-align: center" id="title" placeholder="Ex: Reuni&atilde;o interna" maxlength="40" required>                            
+                          </div>
+                        </div>                        
+
+                        <div class="form-group col-md-2 col-sm-2 col-xs-2">
+                          <div class="controls">
+                            <div class='form-group'>
+                              <input type="text" name="sala" style="text-align: center" value="4" class="form-control" readonly>                              
+                            </div>
+                          </div>
+                        </div>                         
+
+                        </br>
+                        </br>
+                        </br>                    
+
+                        <div class="form-group col-md-12 col-sm-12 col-xs-12 pull-right">
+                          <button type="submit" class="btn btn-info btn-block" value="submit"> Atualizar</button>                                        
+                        </div>
+
+                      </form>
+                    </div>
+                  </div>
+
                 </div>
               </div>
             </div>
           </div>
 
-          <!-- TILE #2 -->
-          <div class="col-md-3 col-sm-4 m-b-20">
-            <div class="tiles blue blend weather-widget ">
-              <div class="tiles-body">
-                <a href="agsala2.php" style="color: #edeeef;">
-                  <div class="heading">
-                    <div class="pull-left">Skype </div>  
-                    <div class="clearfix"></div>
-                  </div>
-                  <div class="big-icon">
-                    <i class="fa fa-skype fa-7x fa-fw"></i>
-                  </div>
-                  <div class="clearfix"></div>
-              </div>
-                </a>
-              <div class="tile-footer">
-                <div class="pull-left">
-                  <canvas id="" width="1" height="30"></canvas>
-                  <span class=" small-text-description">&nbsp;&nbsp;
-                  <!--<span class="label">CTB</span>&nbsp;</span>-->
-                </div>
-                <div class="pull-right">
-                  <canvas id="" width="1" height="28"></canvas>
-                  <span style="cursor: pointer;" data-toggle="modal" data-target="#2Modal"><i class="fa fa-info fa-2x"></i> </span>
-                </div>
-                <div class="pull-right">
-                  <canvas id="" width="32" height="32"></canvas>
-                  <span class="text-white small-text-description"></span> 
-                </div>
-                <div class="clearfix"></div>
-              </div>
-            </div>
-          </div>
-
-          <!-- MODAL #2 -->
-          <div class="modal fade" id="2Modal" tabindex="-1" role="dialog" aria-labelledby="2ModalLabel" aria-hidden="true">
+          <!--MODAL ADD-->
+          <div class="modal fade" id="ModalAdd" tabindex="-1" role="dialog" aria-labelledby="ADDModalLabel" aria-hidden="true">
             <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>                                                
                   <br>
-                  <i class="fa fa-info fa-6x"></i>
-                  <h4 id="2ModalLabel" class="semi-bold">Informa&ccedil;&atilde;o.</h4>
+                  <i class="fa fa-calendar fa-6x"></i>
+                  <h4 id="ADDModalLabel" class="semi-bold">Adicionar Evento</h4>                  
                 </div>
-                <div class="modal-body">
-                  <div class="alert alert-info">
-                    <i class="pull-left material-icons">feedback</i>
-                    <div style="padding-left: 30px;">
-                      <p><span class="bold">Equipamentos dispon&iacute;veis:</span></p>
-                      <!--<br/>-->
-                      <p>- Televis&atilde;o 42 pol. (HDMI-VGA)</p>                      
-                      <p>- Computador para chamadas via Skype.</p> 
-                      <br/>                                            
-                      <p><span class="bold">Localiza&ccedil;&atilde;o:</span> Pr&eacute;dio novo - em frente ao Marketing</p>
-                      <span class="bold">Lugares:</span> 12 
-                    </div>    
-                  </div>             
-                </div>
-              </div>
-            </div>
-          </div>
+                <div class="modal-body"> 
+                  <div class="">
+                    <div class="row" style="line-height:2;">
+                      <form method="post" name="Evento" action="evento.I.php">                        
 
-          <!-- TILE #3 -->
-          <div class="col-md-3 col-sm-4 m-b-20">
-            <div class="tiles blue blend weather-widget ">
-              <div class="tiles-body">
-                <a href="agsala3.php" style="color: #edeeef;">
-                  <div class="heading">
-                    <div class="pull-left">Sala 2 </div>  
-                    <div class="clearfix"></div>
-                  </div>
-                  <div class="big-icon">
-                    <i class="fa fa-wechat fa-7x fa-fw"></i>
-                  </div>
-                  <div class="clearfix"></div>
-              </div>
-                </a>
-              <div class="tile-footer">
-                <div class="pull-left">
-                  <canvas id="" width="1" height="30"></canvas>
-                  <span class=" small-text-description">&nbsp;&nbsp;
-                  <!--<span class="label">CTB</span>&nbsp;</span>-->
-                </div>
-                <div class="pull-right">
-                  <canvas id="" width="1" height="28"></canvas>
-                  <span style="cursor: pointer;" data-toggle="modal" data-target="#3Modal"><i class="fa fa-info fa-2x"></i> </span>
-                </div>
-                <div class="pull-right">
-                  <canvas id="" width="32" height="32"></canvas>
-                  <span class="text-white small-text-description"></span> 
-                </div>
-                <div class="clearfix"></div>
-              </div>
-            </div>
-          </div>
+                        <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                          <div class="controls">
+                            <input type="text" name="titulo" class="form-control input-lg" style="text-align: center" id="title" placeholder="Ex: Reuni&atilde;o interna" maxlength="40" required>                            
+                          </div>
+                        </div>                        
 
-          <!-- MODAL #3 -->
-          <div class="modal fade" id="3Modal" tabindex="-1" role="dialog" aria-labelledby="3ModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-                  <br>
-                  <i class="fa fa-info fa-6x"></i>
-                  <h4 id="3ModalLabel" class="semi-bold">Informa&ccedil;&atilde;o.</h4>
-                </div>
-                <div class="modal-body">
-                  <div class="alert alert-info">
-                    <i class="pull-left material-icons">feedback</i>
-                    <div style="padding-left: 30px;">                                            
-                      <p><span class="bold">Localiza&ccedil;&atilde;o:</span> Pr&eacute;dio novo - ao lado da sala de v&iacute;deo.</p>
-                      <span class="bold">Lugares:</span> 12 
-                    </div>    
-                  </div>             
-                </div>
-              </div>
-            </div>
-          </div>
+                        <div class="form-group col-md-3 col-sm-3 col-xs-3">
+                          <div class="controls">
+                            <div class='form-group'>
+                              <input type="text" name="inicio" class="form-control" id="start" required>                              
+                            </div>
+                          </div>
+                        </div>
 
-          <!-- TILE #4 -->
-          <div class="col-md-3 col-sm-4 m-b-20">
-            <div class="tiles blue blend weather-widget ">
-              <div class="tiles-body">
-                <a href="agsala4.php" style="color: #edeeef;">
-                  <div class="heading">
-                    <div class="pull-left">Audit&oacute;rio </div>  
-                    <div class="clearfix"></div>
-                  </div>
-                  <div class="big-icon">
-                    <i class="fa fa-tv fa-7x fa-fw"></i>
-                  </div>
-                  <div class="clearfix"></div>
-              </div>
-                </a>
-              <div class="tile-footer">
-                <div class="pull-left">
-                  <canvas id="" width="1" height="30"></canvas>
-                  <span class=" small-text-description">&nbsp;&nbsp;
-                  <!--<span class="label">CTB</span>&nbsp;</span>-->
-                </div>
-                <div class="pull-right">
-                  <canvas id="" width="1" height="28"></canvas>
-                  <span style="cursor: pointer;" data-toggle="modal" data-target="#4Modal"><i class="fa fa-info fa-2x"></i> </span>
-                </div>
-                <div class="pull-right">
-                  <canvas id="" width="32" height="32"></canvas>
-                  <span class="text-white small-text-description"></span> 
-                </div>
-                <div class="clearfix"></div>
-              </div>
-            </div>
-          </div>
+                        <div class="form-group col-md-3 col-sm-3 col-xs-3">
+                          <div class="controls">
+                            <div class='form-group'>
+                              <input type="text" name="hora_ini" class="form-control" id="hora_ini" required>                              
+                            </div>
+                          </div>
+                        </div>
 
-          <!-- MODAL #4 -->
-          <div class="modal fade" id="4Modal" tabindex="-1" role="dialog" aria-labelledby="4ModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-                  <br>
-                  <i class="fa fa-info fa-6x"></i>
-                  <h4 id="4ModalLabel" class="semi-bold">Informa&ccedil;&atilde;o.</h4>
-                </div>
-                <div class="modal-body">
-                  <div class="alert alert-info">
-                    <i class="pull-left material-icons">feedback</i>
-                    <div style="padding-left: 30px;">                                            
-                      <p><span class="bold">Localiza&ccedil;&atilde;o:</span> Pr&eacute;dio novo - 3&ordm; andar.</p>
-                      <span class="bold">Lugares:</span> 100 
-                    </div>    
-                  </div>             
-                </div>
-              </div>
-            </div>
-          </div>
+                        <div class="form-group col-md-3 col-sm-3 col-xs-3">                        
+                          <div class="controls">
+                            <div class='form-group'>
+                              <input type="text" name="fim" class="form-control" id="end" required>                              
+                            </div>
+                          </div>
+                        </div>
 
-          <!-- TILE #5 -->
-          <div class="col-md-3 col-sm-4 m-b-20">
-            <div class="tiles blue blend weather-widget ">
-              <div class="tiles-body">
-                <a href="agsala5.php" style="color: #edeeef;">
-                  <div class="heading">
-                    <div class="pull-left">Audit&oacute;rio - antigo</div>  
-                    <div class="clearfix"></div>
-                  </div>
-                  <div class="big-icon">
-                    <i class="fa fa-tv fa-7x fa-fw"></i>
-                  </div>
-                  <div class="clearfix"></div>
-              </div>
-                </a>
-              <div class="tile-footer">
-                <div class="pull-left">
-                  <canvas id="" width="1" height="30"></canvas>
-                  <span class=" small-text-description">&nbsp;&nbsp;
-                  <!--<span class="label">CTB</span>&nbsp;</span>-->
-                </div>
-                <div class="pull-right">
-                  <canvas id="" width="1" height="28"></canvas>
-                  <span style="cursor: pointer;" data-toggle="modal" data-target="#5Modal"><i class="fa fa-info fa-2x"></i> </span>
-                </div>
-                <div class="pull-right">
-                  <canvas id="" width="32" height="32"></canvas>
-                  <span class="text-white small-text-description"></span> 
-                </div>
-                <div class="clearfix"></div>
-              </div>
-            </div>
-          </div>
+                        <div class="form-group col-md-3 col-sm-3 col-xs-3">                        
+                          <div class="controls">
+                            <div class='form-group'>
+                              <input type="text" name="hora_fim" class="form-control" id="hora_fim" required>                              
+                            </div>
+                          </div>
+                        </div>
 
-          <!-- MODAL #5 -->
-          <div class="modal fade" id="5Modal" tabindex="-1" role="dialog" aria-labelledby="5ModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-                  <br>
-                  <i class="fa fa-info fa-6x"></i>
-                  <h4 id="5ModalLabel" class="semi-bold">Informa&ccedil;&atilde;o.</h4>
-                </div>
-                <div class="modal-body">
-                  <div class="alert alert-info">
-                    <i class="pull-left material-icons">feedback</i>
-                    <div style="padding-left: 30px;">                                            
-                      <p><span class="bold">Localiza&ccedil;&atilde;o:</span> Pr&eacute;dio antgo - ao lado da entrada de funcion&aacute;rios.</p>
-                      <span class="bold">Lugares:</span> 40 
-                    </div>    
-                  </div>             
+                        <div class="form-group col-md-2 col-sm-2 col-xs-2">
+                          <div class="controls">
+                            <div class='form-group'>
+                              <input type="text" name="sala" style="text-align: center" value="4" class="form-control" readonly>                              
+                            </div>
+                          </div>
+                        </div>                         
+
+                        </br>
+                        </br>
+                        </br>                    
+
+                        <div class="form-group col-md-12 col-sm-12 col-xs-12 pull-right">
+                          <button type="submit" class="btn btn-info btn-block" value="submit"> Adicionar</button>                                        
+                        </div>
+
+                      </form>
+                    </div>
+                  </div>
+
                 </div>
               </div>
             </div>
@@ -648,96 +491,57 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
       $('#calendario').fullCalendar({          
           weekends: false,
           weekNumbers: true,
-          height: 700,
-          customButtons: {
-          NovoEvento: {
-              text: 'Novo Evento',
-              click: function() {
-                  $("#ADDModal").modal();
-                  }
-              }
-          },
-          header: {
-            left:   'title',
-            center: 'listWeek',
-            right:  'NovoEvento month,agendaWeek,agendaDay prev,today,next'
-          },
-          events: [				
-				{
-					title: 'Evento Dias',
-					start: '2017-04-07',
-					end: '2017-04-10'
-				},
-				{
-					id: 999,
-					title: 'kkkkkkk',
-					start: '2017-04-09T16:30:00'
-				},
-				{
-					id: 999,
-					title: 'Teste 2',
-					start: '2017-04-16T16:00:00',        
-          eventBackgroundColor : 'red'
-				},
-				{
-					title: 'Teste1',
-					start: '2017-04-15T10:30:00',
-					end: '2017-04-15T12:30:00'
-				},
-        {
-					title: 'Teste44',
-					start: '2017-04-30T15:30:00',
-					end: '2017-04-30T18:30:00'
-				},
-				{
-					title: 'Coffee',
-					start: '2017-04-22T12:00:00',
-          color: 'green'
-				},
-				{
-					title: 'Reuniao',
-					start: '2017-04-03T07:00:00'
-				},
-				{
-					title: 'Teste link',
-					url: 'http://google.com/',
-					start: '2017-04-28'
-				}
-			]
-      })
-    });
-    </script>
-
-    <script type="text/javascript">
-    $(function () {
-        $('#eventoIni').datetimepicker();
-        $('#eventoFim').datetimepicker({
-            useCurrent: false //Important! See issue #1075
-        });
-        $("#eventoIni").on("dp.change", function (e) {
-            $('#eventoFim').data("DateTimePicker").minDate(e.date);
-        });
-        $("#eventoFim").on("dp.change", function (e) {
-            $('#datetimepicker6').data("DateTimePicker").maxDate(e.date);
-        });
-    });
-</script>
-
-    <!--<script>
-    $(document).ready(function() {
-      $('#calendario').fullCalendar({          
-          weekends: false,
-          weekNumbers: true,
-          height: 700,
+          height: 700,          
           header: {
             left:   'title',
             center: 'listWeek',
             right:  'month,agendaWeek,agendaDay prev,today,next'
+          },          			
+          editable: true,
+          eventLimit: true, 
+          selectable: true,
+          selectHelper: true,
+          select: function(start, end, hora_ini, hora_fim) {
+            
+            $('#ModalAdd #start').val(moment(start).format('DD/MM/YYYY'));
+            $('#ModalAdd #end').val(moment(end).format('DD/MM/YYYY'));
+            $('#ModalAdd #hora_ini').val(moment(start).format('HH:mm:ss'));
+            $('#ModalAdd #hora_fim').val(moment(end).format('HH:mm:ss'));            
+            $('#ModalAdd').modal('show');
           },
-          events: "http://localhost:8080/json-feed-eventos.php"          
+          eventRender: function(event, element) {
+            element.bind('dblclick', function() {
+              $('#ModalEdit #id').val(event.id);
+              $('#ModalEdit #title').val(event.title);
+              $('#ModalEdit #color').val(event.color);
+              $('#ModalEdit').modal('show');
+            });
+          },
+          eventDrop: function(event, delta, revertFunc) { 
+
+            edit(event);
+
+          },
+          eventResize: function(event,dayDelta,minuteDelta,revertFunc) { 
+
+            edit(event);
+
+          },
+          events:[
+							<?php foreach ($result2 as $key => $value) { ?>						
+							{
+								id: '<?php echo $result2[$key]['ID']; ?>',
+								title: '<?php echo $result2[$key]['TITULO'].'('.$result2[$key]['NOME_USUARIO'].')'; ?>',
+								start: '<?php echo date_format(date_create_from_format('d/m/y', $result2[$key]['INICIO']), 'Y-m-d').'T'.$result2[$key]['HORA_INI']; ?>',
+								end: '<?php echo date_format(date_create_from_format('d/m/y', $result2[$key]['FIM']), 'Y-m-d').'T'.$result2[$key]['HORA_FIM']; ?>',
+								color: '<?php echo $result2[$key]['COR']; ?>'
+							},
+		                    <?php } ?>			
+						]
       })
     });
-    </script>-->
+    </script>
+    
     <!-- END CORE TEMPLATE JS -->
   </body>
 </html>

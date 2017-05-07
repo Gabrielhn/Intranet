@@ -1172,14 +1172,14 @@ $result29=$stmt29->fetchAll(PDO::FETCH_ASSOC);
             <div class="span12">
               <div class="grid simple ">
                 <div class="grid-title">
-                  <?php echo '<h4><span class="bold">Modelagem &nbsp;</span><span class="'.$result18[0]['LABEL'].'">'.$result18[0]['SETOR']; ?> </span></h4>                                                                                                                                     
+                  <?php echo '<h4><span class="bold">Transportes &nbsp;</span><span class="'.$result29[0]['LABEL'].'">'.$result29[0]['SETOR']; ?> </span></h4>                                                                                                                                   
                   <div class="tools">
                     <a href="javascript:;" class="collapse"></a>                     
                     <a href="javascript:;" class="reload"></a>
                   </div>
                 </div>
                 <div class="grid-body ">
-                  <table class="table table-hover table-bordered" id="MOD">
+                  <table class="table table-hover table-bordered" id="TRA">
                     <thead>
                       <tr>
                         <th>Nome</th>
@@ -1188,24 +1188,24 @@ $result29=$stmt29->fetchAll(PDO::FETCH_ASSOC);
                     </thead>
                     <tbody>
                       <?php
-                        foreach ($result18 as $key18 => $value) {
-                          if ($result18[$key18]['GESTOR'] == 'S') {
+                        foreach ($result29 as $key29 => $value) {
+                          if ($result29[$key29]['GESTOR'] == 'S') {
                             echo
-                            '<tr class="clickable" data-toggle="collapse" id="row'.$result18[$key18]['ID'].'" data-target=".row'.$result18[$key18]['ID'].'">
-                              <td>'.$result18[$key18]['NOME'].'<i class="material-icons pull-right" style="font-size: 18px;">stars</i></td>
-                              <td class="center">'.$result5[$key18]['RAMAL'].'</td>
+                            '<tr class="clickable" data-toggle="collapse" id="row'.$result29[$key29]['ID'].'" data-target=".row'.$result29[$key29]['ID'].'">
+                              <td>'.$result29[$key29]['NOME'].'<i class="material-icons pull-right" style="font-size: 18px;">stars</i></td>
+                              <td class="center">'.$result29[$key29]['RAMAL'].'</td>
                             </tr>
-                            <tr class="collapse row'.$result18[$key18]['ID'].'">                              
-                              <td colspan="2"><i class="fa fa-envelope"></i> &nbsp;'.$result18[$key18]['EMAIL'].'</td>                                
+                            <tr class="collapse row'.$result29[$key29]['ID'].'">                              
+                              <td colspan="2"><i class="fa fa-envelope"></i> &nbsp;'.$result29[$key29]['EMAIL'].'</td>                                
                             </tr>';
                           } else {
                             echo
-                            '<tr class="clickable" data-toggle="collapse" id="row'.$result18[$key18]['ID'].'" data-target=".row'.$result18[$key18]['ID'].'">
-                              <td>'.$result18[$key18]['NOME'].'</td>
-                              <td class="center">'.$result18[$key18]['RAMAL'].'</td>
+                            '<tr class="clickable" data-toggle="collapse" id="row'.$result29[$key29]['ID'].'" data-target=".row'.$result29[$key29]['ID'].'">
+                              <td>'.$result29[$key29]['NOME'].'</td>
+                              <td class="center">'.$result29[$key29]['RAMAL'].'</td>
                             </tr>
-                            <tr class="collapse row'.$result18[$key18]['ID'].'">                              
-                              <td colspan="2"><i class="fa fa-envelope"></i> &nbsp;'.$result18[$key18]['EMAIL'].'</td>                                
+                            <tr class="collapse row'.$result29[$key29]['ID'].'">                              
+                              <td colspan="2"><i class="fa fa-envelope"></i> &nbsp;'.$result29[$key29]['EMAIL'].'</td>                                
                             </tr>';
                           }                          
                         }
@@ -1708,67 +1708,19 @@ $result29=$stmt29->fetchAll(PDO::FETCH_ASSOC);
             </div>
           </div>                    
 
-          <div class="col-md-4 col-sm-6 m-b-10">
-            <div class="span12">
-              <div class="grid simple ">
-                <div class="grid-title">
-                  <?php echo '<h4><span class="bold">Serigrafia &nbsp;</span><span class="'.$result26[0]['LABEL'].'">'.$result26[0]['SETOR']; ?> </span></h4>                                                                                                                                   
-                  <div class="tools">
-                    <a href="javascript:;" class="collapse"></a>                     
-                    <a href="javascript:;" class="reload"></a>
-                  </div>
-                </div>
-                <div class="grid-body ">
-                  <table class="table table-hover table-bordered" id="EST">
-                    <thead>
-                      <tr>
-                        <th>Nome</th>
-                        <th>Ramal</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <?php
-                        foreach ($result26 as $key26 => $value) {
-                          if ($result26[$key26]['GESTOR'] == 'S') {
-                            echo
-                            '<tr class="clickable" data-toggle="collapse" id="row'.$result26[$key26]['ID'].'" data-target=".row'.$result26[$key26]['ID'].'">
-                              <td>'.$result26[$key26]['NOME'].'<i class="material-icons pull-right" style="font-size: 18px;">stars</i></td>
-                              <td class="center">'.$result26[$key26]['RAMAL'].'</td>
-                            </tr>
-                            <tr class="collapse row'.$result26[$key26]['ID'].'">                              
-                              <td colspan="2"><i class="fa fa-envelope"></i> &nbsp;'.$result26[$key26]['EMAIL'].'</td>                                
-                            </tr>';
-                          } else {
-                            echo
-                            '<tr class="clickable" data-toggle="collapse" id="row'.$result26[$key26]['ID'].'" data-target=".row'.$result26[$key26]['ID'].'">
-                              <td>'.$result26[$key26]['NOME'].'</td>
-                              <td class="center">'.$result26[$key26]['RAMAL'].'</td>
-                            </tr>
-                            <tr class="collapse row'.$result26[$key26]['ID'].'">                              
-                              <td colspan="2"><i class="fa fa-envelope"></i> &nbsp;'.$result26[$key26]['EMAIL'].'</td>                                
-                            </tr>';
-                          }                          
-                        }
-                      ?>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-          </div>
 
           <div class="col-md-4 col-sm-6 m-b-10">
             <div class="span12">
               <div class="grid simple ">
                 <div class="grid-title">
-                  <?php echo '<h4><span class="bold">Transportes &nbsp;</span><span class="'.$result29[0]['LABEL'].'">'.$result29[0]['SETOR']; ?> </span></h4>                                                                                                                                   
+                  <?php echo '<h4><span class="bold">Modelagem &nbsp;</span><span class="'.$result18[0]['LABEL'].'">'.$result18[0]['SETOR']; ?> </span></h4>                                                                                                                                     
                   <div class="tools">
                     <a href="javascript:;" class="collapse"></a>                     
                     <a href="javascript:;" class="reload"></a>
                   </div>
                 </div>
                 <div class="grid-body ">
-                  <table class="table table-hover table-bordered" id="EST">
+                  <table class="table table-hover table-bordered" id="MOD">
                     <thead>
                       <tr>
                         <th>Nome</th>
@@ -1777,24 +1729,24 @@ $result29=$stmt29->fetchAll(PDO::FETCH_ASSOC);
                     </thead>
                     <tbody>
                       <?php
-                        foreach ($result29 as $key29 => $value) {
-                          if ($result29[$key29]['GESTOR'] == 'S') {
+                        foreach ($result18 as $key18 => $value) {
+                          if ($result18[$key18]['GESTOR'] == 'S') {
                             echo
-                            '<tr class="clickable" data-toggle="collapse" id="row'.$result29[$key29]['ID'].'" data-target=".row'.$result29[$key29]['ID'].'">
-                              <td>'.$result29[$key29]['NOME'].'<i class="material-icons pull-right" style="font-size: 18px;">stars</i></td>
-                              <td class="center">'.$result29[$key29]['RAMAL'].'</td>
+                            '<tr class="clickable" data-toggle="collapse" id="row'.$result18[$key18]['ID'].'" data-target=".row'.$result18[$key18]['ID'].'">
+                              <td>'.$result18[$key18]['NOME'].'<i class="material-icons pull-right" style="font-size: 18px;">stars</i></td>
+                              <td class="center">'.$result18[$key18]['RAMAL'].'</td>
                             </tr>
-                            <tr class="collapse row'.$result29[$key29]['ID'].'">                              
-                              <td colspan="2"><i class="fa fa-envelope"></i> &nbsp;'.$result29[$key29]['EMAIL'].'</td>                                
+                            <tr class="collapse row'.$result18[$key18]['ID'].'">                              
+                              <td colspan="2"><i class="fa fa-envelope"></i> &nbsp;'.$result18[$key18]['EMAIL'].'</td>                                
                             </tr>';
                           } else {
                             echo
-                            '<tr class="clickable" data-toggle="collapse" id="row'.$result29[$key29]['ID'].'" data-target=".row'.$result29[$key29]['ID'].'">
-                              <td>'.$result29[$key29]['NOME'].'</td>
-                              <td class="center">'.$result29[$key29]['RAMAL'].'</td>
+                            '<tr class="clickable" data-toggle="collapse" id="row'.$result18[$key18]['ID'].'" data-target=".row'.$result18[$key18]['ID'].'">
+                              <td>'.$result18[$key18]['NOME'].'</td>
+                              <td class="center">'.$result18[$key18]['RAMAL'].'</td>
                             </tr>
-                            <tr class="collapse row'.$result29[$key29]['ID'].'">                              
-                              <td colspan="2"><i class="fa fa-envelope"></i> &nbsp;'.$result29[$key29]['EMAIL'].'</td>                                
+                            <tr class="collapse row'.$result18[$key18]['ID'].'">                              
+                              <td colspan="2"><i class="fa fa-envelope"></i> &nbsp;'.$result18[$key18]['EMAIL'].'</td>                                
                             </tr>';
                           }                          
                         }

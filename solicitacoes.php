@@ -321,9 +321,9 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
           
           <!-- TILE #1 -->
           <div class="col-md-3 col-sm-4 m-b-20">
-            <div class="tiles blue weather-widget ">
+            <div class="tiles gray weather-widget ">
               <div class="tiles-body">
-                <a href="viagens.php" style="color: #edeeef;">
+                <a href="#" style="color: #edeeef;">
                   <div class="heading">
                     <div class="pull-left">Viagens </div>
                     <div class="clearfix"></div>
@@ -556,9 +556,9 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
 
           <!-- TILE #5 -->
           <div class="col-md-3 col-sm-4 m-b-20">
-            <div class="tiles blue weather-widget ">
+            <div class="tiles gray weather-widget ">
               <div class="tiles-body">
-                <a href="dispensa.php" style="color: #edeeef;">
+                <a href="#" style="color: #edeeef;">
                   <div class="heading">
                     <div class="pull-left">Dispensa </div>
                     <div class="clearfix"></div>
@@ -611,9 +611,9 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
 
           <!-- TILE #6 -->
           <div class="col-md-3 col-sm-4 m-b-20">
-            <div class="tiles blue weather-widget ">
+            <div class="tiles gray weather-widget ">
               <div class="tiles-body">
-                <a href="banco.php" style="color: #edeeef;">
+                <a href="#" style="color: #edeeef;">
                   <div class="heading">
                     <div class="pull-left">Banco de horas </div>
                     <div class="clearfix"></div>
@@ -666,9 +666,9 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
 
           <!-- TILE #7 -->
           <div class="col-md-3 col-sm-4 m-b-20">
-            <div class="tiles blue weather-widget ">
+            <div class="tiles gray weather-widget">
               <div class="tiles-body">
-                <a href="extra.php" style="color: #edeeef;">
+                <a href="#" style="color: #edeeef;">
                   <div class="heading">
                     <div class="pull-left">Hora Extra </div>
                     <div class="clearfix"></div>
