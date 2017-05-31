@@ -439,7 +439,7 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
                       <p>- Computador para chamadas via Skype.</p> 
                       <br/>                                            
                       <p><span class="bold">Localiza&ccedil;&atilde;o:</span> Pr&eacute;dio novo - em frente ao Marketing</p>
-                      <span class="bold">Lugares:</span> 12 
+                      <span class="bold">Lugares:</span> 7 
                     </div>    
                   </div>             
                 </div>
@@ -496,7 +496,7 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
                     <i class="pull-left material-icons">feedback</i>
                     <div style="padding-left: 30px;">                                            
                       <p><span class="bold">Localiza&ccedil;&atilde;o:</span> Pr&eacute;dio novo - ao lado da sala de v&iacute;deo.</p>
-                      <span class="bold">Lugares:</span> 12 
+                      <span class="bold">Lugares:</span> 7 
                     </div>    
                   </div>             
                 </div>
@@ -610,7 +610,7 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
                     <i class="pull-left material-icons">feedback</i>
                     <div style="padding-left: 30px;">                                            
                       <p><span class="bold">Localiza&ccedil;&atilde;o:</span> Pr&eacute;dio antgo - ao lado da entrada de funcion&aacute;rios.</p>
-                      <span class="bold">Lugares:</span> 40 
+                      <span class="bold">Lugares:</span> 30 
                     </div>    
                   </div>             
                 </div>

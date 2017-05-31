@@ -29,6 +29,7 @@ WHERE
 $query2 = "SELECT * FROM VW_PERFIL ORDER BY 11 DESC, 16 ASC";
 $query3 = "SELECT * FROM IN_SETORES ORDER BY 1";
 $query4 = "SELECT * FROM IN_LOCAIS ORDER BY 2";
+$query5 = "SELECT COUNT(EMAIL) AS QUANTIDADE FROM IN_USUARIOS";
 
 //#1
 $stmt1 = $conn->prepare($query1);
@@ -50,6 +51,12 @@ $result3=$stmt3->fetchAll(PDO::FETCH_ASSOC);
 $stmt4 = $conn->prepare($query4);
 $stmt4->execute();
 $result4=$stmt4->fetchAll(PDO::FETCH_ASSOC);
+
+//#5
+$stmt5 = $conn->prepare($query5);
+$stmt5->execute();
+$result5=$stmt5->fetch(PDO::FETCH_ASSOC);
+
 
 ?>
 
@@ -351,7 +358,7 @@ $result4=$stmt4->fetchAll(PDO::FETCH_ASSOC);
                   </div>
                 </div>
                 <div class="grid-body no-border">
-                  <h3><i class="fa fa-male fa-1x"></i><span class="semi-bold">&nbsp; Usu&aacute;rios</span></h3>
+                  <h3><i class="fa fa-male fa-1x"></i><span class="semi-bold">&nbsp; Usu&aacute;rios</span> <span class="badge"><?php echo $result5['QUANTIDADE']; ?>  </span></h3>
                   <table class="table table-hover">
                     <thead>
                       <tr>                                              
