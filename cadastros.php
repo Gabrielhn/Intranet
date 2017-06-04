@@ -294,8 +294,7 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
           <i class="material-icons">alarm</i>
           <iframe src="http://free.timeanddate.com/clock/i5hp9yxv/n595/tlbr5/fn17/fc555/tc22262e/pa0/th1" frameborder="0" width="66" height="14"></iframe>
         </div>
-        <div class="pull-right">
-          <!-- IMPLEMENTAR LOCKSCREEN -->
+        <div class="pull-right">          
           <a href="bloquear.php"><i class="material-icons">lock_outline</i></a>
         </div>
       </div>
@@ -321,9 +320,9 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
 
           <!-- TILE #1 -->
           <div class="col-md-3 col-sm-4 m-b-10">
-            <div class="tiles dark-blue blend weather-widget ">
+            <div class="tiles gray blend weather-widget ">
               <div class="tiles-body">
-                <a href="clientes.php" style="color: #edeeef;">
+                <a href="#" style="color: #edeeef;">
                   <div class="heading">
                     <div class="pull-left">Clientes </div>
                     <div class="clearfix"></div>
@@ -379,9 +378,9 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
 
           <!-- TILE #2 -->
           <div class="col-md-3 col-sm-4 m-b-10">
-            <div class="tiles dark-blue blend weather-widget ">
+            <div class="tiles gray blend weather-widget ">
               <div class="tiles-body">
-                <a href="fornecedores.php" style="color: #edeeef;">
+                <a href="#" style="color: #edeeef;">
                   <div class="heading">
                     <div class="pull-left">Fornecedores </div>  
                     <div class="clearfix"></div>

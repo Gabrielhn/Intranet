@@ -4,6 +4,9 @@ session_start();
 setlocale(LC_ALL, 'pt_BR', 'pt_BR.utf-8', 'pt_BR.utf-8', 'portuguese');
 proteger();
 
+$sala="3";
+$nomesala="Sala 2";
+
 $host="10.0.0.2";
 $service="//10.0.0.2:1521/orcl";
 $id=$_SESSION['usuarioId'];
@@ -26,7 +29,7 @@ FROM
 WHERE 
     USR.IMG_PERFIL = IMG.ID AND USR.ID =:id";
 
-$query2 = "SELECT EV.ID, EV.TITULO, EV.INICIO, EV.HORA_INI, EV.FIM, EV.HORA_FIM, EV.COR, EV.USUARIO, USU.NOME || ' ' || USU.SOBRENOME AS NOME_USUARIO FROM IN_AGENDA EV, IN_USUARIOS USU WHERE EV.USUARIO = USU.ID AND SALA = 3";
+$query2 = "SELECT EV.ID, EV.TITULO, EV.INICIO, EV.HORA_INI, EV.FIM, EV.HORA_FIM, EV.COR, EV.USUARIO, USU.NOME || ' ' || USU.SOBRENOME AS NOME_USUARIO FROM IN_AGENDA EV, IN_USUARIOS USU WHERE EV.USUARIO = USU.ID AND SALA = :sala";
 
 //#1
 $stmt1 = $conn->prepare($query1);
@@ -37,6 +40,7 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
 
 //#2
 $stmt2 = $conn->prepare($query2);
+$stmt2->bindValue(':sala',$sala);
 $stmt2->execute();
 $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
 
@@ -324,7 +328,7 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
               <a href="agenda.php" class="">Agenda</a> 
             </li>            
             <li>
-              <a href="#" class="active">Sala 2</a> 
+              <a href="#" class="active"><?php echo $nomesala ?></a> 
             </li>
           </ul>
           <!-- BEGIN PAGE TITLE -->
@@ -345,33 +349,36 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
                   <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>                                                
                   <br>
                   <i class="fa fa-edit fa-6x"></i>
-                  <h4 id="EditModalLabel" class="semi-bold">Editar Evento</h4>                  
+                  <h4 id="EditModalLabel" class="semi-bold">Visualizar/Excluir Evento</h4>                  
                 </div>
                 <div class="modal-body"> 
                   <div class="">
                     <div class="row" style="line-height:2;">
-                      <form method="post" name="Evento" action="evento.I.php">                        
+                      <form method="post" name="Evento" action="evento.U.php">                        
 
                         <div class="form-group col-md-12 col-sm-12 col-xs-12">
                           <div class="controls">
-                            <input type="text" name="titulo" class="form-control input-lg" style="text-align: center" id="title" placeholder="Ex: Reuni&atilde;o interna" maxlength="40" required>                            
+                            <input type="text" name="titulo" class="form-control input-lg" style="text-align: center" id="title" maxlength="40" readonly>                            
                           </div>
-                        </div>                        
+                        </div>                                                                                                                                                                            
 
-                        <div class="form-group col-md-2 col-sm-2 col-xs-2">
-                          <div class="controls">
-                            <div class='form-group'>
-                              <input type="text" name="sala" style="text-align: center" value="3" class="form-control" readonly>                              
-                            </div>
+                        <div class="form-group col-md-12 col-sm-12 col-xs-12" style="text-align:center;">
+                          <div class="checkbox check-warning">
+                            <input id="checkbox1" type="checkbox" onchange="isChecked(this, 'btenv')" name="delete">
+                            <label for="checkbox1">Desejo excluir este evento.</label>
                           </div>
-                        </div>                         
+                        </div>
+
+                        <input type="hidden" name="sala" value="<?php echo $sala?>" class="form-control">
+
+                        <input type="hidden" name="id" class="form-control" id="id">                                                 
 
                         </br>
                         </br>
                         </br>                    
 
                         <div class="form-group col-md-12 col-sm-12 col-xs-12 pull-right">
-                          <button type="submit" class="btn btn-info btn-block" value="submit"> Atualizar</button>                                        
+                          <button type="submit" id="btenv" class="btn btn-danger btn-block" value="submit" disabled="disabled"> Excluir</button>                                        
                         </div>
 
                       </form>
@@ -436,13 +443,7 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
                           </div>
                         </div>
 
-                        <div class="form-group col-md-2 col-sm-2 col-xs-2">
-                          <div class="controls">
-                            <div class='form-group'>
-                              <input type="text" name="sala" style="text-align: center" value="3" class="form-control" readonly>                              
-                            </div>
-                          </div>
-                        </div>                         
+                        <input type="hidden" name="sala" value="<?php echo $sala?>" class="form-control">                                                 
 
                         </br>
                         </br>
@@ -540,6 +541,13 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
 						]
       })
     });
+    </script>
+
+    <script>
+      function isChecked(checkbox, btenv) 
+        {
+          document.getElementById(btenv).disabled = !checkbox.checked;
+        }
     </script>
     
     <!-- END CORE TEMPLATE JS -->

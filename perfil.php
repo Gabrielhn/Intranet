@@ -334,12 +334,12 @@ $anos = (int)floor( $diferenca / (60 * 60 * 24)/ 365);
               <a href="uteis.php"><i class="fa fa-external-link" title="&uacute;teis"></i> <span class="title">Links &uacute;teis</span></a>
             </li>
             <?php
-              if ($result1['GESTOR'] == 'S' || $result1['TIPO_USUARIO'] == 'ADM') {
-                echo 
-                '<li class="">
-                  <a href="indicadores.php"><i class="fa fa-bar-chart" title="Indicadores"></i> <span class="title">Indicadores</span></a>               
-                </li>';
-              }                
+              // if ($result1['GESTOR'] == 'S' || $result1['TIPO_USUARIO'] == 'ADM') {
+              //   echo 
+              //   '<li class="">
+              //     <a href="indicadores.php"><i class="fa fa-bar-chart" title="Indicadores"></i> <span class="title">Indicadores</span></a>               
+              //   </li>';
+              // }                
             ?>
           </ul>
           <div class="clearfix"></div>
