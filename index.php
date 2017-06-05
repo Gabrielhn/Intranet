@@ -41,6 +41,10 @@ $query6 = "SELECT * FROM VW_POST_3 WHERE POSICAO = 1";
 $query7 = "SELECT * FROM VW_POST_3 WHERE POSICAO = 2";
 $query8 = "SELECT * FROM VW_POST_3 WHERE POSICAO = 3";
 
+$query9="SELECT * FROM VW_POST_4 WHERE POSICAO = 1";
+$query10="SELECT * FROM VW_POST_4 WHERE POSICAO = 2";
+$query11="SELECT * FROM VW_POST_4 WHERE POSICAO = 3";
+
 //#1
 $stmt1 = $conn->prepare($query1);
 $stmt1->bindValue(':id',$id);
@@ -81,6 +85,21 @@ $result7=$stmt7->fetch(PDO::FETCH_ASSOC);
 $stmt8 = $conn->prepare($query8);
 $stmt8->execute();
 $result8=$stmt8->fetch(PDO::FETCH_ASSOC);
+
+//#9
+$stmt9 = $conn->prepare($query9);
+$stmt9->execute();
+$result9=$stmt9->fetch(PDO::FETCH_ASSOC);
+
+//#10
+$stmt10 = $conn->prepare($query10);
+$stmt10->execute();
+$result10=$stmt10->fetch(PDO::FETCH_ASSOC);
+
+//#11
+$stmt11 = $conn->prepare($query11);
+$stmt11->execute();
+$result11=$stmt11->fetch(PDO::FETCH_ASSOC);
 
 ?>
 
@@ -539,9 +558,92 @@ $result8=$stmt8->fetch(PDO::FETCH_ASSOC);
                    </div>                                   
                  </div>
                </div>
+             </div>
+
+            <!--#3 MURAL 3-->            
+             
+
+             <div class="col-md-6 col-sm-6">
+               <div class="grid simple ">
+                 <div class="grid-title no-border">
+                   <div class="tools">                                      
+                   </div>
+                 </div>
+                 <div class="grid-body no-border">
+                  <div class="col-md-12">
+                    <h4><i class="fa fa-newspaper-o fa-1x"></i><span class="semi-bold">&nbsp; <?php echo $result9['TIT_MURAL']?></span><div class="pull-right"><span class="label label-ti">TI</span></div></h4>
+                    <br/>                  
+                   <?php                     
+                       echo '
+                       <a href="data/post.php?id='.$result9['ID'].'">
+                        <div class="notification-messages info">
+                          <div class="user-profile">
+                            <img alt=""  width="35" height="35" src="data:image/jpeg;base64,'.base64_encode(stream_get_contents($result9['IMG_AUTOR'])).'">
+                          </div>
+                          <div class="message-wrapper">
+                            <div class="heading" style="overflow:visible;">
+                              '.$result9['ASSUNTO'].' <div class="date">por '.$result9['AUTOR'].'</div>
+                            </div>
+                            <div class="description">
+                              Clique para visualizar.
+                            </div>
+                            <div class="date pull-right">
+                              '.date_format(date_create_from_format('d/m/y', $result9['INCLUSAO']), 'd/m/Y').'
+                            </div>
+                          </div>
+                          <div class="clearfix"></div>
+                        </div>
+                      </a>';
+
+                      echo '
+                       <a href="data/post.php?id='.$result10['ID'].'">
+                        <div class="notification-messages info">
+                          <div class="user-profile">
+                            <img alt=""  width="35" height="35" src="data:image/jpeg;base64,'.base64_encode(stream_get_contents($result10['IMG_AUTOR'])).'">
+                          </div>
+                          <div class="message-wrapper">
+                            <div class="heading" style="overflow:visible;">
+                              '.$result10['ASSUNTO'].' <div class="date">por '.$result10['AUTOR'].'</div>
+                            </div>
+                            <div class="description">
+                              Clique para visualizar.
+                            </div>
+                            <div class="date pull-right">
+                              '.date_format(date_create_from_format('d/m/y', $result10['INCLUSAO']), 'd/m/Y').'
+                            </div>
+                          </div>
+                          <div class="clearfix"></div>
+                        </div>
+                      </a>'; 
+
+                      echo '
+                       <a href="data/post.php?id='.$result11['ID'].'">
+                        <div class="notification-messages info">
+                          <div class="user-profile">
+                            <img alt=""  width="35" height="35" src="data:image/jpeg;base64,'.base64_encode(stream_get_contents($result11['IMG_AUTOR'])).'">
+                          </div>
+                          <div class="message-wrapper">
+                            <div class="heading" style="overflow:visible;">
+                              '.$result11['ASSUNTO'].' <div class="date">por '.$result11['AUTOR'].'</div>
+                            </div>
+                            <div class="description">
+                              Clique para visualizar.
+                            </div>
+                            <div class="date pull-right">
+                              '.date_format(date_create_from_format('d/m/y', $result11['INCLUSAO']), 'd/m/Y').'
+                            </div>
+                          </div>
+                          <div class="clearfix"></div>
+                        </div>
+                      </a>'; 
+
+                   ?>
+                   </div>                                   
+                 </div>
+               </div>
              </div>          
 
-          <!--#3 VAGAS-->
+          <!--#4 VAGAS-->
             <div class="col-md-3 col-sm-6">
               <div class="grid simple ">
                 <div class="grid-title no-border">
@@ -619,7 +721,7 @@ $result8=$stmt8->fetch(PDO::FETCH_ASSOC);
               </div>
             </div>
 
-            <!--#4 ANIVERSARIANTES-->
+            <!--#5 ANIVERSARIANTES-->
             <div class="col-md-3 col-sm-6">
               <div class="grid simple ">
                 <div class="grid-title no-border">
