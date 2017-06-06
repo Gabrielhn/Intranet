@@ -27,8 +27,6 @@ WHERE
 
 $query2="SELECT * FROM IN_PROJETOS WHERE STATUS = :status ORDER BY ORDEM";
 
-$query3="SELECT COUNT(ID) AS QUANTIDADE FROM IN_PROJETOS WHERE STATUS = :status";
-
 //#1
 $stmt1 = $conn->prepare($query1);
 $stmt1->bindValue(':id',$id);
@@ -41,23 +39,11 @@ $stmt2->bindValue(':status',"1");
 $stmt2->execute();
 $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
 
-//#3 count status 1
-$stmt3 = $conn->prepare($query3);
-$stmt3->bindValue(':status',"1");
-$stmt3->execute();
-$result3=$stmt3->fetch(PDO::FETCH_ASSOC);
-
 //#4 Status 2
 $stmt4 = $conn->prepare($query2);
 $stmt4->bindValue(':status',"2");
 $stmt4->execute();
 $result4=$stmt4->fetchAll(PDO::FETCH_ASSOC);
-
-//#5 count status 2
-$stmt5 = $conn->prepare($query3);
-$stmt5->bindValue(':status',"2");
-$stmt5->execute();
-$result5=$stmt5->fetch(PDO::FETCH_ASSOC);
 
 //#6 Status 3
 $stmt6 = $conn->prepare($query2);
@@ -65,23 +51,11 @@ $stmt6->bindValue(':status',"3");
 $stmt6->execute();
 $result6=$stmt6->fetchAll(PDO::FETCH_ASSOC);
 
-//#5 count status 3
-$stmt7 = $conn->prepare($query3);
-$stmt7->bindValue(':status',"3");
-$stmt7->execute();
-$result7=$stmt7->fetch(PDO::FETCH_ASSOC);
-
 //#8 Status 4
 $stmt8 = $conn->prepare($query2);
 $stmt8->bindValue(':status',"4");
 $stmt8->execute();
 $result8=$stmt8->fetchAll(PDO::FETCH_ASSOC);
-
-//#5 count status 4
-$stmt9 = $conn->prepare($query3);
-$stmt9->bindValue(':status',"4");
-$stmt9->execute();
-$result9=$stmt9->fetch(PDO::FETCH_ASSOC);
 
 
 ?>
@@ -379,17 +353,177 @@ $result9=$stmt9->fetch(PDO::FETCH_ASSOC);
                   </div>
                 </div>                
                 <div class="grid-body no-border">
-                  <h4><i class="fa fa-lightbulb-o fa-1x"></i><span class="semi-bold">&nbsp; N&atilde;o iniciado </span> <span class="badge pull-right"><?php echo $result3['QUANTIDADE']; ?></span> </h4>
+                  <h4><i class="fa fa-lightbulb-o fa-1x"></i><span class="semi-bold">&nbsp; N&atilde;o iniciado </span> <span class="badge pull-right"><?php echo count($result2); ?></span> </h4>
 
                   <?php
-                    foreach ($result2 as $key => $value) {
+                    foreach ($result2 as $key2 => $value) {
                       echo 
-                      '<div class="tiles grey weather-widget round  m-b-10">
-                         <h5 class="m-l-10 m-r-10">'.$result2[$key]['DESCRICAO'].'</h5>
-                       </div>';
-                    }
-                  ?>                                   
+                      '<span style="cursor: pointer;" data-toggle="modal" data-target="#'.$key2.'ModalEdit">
+                        <div class="tiles grey weather-widget round  m-b-10">
+                         <h5 class="m-l-10 m-r-10">'.$result2[$key2]['NOME'].'</h5>
+                        </div>
+                       </span>
+                       
+                       <div class="modal fade" id="'.$key2.'ModalEdit" tabindex="-1" role="dialog" aria-labelledby="'.$key2.'ModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>                                                
+                              <br>
+                              <h4 id="'.$key2.'ModalLabel" class="semi-bold">'.$result2[$key2]['NOME'].'</h4>                            
+                              <span class="label"><i class="fa fa-lightbulb-o"> &nbsp; </i> N&atilde;o iniciado</span> &nbsp;                                    
+                            </div>
+                            <div class="modal-body">
 
+                              <div class="">
+                                <div class="row" style="line-height:2;">
+
+                                  <div class="col-md-12">
+                                    <h5 class="bold">Descri&ccedil;&atilde;o &nbsp; <i class="fa fa-edit"></i></h5>                                                                                                   
+                                    '.$result2[$key2]['DESCRICAO'].'
+                                  </div>
+
+                                    <div class="col-md-12">&nbsp;</div>
+
+                                  <div class="col-md-12">
+                                    <h5 class="bold">Tarefas &nbsp; <i class="fa fa-plus-square-o"></i></h5>
+                                    <div class="checkbox check-warning">
+                                      <input id="checkbox1" type="checkbox">
+                                      <label for="checkbox1">An&aacute;lise de requisitos.</label>
+                                      <br/>
+                                      <input id="checkbox2" type="checkbox">
+                                      <label for="checkbox2">Desenvolvimento das rotinas.</label>
+                                      <br/>
+                                      <input id="checkbox3" type="checkbox">
+                                      <label for="checkbox3">Homologacao e entrega aos usuarios.</label>
+                                    </div>
+                                  </div>
+
+                                    <div class="col-md-12">&nbsp;</div>                                  
+
+                                  <div class="col-md-6">
+                                    <h5 class="bold">Tags &nbsp; <i class="fa fa-plus-square-o"></i></h5>
+                                    <span class="label label-danger">Alto</span> &nbsp;
+                                    <span class="label label-info">Gmax</span> &nbsp;
+                                  </div>
+                                  
+                                  <div class="col-md-6">
+                                    <h5 class="bold">Membros &nbsp; <i class="fa fa-plus-square-o"></i></h5>
+                                    <span class="label label-ti">TI</span> &nbsp; 
+                                    <span class="label label-pcp">PCP</span> &nbsp;                                                                                                           
+                                    <span class="label label-rh">RH</span> &nbsp;                                    
+                                  </div>
+
+                                   <div class="col-md-12" style="border-bottom: 1px solid #b6bbc1;">&nbsp;</div> 
+
+                                  <div class="col-md-12">
+                                    <h5 class="bold">A&ccedil;&otilde;es</h5>                                    
+                                    <button class="btn btn-small">Status</button>
+                                    <button class="btn btn-small">Ordem</button>                                    
+                                    <button class="btn btn-small">Excluir</button>                                    
+                                  </div>
+                                                                    
+                                </div>
+                              </div>                              
+
+                            </div>
+                          </div>
+                        </div>
+                      </div>';
+                    }
+                  ?>                                                       
+                </div>
+              </div>
+            </div>
+
+            
+
+            <div class="col-md-3 col-sm-3">
+              <div class="grid simple ">
+                <div class="grid-title no-border">
+                  <div class="tools">                                      
+                  </div>
+                </div>                
+                <div class="grid-body no-border">
+                  <h4><i class="fa fa-bolt fa-1x"></i><span class="semi-bold">&nbsp; Em andamento </span> <span class="badge badge-danger pull-right"><?php echo count($result4); ?></span> </h4>
+
+                  <?php
+                    foreach ($result4 as $key4 => $value) {
+                      echo 
+                      '<span style="cursor: pointer;" data-toggle="modal" data-target="#'.$key4.'ModalEdit2">
+                        <div class="tiles grey weather-widget round  m-b-10">
+                         <h5 class="m-l-10 m-r-10">'.$result4[$key4]['NOME'].'</h5>
+                        </div>
+                       </span>
+                       
+                       <div class="modal fade" id="'.$key4.'ModalEdit2" tabindex="-1" role="dialog" aria-labelledby="'.$key4.'ModalLabel2" aria-hidden="true">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>                                                
+                              <br>
+                              <h4 id="'.$key4.'ModalLabel2" class="semi-bold">'.$result4[$key4]['NOME'].'</h4>                            
+                              <span class="label label-danger"><i class="fa fa-bolt"> &nbsp; </i> Em andamento</span> &nbsp;                                    
+                            </div>
+                            <div class="modal-body">
+
+                              <div class="">
+                                <div class="row" style="line-height:2;">
+
+                                  <div class="col-md-12">
+                                    <h5 class="bold">Descri&ccedil;&atilde;o &nbsp; <i class="fa fa-edit"></i></h5>                                                                                                   
+                                    '.$result4[$key4]['DESCRICAO'].'
+                                  </div>
+
+                                    <div class="col-md-12">&nbsp;</div>
+
+                                  <div class="col-md-12">
+                                    <h5 class="bold">Tarefas &nbsp; <i class="fa fa-plus-square-o"></i></h5>
+                                    <div class="checkbox check-warning">
+                                      <input id="checkbox1" type="checkbox">
+                                      <label for="checkbox1">An&aacute;lise de requisitos.</label>
+                                      <br/>
+                                      <input id="checkbox2" type="checkbox">
+                                      <label for="checkbox2">Desenvolvimento das rotinas.</label>
+                                      <br/>
+                                      <input id="checkbox3" type="checkbox">
+                                      <label for="checkbox3">Homologacao e entrega aos usuarios.</label>
+                                    </div>
+                                  </div>
+
+                                    <div class="col-md-12">&nbsp;</div>                                  
+
+                                  <div class="col-md-6">
+                                    <h5 class="bold">Tags &nbsp; <i class="fa fa-plus-square-o"></i></h5>
+                                    <span class="label label-danger">Alto</span> &nbsp;
+                                    <span class="label label-info">Gmax</span> &nbsp;
+                                  </div>
+                                  
+                                  <div class="col-md-6">
+                                    <h5 class="bold">Membros &nbsp; <i class="fa fa-plus-square-o"></i></h5>
+                                    <span class="label label-ti">TI</span> &nbsp; 
+                                    <span class="label label-pcp">PCP</span> &nbsp;                                                                                                           
+                                    <span class="label label-rh">RH</span> &nbsp;                                    
+                                  </div>
+
+                                   <div class="col-md-12" style="border-bottom: 1px solid #b6bbc1;">&nbsp;</div> 
+
+                                  <div class="col-md-12">
+                                    <h5 class="bold">A&ccedil;&otilde;es</h5>                                    
+                                    <button class="btn btn-small">Status</button>
+                                    <button class="btn btn-small">Ordem</button>                                    
+                                    <button class="btn btn-small">Excluir</button>                                    
+                                  </div>
+                                                                    
+                                </div>
+                              </div>                              
+
+                            </div>
+                          </div>
+                        </div>
+                      </div>';
+                    }
+                  ?>                                                       
                 </div>
               </div>
             </div>
@@ -401,35 +535,13 @@ $result9=$stmt9->fetch(PDO::FETCH_ASSOC);
                   </div>
                 </div>
                 <div class="grid-body no-border">
-                  <h4><i class="fa fa-bolt fa-1x"></i><span class="semi-bold">&nbsp; Em andamento</span> <span class="badge badge-danger pull-right"><?php echo $result5['QUANTIDADE']; ?></span> </h4>
-
-                  <?php
-                    foreach ($result4 as $key => $value) {
-                      echo 
-                      '<div class="tiles grey weather-widget round  m-b-10">
-                         <h5 class="m-l-10 m-r-10">'.$result4[$key]['DESCRICAO'].'</h5>
-                       </div>';
-                    }
-                  ?>                  
-
-                </div>
-              </div>
-            </div>
-
-            <div class="col-md-3 col-sm-3">
-              <div class="grid simple ">
-                <div class="grid-title no-border">
-                  <div class="tools">                                      
-                  </div>
-                </div>
-                <div class="grid-body no-border">
-                  <h4><i class="fa fa-square-o fa-1x"></i><span class="semi-bold">&nbsp; Em valida&ccedil;&atilde;o</span> <span class="badge badge-info pull-right"><?php echo $result7['QUANTIDADE']; ?></span> </h4>
+                  <h4><i class="fa fa-square-o fa-1x"></i><span class="semi-bold">&nbsp; Em valida&ccedil;&atilde;o</span> <span class="badge badge-info pull-right"><?php echo count($result6); ?></span> </h4>
 
                   <?php
                     foreach ($result6 as $key => $value) {
                       echo 
                       '<div class="tiles grey weather-widget round  m-b-10">
-                         <h5 class="m-l-10 m-r-10">'.$result6[$key]['DESCRICAO'].'</h5>
+                         <h5 class="m-l-10 m-r-10">'.$result6[$key]['NOME'].'</h5>
                        </div>';
                     }
                   ?>
@@ -445,20 +557,20 @@ $result9=$stmt9->fetch(PDO::FETCH_ASSOC);
                   </div>
                 </div>
                 <div class="grid-body no-border">
-                  <h4><i class="fa fa-check-square-o fa-1x"></i><span class="semi-bold">&nbsp; Conclu&iacute;do</span> <span class="badge badge-success pull-right"><?php echo $result9['QUANTIDADE']; ?></span> </h4>
+                  <h4><i class="fa fa-check-square-o fa-1x"></i><span class="semi-bold">&nbsp; Conclu&iacute;do</span> <span class="badge badge-success pull-right"><?php echo count($result8); ?></span> </h4>
 
                   <?php
                     foreach ($result8 as $key => $value) {
                       echo 
                       '<div class="tiles grey weather-widget round  m-b-10">
-                         <h5 class="m-l-10 m-r-10">'.$result8[$key]['DESCRICAO'].'</h5>
+                         <h5 class="m-l-10 m-r-10">'.$result8[$key]['NOME'].'</h5>
                        </div>';
                     }
                   ?>
 
                 </div>
               </div>
-            </div>
+            </div>         
 
 
 
