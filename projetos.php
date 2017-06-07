@@ -175,6 +175,7 @@ $result8=$stmt8->fetchAll(PDO::FETCH_ASSOC);
                   </li>';
                 }                
               ?>
+              <li class="quicklinks"> <span class="h-seperate"></span></li>
               <!--<li class="m-r-10 input-prepend inside search-form no-boarder">
                 <span class="add-on"> <i class="material-icons">search</i></span>
                 <input name="" type="text" class="no-boarder " placeholder="Buscar" style="width:250px;">
@@ -357,6 +358,28 @@ $result8=$stmt8->fetchAll(PDO::FETCH_ASSOC);
 
                   <?php
                     foreach ($result2 as $key2 => $value) {
+
+                      $projeto=$result2[$key2]['ID'];
+
+                      $queryTAG="SELECT PTAG.PROJETO, TAG.NOME AS TAG, TAG.ATRIBUTO FROM IN_PROJETOS_TAGS PTAG, IN_TAGS TAG WHERE PTAG.TAG = TAG.ID AND PROJETO = :projeto";
+                      $queryMEM="SELECT PMEM.PROJETO, SUBSTR(USU.NOME,1,1) ||SUBSTR(USU.SOBRENOME,1,1) AS MEMBRO, USU.NOME || ' ' || USU.SOBRENOME AS NOME, SETO.LABEL FROM IN_PROJETOS_MEMBROS PMEM, IN_USUARIOS USU, IN_SETORES SETO WHERE PMEM.USUARIO = USU.ID AND USU.SETOR = SETO.SIGLA AND PROJETO = :projeto ORDER BY MEMBRO";
+                      $queryCOM="SELECT PCOM.PROJETO, PCOM.COMENTARIO, USU.NOME || ' ' || USU.SOBRENOME AS USUARIO, PCOM.INCLUSAO  FROM IN_PROJETOS_COMENTARIOS PCOM, IN_USUARIOS USU WHERE PCOM.USUARIO = USU.ID AND PROJETO = :projeto ORDER BY INCLUSAO DESC";
+
+                      $stmtTAG=$conn->prepare($queryTAG);                    
+                      $stmtTAG->bindValue(':projeto',$projeto);
+                      $stmtTAG->execute();                    
+                      $resultTAG=$stmtTAG->fetchAll(PDO::FETCH_ASSOC);
+
+                      $stmtMEM=$conn->prepare($queryMEM);                    
+                      $stmtMEM->bindValue(':projeto',$projeto);
+                      $stmtMEM->execute();                    
+                      $resultMEM=$stmtMEM->fetchAll(PDO::FETCH_ASSOC);
+
+                      $stmtCOM=$conn->prepare($queryCOM);                    
+                      $stmtCOM->bindValue(':projeto',$projeto);
+                      $stmtCOM->execute();                    
+                      $resultCOM=$stmtCOM->fetchAll(PDO::FETCH_ASSOC);
+
                       echo 
                       '<span style="cursor: pointer;" data-toggle="modal" data-target="#'.$key2.'ModalEdit">
                         <div class="tiles grey weather-widget round  m-b-10">
@@ -399,20 +422,35 @@ $result8=$stmt8->fetchAll(PDO::FETCH_ASSOC);
                                     </div>
                                   </div>
 
+                                    <div class="col-md-12">&nbsp;</div>                                                                    
+
+                                  <div class="col-md-12">
+                                    <h5 class="bold">Coment&aacute;rios &nbsp; <i class="fa fa-plus-square-o"></i></h5>';                                                                                                   
+                                    foreach ($resultCOM as $keyCOM => $value) {
+                                      echo '<p>- '.$resultCOM[$keyCOM]['COMENTARIO'].' <span style="font-size:10px; font-style:italic;"><b> ('.$resultCOM[$keyCOM]['USUARIO'].' em '.$resultCOM[$keyCOM]['INCLUSAO'].')</b></span></p>';
+                                    }
+                                  echo
+                                  '</div>
+
                                     <div class="col-md-12">&nbsp;</div>                                  
 
                                   <div class="col-md-6">
-                                    <h5 class="bold">Tags &nbsp; <i class="fa fa-plus-square-o"></i></h5>
-                                    <span class="label label-danger">Alto</span> &nbsp;
-                                    <span class="label label-info">Gmax</span> &nbsp;
-                                  </div>
+                                    <h5 class="bold">Tags &nbsp; <i class="fa fa-plus-square-o"></i></h5>';
+                                    foreach ($resultTAG as $keyTAG => $value) {
+                                      echo '<span class="'.$resultTAG[$keyTAG]['ATRIBUTO'].'">'.$resultTAG[$keyTAG]['TAG'].'</span> &nbsp;';                                      
+                                    }
+                                  
+                                  echo 
+                                  '</div>
                                   
                                   <div class="col-md-6">
-                                    <h5 class="bold">Membros &nbsp; <i class="fa fa-plus-square-o"></i></h5>
-                                    <span class="label label-ti">TI</span> &nbsp; 
-                                    <span class="label label-pcp">PCP</span> &nbsp;                                                                                                           
-                                    <span class="label label-rh">RH</span> &nbsp;                                    
-                                  </div>
+                                    <h5 class="bold">Membros &nbsp; <i class="fa fa-plus-square-o"></i></h5>';
+                                    foreach ($resultMEM as $keyMEM => $value) {
+                                      echo '<span class="'.$resultMEM[$keyMEM]['LABEL'].'" title="'.$resultMEM[$keyMEM]['NOME'].'">'.$resultMEM[$keyMEM]['MEMBRO'].'</span> &nbsp;';
+                                    }                                     
+
+                                  echo                                      
+                                  '</div>
 
                                    <div class="col-md-12" style="border-bottom: 1px solid #b6bbc1;">&nbsp;</div> 
 
@@ -491,6 +529,13 @@ $result8=$stmt8->fetchAll(PDO::FETCH_ASSOC);
                                     </div>
                                   </div>
 
+                                    <div class="col-md-12">&nbsp;</div>                                                                    
+
+                                  <div class="col-md-12">
+                                    <h5 class="bold">Coment&aacute;rios &nbsp; <i class="fa fa-plus-square-o"></i></h5>                                                                                                   
+                                    - Teste de coment&aacute;rios
+                                  </div>
+
                                     <div class="col-md-12">&nbsp;</div>                                  
 
                                   <div class="col-md-6">
@@ -501,9 +546,9 @@ $result8=$stmt8->fetchAll(PDO::FETCH_ASSOC);
                                   
                                   <div class="col-md-6">
                                     <h5 class="bold">Membros &nbsp; <i class="fa fa-plus-square-o"></i></h5>
-                                    <span class="label label-ti">TI</span> &nbsp; 
-                                    <span class="label label-pcp">PCP</span> &nbsp;                                                                                                           
-                                    <span class="label label-rh">RH</span> &nbsp;                                    
+                                    <span class="label label-ti" title="Gabriel Hipolito">GH</span> &nbsp; 
+                                    <span class="label label-aud" title="Jonas Riedel">JR</span> &nbsp;                                                                                                           
+                                    <span class="label label-rh" title="Nara Less">NL</span> &nbsp;                                    
                                   </div>
 
                                    <div class="col-md-12" style="border-bottom: 1px solid #b6bbc1;">&nbsp;</div> 
