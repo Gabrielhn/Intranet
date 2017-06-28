@@ -201,6 +201,12 @@ $stmt29->bindValue(':setor','TRA');
 $stmt29->execute();
 $result29=$stmt29->fetchAll(PDO::FETCH_ASSOC);
 
+//#30
+$stmt30 = $conn->prepare($query2);
+$stmt30->bindValue(':setor','AUT');
+$stmt30->execute();
+$result30=$stmt30->fetchAll(PDO::FETCH_ASSOC);
+
 
 ?>
 
@@ -1706,6 +1712,55 @@ $result29=$stmt29->fetchAll(PDO::FETCH_ASSOC);
                 </div>
               </div>
             </div>
+          </div>
+
+          <div class="col-md-4 col-sm-6 m-b-10">
+            <div class="span12">
+              <div class="grid simple ">
+                <div class="grid-title">
+                  <?php echo '<h4><span class="bold">Automa&ccedil;&atilde;o &nbsp;</span><span class="'.$result30[0]['LABEL'].'">'.$result30[0]['SETOR']; ?> </span></h4>                                                                                                                                     
+                  <div class="tools">
+                    <a href="javascript:;" class="collapse"></a>                     
+                    <a href="javascript:;" class="reload"></a>
+                  </div>
+                </div>
+                <div class="grid-body ">
+                  <table class="table table-hover table-bordered" id="AUT">
+                    <thead>
+                      <tr>
+                        <th>Nome</th>
+                        <th>Ramal</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <?php
+                        foreach ($result30 as $key30 => $value) {
+                          if ($result30[$key30]['GESTOR'] == 'S') {
+                            echo
+                            '<tr class="clickable" data-toggle="collapse" id="row'.$result30[$key30]['ID'].'" data-target=".row'.$result30[$key30]['ID'].'">
+                              <td>'.$result30[$key30]['NOME'].'<i class="material-icons pull-right" style="font-size: 18px;">stars</i></td>
+                              <td class="center">'.$result30[$key30]['RAMAL'].'</td>
+                            </tr>
+                            <tr class="collapse row'.$result30[$key30]['ID'].'">                              
+                              <td colspan="2"><i class="fa fa-envelope"></i> &nbsp;'.$result30[$key30]['EMAIL'].'</td>                                
+                            </tr>';
+                          } else {
+                            echo
+                            '<tr class="clickable" data-toggle="collapse" id="row'.$result30[$key30]['ID'].'" data-target=".row'.$result30[$key30]['ID'].'">
+                              <td>'.$result30[$key30]['NOME'].'</td>
+                              <td class="center">'.$result30[$key30]['RAMAL'].'</td>
+                            </tr>
+                            <tr class="collapse row'.$result30[$key30]['ID'].'">                              
+                              <td colspan="2"><i class="fa fa-envelope"></i> &nbsp;'.$result30[$key30]['EMAIL'].'</td>                                
+                            </tr>';
+                          }                          
+                        }
+                      ?>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
           </div>                    
 
 
@@ -1757,6 +1812,8 @@ $result29=$stmt29->fetchAll(PDO::FETCH_ASSOC);
               </div>
             </div>
           </div>
+
+          
                               
           
           <!-- END PLACE PAGE CONTENT HERE -->
