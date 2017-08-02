@@ -13,8 +13,7 @@ $blob = file_get_contents($image);
 
 // echo $encoded;
 
-
-
+//echo Guilherme
 
 // $blob = fopen("C:\www\Intranet\assets\img\others\Funcional.jpg", 'rb');
 // // fread ($fp
