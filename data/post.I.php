@@ -15,14 +15,24 @@ $conn= new \PDO("oci:host=$host;dbname=$service","INTRANET","ifnefy6b9");
 $assunto=$_POST['assunto'];
 $mural=$_POST['mural']{1};
 $conteudo=$_POST['conteudo'];
+$caminho=$_POST['file'];
+$imagem=$_POST['arquivo'];
 
-$query3="INSERT INTO IN_MURAL_POST (mural,usuario,assunto,conteudo) values(:mural, :email, :assunto, :conteudo)";
+$query2="INSERT INTO IN_IMAGENS (DESCRICAO, IMAGEM) VALUES (:caminho, TO_BLOB(UTL_RAW.CAST_TO_RAW(:caminho)))";
+$stmt2 = $conn->prepare($query2);
+$stmt2->bindValue(':caminho',$caminho);
+$stmt2->bindValue(':imagem',$imagem);
+$stmt2->execute();
+
+
+$query3="INSERT INTO IN_MURAL_POST (mural, usuario, assunto, conteudo) values (:mural, :email, :assunto, :conteudo)";
 $stmt3 = $conn->prepare($query3);
 $stmt3->bindValue(':mural',$mural);
 $stmt3->bindValue(':email',$email);
 $stmt3->bindValue(':assunto',$assunto);
-$stmt3->bindValue(':conteudo',$conteudo);  
+$stmt3->bindValue(':conteudo',$conteudo);    
 $stmt3->execute();
+
 header("Location: mural.php");
 
 

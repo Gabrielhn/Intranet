@@ -34,6 +34,8 @@ WHERE
 $query2 = "SELECT * FROM VW_POST_2 WHERE POSICAO = 1";
 $query3 = "SELECT * FROM VW_POST_2 WHERE POSICAO = 2";
 $query4 = "SELECT * FROM VW_POST_2 WHERE POSICAO = 3";
+$query12 = "SELECT * FROM VW_POST_2 WHERE POSICAO = 4";
+
 
 $query5 = "SELECT * FROM IN_VAGAS WHERE ATIVO = 'S' AND ROWNUM < 4 ORDER BY DT_CADASTRO";
 
@@ -65,6 +67,12 @@ $result3=$stmt3->fetch(PDO::FETCH_ASSOC);
 $stmt4 = $conn->prepare($query4);
 $stmt4->execute();
 $result4=$stmt4->fetch(PDO::FETCH_ASSOC);
+
+//#12
+$stmt12 = $conn->prepare($query12);
+$stmt12->execute();
+$result12=$stmt12->fetch(PDO::FETCH_ASSOC);
+
 
 //#5
 $stmt5 = $conn->prepare($query5);
@@ -404,14 +412,14 @@ $result11=$stmt11->fetch(PDO::FETCH_ASSOC);
                   <!--DESTAQUE-->
                   <div class="col-md-12 p-b-10 m-b-10">
                     <a href="#">
-                      <img src="assets/img/others/banner1_2.png" alt="" class="image-responsive-width xs-image-responsive-width lazy">
+                      <img src="assets/img/others/banner1_3.png" alt="Aniger Realize" class="image-responsive-width xs-image-responsive-width lazy">
                     </a>
                   </div>
                   <!--NOTICIAS-->
                   <?php
                     
                       echo '                      
-                      <div class="col-md-4  col-sm-4 m-b-10" data-aspect-ratio="true">
+                      <div class="col-md-3  col-sm-3 m-b-10" data-aspect-ratio="true">
                         <a href="data/post.php?id='.$result2['ID'].'">
                           <div class="live-tile slide ha">
                             <div class="slide-front ha tiles green ">
@@ -432,7 +440,7 @@ $result11=$stmt11->fetch(PDO::FETCH_ASSOC);
                       </a>';
 
                       echo '                      
-                      <div class="col-md-4  col-sm-4 m-b-10" data-aspect-ratio="true">
+                      <div class="col-md-3  col-sm-3 m-b-10" data-aspect-ratio="true">
                         <a href="data/post.php?id='.$result3['ID'].'">
                           <div class="live-tile slide ha">
                             <div class="slide-front ha tiles green ">
@@ -453,7 +461,7 @@ $result11=$stmt11->fetch(PDO::FETCH_ASSOC);
                       </a>';
 
                       echo '                      
-                      <div class="col-md-4  col-sm-4 m-b-10" data-aspect-ratio="true">
+                      <div class="col-md-3  col-sm-3 m-b-10" data-aspect-ratio="true">
                         <a href="data/post.php?id='.$result4['ID'].'">
                           <div class="live-tile slide ha">
                             <div class="slide-front ha tiles green ">
@@ -467,6 +475,27 @@ $result11=$stmt11->fetch(PDO::FETCH_ASSOC);
                                 </div>
                               </div>
                               <img src="data:image/jpeg;base64,'.base64_encode(stream_get_contents($result4['IMG_MURAL'])).'" alt="" class="image-responsive-width xs-image-responsive-width lazy"> </div>
+                            <div class="slide-back ha tiles white">                                                  
+                            </div>
+                          </div>
+                        </div>
+                      </a>';
+
+                      echo '                      
+                      <div class="col-md-3  col-sm-3 m-b-10" data-aspect-ratio="true">
+                        <a href="data/post.php?id='.$result12['ID'].'">
+                          <div class="live-tile slide ha">
+                            <div class="slide-front ha tiles green ">
+                              <div class="overlayer bottom-left fullwidth">
+                                <div class="overlayer-wrapper">
+                                  <div class="tiles gradient-black p-l-20 p-r-10 p-b-20 p-t-20">
+                                    <h4 class="text-white semi-bold no-margin">'.$result12['ASSUNTO'].'</h4>
+                                    <div class="muted">'.$result12['AUTOR'].'</div>
+                                    <!--<div class="preview-wrapper pull-right"><i class="icon-custom-up "></i> Leia mais...</p></div>-->                                                                                            
+                                  </div>
+                                </div>
+                              </div>
+                              <img src="data:image/jpeg;base64,'.base64_encode(stream_get_contents($result12['IMG_MURAL'])).'" alt="" class="image-responsive-width xs-image-responsive-width lazy"> </div>
                             <div class="slide-back ha tiles white">                                                  
                             </div>
                           </div>
@@ -731,8 +760,8 @@ $result11=$stmt11->fetch(PDO::FETCH_ASSOC);
                 <div class="grid-body no-border">
                   <h4><i class="fa fa-birthday-cake fa-1x"></i><span class="semi-bold">&nbsp; Anivers&aacute;rios</span></h4>
                   <br/>
-                  <a href="assets/img/aniver/maio-sul.png" target="blank">
-                    <img src="assets/img/aniver/maio-sul.png" class="image-responsive-width xs-image-responsive-width lazy"></img>                                  
+                  <a href="assets/img/aniver/agosto-sul.png" target="blank">
+                    <img src="assets/img/aniver/agosto-sul.png" class="image-responsive-width xs-image-responsive-width lazy"></img>                                  
                   </a>
                 </div>
               </div>

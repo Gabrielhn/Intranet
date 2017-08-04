@@ -16,13 +16,15 @@ $ramal=$_POST['ramal'];
 $nome=$_POST['nome'];
 $setor=$_POST['setor'];
 $gestor=$_POST['gestor'];
+$usuario=$_POST['usuario'];
 
-$query3="INSERT INTO IN_RAMAIS (ramal, nome, setor, gestor) values (:ramal, :nome, :setor, :gestor)";
+$query3="INSERT INTO IN_RAMAIS (ramal, nome, setor, gestor, usuario) values (:ramal, :nome, :setor, :gestor, :usuario)";
 $stmt3 = $conn->prepare($query3);
 $stmt3->bindValue(':ramal',$ramal);
 $stmt3->bindValue(':nome',$nome);
 $stmt3->bindValue(':setor',$setor);
-$stmt3->bindValue(':gestor',$gestor);   
+$stmt3->bindValue(':gestor',$gestor);
+$stmt3->bindValue(':usuario',$usuario);      
 $stmt3->execute();
 header("Location: ramais.php");
 

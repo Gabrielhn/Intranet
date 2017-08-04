@@ -317,7 +317,86 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
           <!-- END PAGE TITLE -->
           <!-- CONTEÚDO -->
           
+          <div class="row">
+            <div class="col-md-10">
+              <div class="grid simple">
+                <div class="grid-title no-border">
+                  <img src="assets\img\logo3.png">
+                  <p></p>
+                  <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                    <span class="help">Preencha abaixo as informa&ccedil;&otilde;es solicitadas para realizar trabalho fora do hor&aacute;rio de expediente (Seg a Sex das 07:00 as 11:30 | 13:00 as 17:18).
+                    <p>Regras: Nos dias da semana &eacute; permitida a perman&ecirc;ncia por no m&aacute;ximo 1 hora. Aos s&aacute;bados o limite &eacute; de 4 horas.</p>
+                    <p>Ap&oacute;s enviar os dados, solicite autoriza&ccedil;&atilde;o de seu gestor.</p>
+                    </span>
+                  </div>
+                  <div class="tools">
+                    <!-- Controles -->
+                  </div>
+                </div>
+                <div class="grid-body no-border">
+                  <br>                  
 
+                  <div class="row">
+                    <form method="POST" name="hora_extra" action="data\hora_extra.S.php"> 
+                      <div class="col-md-12 col-sm-12 col-xs-12">
+
+                        <div class="form-group col-md-12 col-sm-12 col-xs-12"></div>
+
+                        <div class="form-group col-md-12 col-sm-12 col-xs-12"></div>
+
+                        <div class="form-group col-md-5 col-sm-5 col-xs-5">
+                          <div class="controls">
+                            <input type="text" placeholder="Solicitante" value="<?php echo $_SESSION['usuarioNome'] . " " . $_SESSION['usuarioSobreNome'] ;?>" class="form-control input" name="solicitante" required>
+                          </div>
+                        </div>
+
+                        <div class="form-group col-md-3 col-sm-3 col-xs-3">
+                          <div class="controls">
+                            <input type="date" class="form-control input" name="data" required>
+                          </div>
+                        </div>
+
+                        <div class="form-group col-md-2 col-sm-2 col-xs-2">
+                          <div class="controls">
+                            <input type="text" placeholder="Crach&aacute;" class="form-control input" name="cracha" required maxlength="5" pattern="[0-9]{5}">
+                          </div>
+                        </div>                        
+
+                        <div class="form-group col-md-2 col-sm-2 col-xs-2">
+                          <div class="controls">
+                            <input type="number" placeholder="Tempo (minutos)" class="form-control input" name="minutos" required maxlength="5" min="0" step="5" max="60">
+                          </div>
+                        </div>
+
+                        <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                          <div class="controls">
+                            <input type="text" placeholder="Motivo" class="form-control input" name="motivo" required maxlength="150">
+                          </div>
+                        </div>                         
+
+                        <div class="form-group col-md-12 col-sm-12 col-xs-12"></div>
+
+                        <iframe name="place" style="display:none;"></iframe>
+ 
+                        <div class="form-actions">
+                          <div class="pull-right">
+
+                            <!--data-toggle="modal" data-target="#pModal"-->
+                            <button type="submit" class="btn btn-info btn-cons-md" value="submit">Enviar</button>
+                            <button type="reset" class="btn btn-white btn-cons-md" value="reset">Limpar</button>
+                          </div>
+                          <div class="form-group col-md-12 col-sm-12 col-xs-12"></div>
+                        </div>
+
+
+
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
           
           <!-- FIM CONTEÚDO -->
         </div>

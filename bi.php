@@ -1,14 +1,15 @@
 <?php
+setlocale(LC_ALL, 'pt_BR', 'pt_BR.utf-8', 'pt_BR.utf-8', 'portuguese');
+date_default_timezone_set('America/Sao_Paulo');
 require_once("assets/php/class/class.seg.php");
+require_once("assets/php/class/class.utils.php");
 session_start();
 proteger();
 
 $host="10.0.0.2";
 $service="//10.0.0.2:1521/orcl";
 $id=$_SESSION['usuarioId'];
-$idmenu=1;
 $conn= new \PDO("oci:host=$host;dbname=$service","INTRANET","ifnefy6b9");
-
 
 $query1 = "SELECT USR.EMAIL, USR.TIPO_USUARIO, USR.SETOR, USR.IMG_PERFIL, IMG.IMAGEM,
     CASE
@@ -26,7 +27,6 @@ FROM
     IN_IMAGENS IMG 
 WHERE 
     USR.IMG_PERFIL = IMG.ID AND USR.ID =:id";
-$query2 = "SELECT * FROM IN_MENU_ITEM WHERE MENU = $idmenu ORDER BY ID";
 
 //#1
 $stmt1 = $conn->prepare($query1);
@@ -34,17 +34,12 @@ $stmt1->bindValue(':id',$id);
 $stmt1->execute();
 $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
 
-//#2
-$stmt2 = $conn->prepare($query2);
-$stmt2->execute();
-$result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
-
 ?>
 
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Aniger - Dados</title>
+    <title>Aniger - Chamados</title>
     <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
@@ -65,7 +60,7 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
     <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon">
     <link rel="icon" href="assets/img/favicon.ico" type="image/x-icon">
   </head>
-  <body class="">
+  <body class="hide-top-content-header">
     <!-- BEGIN HEADER -->
     <div class="header navbar navbar-inverse ">
       <!-- BEGIN TOP NAVIGATION BAR -->
@@ -85,7 +80,7 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
           <!-- END LOGO -->
           <ul class="nav pull-right notifcation-center">
             <li class="dropdown hidden-xs hidden-sm">
-              <a href="index.php" class="dropdown-toggle active" data-toggle="">
+              <a href="index.php" class="dropdown-toggle active">
                 <i class="material-icons">home</i>
               </a>
             </li>
@@ -265,7 +260,7 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
             <li class=""> 
               <a href="index.php"><i class="material-icons" title="Home">home</i> <span class="title">Home</span> <span class="title"></span> </a>
             </li>
-            <li class=""> 
+            <li class="start active"> 
               <a href="chamados.php"><i class="material-icons" title="Chamados">desktop_mac</i> <span class="title">Chamados</span></a>
             </li>
             <li class=""> 
@@ -290,8 +285,8 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
                   <a href="indicadores.php"><i class="fa fa-bar-chart" title="Indicadores"></i> <span class="title">Indicadores</span></a>               
                 </li>';
               }                
-            ?>                        
-          </ul>          
+            ?>
+          </ul>
           <div class="clearfix"></div>
           <!-- END SIDEBAR MENU -->
         </div>
@@ -303,183 +298,46 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
           <iframe src="http://free.timeanddate.com/clock/i5hp9yxv/n595/tlbr5/fn17/fc555/tc22262e/pa0/th1" frameborder="0" width="66" height="14"></iframe>
         </div>
         <div class="pull-right">
+          <!-- IMPLEMENTAR LOCKSCREEN -->
           <a href="bloquear.php"><i class="material-icons">lock_outline</i></a>
         </div>
       </div>
       <!-- END SIDEBAR -->
       <!-- BEGIN PAGE CONTAINER-->
       <div class="page-content">
-        <div class="content">
-        <ul class="breadcrumb">
+        <div class="content" style="padding-top:10px;">
+        <!--<ul class="breadcrumb">
             <li>
               <p>VOC&Ecirc; EST&Aacute; EM </p>
             </li>
-           <li>
-            <a href="index.php">Home</a>
+            <li>
+              <a href="index.php" class="">Home</a> 
             </li>
-            <li><a href="#" class="active">Dados</a> </li>
-          </ul>
+            <li>
+              <a href="#" class="active">Chamados</a> 
+            </li>
+          </ul>-->
           <!-- BEGIN PAGE TITLE -->
-          <div class="page-title"> <i class="material-icons">apps</i>
-            <h3>Dados </h3>
-          </div>
+          <!--<div class="page-title"> <i class="material-icons">home</i>
+            <h3>Chamados </h3>
+          </div>-->
           <!-- END PAGE TITLE -->
           <!-- CONTEUDO -->
-          <?php
-            if ($result1['TIPO_USUARIO'] == 'ADM') {
-              foreach ($result2 as $key => $value) {
-                echo
-                  '<a href="'.$result2[$key]['LINK'].'" style="color: #edeeef;">
-                    <div class="'.$result2[$key]['ATRIBUTOS_1'].'">          
-                      <div class="'.$result2[$key]['ATRIBUTOS_2'].'">
-                        <div class="tiles-body">              
-                          <div class="" style="text-align:center;">
-                            <i class="'.$result2[$key]['ICONE'].'"></i>
-                          </div>
-                          <div class="clearfix"></div>
-                          </div>               
-                        <div class="tile-footer">
-                          <div style="text-align:center;">
-                            <span class="semi-bold">'.$result2[$key]['TITULO'].'</span>
-                          </div>
-                          <div class="clearfix"></div>
-                          </a>
-                        </div>
-                      </div>
-                    </div>';                  
-              }              
-            } elseif ($result1['MURAL'] == 'S') {
-                echo
-                  '<a href="data/mural.php" style="color: #edeeef;">
-                    <div class="col-md-3 col-sm-3 m-b-10">          
-                      <div class="tiles black blend">
-                        <div class="tiles-body">              
-                          <div class="" style="text-align:center;">
-                            <i class="fa fa-newspaper-o fa-7x"></i>
-                          </div>
-                          <div class="clearfix"></div>
-                          </div>               
-                        <div class="tile-footer">
-                          <div style="text-align:center;">
-                            <span class="semi-bold">Mural</span>
-                          </div>
-                          <div class="clearfix"></div>
-                          </a>
-                        </div>
-                      </div>
-                    </div>';
-                if ($result1['GESTOR'] == 'S') {
-                  echo
-                  '<a href="data/autorizacoes.php" style="color: #edeeef;">
-                    <div class="col-md-3 col-sm-3 m-b-10">          
-                      <div class="tiles black blend">
-                        <div class="tiles-body">              
-                          <div class="" style="text-align:center;">
-                            <i class="fa fa-check-square-o fa-7x"></i>
-                          </div>
-                          <div class="clearfix"></div>
-                          </div>               
-                        <div class="tile-footer">
-                          <div style="text-align:center;">
-                            <span class="semi-bold">Autoriza&ccedil;&otilde;es</span>
-                          </div>
-                          <div class="clearfix"></div>
-                          </a>
-                        </div>
-                      </div>
-                    </div>';
-                }
+                    
+          <div class="row">
 
-            } elseif ($result1['GESTOR'] == 'S') {
-              echo
-                  '<a href="data/autorizacoes.php" style="color: #edeeef;">
-                    <div class="col-md-3 col-sm-3 m-b-10">          
-                      <div class="tiles black blend">
-                        <div class="tiles-body">              
-                          <div class="" style="text-align:center;">
-                            <i class="fa fa-check-square-o fa-7x"></i>
-                          </div>
-                          <div class="clearfix"></div>
-                          </div>               
-                        <div class="tile-footer">
-                          <div style="text-align:center;">
-                            <span class="semi-bold">Autoriza&ccedil;&otilde;es</span>
-                          </div>
-                          <div class="clearfix"></div>
-                          </a>
-                        </div>
-                      </div>
-                    </div>';
-            }
+            <?php
+             echo retorna_link();
+            ?>
 
-            if ($result1['SETOR'] == 'RH') {
-                  echo
-                  '<a href="data/solicitacoes.php" style="color: #edeeef;">
-                    <div class="col-md-3 col-sm-3 m-b-10">          
-                      <div class="tiles black blend">
-                        <div class="tiles-body">              
-                          <div class="" style="text-align:center;">
-                            <i class="fa fa-file-text-o fa-7x"></i>
-                          </div>
-                          <div class="clearfix"></div>
-                          </div>               
-                        <div class="tile-footer">
-                          <div style="text-align:center;">
-                            <span class="semi-bold">Solicita&ccedil;&otilde;es</span>
-                          </div>
-                          <div class="clearfix"></div>
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  
-                    <a href="data/vagas.php" style="color: #edeeef;">
-                      <div class="col-md-3 col-sm-3 m-b-10">          
-                        <div class="tiles black blend">
-                          <div class="tiles-body">              
-                            <div class="" style="text-align:center;">
-                              <i class="fa fa-bookmark fa-7x"></i>
-                            </div>
-                            <div class="clearfix"></div>
-                            </div>               
-                          <div class="tile-footer">
-                            <div style="text-align:center;">
-                              <span class="semi-bold">Vagas</span>
-                            </div>
-                            <div class="clearfix"></div>
-                            </a>
-                          </div>
-                        </div>
-                      </div>';
-                }
+          </div>             
 
-            if ($result1['SETOR'] == 'REC') {
-                  echo
-                  '<a href="data/ramais.php" style="color: #edeeef;">
-                    <div class="col-md-3 col-sm-3 m-b-10">          
-                      <div class="tiles black blend">
-                        <div class="tiles-body">              
-                          <div class="" style="text-align:center;">
-                            <i class="fa fa-phone fa-7x"></i>
-                          </div>
-                          <div class="clearfix"></div>
-                          </div>               
-                        <div class="tile-footer">
-                          <div style="text-align:center;">
-                            <span class="semi-bold">Ramais</span>
-                          </div>
-                          <div class="clearfix"></div>
-                          </a>
-                        </div>
-                      </div>
-                    </div>';
-                }
-          ?>
-          
+
+
           <!-- FIM CONTEUDO -->
         </div>
       </div>
-      <!-- END PAGE CONTAINER -->      
+      <!-- END PAGE CONTAINER -->     
     </div>
     <!-- END CONTENT -->
     <!-- BEGIN CORE JS FRAMEWORK-->
@@ -493,6 +351,22 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
     <script src="assets/plugins/jquery-numberAnimate/jquery.animateNumbers.js" type="text/javascript"></script>
     <script src="assets/plugins/jquery-validation/js/jquery.validate.min.js" type="text/javascript"></script>
     <script src="assets/plugins/bootstrap-select2/select2.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+     $(document).ready(function() {
+    $("#layout-condensed-toggle").trigger('click');
+    });
+    </script>
+    <script type="text/javascript">
+function click() {
+	if (event.button == 2 || event.button == 3) {
+		oncontextmenu='return false';
+		alert ('Curioso!');
+	}
+}
+document.onmousedown = click
+document.oncontextmenu = new Function("return false;");
+</script>
+
     <!-- END CORE JS DEPENDECENCIES-->
     <!-- BEGIN CORE TEMPLATE JS -->
     <script src="webarch/js/webarch.js" type="text/javascript"></script>

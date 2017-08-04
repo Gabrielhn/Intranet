@@ -1,6 +1,4 @@
 <?php
-setlocale(LC_ALL, 'pt_BR', 'pt_BR.utf-8', 'pt_BR.utf-8', 'portuguese');
-date_default_timezone_set('America/Sao_Paulo');
 require_once("../assets/php/class/class.seg.php");
 session_start();
 proteger();
@@ -8,7 +6,6 @@ proteger();
 $host="10.0.0.2";
 $service="//10.0.0.2:1521/orcl";
 $id=$_SESSION['usuarioId'];
-$email=$_SESSION['usuarioEmail'];
 $conn= new \PDO("oci:host=$host;dbname=$service","INTRANET","ifnefy6b9");
 
 $query1 = "SELECT USR.EMAIL, USR.TIPO_USUARIO, USR.SETOR, USR.IMG_PERFIL, IMG.IMAGEM,
@@ -27,29 +24,28 @@ FROM
     IN_IMAGENS IMG 
 WHERE 
     USR.IMG_PERFIL = IMG.ID AND USR.ID =:id";
-$query2 = "SELECT USR.NOME || ' ' || USR.SOBRENOME AS AUTOR, MUR.ID AS ID_MURAL, MUR.DESCRICAO AS DESC_MURAL FROM IN_USUARIOS USR, IN_MURAL MUR WHERE USR.SETOR=MUR.SETOR AND USR.ID=:id";
+
+$query2 = "SELECT AUT.ID, AUT.TIPO, TP.ICONE AS ICONE_TP, AUT.DESCRICAO, '(' || AUT.SOLICITANTE || ') ' || USR.NOME || ' ' || USR.SOBRENOME AS SOLICITANTE, AUT.DATA, AUT.AUTORIZADO, AUT.CANCELADO FROM IN_AUTORIZACOES AUT, IN_USUARIOS USR,  IN_TIPO_AUTORIZACAO TP, IN_SETORES SETO WHERE AUT.SOLICITANTE = USR.ID AND AUT.TIPO = TP.ID AND USR.SETOR = SETO.SIGLA AND AUT.AUTORIZADO = 'S' AND AUT.CANCELADO = 'N' AND AUT.TIPO IN ('7') AND AUT.AUTORIZADOR IS NOT NULL ORDER BY DATA DESC";
 
 //#1
 $stmt1 = $conn->prepare($query1);
 $stmt1->bindValue(':id',$id);
 $stmt1->execute();
 $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
-$setu=$result1['SETOR'];
 
 //#2
+$setu=$result1['SETOR'];
 $stmt2 = $conn->prepare($query2);
-$stmt2->bindValue(':id',$id);
+$stmt2->bindValue(':setu',$setu);
 $stmt2->execute();
-$result2=$stmt2->fetch(PDO::FETCH_ASSOC);
-
-
+$result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
 
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Aniger - Mural - Post</title>
+    <title>Aniger - Dados - Solicita&ccedil;&otilde;es</title>
     <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
@@ -63,7 +59,6 @@ $result2=$stmt2->fetch(PDO::FETCH_ASSOC);
     <link href="../assets/plugins/animate.min.css" rel="stylesheet" type="text/css" />
     <link href="../assets/plugins/jquery-datatable/css/jquery.dataTables.css" rel="stylesheet" type="text/css" />
     <link href="../assets/plugins/datatables-responsive/css/datatables.responsive.css" rel="stylesheet" type="text/css" media="screen" />
-    <link href="../assets/plugins/bootstrap-wysihtml5/bootstrap-wysihtml5.css" rel="stylesheet" type="text/css" />
     <!-- <link href="../assets/plugins/jquery-scrollbar/jquery.scrollbar.css" rel="stylesheet" type="text/css" /> -->
     <!-- END PLUGIN CSS -->
     <!-- BEGIN CORE CSS FRAMEWORK -->
@@ -162,7 +157,7 @@ $result2=$stmt2->fetch(PDO::FETCH_ASSOC);
                       <i class="material-icons">apps</i>
                     </a>
                   </li>';
-                }                  
+                }                
               ?>
               <!--<li class="m-r-10 input-prepend inside search-form no-boarder">
                 <span class="add-on"> <i class="material-icons">search</i></span>
@@ -305,7 +300,7 @@ $result2=$stmt2->fetch(PDO::FETCH_ASSOC);
           <iframe src="http://free.timeanddate.com/clock/i5hp9yxv/n595/tlbr5/fn17/fc555/tc22262e/pa0/th1" frameborder="0" width="66" height="14"></iframe>
         </div>
         <div class="pull-right">
-          <a href="../bloquear.php"><i class="material-icons">lock_outline</i></a>
+          <a href="../bloquear.php"><i class="material-icons">lock_outline</i></a>          
         </div>
       </div>
       <!-- /SIDEBAR -->
@@ -324,16 +319,13 @@ $result2=$stmt2->fetch(PDO::FETCH_ASSOC);
             <a href="../dados.php">Dados</a> 
           </li>
           <li>
-            <a href="mural.php">Mural</a> 
-          </li>
-          <li>
-            <a href="#" class="active">Nova Postagem</a> 
+            <a href="#" class="active">Solicita&ccedil;&otilde;es</a> 
           </li>
         </ul>
 
         <!-- TITULO -->
         <!--<div class="page-title"> <i class="fa fa-globe fa-5x"></i>
-          <h3>Locais</h3>
+          <h3>Autoriza&ccedil;&otilde;es</h3>
         </div>-->
         <br>
         <br>
@@ -343,69 +335,48 @@ $result2=$stmt2->fetch(PDO::FETCH_ASSOC);
           
           <div class="row">
             <div class="col-md-12">
-              <div class="grid simple ">                
-                <div class="grid-body no-border" style="background-color: #f6f7f8;">
-                <div class="form-group col-md-12 col-sm-12 col-xs-12"></div>
-                  <div class="form-group col-md-12 col-sm-12 col-xs-12">
-                    <h3><i class="fa fa-commenting-o fa-1x"></i><span class="semi-bold">&nbsp; Nova postagem</span></h3>
-                  </div>                  
-                  <form method="post" name="postagem" action="post.I.php" enctype="multipart/form-data">
-
-                    <div class="form-group col-md-5 col-sm-5 col-xs-5">
-                      <div class="controls">
-                        <input type="text" placeholder="Assunto" class="form-control input-lg" name="assunto" required>
-                      </div>
-                    </div>
-
-                    <div class="form-group col-md-12 col-sm-12 col-xs-12 m-b-5">
-                      <textarea id="conteudo" placeholder="Digite o texto ..." class="form-control" rows="10" name="conteudo"></textarea>
-                      <hr>
-                    </div>
-
-                    <div class="form-group col-md-3 col-sm-3 col-xs-3">
-                      <div class="controls">
-                        <label class="bold">Mural</label>
-                        <input type="text" value="<?php echo '('.$result2['ID_MURAL'].') '.$result2['DESC_MURAL']; ?>" class="form-control input" name="mural" readonly>
-                      </div>
-                    </div>
-
-                    <div class="form-group col-md-3 col-sm-3 col-xs-3">
-                      <div class="controls">
-                        <label class="bold">Autor</label>
-                        <input type="text" value="<?php echo $result2['AUTOR']; ?>" class="form-control input" name="autor" readonly>
-                      </div>
-                    </div>
-
-                    <div class="form-group col-md-4 col-sm-4 col-xs-4">
-                      <div class="controls">
-                        <label class="bold">Imagem destaque</label>
-                        <input type="file" name="arquivo" id="arquivo" class="arquivo" style="display:none;">
-                        <input type="text" name="file" id="file" class="file" placeholder="Selecione (tam. 500x500)">
-                        <input id="img" type="button" class="btn btn-cons-md" value="Selecionar">
-                      </div>
-                    </div>
-
-                    
-                    
-                    <div class="form-group col-md-12 col-sm-12 col-xs-12"></div>
-
-                    <div class="form-actions">
-                      <div class="pull-right">
-                        <!---->
-                        <button type="submit" class="btn btn-info btn-cons-md" value="submit">Cadastrar</button>
-                        <button type="reset" class="btn btn-white btn-cons-md" value="reset">Limpar</button>
-                      </div>                      
-                    </div>
-
-                  </form>
+              <div class="grid simple ">
+                <div class="grid-title no-border">                  
+                </div>
+                <div class="grid-body no-border">
+                  <h3><i class="fa fa-file-text-o fa-1x"></i><span class="semi-bold">&nbsp; Solicita&ccedil;&otilde;es</span></h3>
+                  <table class="table table-hover" >
+                    <thead>
+                      <tr>                        
+                        <th style="width:3%">Tipo</th>
+                        <th style="width:30%">Descri&ccedil;&atilde;o</th>
+                        <th style="width:25%">Solicitante</th>
+                        <th style="width:15%">Data</th>                                                                    
+                        <th style="width:15%">Autorizado por</th>                                                                    
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <?php
+                        if ($result1['GESTOR'] == 'S') {
+                          foreach ($result2 as $key => $value) {
+                          echo '
+                            <tr>
+                              <td class="v-align-middle"><i class="'.$result2[$key]['ICONE_TP'].'"></i></td>
+                              <td class="v-align-middle"><span class="muted">'.$result2[$key]['DESCRICAO'].'</span></td>
+                              <td class="v-align-middle"><span class="muted">'.$result2[$key]['SOLICITANTE'].'</span></td>
+                              <td class="v-align-middle"><span class="muted">'.$result2[$key]['DATA'].'</span></td>                              
+                            </tr>                          
+                            ';                      
+                        }
+                        }
+                                                
+                      ?>
+                    </tbody>
+                  </table>
                 </div>
               </div>
             </div>
-          </div>           
+          </div>       
           <!-- /CONTEUDO -->
         </div>
       </div>
       <!-- CONTAINER -->
+
       
     </div>
     <!-- END CONTENT -->
@@ -424,22 +395,30 @@ $result2=$stmt2->fetch(PDO::FETCH_ASSOC);
     <script src="../assets/plugins/jquery-datatable/extra/js/dataTables.tableTools.min.js" type="text/javascript"></script>
     <script type="text/javascript" src="../assets/plugins/datatables-responsive/js/datatables.responsive.js"></script>
     <script type="text/javascript" src="../assets/plugins/datatables-responsive/js/lodash.min.js"></script>
-    <script src="../assets/plugins/bootstrap-wysihtml5/wysihtml5-0.3.0.js" type="text/javascript"></script>
-    <script src="../assets/plugins/bootstrap-wysihtml5/bootstrap-wysihtml5.js" type="text/javascript"></script>
     <!-- END CORE JS DEPENDECENCIES-->
-    <script type="text/javascript">
-    $('#conteudo').wysihtml5();
-    </script>
-    <script>  
-    $('#img').on('click', function() {
-      $('.arquivo').trigger('click');
-    });
-
-    $('.arquivo').on('change', function() {
-      var fileName = $(this)[0].files[0].name;
-      $('#file').val(fileName);
-    });
-    </script>
+    <!--<script type="text/javascript">
+      $(document).ready(function() {
+        $('#tLocais').DataTable( {
+          "paging":   false
+          "oLanguage": {
+            "sLengthMenu": "_MENU_",
+            "sZeroRecords": "Nenhum registro encontrado",
+            "sInfo": " Mostrando _START_ / _END_ de _TOTAL_ registro(s)",
+            "sInfoEmpty": "Mostrando 0 / 0 de 0 registros",
+            "sInfoFiltered": "(filtrado de _MAX_ registros)",
+            "sSearch": "Pesquisar: ",
+            "sEmptyTable": "Nenhum registro encontrado",
+            "oPaginate": {
+                "sFirst": "In&iacute;cio",
+                "sPrevious": "Anterior ",
+                "sNext": "Próximo ",
+                "sLast": "Último"
+            }
+        }
+        
+    } );
+} );
+    </script>-->
     <!-- BEGIN CORE TEMPLATE JS -->
     <script src="../webarch/js/webarch.js" type="text/javascript"></script>
     <script src="../assets/js/chat.js" type="text/javascript"></script>
