@@ -13,6 +13,8 @@ $id=$_SESSION['usuarioId'];
 $conn= new \PDO("oci:host=$host;dbname=$service","INTRANET","ifnefy6b9");
 
 //Dados e permissão
+$dataAniver = date("m-Y").".png";
+
 $query1 = "SELECT USR.EMAIL, USR.TIPO_USUARIO, USR.SETOR, USR.IMG_PERFIL, IMG.IMAGEM,
     CASE
       WHEN USR.SETOR IN (SELECT SIGLA FROM IN_SETORES SETO, IN_MURAL MUR WHERE MUR.SETOR = SETO.SIGLA)
@@ -760,9 +762,11 @@ $result11=$stmt11->fetch(PDO::FETCH_ASSOC);
                 <div class="grid-body no-border">
                   <h4><i class="fa fa-birthday-cake fa-1x"></i><span class="semi-bold">&nbsp; Anivers&aacute;rios</span></h4>
                   <br/>
-                  <a href="assets/img/aniver/agosto-sul.png" target="blank">
-                    <img src="assets/img/aniver/agosto-sul.png" class="image-responsive-width xs-image-responsive-width lazy"></img>                                  
-                  </a>
+				  <?php
+					echo '<a href="assets/img/aniver/'.$dataAniver.'" target="blank">
+							<img src="assets/img/aniver/'.$dataAniver.'" class="image-responsive-width xs-image-responsive-width lazy"></img>                                  
+						 </a>';
+					?>
                 </div>
               </div>
             </div>            

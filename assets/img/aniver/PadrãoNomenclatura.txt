@@ -1,0 +1,6 @@
+
+ ==> Sempre criar as imagens com os aniversários com o padrão abaixo:
+
+   - mm-aaaa.png , onde:
+     - mm = mês.
+     - aaaa = ano.
