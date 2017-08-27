@@ -2,6 +2,7 @@
   session_start();
   define("versao", "1.4");
   $_SESSION['versao'] = versao;
+  $_SESSION['exibe'] = '1';
 ?>
 
 <!DOCTYPE html>

@@ -85,10 +85,6 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
   </head>
   <body class="">
 
-    <div align="center" style="padding-top:20px;">
-      <a href="login.php"><img src="assets/img/logo.png" class="logo" alt="" data-src="assets/img/logo.png" data-src-retina="assets/img/logo.png"  width="180" /></a>
-    </div>
-
     <div class="content" style="padding-top:20px;">
 
     <!--#1 MURAL 1-->
