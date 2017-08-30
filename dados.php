@@ -26,7 +26,7 @@ FROM
     IN_IMAGENS IMG 
 WHERE 
     USR.IMG_PERFIL = IMG.ID AND USR.ID =:id";
-$query2 = "SELECT * FROM IN_MENU_ITEM WHERE MENU = $idmenu ORDER BY ID";
+$query2 = "SELECT * FROM IN_MENU_ITEM WHERE MENU = $idmenu AND ATIVO = 'S' ORDER BY ORDEM";
 
 //#1
 $stmt1 = $conn->prepare($query1);
