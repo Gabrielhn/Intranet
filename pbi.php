@@ -39,7 +39,7 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Aniger - Chamados</title>
+    <title>Aniger - BI</title>
     <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
@@ -260,7 +260,7 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
             <li class=""> 
               <a href="index.php"><i class="material-icons" title="Home">home</i> <span class="title">Home</span> <span class="title"></span> </a>
             </li>
-            <li class="start active"> 
+            <li class=""> 
               <a href="chamados.php"><i class="material-icons" title="Chamados">desktop_mac</i> <span class="title">Chamados</span></a>
             </li>
             <li class=""> 
@@ -281,7 +281,7 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
             <?php
               if ($result1['GESTOR'] == 'S' || $result1['TIPO_USUARIO'] == 'ADM') {
                 echo 
-                '<li class="">
+                '<li class="start active">
                   <a href="indicadores.php"><i class="fa fa-bar-chart" title="Indicadores"></i> <span class="title">Indicadores</span></a>               
                 </li>';
               }                
@@ -327,7 +327,7 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
           <div class="row">
 
             <?php
-             echo retorna_link();
+             echo pbi();
             ?>
 
           </div>             

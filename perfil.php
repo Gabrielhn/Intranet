@@ -11,7 +11,7 @@ $conn= new \PDO("oci:host=$host;dbname=$service","INTRANET","ifnefy6b9");
 
 $query1 = "SELECT * FROM VW_PERFIL WHERE ID=:id";
 $query2 = "SELECT COUNT(EMAIL) AS COLEGAS FROM IN_USUARIOS WHERE SETOR =:setor AND ID !=:id AND ID != '84' AND ATIVO = 'S'";
-$query3 = "SELECT USR.ID, USR.NOME || ' ' || USR.SOBRENOME AS NOME_COMPLETO, USR.EMAIL, USR.IMG_PERFIL, IMG.IMAGEM FROM IN_USUARIOS USR, IN_IMAGENS IMG WHERE USR.IMG_PERFIL = IMG.ID AND USR.SETOR =:setor AND USR.ID != :id AND USR.ID != '84' AND USR.ATIVO = 'S'";
+$query3 = "SELECT USR.ID, USR.NOME || ' ' || USR.SOBRENOME AS NOME_COMPLETO, USR.EMAIL, USR.IMG_PERFIL, IMG.IMAGEM FROM IN_USUARIOS USR, IN_IMAGENS IMG WHERE USR.IMG_PERFIL = IMG.ID AND USR.SETOR =:setor AND USR.ID != :id AND USR.ID != '84' AND USR.ATIVO = 'S' ORDER BY NOME";
 $query4 = "SELECT USR.EMAIL, USR.TIPO_USUARIO, USR.SETOR, USR.IMG_PERFIL, IMG.IMAGEM,
     CASE
       WHEN USR.SETOR IN (SELECT SIGLA FROM IN_SETORES SETO, IN_MURAL MUR WHERE MUR.SETOR = SETO.SIGLA)
@@ -383,7 +383,7 @@ $anos = (int)floor( $diferenca / (60 * 60 * 24)/ 365);
                       </div>
                     </div>
                   </div>
-                  <img src="assets/img/cb.png" alt="capa">
+                  <img src="assets/img/cb.png" alt="capa" class="image-responsive-width">
                 </div>
                 <div class="tiles white">
                   <div class="row">

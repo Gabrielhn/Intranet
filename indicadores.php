@@ -28,7 +28,9 @@ FROM
 WHERE 
     USR.IMG_PERFIL = IMG.ID AND USR.ID =:id";
 
-$query2 = "SELECT * FROM IN_MENU_ITEM WHERE MENU = $idmenu AND ATIVO = 'S' ORDER BY ORDEM";
+$query2 = "SELECT * FROM IN_MENU_ITEM WHERE MENU = :menu AND ATIVO = 'S' AND LABEL = :setor ORDER BY ORDEM";
+
+$query3 = "SELECT * FROM IN_MENU_ITEM WHERE MENU = :menu AND ATIVO = 'S' ORDER BY ORDEM";
 
 //#1
 $stmt1 = $conn->prepare($query1);
@@ -38,8 +40,16 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
 
 //#2
 $stmt2 = $conn->prepare($query2);
+$stmt2->bindValue(':setor',$result1['SETOR']);
+$stmt2->bindValue(':menu',$idmenu);
 $stmt2->execute();
 $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
+
+//#3
+$stmt3 = $conn->prepare($query3);
+$stmt3->bindValue(':menu',$idmenu);
+$stmt3->execute();
+$result3=$stmt3->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
 
@@ -332,42 +342,78 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
           <!-- CONTEUDO -->
 
           <?php
-              foreach ($result2 as $key => $value) {
-                echo
-
-                '<div class="'.$result2[$key]['ATRIBUTOS_1'].'">
-                  <div class="'.$result2[$key]['ATRIBUTOS_2'].'">
-                    <div class="tiles-body">
-                      <a href="'.$result2[$key]['LINK'].'" style="color: #edeeef;">
-                        <div class="heading">
-                          <div class="pull-left">'.$result2[$key]['TITULO'].'</div>
-                          <div class="clearfix"></div>
-                        </div>
-                        <div class="big-icon">
-                          <i class="'.$result2[$key]['ICONE'].'"></i>
-                        </div>
+            if ($result1['TIPO_USUARIO'] == 'ADM') {
+              foreach ($result3 as $key => $value) {
+              echo
+              '<div class="'.$result3[$key]['ATRIBUTOS_1'].'">
+                <div class="'.$result3[$key]['ATRIBUTOS_2'].'">
+                  <div class="tiles-body">
+                    <a href="'.$result3[$key]['LINK'].'" style="color: #edeeef;">
+                      <div class="heading">
+                        <div class="pull-left">'.$result3[$key]['TITULO'].'</div>
                         <div class="clearfix"></div>
-                    </div>
-                      </a>
-                    <div class="tile-footer">
-                      <div class="pull-left">
-                        <canvas id="" width="1" height="30"></canvas>
-                        <span class=" small-text-description">&nbsp;&nbsp;<span class="label">'.$result2[$key]['LABEL'].'</span>
                       </div>
-                      <div class="pull-right">
-                        <!-- <canvas id="" width="1" height="28"></canvas>
-                         <span style="cursor: pointer;" data-toggle="modal" data-target="#"><i class="fa fa-info fa-2x"></i> </span> -->
-                      </div>
-                      <div class="pull-right">
-                        <canvas id="" width="32" height="32"></canvas>
-                        <span class="text-white small-text-description"></span> 
+                      <div class="big-icon">
+                        <i class="'.$result3[$key]['ICONE'].'"></i>
                       </div>
                       <div class="clearfix"></div>
-                    </div>
                   </div>
-                </div>';                  
-              }
-            ?>
+                    </a>
+                  <div class="tile-footer">
+                    <div class="pull-left">
+                      <canvas id="" width="1" height="30"></canvas>
+                      <span class=" small-text-description">&nbsp;&nbsp;<span class="label">'.$result3[$key]['LABEL'].'</span>
+                    </div>
+                    <div class="pull-right">
+                      <!-- <canvas id="" width="1" height="28"></canvas>
+                        <span style="cursor: pointer;" data-toggle="modal" data-target="#"><i class="fa fa-info fa-2x"></i> </span> -->
+                    </div>
+                    <div class="pull-right">
+                      <canvas id="" width="32" height="32"></canvas>
+                      <span class="text-white small-text-description"></span> 
+                    </div>
+                    <div class="clearfix"></div>
+                  </div>
+                </div>
+              </div>';                  
+            }
+            } else {
+              foreach ($result2 as $key => $value) {
+              echo
+              '<div class="'.$result2[$key]['ATRIBUTOS_1'].'">
+                <div class="'.$result2[$key]['ATRIBUTOS_2'].'">
+                  <div class="tiles-body">
+                    <a href="'.$result2[$key]['LINK'].'" style="color: #edeeef;">
+                      <div class="heading">
+                        <div class="pull-left">'.$result2[$key]['TITULO'].'</div>
+                        <div class="clearfix"></div>
+                      </div>
+                      <div class="big-icon">
+                        <i class="'.$result2[$key]['ICONE'].'"></i>
+                      </div>
+                      <div class="clearfix"></div>
+                  </div>
+                    </a>
+                  <div class="tile-footer">
+                    <div class="pull-left">
+                      <canvas id="" width="1" height="30"></canvas>
+                      <span class=" small-text-description">&nbsp;&nbsp;<span class="label">'.$result2[$key]['LABEL'].'</span>
+                    </div>
+                    <div class="pull-right">
+                      <!-- <canvas id="" width="1" height="28"></canvas>
+                        <span style="cursor: pointer;" data-toggle="modal" data-target="#"><i class="fa fa-info fa-2x"></i> </span> -->
+                    </div>
+                    <div class="pull-right">
+                      <canvas id="" width="32" height="32"></canvas>
+                      <span class="text-white small-text-description"></span> 
+                    </div>
+                    <div class="clearfix"></div>
+                  </div>
+                </div>
+              </div>';                  
+            }
+            }
+          ?>
           
           <!-- END PLACE PAGE CONTENT HERE -->
         </div>
