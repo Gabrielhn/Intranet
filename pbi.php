@@ -10,6 +10,8 @@ $host="10.0.0.2";
 $service="//10.0.0.2:1521/orcl";
 $id=$_SESSION['usuarioId'];
 $conn= new \PDO("oci:host=$host;dbname=$service","INTRANET","ifnefy6b9");
+//Pega o índice do painel
+$pbi_id=$_GET['pbi'];
 
 $query1 = "SELECT USR.EMAIL, USR.TIPO_USUARIO, USR.SETOR, USR.IMG_PERFIL, IMG.IMAGEM,
     CASE
@@ -323,17 +325,12 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
           </div>-->
           <!-- END PAGE TITLE -->
           <!-- CONTEUDO -->
-                    
           <div class="row">
-
             <?php
-             echo pbi();
+               //Esta função busca o painel BI que deverá exibir na página
+               echo pbi($pbi_id);
             ?>
-
           </div>             
-
-
-
           <!-- FIM CONTEUDO -->
         </div>
       </div>

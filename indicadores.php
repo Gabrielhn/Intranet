@@ -348,7 +348,7 @@ $result3=$stmt3->fetchAll(PDO::FETCH_ASSOC);
               '<div class="'.$result3[$key]['ATRIBUTOS_1'].'">
                 <div class="'.$result3[$key]['ATRIBUTOS_2'].'">
                   <div class="tiles-body">
-                    <a href="'.$result3[$key]['LINK'].'" style="color: #edeeef;">
+                    <a href="'.$result3[$key]['LINK'].'?pbi=', base64_encode($result3[$key]['ORDEM']), '" style="color: #edeeef;">
                       <div class="heading">
                         <div class="pull-left">'.$result3[$key]['TITULO'].'</div>
                         <div class="clearfix"></div>
@@ -383,7 +383,7 @@ $result3=$stmt3->fetchAll(PDO::FETCH_ASSOC);
               '<div class="'.$result2[$key]['ATRIBUTOS_1'].'">
                 <div class="'.$result2[$key]['ATRIBUTOS_2'].'">
                   <div class="tiles-body">
-                    <a href="'.$result2[$key]['LINK'].'" style="color: #edeeef;">
+                    <a href="'.$result2[$key]['LINK'].'?pbi=', base64_encode($result2[$key]['ORDEM']), '" style="color: #edeeef;">
                       <div class="heading">
                         <div class="pull-left">'.$result2[$key]['TITULO'].'</div>
                         <div class="clearfix"></div>
