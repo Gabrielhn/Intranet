@@ -29,7 +29,7 @@ function menu_dados()
 //Busca o painel BI que deverá exibir na página
 function pbi($pbi_id)
 {
-    $arquivo = fopen ('C:\www\Intranet\paineis\Modelos.txt', 'r');
+    $arquivo = fopen ('http://intranet.aniger/paineis/Modelos.txt', 'r');
     for ($i=1; $i <= (base64_decode($pbi_id) - 1); $i++) { 
       fgets($arquivo, 2000);
     };
