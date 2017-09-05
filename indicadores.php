@@ -1,5 +1,6 @@
 <?php
 require_once("assets/php/class/class.seg.php");
+require_once("assets/php/class/class.utils.php");
 session_start();
 setlocale(LC_ALL, 'pt_BR', 'pt_BR.utf-8', 'pt_BR.utf-8', 'portuguese');
 proteger();
@@ -28,9 +29,11 @@ FROM
 WHERE 
     USR.IMG_PERFIL = IMG.ID AND USR.ID =:id";
 
-$query2 = "SELECT * FROM IN_MENU_ITEM WHERE MENU = :menu AND ATIVO = 'S' AND LABEL = :setor ORDER BY ORDEM";
-
-$query3 = "SELECT * FROM IN_MENU_ITEM WHERE MENU = :menu AND ATIVO = 'S' ORDER BY ORDEM";
+$query2 = "SELECT ITM.* FROM IN_MENU_ITEM ITM, IN_USUARIOS_PAINEIS PAINEIS
+              WHERE ITM.MENU = :menu AND ITM.ATIVO='S' AND
+                   ITM.ORDEM = PAINEIS.ID_PAINEL AND
+              PAINEIS.ID_USU = :id
+                 ORDER BY ITM.ORDEM";
 
 //#1
 $stmt1 = $conn->prepare($query1);
@@ -40,17 +43,10 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
 
 //#2
 $stmt2 = $conn->prepare($query2);
-$stmt2->bindValue(':setor',$result1['SETOR']);
 $stmt2->bindValue(':menu',$idmenu);
+$stmt2->bindValue(':id',$id);
 $stmt2->execute();
 $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
-
-//#3
-$stmt3 = $conn->prepare($query3);
-$stmt3->bindValue(':menu',$idmenu);
-$stmt3->execute();
-$result3=$stmt3->fetchAll(PDO::FETCH_ASSOC);
-
 ?>
 
 <!DOCTYPE html>
@@ -273,39 +269,10 @@ $result3=$stmt3->fetchAll(PDO::FETCH_ASSOC);
           </div>
           <!-- END MINI-PROFILE -->
           <!-- BEGIN SIDEBAR MENU -->
-          <p class="menu-title sm">MENU <span class="pull-right"><a href="javascript:;"><i class="material-icons">refresh</i></a></span></p>
-          <ul>
-            <li class=""> 
-              <a href="index.php"><i class="material-icons" title="Home">home</i> <span class="title">Home</span> <span class="title"></span> </a>
-            </li>
-            <li class=""> 
-              <a href="chamados.php"><i class="material-icons" title="Chamados">desktop_mac</i> <span class="title">Chamados</span></a>
-            </li>            
-            <li class=""> 
-              <a href="ramais.php"><i class="material-icons" title="Ramais">phone_forwarded</i> <span class="title">Ramais</span></a>
-            </li>
-            <li class=""> 
-              <a href="agenda.php"><i class="fa fa-calendar" title="&uacute;teis"></i> <span class="title">Agenda</span></a>
-            </li>
-            <li class=""> 
-              <a href="cadastros.php"><i class="material-icons" title="Cadastros">library_add</i> <span class="title">Cadastros</span></a>
-            </li>
-            <li class=""> 
-              <a href="solicitacoes.php"><i class="material-icons" title="Solicita&ccedil;&otilde;es">assignment</i> <span class="title">Solicita&ccedil;&otilde;es</span></a>
-            </li>
-            <li class=""> 
-              <a href="uteis.php"><i class="fa fa-external-link" title="&uacute;teis"></i> <span class="title">Links &uacute;teis</span></a>
-            </li>
             <?php
-              if ($result1['GESTOR'] == 'S' || $result1['TIPO_USUARIO'] == 'ADM') {
-                echo 
-                '<li class="start active">
-                  <a href="indicadores.php"><i class="fa fa-bar-chart" title="Indicadores"></i> <span class="title">Indicadores</span></a>               
-                </li>';
-              }                
+               //Exibe o menu lateral das páginas WEB
+               exibe_menu_lateral("indicadores.php");
             ?>
-          </ul>
-          <div class="clearfix"></div>
           <!-- END SIDEBAR MENU -->
         </div>
       </div>
@@ -340,45 +307,8 @@ $result3=$stmt3->fetchAll(PDO::FETCH_ASSOC);
           </div>
           <!-- END PAGE TITLE -->
           <!-- CONTEUDO -->
-
           <?php
-            if ($result1['TIPO_USUARIO'] == 'ADM') {
-              foreach ($result3 as $key => $value) {
-              echo
-              '<div class="'.$result3[$key]['ATRIBUTOS_1'].'">
-                <div class="'.$result3[$key]['ATRIBUTOS_2'].'">
-                  <div class="tiles-body">
-                    <a href="'.$result3[$key]['LINK'].'?pbi=', base64_encode($result3[$key]['ORDEM']), '" style="color: #edeeef;">
-                      <div class="heading">
-                        <div class="pull-left">'.$result3[$key]['TITULO'].'</div>
-                        <div class="clearfix"></div>
-                      </div>
-                      <div class="big-icon">
-                        <i class="'.$result3[$key]['ICONE'].'"></i>
-                      </div>
-                      <div class="clearfix"></div>
-                  </div>
-                    </a>
-                  <div class="tile-footer">
-                    <div class="pull-left">
-                      <canvas id="" width="1" height="30"></canvas>
-                      <span class=" small-text-description">&nbsp;&nbsp;<span class="label">'.$result3[$key]['LABEL'].'</span>
-                    </div>
-                    <div class="pull-right">
-                      <!-- <canvas id="" width="1" height="28"></canvas>
-                        <span style="cursor: pointer;" data-toggle="modal" data-target="#"><i class="fa fa-info fa-2x"></i> </span> -->
-                    </div>
-                    <div class="pull-right">
-                      <canvas id="" width="32" height="32"></canvas>
-                      <span class="text-white small-text-description"></span> 
-                    </div>
-                    <div class="clearfix"></div>
-                  </div>
-                </div>
-              </div>';                  
-            }
-            } else {
-              foreach ($result2 as $key => $value) {
+            foreach ($result2 as $key => $value) {
               echo
               '<div class="'.$result2[$key]['ATRIBUTOS_1'].'">
                 <div class="'.$result2[$key]['ATRIBUTOS_2'].'">
@@ -412,9 +342,7 @@ $result3=$stmt3->fetchAll(PDO::FETCH_ASSOC);
                 </div>
               </div>';                  
             }
-            }
           ?>
-          
           <!-- END PLACE PAGE CONTENT HERE -->
         </div>
       </div>
