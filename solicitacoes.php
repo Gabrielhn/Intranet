@@ -638,9 +638,9 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
 
           <!-- TILE #7 -->
           <div class="col-md-3 col-sm-4 m-b-20">
-            <div class="tiles blue weather-widget">
+          <div class="tiles gray weather-widget">
               <div class="tiles-body">
-                <a href="hora_extra.php" style="color: #edeeef;">
+			    <a href="#" style="color: #edeeef;">
                   <div class="heading">
                     <div class="pull-left">Hora Extra </div>
                     <div class="clearfix"></div>

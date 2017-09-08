@@ -177,3 +177,91 @@ function exibe_menu_lateral($id_foco)
     echo '</ul>
           <div class="clearfix"></div>';          
 }
+
+//Exibe o menu lateral das páginas WEB que estão um diretório anterior
+function exibe_menu_lateral_ant1($id_foco)
+{
+    //Insere o menu lateral
+    echo '<p class="menu-title sm">MENU <span class="pull-right"><a href="javascript:;"><i class="material-icons">refresh</i></a></span></p>
+          <ul>';
+    if($id_foco == "index.php"){
+      echo '  <li class="start active"> 
+                <a href="../index.php"><i class="material-icons" title="Home">home</i> <span class="title">Home</span> <span class="title"></span> </a>
+              </li>';
+    } else {
+      echo '  <li class=""> 
+                <a href="../index.php"><i class="material-icons" title="Home">home</i> <span class="title">Home</span> <span class="title"></span> </a>
+              </li>';
+    }
+    if($id_foco == "chamados.php"){
+      echo '  <li class="start active">
+                <a href="../chamados.php"><i class="material-icons" title="Chamados">desktop_mac</i> <span class="title">Chamados</span></a>
+              </li>';
+    } else {
+      echo '  <li class="">
+                <a href="../chamados.php"><i class="material-icons" title="Chamados">desktop_mac</i> <span class="title">Chamados</span></a>
+              </li>';
+    }
+    if($id_foco == "ramais.php"){
+      echo '  <li class="start active"> 
+                <a href="../ramais.php"><i class="material-icons" title="Ramais">phone_forwarded</i> <span class="title">Ramais</span></a>
+              </li>';
+    } else {
+      echo '  <li class="">
+                <a href="../ramais.php"><i class="material-icons" title="Ramais">phone_forwarded</i> <span class="title">Ramais</span></a>
+              </li>';
+    }
+    if($id_foco == "agenda.php"){
+      echo '  <li class="start active"> 
+                <a href="../agenda.php"><i class="fa fa-calendar" title="&uacute;teis"></i> <span class="title">Agenda</span></a>
+              </li>';
+    } else {
+      echo '  <li class="">
+                <a href="../agenda.php"><i class="fa fa-calendar" title="&uacute;teis"></i> <span class="title">Agenda</span></a>
+              </li>';
+    }
+    if($id_foco == "cadastros.php"){
+      echo '  <li class="start active"> 
+                <a href="../cadastros.php"><i class="material-icons" title="Cadastros">library_add</i> <span class="title">Cadastros</span></a>
+              </li>';
+    } else {
+      echo '  <li class=""> 
+                <a href="../cadastros.php"><i class="material-icons" title="Cadastros">library_add</i> <span class="title">Cadastros</span></a>
+              </li>';
+    }
+    if($id_foco == "solicitacoes.php"){
+      echo '  <li class="start active"> 
+                <a href="../solicitacoes.php"><i class="material-icons" title="Solicita&ccedil;&otilde;es">assignment</i> <span class="title">Solicita&ccedil;&otilde;es</span></a>
+              </li>';
+    } else {
+      echo '  <li class=""> 
+                <a href="../solicitacoes.php"><i class="material-icons" title="Solicita&ccedil;&otilde;es">assignment</i> <span class="title">Solicita&ccedil;&otilde;es</span></a>
+              </li>';
+    }
+    if($id_foco == "uteis.php"){
+      echo '  <li class="start active"> 
+                <a href="../uteis.php"><i class="fa fa-external-link" title="&uacute;teis"></i> <span class="title">Links &uacute;teis</span></a>
+              </li>';
+    } else {
+      echo '  <li class=""> 
+                <a href="../uteis.php"><i class="fa fa-external-link" title="&uacute;teis"></i> <span class="title">Links &uacute;teis</span></a>
+              </li>';
+    }
+    //Verifica se o usuário possui acesso ao painel da INTRANET
+    $acesso = acesso_indicadores(0);
+    //Se o usuário possui acesso ao painel da INTRANET
+    if($acesso == 'S'){
+      if($id_foco == "indicadores.php"){
+        echo '  <li class="start active"> 
+                  <a href="../indicadores.php"><i class="fa fa-bar-chart" title="Indicadores"></i> <span class="title">Indicadores</span></a>
+                </li>';
+      } else {
+        echo '  <li class=""> 
+                  <a href="../indicadores.php"><i class="fa fa-bar-chart" title="Indicadores"></i> <span class="title">Indicadores</span></a>
+                </li>';
+      }
+    }
+    //Finaliza o menu lateral
+    echo '</ul>
+          <div class="clearfix"></div>';          
+}

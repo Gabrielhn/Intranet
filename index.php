@@ -733,44 +733,11 @@ $result11=$stmt11->fetch(PDO::FETCH_ASSOC);
                 <div class="grid-body no-border">
                   <h4><i class="fa fa-birthday-cake fa-1x"></i><span class="semi-bold">&nbsp; Anivers&aacute;rios</span></h4>
                   <br/>
-                  <?php
-                  echo '<a href="assets/img/aniver/'.$dataAniver.'" target="blank">
-                      <img src="assets/img/aniver/'.$dataAniver.'" class="image-responsive-width xs-image-responsive-width lazy"></img>                                  
-                    </a>';
-                  ?>
-                </div>
-              </div>
-            </div>
-
-            <!--#6 A Fazer-->
-            <div class="col-md-6 col-sm-6">
-              <div class="grid simple ">
-                <div class="grid-title no-border">
-                  <div class="tools">                                      
-                  </div>
-                </div>
-                <div class="grid-body no-border">
-                  <h4><i class="fa fa-check-square-o fa-1x"></i><span class="semi-bold">&nbsp; A Fazer</span></h4>
-                  <br/>
-                  
-                  <div id="myDIV" class="col-md-9">
-                    <input type="text" id="myInput" class="form-control input-lg" placeholder="Tarefa...">
-                  </div>
-                  <div class="col-md-3">
-                    <span onclick="newElement()" class="btn btn-large">Adicionar</span>
-                  </div>
-
-                  <br/>                  
-
-                  <div class="col-md-12 m-t-10">
-                  <ul id="myUL">
-                    
-                  </ul>
-
-                  
-                  </div>
-
-                  
+				  <?php
+					echo '<a href="assets/img/aniver/'.$dataAniver.'" target="blank">
+							<img src="assets/img/aniver/'.$dataAniver.'" class="image-responsive-width xs-image-responsive-width lazy"></img>                                  
+						 </a>';
+					?>
                 </div>
               </div>
             </div>            
@@ -823,63 +790,6 @@ $result11=$stmt11->fetch(PDO::FETCH_ASSOC);
     <script src="assets/plugins/jquery-validation/js/jquery.validate.min.js" type="text/javascript"></script>
     <script src="assets/plugins/bootstrap-select2/select2.min.js" type="text/javascript"></script>
     <!-- END CORE JS DEPENDECENCIES-->
-    <script>
-    // Create a "close" button and append it to each list item
-      var myNodelist = document.getElementsByTagName("LI");
-      var i;
-      for (i = 0; i < myNodelist.length; i++) {
-        var span = document.createElement("SPAN");
-        var txt = document.createTextNode("\u00D7");
-        span.className = "close";
-        span.appendChild(txt);
-        myNodelist[i].appendChild(span);
-      }
-
-      // Click on a close button to hide the current list item
-      var close = document.getElementsByClassName("close");
-      var i;
-      for (i = 0; i < close.length; i++) {
-        close[i].onclick = function() {
-          var div = this.parentElement;
-          div.style.display = "none";
-        }
-      }
-
-      // Add a "checked" symbol when clicking on a list item
-      var list = document.querySelector('ul');
-      list.addEventListener('click', function(ev) {
-        if (ev.target.tagName === 'LI') {
-          ev.target.classList.toggle('checked');
-        }
-      }, false);
-
-      // Create a new list item when clicking on the "Add" button
-      function newElement() {
-        var li = document.createElement("li");
-        var inputValue = document.getElementById("myInput").value;
-        var t = document.createTextNode(inputValue);
-        li.appendChild(t);
-        if (inputValue === '') {
-          alert("Digite um nome para a tarefa.");
-        } else {
-          document.getElementById("myUL").appendChild(li);
-        }
-        document.getElementById("myInput").value = "";
-
-        var span = document.createElement("SPAN");
-        var txt = document.createTextNode("\u00D7");
-        span.className = "close";
-        span.appendChild(txt);
-        li.appendChild(span);
-
-        for (i = 0; i < close.length; i++) {
-          close[i].onclick = function() {
-            var div = this.parentElement;
-            div.style.display = "none";
-          }
-        }
-      }
-    </script>
     <!-- BEGIN CORE TEMPLATE JS -->
     <script src="webarch/js/webarch.js" type="text/javascript"></script>
     <script src="assets/js/chat.js" type="text/javascript"></script>

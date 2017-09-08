@@ -1,5 +1,6 @@
 <?php
 require_once("../assets/php/class/class.seg.php");
+require_once("../assets/php/class/class.utils.php");
 session_start();
 proteger();
 
@@ -254,43 +255,12 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
             </div>
           </div>
           <!-- /MINI PERFIL -->
-
           <!-- SIDEBAR MENU -->
-          <p class="menu-title sm">MENU <span class="pull-right"><a href="javascript:;"><i class="material-icons">refresh</i></a></span></p>
-          <ul>
-            <li class=""> 
-              <a href="../index.php"><i class="material-icons" title="Home">home</i> <span class="title">Home</span> <span class="title"></span> </a>
-            </li>
-            <li class=""> 
-              <a href="../chamados.php"><i class="material-icons" title="Chamados">desktop_mac</i> <span class="title">Chamados</span></a>
-            </li>
-            <li class=""> 
-              <a href="../ramais.php"><i class="material-icons" title="Ramais">phone_forwarded</i> <span class="title">Ramais</span></a>
-            </li>
-            <li class=""> 
-              <a href="../agenda.php"><i class="fa fa-calendar" title="&uacute;teis"></i> <span class="title">Agenda</span></a>
-            </li>
-            <li class=""> 
-              <a href="../cadastros.php"><i class="material-icons" title="Cadastros">library_add</i> <span class="title">Cadastros</span></a>
-            </li>
-            <li class=""> 
-              <a href="../solicitacoes.php"><i class="material-icons" title="Solicita&ccedil;&otilde;es">assignment</i> <span class="title">Solicita&ccedil;&otilde;es</span></a>
-            </li>
-            <li class=""> 
-              <a href="../uteis.php"><i class="fa fa-external-link" title="&uacute;teis"></i> <span class="title">Links &uacute;teis</span></a>
-            </li>
             <?php
-              if ($result1['GESTOR'] == 'S' || $result1['TIPO_USUARIO'] == 'ADM') {
-                echo 
-                '<li class="">
-                  <a href="../indicadores.php"><i class="fa fa-bar-chart" title="Indicadores"></i> <span class="title">Indicadores</span></a>               
-                </li>';
-              }                
+               //Exibe o menu lateral das páginas WEB que estão um diretório anterior
+               exibe_menu_lateral_ant1("");
             ?>
-           </ul>            
-          <div class="clearfix"></div>
           <!-- /SIDEBAR MENU -->
-          
         </div>
       </div>
       <a href="#" class="scrollup">Scroll</a>
