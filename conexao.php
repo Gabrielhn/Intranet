@@ -22,6 +22,4 @@ class ConnectionFactory{
         $ora_conexao = oci_close($connection);
 
     }
-
-
 }
