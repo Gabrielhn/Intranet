@@ -6401,10 +6401,23 @@ form legend,
   margin-top: 23px;
   margin-bottom: 8px;
 }
+.big-icon {
+  width: 120px;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 23px;
+  margin-bottom: 8px;
+}
+
 .weather-widget .small-text-description {
   position: relative;
   top: -9px;
 }
+.small-text-description {
+  position: relative;
+  top: -9px;
+}
+
 .weather-widget-big-text {
   font-size: 54px !important;
 }

@@ -330,13 +330,15 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
                       <span class=" small-text-description">&nbsp;&nbsp;<span class="label">'.$result2[$key]['LABEL'].'</span>
                     </div>
                     <div class="pull-right">
-                      <!-- <canvas id="" width="1" height="28"></canvas>
-                        <span style="cursor: pointer;" data-toggle="modal" data-target="#"><i class="fa fa-info fa-2x"></i> </span> -->
+                    <div class="dropdown">
+                      <i class="fa fa-caret-down fa-2x dropdown-toggle" data-toggle="dropdown"></i>
+                      <ul class="dropdown-menu">
+                        <li><a href="#">HTML</a></li>
+                        <li><a href="#">CSS</a></li>
+                        <li><a href="#">JavaScript</a></li>
+                      </ul>
                     </div>
-                    <div class="pull-right">
-                      <canvas id="" width="32" height="32"></canvas>
-                      <span class="text-white small-text-description"></span> 
-                    </div>
+                  </div>
                     <div class="clearfix"></div>
                   </div>
                 </div>
