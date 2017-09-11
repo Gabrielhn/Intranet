@@ -94,7 +94,7 @@ function acesso_indicadores($id_painel)
 function exibe_menu_lateral($id_foco)
 {
     //Insere o menu lateral
-    echo '<p class="menu-title sm">MENU <span class="pull-right"><a href="javascript:;"><i class="material-icons">refresh</i></a></span></p>
+    echo '<p class="menu-title sm">MENU <span class="pull-right"><a href=""><i class="material-icons"></i></a></span></p>
           <ul>';
     if($id_foco == "index.php"){
       echo '  <li class="start active"> 
@@ -107,11 +107,27 @@ function exibe_menu_lateral($id_foco)
     }
     if($id_foco == "chamados.php"){
       echo '  <li class="start active">
-                <a href="chamados.php"><i class="material-icons" title="Chamados">desktop_mac</i> <span class="title">Chamados</span></a>
+                <a href=""> <i class="material-icons">desktop_mac</i> <span class="title">Chamados</span> <span class=" arrow"></span> </a>
+                <ul class="sub-menu">
+                  <li> 
+                    <a href="chamados.php">Abertura/consulta </a> 
+                  </li>
+                  <li>
+                    <a href="remoto.php"> <span class="title">Atendimento remoto</span></a>
+                  </li>
+                </ul>
               </li>';
     } else {
       echo '  <li class="">
-                <a href="chamados.php"><i class="material-icons" title="Chamados">desktop_mac</i> <span class="title">Chamados</span></a>
+                <a href=""> <i class="material-icons">desktop_mac</i> <span class="title">Chamados</span> <span class=" arrow"></span> </a>
+                <ul class="sub-menu">
+                  <li> 
+                    <a href="chamados.php">Abertura/consulta </a> 
+                  </li>
+                  <li>
+                    <a href="remoto.php"> <span class="title">Atendimento remoto</span></a>
+                  </li>
+                </ul>
               </li>';
     }
     if($id_foco == "ramais.php"){
@@ -182,7 +198,7 @@ function exibe_menu_lateral($id_foco)
 function exibe_menu_lateral_ant1($id_foco)
 {
     //Insere o menu lateral
-    echo '<p class="menu-title sm">MENU <span class="pull-right"><a href="javascript:;"><i class="material-icons">refresh</i></a></span></p>
+    echo '<p class="menu-title sm">MENU <span class="pull-right"><a href=""><i class="material-icons"></i></a></span></p>
           <ul>';
     if($id_foco == "index.php"){
       echo '  <li class="start active"> 
@@ -195,11 +211,27 @@ function exibe_menu_lateral_ant1($id_foco)
     }
     if($id_foco == "chamados.php"){
       echo '  <li class="start active">
-                <a href="../chamados.php"><i class="material-icons" title="Chamados">desktop_mac</i> <span class="title">Chamados</span></a>
+                <a href=""> <i class="material-icons">desktop_mac</i> <span class="title">Chamados</span> <span class=" arrow"></span> </a>
+                <ul class="sub-menu">
+                  <li> 
+                    <a href="../chamados.php">Abertura/consulta </a> 
+                  </li>
+                  <li>
+                    <a href="remoto.php"> <span class="title">Atendimento remoto</span></a>                  
+                  </li>
+                </ul>
               </li>';
     } else {
       echo '  <li class="">
-                <a href="../chamados.php"><i class="material-icons" title="Chamados">desktop_mac</i> <span class="title">Chamados</span></a>
+                <a href=""> <i class="material-icons">desktop_mac</i> <span class="title">Chamados</span> <span class=" arrow"></span> </a>
+                <ul class="sub-menu">
+                  <li> 
+                    <a href="../chamados.php">Abertura/consulta </a> 
+                  </li>
+                  <li>
+                    <a href="remoto.php"> <span class="title">Atendimento remoto</span></a>                  
+                  </li>
+                </ul>
               </li>';
     }
     if($id_foco == "ramais.php"){
