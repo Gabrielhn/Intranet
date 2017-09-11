@@ -113,7 +113,7 @@ function exibe_menu_lateral($id_foco)
                     <a href="chamados.php">Abertura/consulta </a> 
                   </li>
                   <li>
-                    <a href="remoto.php"> <span class="title">Atendimento remoto</span></a>
+                    <a href="atendimento.php"> <span class="title">Atendimento remoto</span></a>
                   </li>
                 </ul>
               </li>';
@@ -125,7 +125,7 @@ function exibe_menu_lateral($id_foco)
                     <a href="chamados.php">Abertura/consulta </a> 
                   </li>
                   <li>
-                    <a href="remoto.php"> <span class="title">Atendimento remoto</span></a>
+                    <a href="atendimento.php"> <span class="title">Atendimento remoto</span></a>
                   </li>
                 </ul>
               </li>';
@@ -217,7 +217,7 @@ function exibe_menu_lateral_ant1($id_foco)
                     <a href="../chamados.php">Abertura/consulta </a> 
                   </li>
                   <li>
-                    <a href="remoto.php"> <span class="title">Atendimento remoto</span></a>                  
+                    <a href="atendimento.php"> <span class="title">Atendimento remoto</span></a>                  
                   </li>
                 </ul>
               </li>';
@@ -229,7 +229,7 @@ function exibe_menu_lateral_ant1($id_foco)
                     <a href="../chamados.php">Abertura/consulta </a> 
                   </li>
                   <li>
-                    <a href="remoto.php"> <span class="title">Atendimento remoto</span></a>                  
+                    <a href="atendimento.php"> <span class="title">Atendimento remoto</span></a>                  
                   </li>
                 </ul>
               </li>';

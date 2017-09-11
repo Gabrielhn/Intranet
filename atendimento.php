@@ -295,19 +295,23 @@ $result1=$stmt1->fetch(PDO::FETCH_ASSOC);
           <!-- BEGIN PlACE PAGE CONTENT HERE -->
           <div class=" container">
             <div class="row">
-              <div class="col-md-9 col-md-offset-3">
-                <div class="error-container">
-                  <div class="error-main">
-                    <?php 
-                    $name=gethostname();
+              <div class="col-md-12"></div>
+              <div class="col-md-5 col-md-offset-3 p-t-20">
+                <div class="">
+                  <div class="user-description-box" style="text-align:center;">
+                    <?php
+                    $ip=$_SERVER['REMOTE_ADDR']; 
+                    $name=gethostbyaddr($ip);
                     echo '
-                      <div class="error-number">'.$name.'</div>
-                      <div class="error-description"><i class="fa fa-desktop"></i> '.gethostbyname($name).'</div>
-                      <div class="error-description-mini">Informe estes dados ao atendente.</div>';
+                      <div class=" "><h1><strong>'.strtoupper(str_replace(".aniger.local","",$name)).'</strong></h1></div>
+                      <div class=""><h3><i class="fa fa-desktop"></i> '.$ip.'</h3></div>
+                      <div class=""><h5>Informe estes dados ao atendente.</h5></div>
+                      <div class=""><i class="fa fa-spinner fa-pulse fa-2x fa-fw"></i></div>';
                     ?>
                   </div>
                 </div>
               </div>
+              <div class="col-md-3"></div>
             </div>
           </div>
 
