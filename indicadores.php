@@ -29,11 +29,15 @@ FROM
 WHERE 
     USR.IMG_PERFIL = IMG.ID AND USR.ID =:id";
 
-$query2 = "SELECT ITM.* FROM IN_MENU_ITEM ITM, IN_USUARIOS_PAINEIS PAINEIS
-              WHERE ITM.MENU = :menu AND ITM.ATIVO='S' AND
-                   ITM.ORDEM = PAINEIS.ID_PAINEL AND
-              PAINEIS.ID_USU = :id
-                 ORDER BY ITM.ORDEM";
+$query2 = "SELECT * FROM IN_MENU_ITEM
+            WHERE MENU = :menu AND ATIVO='S' AND
+                  LABEL IN (SELECT DISTINCT B.SETOR FROM IN_USUARIOS_PAINEIS A, IN_PAINEIS B WHERE A.ID_PAINEL = B.ID AND A.ID_USU = :id)
+             ORDER BY ORDEM";
+
+$query3 = "SELECT * FROM in_paineis
+            WHERE ID IN (SELECT id_painel AS ID FROM in_usuarios_paineis WHERE id_usu=:id) AND
+                  SETOR=:setor
+             ORDER BY ID";
 
 //#1
 $stmt1 = $conn->prepare($query1);
@@ -308,18 +312,24 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
           <!-- END PAGE TITLE -->
           <!-- CONTEUDO -->
           <?php
-            foreach ($result2 as $key => $value) {
+            foreach ($result2 as $key2 => $value) {
+              //#3
+              $stmt3 = $conn->prepare($query3);
+              $stmt3->bindValue(':setor',$result2[$key2]['LABEL']);
+              $stmt3->bindValue(':id',$id);
+              $stmt3->execute();
+              $result3=$stmt3->fetchAll(PDO::FETCH_ASSOC);
               echo
-              '<div class="'.$result2[$key]['ATRIBUTOS_1'].'">
-                <div class="'.$result2[$key]['ATRIBUTOS_2'].'">
+              '<div class="'.$result2[$key2]['ATRIBUTOS_1'].'">
+                <div class="'.$result2[$key2]['ATRIBUTOS_2'].'">
                   <div class="tiles-body">
-                    <a href="'.$result2[$key]['LINK'].'?pbi=', base64_encode($result2[$key]['ORDEM']), '" style="color: #edeeef;">
+                    <a href="#" style="color: #edeeef; cursor:default;">
                       <div class="heading">
-                        <div class="pull-left">'.$result2[$key]['TITULO'].'</div>
+                        <div class="pull-left">'.$result2[$key2]['TITULO'].'</div>
                         <div class="clearfix"></div>
                       </div>
                       <div class="big-icon">
-                        <i class="'.$result2[$key]['ICONE'].'"></i>
+                        <i class="'.$result2[$key2]['ICONE'].'"></i>
                       </div>
                       <div class="clearfix"></div>
                   </div>
@@ -327,16 +337,17 @@ $result2=$stmt2->fetchAll(PDO::FETCH_ASSOC);
                   <div class="tile-footer">
                     <div class="pull-left">
                       <canvas id="" width="1" height="30"></canvas>
-                      <span class=" small-text-description">&nbsp;&nbsp;<span class="label">'.$result2[$key]['LABEL'].'</span>
+                      <span class=" small-text-description">&nbsp;&nbsp;<span class="label">'.$result2[$key2]['LABEL'].'</span>
                     </div>
                     <div class="pull-right">
                     <div class="dropdown">
-                      <i class="fa fa-caret-down fa-2x dropdown-toggle" data-toggle="dropdown"></i>
-                      <ul class="dropdown-menu">
-                        <li><a href="#">HTML</a></li>
-                        <li><a href="#">CSS</a></li>
-                        <li><a href="#">JavaScript</a></li>
-                      </ul>
+                      <i class="fa fa-caret-down fa-2x dropdown-toggle" data-toggle="dropdown" style="cursor:pointer;"></i>
+                      <ul class="dropdown-menu">';
+                      foreach ($result3 as $key3 => $value) {
+                        echo '<li><a href="'.$result3[$key3]['LINK'].'?pbi=', base64_encode($result3[$key3]['ID']), '">'.$result3[$key3]['DESCRICAO'].'</a></li>';
+                      }
+              echo
+              '       </ul>
                     </div>
                   </div>
                     <div class="clearfix"></div>
