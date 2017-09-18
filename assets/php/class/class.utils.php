@@ -110,7 +110,7 @@ function exibe_menu_lateral($id_foco)
                 <a href=""> <i class="material-icons">desktop_mac</i> <span class="title">Chamados</span> <span class=" arrow"></span> </a>
                 <ul class="sub-menu">
                   <li> 
-                    <a href="chamados.php">Abertura/consulta </a> 
+                    <a href="https://aniger.tomticket.com/" target="blank">Abertura/consulta</a> 
                   </li>
                   <li>
                     <a href="atendimento.php"> <span class="title">Atendimento remoto</span></a>
@@ -122,7 +122,7 @@ function exibe_menu_lateral($id_foco)
                 <a href=""> <i class="material-icons">desktop_mac</i> <span class="title">Chamados</span> <span class=" arrow"></span> </a>
                 <ul class="sub-menu">
                   <li> 
-                    <a href="chamados.php">Abertura/consulta </a> 
+                    <a href="https://aniger.tomticket.com/" target="blank">Abertura/consulta</a>                   
                   </li>
                   <li>
                     <a href="atendimento.php"> <span class="title">Atendimento remoto</span></a>
@@ -214,7 +214,7 @@ function exibe_menu_lateral_ant1($id_foco)
                 <a href=""> <i class="material-icons">desktop_mac</i> <span class="title">Chamados</span> <span class=" arrow"></span> </a>
                 <ul class="sub-menu">
                   <li> 
-                    <a href="../chamados.php">Abertura/consulta </a> 
+                    <a href="https://aniger.tomticket.com/" target="blank">Abertura/consulta</a>                   
                   </li>
                   <li>
                     <a href="atendimento.php"> <span class="title">Atendimento remoto</span></a>                  
@@ -226,7 +226,7 @@ function exibe_menu_lateral_ant1($id_foco)
                 <a href=""> <i class="material-icons">desktop_mac</i> <span class="title">Chamados</span> <span class=" arrow"></span> </a>
                 <ul class="sub-menu">
                   <li> 
-                    <a href="../chamados.php">Abertura/consulta </a> 
+                    <a href="https://aniger.tomticket.com/" target="blank">Abertura/consulta</a>                   
                   </li>
                   <li>
                     <a href="atendimento.php"> <span class="title">Atendimento remoto</span></a>                  
