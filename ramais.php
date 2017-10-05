@@ -208,6 +208,11 @@ $stmt30->bindValue(':setor','AUT');
 $stmt30->execute();
 $result30=$stmt30->fetchAll(PDO::FETCH_ASSOC);
 
+//#31
+$stmt31 = $conn->prepare($query2);
+$stmt31->bindValue(':setor','CTL');
+$stmt31->execute();
+$result31=$stmt31->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
 
@@ -1150,6 +1155,56 @@ $result30=$stmt30->fetchAll(PDO::FETCH_ASSOC);
             <div class="span12">
               <div class="grid simple ">
                 <div class="grid-title">
+                  <?php echo '<h4><span class="bold">Controladoria &nbsp;</span><span class="'.$result31[0]['LABEL'].'">'.$result31[0]['SETOR']; ?> </span></h4>                                                                                                                                     
+                  <div class="tools">
+                    <a href="javascript:;" class="collapse"></a>                     
+                    <a href="javascript:;" class="reload"></a>
+                  </div>
+                </div>
+                <div class="grid-body ">
+                  <table class="table table-hover table-bordered" id="CTL">
+                    <thead>
+                      <tr>
+                        <th>Nome</th>
+                        <th>Ramal</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <?php
+                        foreach ($result31 as $key31 => $value) {
+                          if ($result31[$key31]['GESTOR'] == 'S') {
+                            echo
+                            '<tr class="clickable" data-toggle="collapse" id="row'.$result31[$key31]['ID'].'" data-target=".row'.$result31[$key31]['ID'].'">
+                              <td>'.$result31[$key31]['NOME'].'<i class="material-icons pull-right" style="font-size: 18px;">stars</i></td>
+                              <td class="center">'.$result31[$key31]['RAMAL'].'</td>
+                            </tr>
+                            <tr class="collapse row'.$result31[$key31]['ID'].'">                              
+                              <td colspan="2"><i class="fa fa-envelope"></i> &nbsp;'.$result31[$key31]['EMAIL'].'</td>                                
+                            </tr>';
+                          } else {
+                            echo
+                            '<tr class="clickable" data-toggle="collapse" id="row'.$result31[$key31]['ID'].'" data-target=".row'.$result31[$key31]['ID'].'">
+                              <td>'.$result31[$key31]['NOME'].'</td>
+                              <td class="center">'.$result31[$key31]['RAMAL'].'</td>
+                            </tr>
+                            <tr class="collapse row'.$result31[$key31]['ID'].'">                              
+                              <td colspan="2"><i class="fa fa-envelope"></i> &nbsp;'.$result31[$key31]['EMAIL'].'</td>                                
+                            </tr>';
+                          }                          
+                        }
+                      ?>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="col-md-4 col-sm-6 m-b-10">
+            <div class="span12">
+              <div class="grid simple ">
+                <div class="grid-title">
                   <?php echo '<h4><span class="bold">Transportes &nbsp;</span><span class="'.$result29[0]['LABEL'].'">'.$result29[0]['SETOR']; ?> </span></h4>                                                                                                                                   
                   <div class="tools">
                     <a href="javascript:;" class="collapse"></a>                     
@@ -1785,9 +1840,6 @@ $result30=$stmt30->fetchAll(PDO::FETCH_ASSOC);
             </div>
           </div>
 
-          
-                              
-          
           <!-- END PLACE PAGE CONTENT HERE -->
         </div>
       </div>
