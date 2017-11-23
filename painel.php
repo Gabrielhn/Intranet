@@ -88,7 +88,7 @@ $result3=$stmt3->fetch(PDO::FETCH_ASSOC);
                 echo '<img src="data:image/jpeg;base64,'.base64_encode(stream_get_contents($result1['CONTEUDO'])).'" alt="" class="xs-image-responsive-width lazy">';
               };
               if ($result1['TIPO'] == 'URL') {
-                echo '<iframe src="'.$result1['DESCRICAO'].'" style="border:none;width:100%;height:550px;"></iframe>';
+                echo '<iframe src="'.$result1['DESCRICAO'].'" style="border:none;width:100%;height:800px;"></iframe>';
               }
               
               if ($_SESSION['exibe'] == $result3['MAX']) {

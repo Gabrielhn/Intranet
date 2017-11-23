@@ -1,0 +1,14 @@
+|001|                                        |
+|002|                                        |
+|003|ANIGER_Comercial_01                     |https://app.powerbi.com/view?r=eyJrIjoiNjJlY2I1NDItMDgzNi00MGJjLTlmYWMtZDVjY2IzMDdlZmU4IiwidCI6IjI1MThjYTMxLWM4YjQtNDk4MS1iYWUwLTM1NDZjZTNjMDlmNiJ9
+|004|ANIGER_Produtos_01                      |https://app.powerbi.com/view?r=eyJrIjoiZjhmMTJmYWUtNDBlYy00NzM4LTlhMTYtZWFhMjA0OTQ0MmMyIiwidCI6IjI1MThjYTMxLWM4YjQtNDk4MS1iYWUwLTM1NDZjZTNjMDlmNiJ9
+|005|ANIGER_Compras_01                       |https://app.powerbi.com/view?r=eyJrIjoiOTZhZjk4MmMtNzRlMy00NmYwLTgyMTEtMmNhOTBkNzIxNDNjIiwidCI6IjI1MThjYTMxLWM4YjQtNDk4MS1iYWUwLTM1NDZjZTNjMDlmNiJ9
+|006|ANIGER_Produtos_02                      |https://app.powerbi.com/view?r=eyJrIjoiZDAyMTc4YzktOTQ2My00MzBhLWIwMzAtNTM0MmI0MGQ2NzZiIiwidCI6IjI1MThjYTMxLWM4YjQtNDk4MS1iYWUwLTM1NDZjZTNjMDlmNiJ9
+|007|ANIGER_Produtos_03                      |https://app.powerbi.com/view?r=eyJrIjoiMTc2ODJhNzEtZjJmMC00ZDBkLWFhMWQtOTVhZDkwMWNlZTZkIiwidCI6IjI1MThjYTMxLWM4YjQtNDk4MS1iYWUwLTM1NDZjZTNjMDlmNiJ9
+|008|ANIGER_Comercial_02                     |https://app.powerbi.com/view?r=eyJrIjoiZjI1ZGRkNGUtMjg4My00YmI0LWI1ZjQtYjg4ZjcwNzE0MTg5IiwidCI6IjI1MThjYTMxLWM4YjQtNDk4MS1iYWUwLTM1NDZjZTNjMDlmNiJ9
+|009|ANIGER_Comercial_03                     |https://app.powerbi.com/view?r=eyJrIjoiYzY5NDYxMmYtMWRkYi00MGJmLWI2YjAtM2NkZDkxZWYwN2Y0IiwidCI6IjI1MThjYTMxLWM4YjQtNDk4MS1iYWUwLTM1NDZjZTNjMDlmNiJ9
+|010|ANIGER_Financeiro_01                    |https://app.powerbi.com/view?r=eyJrIjoiOTFjNjNkZDMtNWRkNy00MjdlLTkzYjgtZDZmNWIzN2EyN2FjIiwidCI6IjI1MThjYTMxLWM4YjQtNDk4MS1iYWUwLTM1NDZjZTNjMDlmNiJ9
+|011|ANIGER_TI_01                            |https://app.powerbi.com/view?r=eyJrIjoiMWYyZDI1NjktZmY4NS00YTUxLTg2Y2UtY2VlMTRjMGQ4MGYyIiwidCI6IjI1MThjYTMxLWM4YjQtNDk4MS1iYWUwLTM1NDZjZTNjMDlmNiJ9
+|012|ANIGER_PCP_UA_01                        |https://app.powerbi.com/view?r=eyJrIjoiZGUxMzRlMjctMGVlNC00MDJkLWEzMTItOWE5OWMzNTY5MjE3IiwidCI6IjI1MThjYTMxLWM4YjQtNDk4MS1iYWUwLTM1NDZjZTNjMDlmNiJ9
+|013|ANIGER_Comercial_04                     |https://app.powerbi.com/view?r=eyJrIjoiNTgyMzNlOTEtYTdhZi00MWRmLTljZDUtYTkzYTIxNTgxMjdmIiwidCI6IjI1MThjYTMxLWM4YjQtNDk4MS1iYWUwLTM1NDZjZTNjMDlmNiJ9
+|014|ANIGER_Compras_02                       |https://app.powerbi.com/view?r=eyJrIjoiNjYwMmVmOWUtZDljOC00NDI2LTliODEtMDVmNzQyMTA5ZDA0IiwidCI6IjI1MThjYTMxLWM4YjQtNDk4MS1iYWUwLTM1NDZjZTNjMDlmNiJ9

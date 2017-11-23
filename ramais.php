@@ -214,6 +214,12 @@ $stmt31->bindValue(':setor','CTL');
 $stmt31->execute();
 $result31=$stmt31->fetchAll(PDO::FETCH_ASSOC);
 
+//#32
+$stmt32 = $conn->prepare($query2);
+$stmt32->bindValue(':setor','CEXT');
+$stmt32->execute();
+$result32=$stmt32->fetchAll(PDO::FETCH_ASSOC);
+
 ?>
 
 <!DOCTYPE html>
@@ -1829,6 +1835,55 @@ $result31=$stmt31->fetchAll(PDO::FETCH_ASSOC);
                             </tr>
                             <tr class="collapse row'.$result18[$key18]['ID'].'">                              
                               <td colspan="2"><i class="fa fa-envelope"></i> &nbsp;'.$result18[$key18]['EMAIL'].'</td>                                
+                            </tr>';
+                          }                          
+                        }
+                      ?>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4 col-sm-6 m-b-10">
+            <div class="span12">
+              <div class="grid simple ">
+                <div class="grid-title">
+                  <?php echo '<h4><span class="bold">Comerc.Externo &nbsp;</span><span class="'.$result32[0]['LABEL'].'">'.$result32[0]['SETOR']; ?> </span></h4>                                                                                                        
+                  <div class="tools">
+                    <a href="javascript:;" class="collapse"></a>                     
+                    <a href="javascript:;" class="reload"></a>
+                  </div>
+                </div>
+                <div class="grid-body ">
+                  <table class="table table-hover table-bordered" id="CEXT">
+                    <thead>
+                      <tr>
+                        <th>Nome</th>
+                        <th>Ramal</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <?php
+                        foreach ($result32 as $key32 => $value) {
+                          if ($result32[$key32]['GESTOR'] == 'S') {
+                            echo
+                            '<tr class="clickable" data-toggle="collapse" id="row'.$result32[$key32]['ID'].'" data-target=".row'.$result32[$key32]['ID'].'">
+                              <td>'.$result32[$key32]['NOME'].'<i class="material-icons pull-right" style="font-size: 18px;">stars</i></td>
+                              <td class="center">'.$result32[$key32]['RAMAL'].'</td>
+                            </tr>
+                            <tr class="collapse row'.$result32[$key32]['ID'].'">                              
+                              <td colspan="2"><i class="fa fa-envelope"></i> &nbsp;'.$result32[$key32]['EMAIL'].'</td>                                
+                            </tr>';
+                          } else {
+                            echo
+                            '<tr class="clickable" data-toggle="collapse" id="row'.$result32[$key32]['ID'].'" data-target=".row'.$result32[$key32]['ID'].'">
+                              <td>'.$result32[$key32]['NOME'].'</td>
+                              <td class="center">'.$result32[$key32]['RAMAL'].'</td>
+                            </tr>
+                            <tr class="collapse row'.$result32[$key32]['ID'].'">                              
+                              <td colspan="2"><i class="fa fa-envelope"></i> &nbsp;'.$result32[$key32]['EMAIL'].'</td>                                
                             </tr>';
                           }                          
                         }
